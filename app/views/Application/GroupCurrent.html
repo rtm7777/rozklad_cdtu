@@ -60,7 +60,7 @@
 				</thead>
 				<tbody>
 				{{range $day := $.days_out}}
-				{{range $pair := $day.P}}
+				{{range $pair := $day.Pair}}
 					<tr>
 					{{if eq $pair.Num "I"}}
 						<td class="td-day" rowspan="6"><div class="rotate">{{$day.Day}}</div></td>
