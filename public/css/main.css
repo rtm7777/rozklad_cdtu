@@ -1,0 +1,199 @@
+/*******BASIC********/
+.font12 {
+	font-size: 12px;
+}
+
+.font14 {
+	font-size: 14px;
+}
+
+.font15 {
+	font-size: 15px;
+}
+
+.center-text {
+	text-align: center;
+}
+
+.no-bottom-margin {
+	margin-bottom: 0;
+}
+
+.no-border {
+	border: 0;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.padding1015 {
+	padding: 10px 15px;
+}
+
+.display-block {
+	display: block;
+}
+
+.nostyle-button {
+	background-image: none;
+}
+
+.width70p {
+	width: 70%;
+}
+
+/************NAVBAR***********/
+.navbar {
+	border-radius: 0;
+}
+
+
+/************GROUP TEACHER LEFT NAV MENU***********/
+
+.small-padding {
+	padding: 5px 15px;
+}
+
+.top-border-only {
+	border: 0;
+	border-top: 1px solid #dddddd;
+}
+
+.no-border-radius, .no-border-radius:first-child {
+	border-radius: 0;
+}
+
+/************MAIN PAGE***********/
+
+
+
+/************FOOTER***********/
+
+.footer {
+	text-align: center;
+}
+
+/************GROUP TEACHER TABLES***********/
+
+.rotate {
+	margin: 0px 0 0px 10px;
+	width: 15px;
+	-moz-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+
+#group_teacher_table tr:hover:nth-child(6n-5) td:first-child {
+	background-color: white;
+}
+
+.th-day {
+	width: 5%;
+}
+
+.th-pair {
+	width: 5%;
+}
+
+.td-pair {
+	text-align: center;
+	vertical-align: middle !important;
+}
+
+.td-day {
+	vertical-align: middle !important;
+	text-align: center;
+}
+
+.subject-content {
+	padding: 0 !important;
+}
+
+.sub-separator {
+	margin: 0 10px;
+	padding: 0;
+}
+
+.sub-content {
+	margin: 0px 10px;
+	height: 30px;
+	padding: 5px 0px;
+}
+.sub-single {
+	margin: 20px 10px 21px 10px;
+}
+
+
+/*****************ADMIN*******************/
+
+.top-left-border {
+	border-top: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+	overflow-x: auto;
+}
+
+.right-border {
+	border-right: 1px solid #dddddd;
+	display: block;
+	float: left;
+}
+
+.admin-day-cell {
+	margin: 85px 0 0 10px;
+}
+
+.admin-pair-cell {
+	margin-top: 15px;
+	text-align: center;
+}
+
+.schedule-container {
+	width: 2500px;
+}
+
+.width200 {
+	width: 200px;
+}
+
+.width80 {
+	width: 80px;
+}
+
+.width40 {
+	width: 40px;
+}
+
+.height287 {
+	height: 287px;
+}
+
+.height47 {
+	height: 47px;
+}
+
+.height25 {
+	height: 25px;
+}
+
+.height12 {
+	height: 12px;
+}
+
+.bottom-border {
+	border-bottom: 1px solid #dddddd;
+}
+
+.admin-sub-separator {
+	margin: 0;
+	padding: 0;
+}
+
+.admin-sub{
+	margin: 0px 10px;
+	height: 30px;
+	font-size: 11px;
+	overflow: hidden;
+}

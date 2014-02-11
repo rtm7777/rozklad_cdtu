@@ -1,0 +1,24 @@
+{{set . "title" "Про сайт"}}
+{{set . "info" "active"}}
+{{template "header.html" .}}
+<div class="container">
+	<div class="jumbotron">
+		<h2>Даний сайт розроблено як дипломний проект</h2>
+		<p><a href="/">Сайт</a> розроблено на веб фреймворку <a href="http://robfig.github.io/revel/index.html">Revel</a>. Використано технології <a href="http://uk.wikipedia.org/wiki/HTML5">HTML5</a>, <a href="http://www.w3schools.com/css3/default.asp">CSS3</a>, <a href="http://uk.wikipedia.org/wiki/AJAX">ajax</a>, бібліотеку <a href="http://jquery.com/">jQuery 2.0</a>, та CSS фреймворк <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 3.0</a></p>
+		<blockquote>
+			<p>Необхідні мінімальні версії браузерів для коректної роботи:</p>
+			<small><a href="http://windows.microsoft.com/uk-UA/internet-explorer/download-ie">Internet Expolrer</a> 10+</small>
+			<small><a href="http://www.google.com/chrome">Google Chrome</a> 14+</small>
+			<small><a href="http://www.mozilla.org/en-US/">Mozilla Firefox</a> 11+</small>
+			<small><a href="http://www.apple.com/safari/">Safari</a> 6+</small>
+			<small><a href="http://www.opera.com/">Opera</a> 12.1+</small>
+		</blockquote>
+		{{range $i := $.result.Days}}
+		{{range $j := $i.P}}
+		<a href="#">{{$j}}</a>
+		{{end}}
+		{{end}}
+	</div>
+</div>
+
+{{template "footer.html" .}}

@@ -1,0 +1,82 @@
+{{set . "title" "Розклад груп"}}
+{{set . "schedulegroup" "active"}}
+{{template "header.html" .}}
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="panel-group" id="accordions">
+			{{range $f := $.faculties}}
+				<div class="panel panel-default">
+					<div class="panel-heading no-padding">
+						<h4 class="panel-title">
+							<a class="display-block padding1015" data-toggle="collapse" data-parent="#accordions" href="#facult{{$f.Id}}" title="{{$f.FullName}}">
+							{{$f.ShortName}}
+							</a>
+						</h4>
+					</div>
+					<div id="facult{{$f.Id}}" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="panel-group" id="ac{{$f.Id}}">
+							{{range $y := $.years}}
+								<div class="panel panel-default">
+									<div class="panel-heading no-padding">
+										<h4 class="panel-title">
+											<a class="display-block padding1015 font15" data-toggle="collapse" data-parent="#ac{{$f.Id}}" href="#collapse{{$y}}{{$f.Id}}">
+											{{$y}} курс
+											</a>
+										</h4>
+									</div>
+									<div id="collapse{{$y}}{{$f.Id}}" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav nav-pills nav-stacked">
+											{{range $g := $.groups}}
+											{{if eq $g.Year $y}}
+											{{if eq $f.Id $g.FacultyId}}
+												<li><a href="/group/{{.ShortName}}">{{.ShortName}}</a></li>
+											{{end}}
+											{{end}}
+											{{end}}
+											</ul>
+										</div>
+									</div>
+								</div>
+							{{end}}
+							</div>
+						</div>
+					</div>
+				</div>
+			{{end}}
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<table id="group_teacher_table" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th class="th-day">День</th>
+						<th class="th-pair">Пара</th>
+						<th>Предмет</th>
+					</tr>
+				</thead>
+				<tbody>
+				{{range $day := $.days}}
+				{{range $pair := $.pairs}}
+					<tr>
+					{{if eq $pair.Number "I"}}
+						<td class="td-day" rowspan="6"><div class="rotate">{{$day.Day}}</div></td>
+					{{end}}
+						<td class="td-pair">{{$pair.Number}}</td>
+						<td class="subject-content">
+							<p class="sub-content"></p>
+							<hr class="sub-separator">
+							<p class="sub-content"></p>
+						</td>
+					</tr>
+				{{end}}
+				{{end}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{{template "footer.html" .}}

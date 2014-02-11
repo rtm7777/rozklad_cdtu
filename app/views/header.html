@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>{{.title}}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+		<link rel="stylesheet" type="text/css" href="/public/css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/public/css/main.css">
+
+		<link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+
+		<script src="/public/js/jquery-2.0.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/public/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
+
+		{{range .moreStyles}}
+			<link rel="stylesheet" type="text/css" href="/public/{{.}}">
+		{{end}}
+		{{range .moreScripts}}
+			<script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+		{{end}}
+	</head>
+	<body>
+		<div class="navbar navbar-inverse">
+			<div class="container">
+				<a href="/" class="navbar-brand">Розклад ЧДТУ</a>
+				<ul class="nav navbar-nav">
+					<li class="{{.schedulegroup}}">
+						<a href="/group/">Розклад груп</a>
+					</li>
+					<li class="{{.scheduleteacher}}">
+						<a href="/teacher/">Розклад викладачів</a>
+					</li>
+					<li class="dropdown {{.info}}">
+						<a class="dropdown-toggle " data-toggle="dropdown" href="#">Інформація<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/gmaps/">Розміщення корпусів</a></li>
+							<li><a href="/about/">Про сайт</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					<li class="dropdown {{.admin}}">
+						<a class="dropdown-toggle " data-toggle="dropdown" href="#">Адміністрування<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/admin/">Розклад</a></li>
+							<li><a href="/database/">База даних</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>

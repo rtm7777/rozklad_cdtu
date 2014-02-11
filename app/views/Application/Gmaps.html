@@ -1,0 +1,72 @@
+{{set . "title" "Розміщення корпусів"}}
+{{set . "info" "active"}}
+{{template "header.html" .}}
+
+<script type="text/javascript">
+function initialize() {
+  var mapOptions = {
+    zoom: 15,
+    center: new google.maps.LatLng(49.421862, 32.088919),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+  var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+  setMarkers(map, houses);
+}
+
+function loadScript() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyC5y8J2DkKrLzbMYX1XXy46w1sx2LoFOqo&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
+
+var houses = [
+  ['1 корпус', 49.421314, 32.09895, 1, 'бул. Шевченко, 460'],
+  ['2 корпус', 49.421774, 32.097657, 1, "Площа Знань"],
+  ['3 корпус', 49.422022, 32.096284, 1, ""],
+  ['4 корпус', 49.421258, 32.095876, 1, ""],
+  ['5 корпус', 49.424337, 32.102281, 1, ""],
+  ['6 корпус', 49.418976, 32.104535, 1, ""],
+  ['7 корпус', 49.418592, 32.103993, 1, ""],
+  ['8 корпус', 49.417241, 32.083356, 1, "вул. Чехова"],
+  ['9 корпус', 49.413343, 32.09152, 1, "пров. Вишневий"],
+  ['10 корпус', 49.429049, 32.087669, 1 ,"Седова"]
+];
+
+function setMarkers(map, locations) {
+  for (var i = 0; i < locations.length; i++) {
+    var house = locations[i];
+    var myLatLng = new google.maps.LatLng(house[1], house[2]);
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        icon: '/public/img/office-building-icon.png',
+        title: house[0],
+        zIndex: house[3]
+    });
+    makeInfoWin(marker, house[0], map);
+  };
+};
+
+function makeInfoWin(marker, data, map) {
+  var infowindow = new google.maps.InfoWindow({
+  	content: "ЧДТУ - " + data 
+  });
+  google.maps.event.addListener(marker, 'mouseover', function() {
+    infowindow.open(map,marker);
+  });
+  google.maps.event.addListener(marker, 'mouseout', function() {
+    infowindow.close();
+  });
+};
+
+
+window.onload = loadScript;
+</script>
+
+<div class="container">
+	<div id="map_canvas" style="width:100%; height:700px"></div>
+</div>
+{{template "footer.html" .}}
