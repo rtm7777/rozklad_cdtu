@@ -2,7 +2,7 @@ package qbsDB
 
 import (
 	"fmt"
-	"github.com/robfig/revel"
+	"github.com/revel/revel"
 	"github.com/coocood/qbs"
 	_ "github.com/go-sql-driver/mysql"
 )

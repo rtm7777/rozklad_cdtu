@@ -1,13 +1,23 @@
 package controllers
 
 import (
-	"github.com/robfig/revel"
+	"github.com/revel/revel"
 )
 
-type Application struct {
-	*revel.Controller
+type Admin struct {
+	Application
 }
 
-func (c Application) Admin() revel.Result {
-	return c.Render()
+func (c Admin) checkUser() revel.Result {
+	if user := c.connected(); user == nil {
+		return c.Redirect(Application.Login)
+	}
+	return nil
+}
+
+func (c Admin) Main() revel.Result {
+	connection := c.connected()
+
+	User := connection.Username
+	return c.Render(User)
 }

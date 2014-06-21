@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"github.com/robfig/revel"
-	"schedule/app/qbsDB"
+	"github.com/revel/revel"
+	"rozkladchdtu/app/qbsDB"
 )
 
 func init() {
 	revel.OnAppStart(func() { qbsDB.Setup() })
+	revel.InterceptMethod(Admin.checkUser, revel.BEFORE)
 }

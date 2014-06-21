@@ -1,5 +1,13 @@
 		<div>
 			<p class="text-center text-muted"><a href="mailto:kolan678@gmail.com">rtm7777</a> &copy; 2013</p>
 		</div>
+		<script src="/web/js/bower_components/jquery/dist/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/web/js/bower_components/bootstrap/dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		{{range .moreStyles}}
+			<link rel="stylesheet" type="text/css" href="/public/{{.}}">
+		{{end}}
+		{{range .moreScripts}}
+			<script src="/web/{{.}}" type="text/javascript" charset="utf-8"></script>
+		{{end}}
 	</body>
 </html>

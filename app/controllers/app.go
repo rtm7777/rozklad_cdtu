@@ -1,20 +1,20 @@
 package controllers
 
 import (
-	"strings"
 	"code.google.com/p/go.net/websocket"
 	"github.com/coocood/qbs"
-	"github.com/robfig/revel"
-	"schedule/app/models"
-	"schedule/app/qbsDB"
-	"schedule/app/roomevents"
+	"github.com/revel/revel"
+	"rozkladchdtu/app/models"
+	"rozkladchdtu/app/qbsDB"
+	"rozkladchdtu/app/roomevents"
+	"strings"
 )
 
-type App struct {
+type Application struct {
 	*revel.Controller
 }
 
-func (c App) Index() revel.Result {
+func (c Application) Index() revel.Result {
 	db := qbsDB.DB
 	type Days struct {
 		Id  int64  `qbs:"pk"`
@@ -52,6 +52,7 @@ func CreateTables() error {
 	err = migration.CreateTableIfNotExists(new(models.Pairs))
 	err = migration.CreateTableIfNotExists(new(models.Schedule))
 	err = migration.CreateTableIfNotExists(new(models.Tasks))
+	err = migration.CreateTableIfNotExists(new(models.Users))
 	return err
 }
 
@@ -114,8 +115,8 @@ func TeachersData(db *qbs.Qbs) ([]*models.Faculties, []*models.Departments, []*m
 	return faculties, departments, teachers, days, pairs
 }
 
-
 func (c Application) Main() revel.Result {
+	// CreateTables()
 	return c.Render()
 }
 
@@ -153,9 +154,9 @@ func (c Application) GroupCurrent(groupName string) revel.Result {
 		}
 
 		type Day struct {
-			Id  int64
-			Day string
-			Pair   []Pair
+			Id   int64
+			Day  string
+			Pair []Pair
 		}
 
 		var days_out []Day
@@ -215,9 +216,9 @@ func (c Application) TeacherCurrent(teacherName string) revel.Result {
 		}
 
 		type Day struct {
-			Id  int64
-			Day string
-			Pair   []Pair
+			Id   int64
+			Day  string
+			Pair []Pair
 		}
 
 		var days_out []Day
@@ -248,10 +249,6 @@ func (c Application) TeacherCurrent(teacherName string) revel.Result {
 		return c.Render(faculties, departments, teachers, days, pairs, teacher, days_out)
 	}
 }
-
-
-
-
 
 func (c Application) Socket(user string) revel.Result {
 	return c.Render(user)

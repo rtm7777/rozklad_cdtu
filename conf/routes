@@ -13,17 +13,21 @@ GET     /teacher                                Application.Teacher
 GET     /teacher/:teacherName                   Application.TeacherCurrent
 
 
-GET     /admin                                  Application.Admin
+GET     /login                                  Application.Login
+POST    /login                                  Application.LoginPost
+GET     /logout                                 Application.Logout
+
+GET     /admin                                  Admin.Main
 GET     /ws                                     Application.Socket
 
-
+Application
 WS      /ws/socket                              Application.SocketConn
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/*filepath                       Static.Serve("public")
+GET     /web/*filepath                       Static.Serve("web")
 
 # Catch all
 *       /:controller/:action                    :controller.:action

@@ -8,7 +8,7 @@ function initialize() {
     zoom: 15,
     center: new google.maps.LatLng(49.421862, 32.088919),
     mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
+  };
   var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
   setMarkers(map, houses);
@@ -47,8 +47,8 @@ function setMarkers(map, locations) {
         zIndex: house[3]
     });
     makeInfoWin(marker, house[0], map);
-  };
-};
+  }
+}
 
 function makeInfoWin(marker, data, map) {
   var infowindow = new google.maps.InfoWindow({
@@ -60,7 +60,7 @@ function makeInfoWin(marker, data, map) {
   google.maps.event.addListener(marker, 'mouseout', function() {
     infowindow.close();
   });
-};
+}
 
 
 window.onload = loadScript;

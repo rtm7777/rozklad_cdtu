@@ -5,22 +5,11 @@
 		<title>{{.title}}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-		<link rel="stylesheet" type="text/css" href="/public/css/normalize.css">
-		<link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="/public/css/main.css">
+		<link rel="stylesheet" type="text/css" href="/web/js/bower_components/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/web/css/main.css">
 
-		<link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+		<link rel="shortcut icon" type="image/png" href="/web/img/favicon.png">
 
-		<script src="/public/js/jquery-2.0.3.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/public/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-
-
-		{{range .moreStyles}}
-			<link rel="stylesheet" type="text/css" href="/public/{{.}}">
-		{{end}}
-		{{range .moreScripts}}
-			<script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
-		{{end}}
 	</head>
 	<body>
 		<div class="navbar navbar-inverse">
@@ -49,6 +38,10 @@
 							<li><a href="/database/">База даних</a></li>
 						</ul>
 					</li>
+					{{if .User}}
+						<p class="navbar-text">Ви зайшли як <a href="#" class="navbar-link">{{.User}}</a></p>
+						<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Вийти</a></li>
+					{{end}}
 				</ul>
 			</div>
 		</div>

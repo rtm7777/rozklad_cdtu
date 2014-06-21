@@ -29,8 +29,8 @@ type Groups struct {
 
 type Teachers struct {
 	Id           int64 `qbs:"pk"`
-	FacultyId     int64 `qbs:"fk:Faculty"`
-	Faculty       *Faculties
+	FacultyId    int64 `qbs:"fk:Faculty"`
+	Faculty      *Faculties
 	DepartmentId int64 `qbs:"fk:Department"`
 	Department   *Departments
 	FirstName    string `qbs:"size:25"`
@@ -101,4 +101,10 @@ type Tasks struct {
 	Audience     *Audiences
 	Time         float32
 	SubjectType  string `qbs:"size:25"`
+}
+
+type Users struct {
+	Id             int64  `qbs:"pk"`
+	Username       string `qbs:"size:40"`
+	HashedPassword []byte
 }
