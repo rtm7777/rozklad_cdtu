@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"code.google.com/p/go.crypto/bcrypt"
-	"fmt"
+	_ "fmt"
 	"github.com/revel/revel"
 	"rozkladchdtu/app/models"
 	"rozkladchdtu/app/qbsDB"
@@ -37,7 +37,6 @@ func (c Application) LoginPost(email, password string) revel.Result {
 	//db := qbsDB.DB
 	user := c.getUser(email)
 	if user != nil {
-		fmt.Println("true")
 		err := bcrypt.CompareHashAndPassword(user.HashedPassword, []byte(password))
 		if err == nil {
 			c.Session["user"] = user.Username

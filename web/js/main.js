@@ -13,5 +13,8 @@ require.config({
 
 require([
 	'bootstrap',
+	'controllers/initController',
 	'controllers/mainController',
+	'controllers/contentController',
+
 ]);

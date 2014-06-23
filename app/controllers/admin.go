@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	_ "github.com/coocood/qbs"
 	"github.com/revel/revel"
+	"rozkladchdtu/app/qbsDB"
 )
 
 type Admin struct {
@@ -17,7 +19,9 @@ func (c Admin) checkUser() revel.Result {
 
 func (c Admin) Main() revel.Result {
 	connection := c.connected()
-
 	User := connection.Username
-	return c.Render(User)
+
+	db := qbsDB.DB
+	days, pairs := DaysPairsData(db)
+	return c.Render(User, days, pairs)
 }

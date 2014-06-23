@@ -35,86 +35,6 @@ func (c Application) Index() revel.Result {
 	return c.Render(day, days)
 }
 
-func CreateTables() error {
-	migration, err := qbs.GetMigration()
-	if err != nil {
-		return err
-	}
-	defer migration.Close()
-	err = migration.CreateTableIfNotExists(new(models.Faculties))
-	err = migration.CreateTableIfNotExists(new(models.Departments))
-	err = migration.CreateTableIfNotExists(new(models.Groups))
-	err = migration.CreateTableIfNotExists(new(models.Teachers))
-	err = migration.CreateTableIfNotExists(new(models.Housings))
-	err = migration.CreateTableIfNotExists(new(models.Audiences))
-	err = migration.CreateTableIfNotExists(new(models.Subjects))
-	err = migration.CreateTableIfNotExists(new(models.Days))
-	err = migration.CreateTableIfNotExists(new(models.Pairs))
-	err = migration.CreateTableIfNotExists(new(models.Schedule))
-	err = migration.CreateTableIfNotExists(new(models.Tasks))
-	err = migration.CreateTableIfNotExists(new(models.Users))
-	return err
-}
-
-func GroupsData(db *qbs.Qbs) ([]*models.Faculties, []*models.Groups, []int, []*models.Days, []*models.Pairs) {
-
-	years := make([]int, 6)
-	for i := 0; i < 6; i++ {
-		years[i] = i + 1
-	}
-
-	var faculties []*models.Faculties
-	err := db.FindAll(&faculties)
-	if err != nil {
-		panic(err)
-	}
-	var groups []*models.Groups
-	err = db.FindAll(&groups)
-	if err != nil {
-		panic(err)
-	}
-	var days []*models.Days
-	err = db.FindAll(&days)
-	if err != nil {
-		panic(err)
-	}
-	var pairs []*models.Pairs
-	err = db.FindAll(&pairs)
-	if err != nil {
-		panic(err)
-	}
-	return faculties, groups, years, days, pairs
-}
-
-func TeachersData(db *qbs.Qbs) ([]*models.Faculties, []*models.Departments, []*models.Teachers, []*models.Days, []*models.Pairs) {
-	var faculties []*models.Faculties
-	err := db.FindAll(&faculties)
-	if err != nil {
-		panic(err)
-	}
-	var departments []*models.Departments
-	err = db.FindAll(&departments)
-	if err != nil {
-		panic(err)
-	}
-	var teachers []*models.Teachers
-	err = db.OrderBy("last_name").FindAll(&teachers)
-	if err != nil {
-		panic(err)
-	}
-	var days []*models.Days
-	err = db.FindAll(&days)
-	if err != nil {
-		panic(err)
-	}
-	var pairs []*models.Pairs
-	err = db.FindAll(&pairs)
-	if err != nil {
-		panic(err)
-	}
-	return faculties, departments, teachers, days, pairs
-}
-
 func (c Application) Main() revel.Result {
 	// CreateTables()
 	return c.Render()
@@ -130,7 +50,8 @@ func (c Application) About() revel.Result {
 
 func (c Application) Group() revel.Result {
 	db := qbsDB.DB
-	faculties, groups, years, days, pairs := GroupsData(db)
+	faculties, groups, years := GroupsData(db)
+	days, pairs := DaysPairsData(db)
 	return c.Render(faculties, groups, years, days, pairs)
 }
 
@@ -142,7 +63,9 @@ func (c Application) GroupCurrent(groupName string) revel.Result {
 	if err != nil {
 		return c.Redirect(Application.Group)
 	} else {
-		faculties, groups, years, days, pairs := GroupsData(db)
+		faculties, groups, years := GroupsData(db)
+		days, pairs := DaysPairsData(db)
+
 		var schedule []*models.Schedule
 
 		type Pair struct {
@@ -192,7 +115,8 @@ func (c Application) GroupCurrent(groupName string) revel.Result {
 
 func (c Application) Teacher() revel.Result {
 	db := qbsDB.DB
-	faculties, departments, teachers, days, pairs := TeachersData(db)
+	faculties, departments, teachers := TeachersData(db)
+	days, pairs := DaysPairsData(db)
 	return c.Render(faculties, departments, teachers, days, pairs)
 }
 
@@ -204,7 +128,9 @@ func (c Application) TeacherCurrent(teacherName string) revel.Result {
 	if err != nil {
 		return c.Redirect(Application.Teacher)
 	} else {
-		faculties, departments, teachers, days, pairs := TeachersData(db)
+		faculties, departments, teachers := TeachersData(db)
+		days, pairs := DaysPairsData(db)
+
 		var schedule []*models.Schedule
 
 		type Pair struct {
