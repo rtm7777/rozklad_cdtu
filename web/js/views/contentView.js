@@ -1,13 +1,17 @@
 define(['jquery',
 		'underscore',
+		'../config/config',
 		'text!templates/group.html'
-], function($, _, groupTemplate) {
+], function($, _, config, groupTemplate) {
 
 	var $contentDiv = $(".schedule-container");
-		console.log($contentDiv);
 
-	function addGroup() {
-		$contentDiv.append(_.template(groupTemplate));
+	function addGroup(name) {
+		$contentDiv.append(_.template(groupTemplate, {
+			group: name,
+			days: config.days,
+			pairs: config.pairs
+		}));
 	}
 	
 	return {

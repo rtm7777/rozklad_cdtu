@@ -18,10 +18,10 @@ POST    /login                                  Application.LoginPost
 GET     /logout                                 Application.Logout
 
 GET     /admin                                  Admin.Main
-GET     /ws                                     Application.Socket
+GET     /get_ws_token                           Admin.GetWSToken
 
 Application
-WS      /ws/socket                              Application.SocketConn
+WS      /ws/socket                              Admin.SocketConn
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

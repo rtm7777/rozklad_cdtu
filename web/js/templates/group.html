@@ -1,53 +1,14 @@
 <div class="right-border width200">
-	<div class="bottom-border height47 center-text padding1015">KT-1234</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub">Англійська 104-4 </p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub">Англійська 104-4 доц4</p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
-	<div class="bottom-border">
-		<p class="admin-sub"></p>
-			<hr class="admin-sub-separator">
-		<p class="admin-sub"></p>
-	</div>
+	<div class="bottom-border height47 center-text padding1015"><%= group %></div>
+
+	<% _.each(days, function(day){ %>
+		<% _.each(pairs, function(pair){ %>
+			<div class="bottom-border">
+				<p class="admin-sub"></p>
+					<hr class="admin-sub-separator">
+				<p class="admin-sub"></p>
+			</div>
+		<% }); %>
+	<% }); %>
+
 </div>

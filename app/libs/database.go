@@ -1,4 +1,4 @@
-package database
+package db_lib
 
 import (
 	"github.com/coocood/qbs"

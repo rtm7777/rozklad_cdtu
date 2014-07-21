@@ -1,7 +1,8 @@
 define(['jquery',
-		"../views/contentView"
+		"../views/contentView",
 ], function($, v) {
 	$("#lalala").on("click", function() {
-		v.addGroup();
+		v.addGroup("KT-901");
 	});
+
 });

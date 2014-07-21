@@ -1,12 +1,10 @@
 package controllers
 
 import (
-	"code.google.com/p/go.net/websocket"
-	"github.com/coocood/qbs"
 	"github.com/revel/revel"
+	"rozkladchdtu/app/libs"
 	"rozkladchdtu/app/models"
 	"rozkladchdtu/app/qbsDB"
-	"rozkladchdtu/app/roomevents"
 	"strings"
 )
 
@@ -50,8 +48,8 @@ func (c Application) About() revel.Result {
 
 func (c Application) Group() revel.Result {
 	db := qbsDB.DB
-	faculties, groups, years := GroupsData(db)
-	days, pairs := DaysPairsData(db)
+	faculties, groups, years := db_lib.GroupsData(db)
+	days, pairs := db_lib.DaysPairsData(db)
 	return c.Render(faculties, groups, years, days, pairs)
 }
 
@@ -63,8 +61,8 @@ func (c Application) GroupCurrent(groupName string) revel.Result {
 	if err != nil {
 		return c.Redirect(Application.Group)
 	} else {
-		faculties, groups, years := GroupsData(db)
-		days, pairs := DaysPairsData(db)
+		faculties, groups, years := db_lib.GroupsData(db)
+		days, pairs := db_lib.DaysPairsData(db)
 
 		var schedule []*models.Schedule
 
@@ -115,8 +113,8 @@ func (c Application) GroupCurrent(groupName string) revel.Result {
 
 func (c Application) Teacher() revel.Result {
 	db := qbsDB.DB
-	faculties, departments, teachers := TeachersData(db)
-	days, pairs := DaysPairsData(db)
+	faculties, departments, teachers := db_lib.TeachersData(db)
+	days, pairs := db_lib.DaysPairsData(db)
 	return c.Render(faculties, departments, teachers, days, pairs)
 }
 
@@ -128,8 +126,8 @@ func (c Application) TeacherCurrent(teacherName string) revel.Result {
 	if err != nil {
 		return c.Redirect(Application.Teacher)
 	} else {
-		faculties, departments, teachers := TeachersData(db)
-		days, pairs := DaysPairsData(db)
+		faculties, departments, teachers := db_lib.TeachersData(db)
+		days, pairs := db_lib.DaysPairsData(db)
 
 		var schedule []*models.Schedule
 
@@ -174,47 +172,4 @@ func (c Application) TeacherCurrent(teacherName string) revel.Result {
 		}
 		return c.Render(faculties, departments, teachers, days, pairs, teacher, days_out)
 	}
-}
-
-func (c Application) Socket(user string) revel.Result {
-	return c.Render(user)
-}
-
-func (c Application) SocketConn(user string, ws *websocket.Conn) revel.Result {
-
-	subscription := roomevents.Subscribe()
-	defer subscription.Cancel()
-
-	roomevents.Join(user)
-	defer roomevents.Leave(user)
-
-	newMessages := make(chan string)
-	go func() {
-		var msg string
-		for {
-			err := websocket.Message.Receive(ws, &msg)
-			if err != nil {
-				close(newMessages)
-				return
-			}
-			newMessages <- msg
-		}
-	}()
-	for {
-		select {
-		case event := <-subscription.New:
-			if websocket.JSON.Send(ws, &event) != nil {
-				// They disconnected.
-				return nil
-			}
-		case msg, ok := <-newMessages:
-
-			if !ok {
-				return nil
-			}
-
-			roomevents.Say(user, msg)
-		}
-	}
-	return nil
 }

@@ -7,14 +7,13 @@ require.config({
 	},
 	shim: {
 		'bootstrap' : ["jquery"],
-		'underscore': ['jquery']
 	}
 });
 
 require([
 	'bootstrap',
+	'libs/socketEvents',
 	'controllers/initController',
 	'controllers/mainController',
 	'controllers/contentController',
-
 ]);

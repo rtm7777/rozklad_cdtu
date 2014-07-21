@@ -1,6 +1,5 @@
-define(['../views/initView',
-],function(initView) {
-
+define(['jquery',
+],function($) {
 
 
 });
