@@ -4,12 +4,19 @@ define(['jquery',
 
 
 	socket.onopen = function(event) {
-		alert("connected");
+
 	};
 
 	socket.onmessage = function(event) {
-		alert("message");
+
 	};
 
+	socket.onclose = function(event) {
+
+	};
+
+	socket.onerror = function(event) {
+
+	};
 
 });
