@@ -1,0 +1,19 @@
+package controllers
+
+import (
+	_ "github.com/coocood/qbs"
+	"github.com/revel/revel"
+	"rozkladchdtu/app/libs"
+	"rozkladchdtu/app/qbsDB"
+)
+
+type Api struct {
+	Admin
+}
+
+func (c Api) GetFacultyGroups(faculty_id int, year int) revel.Result {
+	db := qbsDB.DB
+	groups := db_lib.FacultyGroupsList(db, faculty_id, year)
+
+	return c.RenderJson(groups)
+}

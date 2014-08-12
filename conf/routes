@@ -20,6 +20,9 @@ GET     /logout                                 Application.Logout
 GET     /admin                                  Admin.Main
 GET     /get_ws_token                           Admin.GetWSToken
 
+# API
+POST    /get_faculty_groups                     Api.GetFacultyGroups
+
 Application
 WS      /ws/socket                              Admin.SocketConn
 

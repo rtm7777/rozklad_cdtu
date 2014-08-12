@@ -1,7 +1,10 @@
 define(['jquery',
-	'../services/socketInterface',
+		'../services/socketInterface',
 ],function($, socket) {
 
+	socketChannels = {
+
+	};
 
 	socket.onopen = function(event) {
 

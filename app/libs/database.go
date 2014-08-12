@@ -1,6 +1,7 @@
 package db_lib
 
 import (
+	"fmt"
 	"github.com/coocood/qbs"
 	"rozkladchdtu/app/models"
 )
@@ -77,4 +78,14 @@ func TeachersData(db *qbs.Qbs) ([]*models.Faculties, []*models.Departments, []*m
 		panic(err)
 	}
 	return faculties, departments, teachers
+}
+
+func FacultyGroupsList(db *qbs.Qbs, faculty_id int, year int) []*models.Groups {
+	var groups []*models.Groups
+	fmt.Println(faculty_id, year)
+	err := db.WhereEqual("groups.faculty_id", faculty_id).WhereEqual("groups.year", year).FindAll(&groups)
+	if err != nil {
+		panic(err)
+	}
+	return groups
 }
