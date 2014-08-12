@@ -1,7 +1,6 @@
 RozkladChDTU
 =========
 WebApp for showing and editing the students schedule, written with [Revel][1] web framework
----------------
 
 **Additional resources, used in this project:**
 
