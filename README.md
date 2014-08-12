@@ -9,7 +9,7 @@ WebApp for showing and editing the students schedule, written with [Revel][1] we
  - [jQuery][3]
  - [RequireJS][4]
  - [Qbs][5]
- - 
+
   [1]: http://revel.github.io/index.html
   [2]: https://github.com/twbs/bootstrap
   [3]: https://github.com/jquery/jquery
