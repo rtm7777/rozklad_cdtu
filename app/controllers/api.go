@@ -3,8 +3,8 @@ package controllers
 import (
 	_ "github.com/coocood/qbs"
 	"github.com/revel/revel"
-	"rozkladchdtu/app/libs"
-	"rozkladchdtu/app/qbsDB"
+	"rozklad_cdtu/app/libs"
+	"rozklad_cdtu/app/qbsDB"
 )
 
 type Api struct {

@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"rozkladchdtu/app/libs"
-	"rozkladchdtu/app/models"
-	"rozkladchdtu/app/qbsDB"
+	"rozklad_cdtu/app/libs"
+	"rozklad_cdtu/app/models"
+	"rozklad_cdtu/app/qbsDB"
 	"strings"
 )
 

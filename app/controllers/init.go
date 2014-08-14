@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"rozkladchdtu/app/qbsDB"
+	"rozklad_cdtu/app/qbsDB"
 )
 
 func init() {

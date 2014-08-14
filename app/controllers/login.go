@@ -4,8 +4,8 @@ import (
 	"code.google.com/p/go.crypto/bcrypt"
 	_ "fmt"
 	"github.com/revel/revel"
-	"rozkladchdtu/app/models"
-	"rozkladchdtu/app/qbsDB"
+	"rozklad_cdtu/app/models"
+	"rozklad_cdtu/app/qbsDB"
 	_ "strings"
 )
 

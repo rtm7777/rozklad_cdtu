@@ -3,7 +3,7 @@ package db_lib
 import (
 	"fmt"
 	"github.com/coocood/qbs"
-	"rozkladchdtu/app/models"
+	"rozklad_cdtu/app/models"
 )
 
 func CreateTables() error {

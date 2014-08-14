@@ -6,9 +6,9 @@ import (
 	_ "github.com/coocood/qbs"
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
-	"rozkladchdtu/app/libs"
-	"rozkladchdtu/app/qbsDB"
-	"rozkladchdtu/app/roomevents"
+	"rozklad_cdtu/app/libs"
+	"rozklad_cdtu/app/qbsDB"
+	"rozklad_cdtu/app/roomevents"
 	"time"
 )
 
