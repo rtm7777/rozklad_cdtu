@@ -1,0 +1,19 @@
+language: go
+go:
+  - 1.2
+branches:
+  only:
+    - master
+install:
+  - go get -v github.com/revel/revel
+  - go get -v github.com/revel/revel/cache
+  - go get -v github.com/revel/cmd/revel
+  - go get -v code.google.com/p/go.crypto/bcrypt
+  - go get -v github.com/go-sql-driver/mysql
+  - go get -v github.com/coocood/qbs
+  - export PATH=$HOME/gopath/bin:$PATH
+before_script:
+  - cd $HOME/gopath/src
+  - ln -s $HOME/gopath/src/github.com/rtm7777/rozklad_cdtu rozklad_cdtu
+script:
+  - revel test rozklad_cdtu

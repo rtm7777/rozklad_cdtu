@@ -2,6 +2,8 @@ RozkladChDTU
 =========
 WebApp for showing and editing the students schedule, written with [Revel][1] web framework
 
+[![Build Status](https://travis-ci.org/rtm7777/rozklad_cdtu.svg?branch=master)](https://travis-ci.org/rtm7777/rozklad_cdtu)
+
 **Additional resources, used in this project:**
 
  - [Bootstrap][2]
