@@ -4,12 +4,22 @@
 	<head>
 		<title>{{.title}}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
 		<link rel="stylesheet" type="text/css" href="/web/js/bower_components/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/web/css/main.css">
-
 		<link rel="shortcut icon" type="image/png" href="/web/img/favicon.png">
-
+		<link rel="stylesheet/less" type="text/css" href="/web/less/main.less">
+		<script>
+			less = {
+				env: "development",
+				async: false,
+				fileAsync: false,
+				poll: 1000,
+				functions: {},
+				dumpLineNumbers: "комментарий",
+				relativeUrls: false,
+			};
+		</script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.3/less.min.js"></script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse">
