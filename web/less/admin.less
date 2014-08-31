@@ -1,11 +1,22 @@
 .top-left-border {
-	border: 1px solid @table-border;
+	border-top: 1px solid @table-border;
+	border-left: 1px solid @table-border;
+	border-right: 1px solid @table-border;
+	border-bottom: 1px solid @table-border;
 	overflow-x: auto;
 	white-space: nowrap;
 
 	.admin-content-loader {
-		color: red;
-		display:none;
+		color: @info-message;
+		height: 250px;
+		text-align: center;
+		font-size: 3em;
+		padding: 70px 15px 0px;
+		white-space: initial;
+
+		.hide {
+			display:none;
+		}
 	}
 
 	> .right-border {

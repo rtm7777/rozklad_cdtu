@@ -11,6 +11,13 @@ type Api struct {
 	Admin
 }
 
+func (c Api) GetFaculties() revel.Result {
+	db := qbsDB.DB
+	faculties := db_lib.FacultiesList(db)
+
+	return c.RenderJson(faculties)
+}
+
 func (c Api) GetFacultyGroups(faculty_id int, year int) revel.Result {
 	db := qbsDB.DB
 	groups := db_lib.FacultyGroupsList(db, faculty_id, year)

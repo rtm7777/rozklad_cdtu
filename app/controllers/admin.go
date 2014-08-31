@@ -42,7 +42,8 @@ func (c Admin) Main() revel.Result {
 
 	db := qbsDB.DB
 	days, pairs := db_lib.DaysPairsData(db)
-	return c.Render(User, days, pairs)
+	faculties := db_lib.FacultiesList(db)
+	return c.Render(User, days, pairs, faculties)
 }
 
 func (c Admin) SocketConn(token string, ws *websocket.Conn) revel.Result {

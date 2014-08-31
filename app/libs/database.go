@@ -89,3 +89,12 @@ func FacultyGroupsList(db *qbs.Qbs, faculty_id int, year int) []*models.Groups {
 	}
 	return groups
 }
+
+func FacultiesList(db *qbs.Qbs) []*models.Faculties {
+	var faculties []*models.Faculties
+	err := db.FindAll(&faculties)
+	if err != nil {
+		panic(err)
+	}
+	return faculties
+}
