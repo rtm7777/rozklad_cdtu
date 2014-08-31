@@ -1,14 +1,36 @@
-
 .top-left-border {
-	border-top: 1px solid @table-border-color;
-	border-left: 1px solid @table-border-color;
+	border: 1px solid @table-border;
 	overflow-x: auto;
-}
+	white-space: nowrap;
 
-.right-border {
-	border-right: 1px solid @table-border-color;
-	display: block;
-	float: left;
+	.admin-content-loader {
+		color: red;
+		display:none;
+	}
+
+	> .right-border {
+		border-right: 1px solid @table-border;
+		display: inline-block;
+		float: left;
+		position: absolute;
+		background-color: white;
+
+		&:nth-child(3) {
+			left: 56px;
+		}
+	}
+
+	.schedule-container {
+		margin-left: 80px;
+		.right-border {
+			border-right: 1px solid @table-border;
+			display: inline-block;
+
+			.bottom-border:hover:not(:first-child) {
+				background-color: @table-hover-cell;
+			}
+		}
+	}
 }
 
 .admin-day-cell {
@@ -20,9 +42,6 @@
 	text-align: center;
 }
 
-.schedule-container {
-	width: 2500px;
-}
 
 .width200 {
 	width: 200px;
@@ -53,7 +72,7 @@
 }
 
 .bottom-border {
-	border-bottom: 1px solid @table-border-color;
+	border-bottom: 1px solid @table-border;
 }
 
 .admin-sub-separator {

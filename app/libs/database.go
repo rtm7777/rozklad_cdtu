@@ -83,7 +83,7 @@ func TeachersData(db *qbs.Qbs) ([]*models.Faculties, []*models.Departments, []*m
 func FacultyGroupsList(db *qbs.Qbs, faculty_id int, year int) []*models.Groups {
 	var groups []*models.Groups
 	fmt.Println(faculty_id, year)
-	err := db.WhereEqual("groups.faculty_id", faculty_id).WhereEqual("groups.year", year).FindAll(&groups)
+	err := db.OmitJoin().OmitFields("NumOfStudents", "Year", "FacultyId").WhereEqual("groups.faculty_id", faculty_id).WhereEqual("groups.year", year).FindAll(&groups)
 	if err != nil {
 		panic(err)
 	}

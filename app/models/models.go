@@ -19,12 +19,12 @@ type Departments struct {
 
 type Groups struct {
 	Id            int64 `qbs:"pk"`
-	FacultyId     int64 `qbs:"fk:Faculty"`
+	FacultyId     int64 `qbs:"fk:Faculty" json:"-"`
 	Faculty       *Faculties
 	FullName      string `qbs:"size:100"`
 	ShortName     string `qbs:"size:20"`
-	NumOfStudents int
-	Year          int
+	NumOfStudents int    `json:"-"`
+	Year          int    `json:"-"`
 }
 
 type Teachers struct {
