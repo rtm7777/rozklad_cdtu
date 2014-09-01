@@ -18,13 +18,13 @@ type Departments struct {
 }
 
 type Groups struct {
-	Id            int64 `qbs:"pk"`
-	FacultyId     int64 `qbs:"fk:Faculty" json:"-"`
-	Faculty       *Faculties
-	FullName      string `qbs:"size:100"`
-	ShortName     string `qbs:"size:20"`
-	NumOfStudents int    `json:"-"`
-	Year          int    `json:"-"`
+	Id            int64      `qbs:"pk"`
+	FacultyId     int64      `qbs:"fk:Faculty" json:"-"`
+	Faculty       *Faculties `json:"-"`
+	FullName      string     `qbs:"size:100"`
+	ShortName     string     `qbs:"size:20"`
+	NumOfStudents int        `json:"-"`
+	Year          int        `json:"-"`
 }
 
 type Teachers struct {

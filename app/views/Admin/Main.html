@@ -7,8 +7,8 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<ul class="nav nav-pills">
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<li id="faculty_sel" class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" data-faculty-id="" href="#">
 							Факультет <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
@@ -17,16 +17,16 @@
 							{{end}}
 						</ul>
 					</li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							Курс <span class="caret"></span>
+					<li id="year_sel" class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-year="1">
+							1 Курс <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
+							<li><a href="#" data-year="1">1</a></li>
+							<li><a href="#" data-year="2">2</a></li>
+							<li><a href="#" data-year="3">3</a></li>
+							<li><a href="#" data-year="4">4</a></li>
+							<li><a href="#" data-year="5">5</a></li>
 						</ul>
 					</li>
 					<button id="lalala" type="button" class="btn btn-default">button</button>
@@ -73,8 +73,8 @@
 		</div>
 		<div class="col-lg-9">
 			<div class="top-left-border">
-				<div class="admin-content-loader">Для початку роботи виберіть факультет та рік навчання</div>
-				<div id="day_table_row" class="right-border width40">
+				<div id="content_loader" class="admin-content-loader">Для початку роботи виберіть факультет та рік навчання</div>
+				<div id="day_table_row" class="right-border width40 hide">
 					<div class="bottom-border height47"></div>
 					{{range $day := $.days}}
 					<div class="right-border width40">
@@ -84,7 +84,7 @@
 					</div>
 					{{end}}
 				</div>
-				<div id="pair_table_row" class="right-border width40">
+				<div id="pair_table_row" class="right-border width40 hide">
 					<div class="bottom-border height47"></div>
 					{{range $day := $.days}}
 					{{range $pair := $.pairs}}
@@ -94,7 +94,7 @@
 					{{end}}
 					{{end}}
 				</div>
-				<div class="schedule-container"></div>
+				<div id="schedule_container" class="schedule-container hide"></div>
 			</div>
 		</div>
 	</div>
