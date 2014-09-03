@@ -1,7 +1,7 @@
 package db_lib
 
 import (
-	"fmt"
+	_ "fmt"
 	"github.com/coocood/qbs"
 	"rozklad_cdtu/app/models"
 )
