@@ -4,6 +4,7 @@ import (
 	_ "fmt"
 	"github.com/coocood/qbs"
 	"rozklad_cdtu/app/models"
+	"rozklad_cdtu/app/models/json_models"
 )
 
 func CreateTables() error {
@@ -80,7 +81,7 @@ func TeachersData(db *qbs.Qbs) ([]*models.Faculties, []*models.Departments, []*m
 	return faculties, departments, teachers
 }
 
-func FacultyGroupsList(db *qbs.Qbs, faculty_id int, year int) []*models.Groups {
+func FacultyGroupsList(db *qbs.Qbs, faculty_id int64, year int) []*models.Groups {
 	var groups []*models.Groups
 	condition := qbs.NewEqualCondition("groups.faculty_id", faculty_id).AndEqual("groups.year", year)
 	err := db.Condition(condition).FindAll(&groups)
@@ -97,4 +98,64 @@ func FacultiesList(db *qbs.Qbs) []*models.Faculties {
 		panic(err)
 	}
 	return faculties
+}
+
+func GroupSchedule(db *qbs.Qbs, group_id int64, days []*models.Days, pairs []*models.Pairs) []json_models.Day {
+	var schedule []*models.Schedule
+	var days_out []json_models.Day
+
+	for j := range days {
+		var pairs_out []json_models.Pair
+		for i := range pairs {
+			pairs_out = append(pairs_out, json_models.Pair{pairs[i].Id, pairs[i].Number, "", "", 0})
+		}
+		days_out = append(days_out, json_models.Day{days[j].Id, days[j].Day, pairs_out})
+	}
+
+	err := db.WhereEqual("schedule.group_id", group_id).FindAll(&schedule)
+	if err == nil {
+		for i := range schedule {
+			if schedule[i].PairType == "0" {
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = schedule[i].Subject.Subject
+			} else if schedule[i].PairType == "1" {
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = schedule[i].PairType
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
+			} else if schedule[i].PairType == "2" {
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject2 = schedule[i].PairType
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
+			}
+		}
+	}
+
+	return days_out
+}
+
+func TeacherSchedule(db *qbs.Qbs, teacher_id int64, days []*models.Days, pairs []*models.Pairs) []json_models.Day {
+	var schedule []*models.Schedule
+	var days_out []json_models.Day
+
+	for j := range days {
+		var pairs_out []json_models.Pair
+		for i := range pairs {
+			pairs_out = append(pairs_out, json_models.Pair{pairs[i].Id, pairs[i].Number, "", "", 0})
+		}
+		days_out = append(days_out, json_models.Day{days[j].Id, days[j].Day, pairs_out})
+	}
+
+	err := db.WhereEqual("schedule.teacher_id", teacher_id).FindAll(&schedule)
+	if err == nil {
+		for i := range schedule {
+			if schedule[i].PairType == "0" {
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = schedule[i].Subject.Subject
+			} else if schedule[i].PairType == "1" {
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = schedule[i].PairType
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
+			} else if schedule[i].PairType == "2" {
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject2 = schedule[i].PairType
+				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
+			}
+		}
+	}
+
+	return days_out
 }

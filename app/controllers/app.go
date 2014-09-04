@@ -63,48 +63,7 @@ func (c Application) GroupCurrent(groupName string) revel.Result {
 	} else {
 		faculties, groups, years := db_lib.GroupsData(db)
 		days, pairs := db_lib.DaysPairsData(db)
-
-		var schedule []*models.Schedule
-
-		type Pair struct {
-			Id       int64
-			Num      string
-			Subject1 string
-			Subject2 string
-			Type     int
-		}
-
-		type Day struct {
-			Id   int64
-			Day  string
-			Pair []Pair
-		}
-
-		var days_out []Day
-
-		for j := range days {
-			var pairs_out []Pair
-			for i := range pairs {
-				pairs_out = append(pairs_out, Pair{pairs[i].Id, pairs[i].Number, "", "", 0})
-			}
-			days_out = append(days_out, Day{days[j].Id, days[j].Day, pairs_out})
-		}
-
-		err = db.WhereEqual("schedule.group_id", group.Id).FindAll(&schedule)
-		if err == nil {
-			for i := range schedule {
-				if schedule[i].PairType == "0" {
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = schedule[i].Subject.Subject
-				} else if schedule[i].PairType == "1" {
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = schedule[i].PairType
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
-				} else if schedule[i].PairType == "2" {
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject2 = schedule[i].PairType
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
-				}
-
-			}
-		}
+		days_out := db_lib.GroupSchedule(db, group.Id, days, pairs)
 
 		return c.Render(faculties, groups, years, days, pairs, group, days_out)
 	}
@@ -128,48 +87,8 @@ func (c Application) TeacherCurrent(teacherName string) revel.Result {
 	} else {
 		faculties, departments, teachers := db_lib.TeachersData(db)
 		days, pairs := db_lib.DaysPairsData(db)
+		days_out := db_lib.TeacherSchedule(db, teacher.Id, days, pairs)
 
-		var schedule []*models.Schedule
-
-		type Pair struct {
-			Id       int64
-			Num      string
-			Subject1 string
-			Subject2 string
-			Type     int
-		}
-
-		type Day struct {
-			Id   int64
-			Day  string
-			Pair []Pair
-		}
-
-		var days_out []Day
-
-		for j := range days {
-			var pairs_out []Pair
-			for i := range pairs {
-				pairs_out = append(pairs_out, Pair{pairs[i].Id, pairs[i].Number, "", "", 0})
-			}
-			days_out = append(days_out, Day{days[j].Id, days[j].Day, pairs_out})
-		}
-
-		err = db.WhereEqual("schedule.teacher_id", teacher.Id).FindAll(&schedule)
-		if err == nil {
-			for i := range schedule {
-				if schedule[i].PairType == "0" {
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = schedule[i].Subject.Subject
-				} else if schedule[i].PairType == "1" {
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = schedule[i].PairType
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
-				} else if schedule[i].PairType == "2" {
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject2 = schedule[i].PairType
-					days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
-				}
-
-			}
-		}
 		return c.Render(faculties, departments, teachers, days, pairs, teacher, days_out)
 	}
 }
