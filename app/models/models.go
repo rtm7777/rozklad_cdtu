@@ -46,8 +46,8 @@ type Housings struct {
 
 type Audiences struct {
 	Id        int64 `qbs:"pk"`
-	HousingId int64 `qbs:"fk:House"`
-	House     *Housings
+	HousingId int64 `qbs:"fk:Housing"`
+	Housing   *Housings
 	Number    string `qbs:"size:10"`
 	Sets      int
 	Type      string `qbs:"size:50"`

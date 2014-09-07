@@ -58,17 +58,22 @@
 					</tr>
 				</thead>
 				<tbody>
-				{{range $day := $.days}}
-				{{range $pair := $.pairs}}
+				{{range $day := $.days_out}}
+				{{range $pair := $day.Pair}}
 					<tr>
-					{{if eq $pair.Number "I"}}
+					{{if eq $pair.Num "I"}}
 						<td class="td-day" rowspan="6"><div class="rotate">{{$day.Day}}</div></td>
 					{{end}}
-						<td class="td-pair">{{$pair.Number}}</td>
+						<td class="td-pair">{{$pair.Num}}</td>
 						<td class="subject-content">
-							<p class="sub-content"></p>
+						{{if eq $pair.Type 0}}
+							<p class="sub-content">{{$pair.Subject1}}</p>
 							<hr class="sub-separator">
-							<p class="sub-content"></p>
+							<p class="sub-content">{{$pair.Subject2}}</p>
+						{{end}}
+						{{if eq $pair.Type 1}}
+							<p class="sub-single">{{$pair.Subject1}}</p>
+						{{end}}
 						</td>
 					</tr>
 				{{end}}

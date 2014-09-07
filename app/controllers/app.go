@@ -34,7 +34,7 @@ func (c Application) Index() revel.Result {
 }
 
 func (c Application) Main() revel.Result {
-	// CreateTables()
+	// db_lib.CreateTables()
 	return c.Render()
 }
 
