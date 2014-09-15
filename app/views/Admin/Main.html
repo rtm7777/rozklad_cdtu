@@ -6,8 +6,8 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<ul class="nav nav-pills">
-					<li id="faculty_sel" class="dropdown">
+				<ul class="nav nav-pills action-menu">
+					<li id="faculty_sel" class="dropdown pull-left">
 						<a class="dropdown-toggle" data-toggle="dropdown" data-faculty-id="" href="#">
 							Факультет <span class="caret"></span>
 						</a>
@@ -17,19 +17,24 @@
 							{{end}}
 						</ul>
 					</li>
-					<li id="year_sel" class="dropdown">
+					<li id="year_sel" class="dropdown pull-left">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-year="1">
 							1 Курс <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#" data-year="1">1</a></li>
-							<li><a href="#" data-year="2">2</a></li>
-							<li><a href="#" data-year="3">3</a></li>
-							<li><a href="#" data-year="4">4</a></li>
-							<li><a href="#" data-year="5">5</a></li>
+							<li><a href="#" data-year="1">1 курс</a></li>
+							<li><a href="#" data-year="2">2 курс</a></li>
+							<li><a href="#" data-year="3">3 курс</a></li>
+							<li><a href="#" data-year="4">4 курс</a></li>
+							<li><a href="#" data-year="5">5 курс</a></li>
 						</ul>
 					</li>
-					<button id="lalala" type="button" class="btn btn-default">button</button>
+					<li id="delete_sel" class="dropdown pull-right">
+						<a href="#"><span class="glyphicon glyphicon-remove"></span> Видалити</a>
+					</li>
+					<li id="delete_sel" class="dropdown pull-right">
+						<a href="#"><span class="glyphicon glyphicon-edit"></span> Редагувати</a>
+					</li>
 					<h4 id="admin_facylty_name" class="center-text"></h4>
 				</ul>
 			</div>
