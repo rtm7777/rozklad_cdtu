@@ -8,10 +8,15 @@ define(['jquery',
 
 	function addGroup(group) {
 		$contentDiv.append(_.template(groupTemplate, {
-			group: group.ShortName,
-			days: config.days,
-			pairs: config.pairs
+			group  : group.ShortName,
+			groupId: group.Id,
+			days   : config.days,
+			pairs  : config.pairs
 		}));
+	}
+
+	function setPair(pair) {
+
 	}
 
 	function showScheduleContent() {
@@ -30,6 +35,7 @@ define(['jquery',
 	
 	return {
 		addGroup           : addGroup,
+		setPair            : setPair,
 		showScheduleContent: showScheduleContent,
 		hideScheduleContent: hideScheduleContent,
 		setLoaderMessage   : setLoaderMessage

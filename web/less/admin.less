@@ -50,6 +50,28 @@
 			.bottom-border:hover:not(:first-child) {
 				background-color: @table-hover-cell;
 			}
+
+			.bottom-border:first-child {
+				padding: 0;
+
+				.btn-default {
+					background-color: transparent;
+				}
+
+				label {
+					border-radius: 0;
+					height: 100%;
+					width: 100%;
+					padding-top: 12px;
+					border: none;
+
+					&.active {
+						color: @white;
+						background-color: #3276b1;
+						border-color: #285e8e;
+					}
+				}
+			}
 		}
 	}
 }

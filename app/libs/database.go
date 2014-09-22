@@ -103,12 +103,12 @@ func FacultiesList(db *qbs.Qbs) []*models.Faculties {
 
 func EmptySchedule(days []*models.Days, pairs []*models.Pairs) []json_models.Day {
 	var days_out []json_models.Day
-	for j := range days {
+	for _, day := range days {
 		var pairs_out []json_models.Pair
-		for i := range pairs {
-			pairs_out = append(pairs_out, json_models.Pair{pairs[i].Id, pairs[i].Number, "", "", 2})
+		for _, pair := range pairs {
+			pairs_out = append(pairs_out, json_models.Pair{pair.Id, pair.Number, "", "", 2})
 		}
-		days_out = append(days_out, json_models.Day{days[j].Id, days[j].Day, pairs_out})
+		days_out = append(days_out, json_models.Day{day.Id, day.Day, pairs_out})
 	}
 	return days_out
 }
@@ -119,15 +119,13 @@ func GroupSchedule(db *qbs.Qbs, group_id int64, days []*models.Days, pairs []*mo
 
 	err := db.WhereEqual("schedule.group_id", group_id).FindAll(&schedule)
 	if err == nil {
-		scheduleString := func(i int) string {
-			subject := schedule[i]
+		scheduleString := func(subject *models.Schedule) string {
 			housing := new(models.Housings)
 			housing.Id = subject.Audience.HousingId
 			err := db.Find(housing)
 			if err != nil {
 				panic(err)
 			}
-			fmt.Println(subject.Audience)
 			return subject.Subject.Subject + " - " +
 				subject.SubjectType + " " +
 				subject.Audience.Number + "-" +
@@ -137,14 +135,14 @@ func GroupSchedule(db *qbs.Qbs, group_id int64, days []*models.Days, pairs []*mo
 				subject.Teacher.FirstName + " " +
 				subject.Teacher.MiddleName
 		}
-		for i := range schedule {
-			if schedule[i].PairType == "0" {
-				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = scheduleString(i)
-				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
-			} else if schedule[i].PairType == "1" {
-				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 += scheduleString(i)
-			} else if schedule[i].PairType == "2" {
-				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject2 += scheduleString(i)
+		for _, i := range schedule {
+			if i.PairType == "0" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject1 = scheduleString(i)
+				days_out[i.DayId-1].Pair[i.PairId-1].Type = 1
+			} else if i.PairType == "1" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject1 += scheduleString(i)
+			} else if i.PairType == "2" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject2 += scheduleString(i)
 			}
 		}
 	}
@@ -158,8 +156,7 @@ func TeacherSchedule(db *qbs.Qbs, teacher_id int64, days []*models.Days, pairs [
 
 	err := db.WhereEqual("schedule.teacher_id", teacher_id).FindAll(&schedule)
 	if err == nil {
-		scheduleString := func(i int) string {
-			subject := schedule[i]
+		scheduleString := func(subject *models.Schedule) string {
 			housing := new(models.Housings)
 			housing.Id = subject.Audience.HousingId
 			err := db.Find(housing)
@@ -174,18 +171,41 @@ func TeacherSchedule(db *qbs.Qbs, teacher_id int64, days []*models.Days, pairs [
 				subject.Group.ShortName + " - " +
 				fmt.Sprintf("%v", subject.Group.Year) + "курс"
 		}
-		for i := range schedule {
-			if schedule[i].PairType == "0" {
-				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = scheduleString(i)
-				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Type = 1
-			} else if schedule[i].PairType == "1" {
-				fmt.Println("sdgs")
-				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject1 = scheduleString(i)
-			} else if schedule[i].PairType == "2" {
-				days_out[schedule[i].DayId].Pair[schedule[i].PairId].Subject2 = scheduleString(i)
+		for _, i := range schedule {
+			if i.PairType == "0" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject1 = scheduleString(i)
+				days_out[i.DayId-1].Pair[i.PairId-1].Type = 1
+			} else if i.PairType == "1" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject1 = scheduleString(i)
+			} else if i.PairType == "2" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject2 = scheduleString(i)
 			}
 		}
 	}
 
 	return days_out
+}
+
+func FacultySchedule(db *qbs.Qbs, faculty_id int64, year int) []json_models.Schedule {
+	groups := FacultyGroupsList(db, faculty_id, year)
+	groupsInterface := make([]interface{}, len(groups))
+	for i, v := range groups {
+		groupsInterface[i] = v.Id
+	}
+	var schedule []*models.Schedule
+	condition := qbs.NewInCondition("group_id", groupsInterface)
+	err := db.Condition(condition).FindAll(&schedule)
+	if err != nil {
+		panic(err)
+	}
+	var schedule_json []json_models.Schedule
+	for i, v := range schedule {
+		fmt.Println(i, v)
+		schedule_json = append(schedule_json, json_models.Schedule{
+			fmt.Sprintf("%v", v.GroupId) + "_" + fmt.Sprintf("%v", v.DayId) + "_" + fmt.Sprintf("%v", v.PairId),
+			i,
+			"sljkdgh"})
+	}
+
+	return schedule_json
 }

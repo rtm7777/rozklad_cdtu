@@ -25,10 +25,9 @@ func (c Api) GetFacultyGroups(faculty_id int64, year int) revel.Result {
 	return c.RenderJson(groups)
 }
 
-func (c Api) GetGroupSchedule(group_id int64) revel.Result {
+func (c Api) GetFacultySchedule(faculty_id int64, year int) revel.Result {
 	db := qbsDB.DB
-	days, pairs := db_lib.DaysPairsData(db)
-	schedule := db_lib.GroupSchedule(db, group_id, days, pairs)
+	schedule := db_lib.FacultySchedule(db, faculty_id, year)
 
 	return c.RenderJson(schedule)
 }

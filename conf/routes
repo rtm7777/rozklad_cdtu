@@ -22,7 +22,7 @@ GET     /get_ws_token                           Admin.GetWSToken
 
 # API
 POST    /get_faculty_groups                     Api.GetFacultyGroups
-POST    /get_group_schedule                     Api.GetGroupSchedule
+POST    /get_faculty_schedule                   Api.GetFacultySchedule
 
 Application
 WS      /ws/socket                              Admin.SocketConn

@@ -13,3 +13,9 @@ type Day struct {
 	Day  string
 	Pair []Pair
 }
+
+type Schedule struct {
+	Id      string
+	Type    int
+	Subject string
+}

@@ -12,7 +12,7 @@ define(['jquery',
 
 	$("#year_sel .dropdown-menu a").on("click", function() {
 		$("#year_sel .dropdown-toggle")
-			.html($(this).text() + ' Курс <span class="caret"></span>')
+			.html($(this).text() + '<span class="caret"></span>')
 			.attr("data-year", $(this).attr("data-year"));
 
 		getFacultyGroups($("#faculty_sel a.dropdown-toggle").attr("data-faculty-id"), $(this).attr("data-year"));
@@ -31,7 +31,7 @@ define(['jquery',
 				for (var group in data) {
 					contentView.addGroup(data[group]);
 				}
-				// contentView.loadGroupsSchedule(data);
+				getFacultySchedule(faculty, year);
 			} else {
 				contentView.hideScheduleContent();
 				contentView.setLoaderMessage(messages.noGroupsFound);
@@ -42,6 +42,22 @@ define(['jquery',
 			contentView.setLoaderMessage(messages.loadErr);
 		})
 		.always(function() {
+
+		});
+	}
+
+	function getFacultySchedule(faculty, year) {
+		$.post('/get_faculty_schedule',
+			{
+				faculty_id: faculty,
+				year: year
+			})
+		.done(function(data) {
+			for (var pair in data) {
+				contentView.setPair(pair);
+			}
+		})
+		.fail(function() {
 
 		});
 	}
