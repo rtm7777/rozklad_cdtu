@@ -16,6 +16,6 @@ type Day struct {
 
 type Schedule struct {
 	Id      string
-	Type    int
+	Type    string
 	Subject string
 }

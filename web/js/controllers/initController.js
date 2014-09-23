@@ -54,7 +54,7 @@ define(['jquery',
 			})
 		.done(function(data) {
 			for (var pair in data) {
-				contentView.setPair(pair);
+				contentView.setPair(data[pair]);
 			}
 		})
 		.fail(function() {
