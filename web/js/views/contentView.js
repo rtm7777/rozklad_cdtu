@@ -4,7 +4,8 @@ define(['jquery',
 		'text!templates/group.html'
 ], function($, _, config, groupTemplate) {
 
-	var $contentDiv = $(".schedule-container");
+	var $contentDiv = $("#schedule_container");
+	var $taskDiv = $("#tasks_container");
 
 	function addGroup(group) {
 		$contentDiv.append(_.template(groupTemplate, {
@@ -12,6 +13,15 @@ define(['jquery',
 			groupId: group.Id,
 			days   : config.days,
 			pairs  : config.pairs
+		}));
+	}
+
+	function addTask(task) {
+		$taskDiv.append(_.template(taskTemplate, {
+			id      : task.Id,
+			subject : task.Subject,
+			type    : task.Type,
+			progress: task.Progress
 		}));
 	}
 
