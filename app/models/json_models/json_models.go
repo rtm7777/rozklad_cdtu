@@ -19,3 +19,10 @@ type Schedule struct {
 	Type    string
 	Subject string
 }
+
+type Task struct {
+	Id       string
+	Subject  string
+	Type     string
+	Progress string
+}

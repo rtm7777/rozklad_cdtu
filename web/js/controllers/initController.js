@@ -32,9 +32,12 @@ define(['jquery',
 					contentView.addGroup(data[group]);
 				}
 				getFacultySchedule(faculty, year);
+				getFacultyTasks(faculty, year);
 			} else {
 				contentView.hideScheduleContent();
 				contentView.setLoaderMessage(messages.noGroupsFound);
+				contentView.hideTasksContent();
+				contentView.setTasksMessage(messages.noTasksFound);
 			}
 		})
 		.fail(function() {
@@ -59,6 +62,30 @@ define(['jquery',
 		})
 		.fail(function() {
 
+		});
+	}
+
+	function getFacultyTasks(faculty, year) {
+		$.post('/get_faculty_tasks',
+			{
+				faculty_id: faculty,
+				year: year
+			})
+		.done(function(data) {
+			if (data) {
+				$("#tasks_container").html("");
+				contentView.showTasksContent();
+				for (var task in data) {
+					contentView.addTask(data[task]);
+				}
+			} else {
+				contentView.hideTasksContent();
+				contentView.setTasksMessage(messages.noTasksFound);
+			}
+		})
+		.fail(function() {
+			contentView.hideTasksContent();
+			contentView.setTasksMessage(messages.loadErr);
 		});
 	}
 });

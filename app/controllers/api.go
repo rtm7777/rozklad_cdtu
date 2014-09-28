@@ -31,3 +31,10 @@ func (c Api) GetFacultySchedule(faculty_id int64, year int) revel.Result {
 
 	return c.RenderJson(schedule)
 }
+
+func (c Api) GetFacultyTasks(faculty_id int64, year int) revel.Result {
+	db := qbsDB.DB
+	tasks := db_lib.FacultyTasks(db, faculty_id, year)
+
+	return c.RenderJson(tasks)
+}

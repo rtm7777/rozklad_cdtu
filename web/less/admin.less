@@ -8,6 +8,22 @@
 	}
 }
 
+.task_wrapper {
+	#tasks_loader {
+		p {
+			font-size: 1.2em;
+			color: @info-message;
+			text-align: center;
+		}
+	}
+
+	#tasks_container {
+		p {
+			font-size: 12px;
+		}
+	}
+}
+
 .top-left-border {
 	border-top: 1px solid @table-border;
 	border-left: 1px solid @table-border;
@@ -39,6 +55,15 @@
 		&:nth-child(3) {
 			left: 56px;
 		}
+	}
+
+	.admin-day-cell {
+		margin: 85px 0 0 10px;
+	}
+
+	.admin-pair-cell {
+		margin-top: 15px;
+		text-align: center;
 	}
 
 	.schedule-container {
@@ -75,16 +100,6 @@
 		}
 	}
 }
-
-.admin-day-cell {
-	margin: 85px 0 0 10px;
-}
-
-.admin-pair-cell {
-	margin-top: 15px;
-	text-align: center;
-}
-
 
 .width200 {
 	width: 200px;

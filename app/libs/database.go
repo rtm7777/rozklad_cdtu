@@ -210,3 +210,27 @@ func FacultySchedule(db *qbs.Qbs, faculty_id int64, year int) []json_models.Sche
 
 	return schedule_json
 }
+
+func FacultyTasks(db *qbs.Qbs, faculty_id int64, year int) []json_models.Task {
+	groups := FacultyGroupsList(db, faculty_id, year)
+	groupsInterface := make([]interface{}, len(groups))
+	for i, v := range groups {
+		groupsInterface[i] = v.Id
+	}
+	var tasks []*models.Tasks
+	condition := qbs.NewInCondition("group_id", groupsInterface)
+	err := db.Condition(condition).FindAll(&tasks)
+	if err != nil {
+		panic(err)
+	}
+	var tasks_json []json_models.Task
+	for _, i := range tasks {
+		tasks_json = append(tasks_json, json_models.Task{
+			fmt.Sprintf("%v", i.Id),
+			i.Subject.Subject,
+			"info",
+			"89"})
+	}
+
+	return tasks_json
+}
