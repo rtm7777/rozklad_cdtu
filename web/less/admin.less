@@ -45,38 +45,48 @@
 		}
 	}
 
-	> .right-border {
+	.day-pair-col {
 		border-right: 1px solid @table-border;
 		display: inline-block;
 		float: left;
 		position: absolute;
 		background-color: white;
+		width: 40px;
+
+		.day-pair-row {
+			border-bottom: 1px solid @table-border;
+
+			.admin-day-cell {
+				margin: 85px 0 0 10px;
+			}
+
+			.admin-pair-cell {
+				margin-top: 15px;
+				text-align: center;
+			}
+		}
 
 		&:nth-child(3) {
 			left: 56px;
 		}
 	}
 
-	.admin-day-cell {
-		margin: 85px 0 0 10px;
-	}
-
-	.admin-pair-cell {
-		margin-top: 15px;
-		text-align: center;
-	}
-
 	.schedule-container {
 		margin-left: 80px;
-		.right-border {
+		.group-container {
 			border-right: 1px solid @table-border;
 			display: inline-block;
+			width: 200px;
 
-			.bottom-border:hover:not(:first-child) {
-				background-color: @table-hover-cell;
+			.pair-container {
+				border-bottom: 1px solid @table-border;
+
+				&:hover {
+					background-color: @table-hover-cell;
+				}
 			}
 
-			.bottom-border:first-child {
+			.group-header {
 				padding: 0;
 
 				.btn-default {
@@ -101,18 +111,6 @@
 	}
 }
 
-.width200 {
-	width: 200px;
-}
-
-.width80 {
-	width: 80px;
-}
-
-.width40 {
-	width: 40px;
-}
-
 .height349 {
 	height: 349px;
 }
@@ -127,10 +125,6 @@
 
 .height12 {
 	height: 12px;
-}
-
-.bottom-border {
-	border-bottom: 1px solid @table-border;
 }
 
 .admin-sub-separator {

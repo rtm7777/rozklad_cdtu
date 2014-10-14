@@ -32,12 +32,12 @@ define(['jquery',
 
 	function showScheduleContent() {
 		$("#content_loader").addClass("hide");
-		$("#day_table_row, #pair_table_row, #schedule_container").removeClass("hide");
+		$("#day_table_col, #pair_table_col, #schedule_container").removeClass("hide");
 	}
 
 	function hideScheduleContent() {
 		$("#content_loader").removeClass("hide");
-		$("#day_table_row, #pair_table_row, #schedule_container").addClass("hide");
+		$("#day_table_col, #pair_table_col, #schedule_container").addClass("hide");
 	}
 
 	function setLoaderMessage(message) {

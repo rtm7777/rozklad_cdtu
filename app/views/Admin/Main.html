@@ -58,21 +58,19 @@
 		<div class="col-lg-9">
 			<div class="top-left-border">
 				<div id="content_loader" class="admin-content-loader">Для початку роботи виберіть факультет та рік навчання</div>
-				<div id="day_table_row" class="right-border width40 hide">
-					<div class="bottom-border height47"></div>
+				<div id="day_table_col" class="day-pair-col hide">
+					<div class="day-pair-row height47"></div>
 					{{range $day := $.days}}
-					<div class="right-border width40">
-						<div class="bottom-border height349">
-							<div class="rotate admin-day-cell">{{$day.Day}}</div>
-						</div>
+					<div class="day-pair-row height349">
+						<div class="rotate admin-day-cell">{{$day.Day}}</div>
 					</div>
 					{{end}}
 				</div>
-				<div id="pair_table_row" class="right-border width40 hide">
-					<div class="bottom-border height47"></div>
+				<div id="pair_table_col" class="day-pair-col hide">
+					<div class="day-pair-row height47"></div>
 					{{range $day := $.days}}
 					{{range $pair := $.pairs}}
-					<div class="bottom-border height47">
+					<div class="day-pair-row height47">
 						<div class="admin-pair-cell">{{$pair.Number}}</div>
 					</div>
 					{{end}}
