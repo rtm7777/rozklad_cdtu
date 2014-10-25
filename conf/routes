@@ -18,6 +18,8 @@ POST    /login                                  Application.LoginPost
 GET     /logout                                 Application.Logout
 
 GET     /admin                                  Admin.Main
+GET     /database                               Admin.DataBase
+GET     /tasks                                  Admin.Tasks
 GET     /get_ws_token                           Admin.GetWSToken
 
 # API

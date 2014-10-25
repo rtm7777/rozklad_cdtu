@@ -1,21 +1,22 @@
 define(['jquery',
-		"../views/contentView",
+		'../services/localStorage',
+		'../views/contentView',
 		'../config/messages',
-],function($, contentView, messages) {
+],function($, storage, contentView, messages) {
 	$("#faculty_sel .dropdown-menu a").on("click", function() {
 		$("#faculty_sel .dropdown-toggle")
 			.html($(this).text() + ' <span class="caret"></span>')
-			.attr("data-faculty-id", $(this).attr("data-faculty-id"));
+			.attr("data-faculty-id", $(this).data("faculty-id"));
 
-		getFacultyGroups($(this).attr("data-faculty-id"), $("#year_sel a.dropdown-toggle").attr("data-year"));
+		getFacultyGroups($(this).data("faculty-id"), $("#year_sel a.dropdown-toggle").data("year"));
 	});
 
 	$("#year_sel .dropdown-menu a").on("click", function() {
 		$("#year_sel .dropdown-toggle")
 			.html($(this).text() + '<span class="caret"></span>')
-			.attr("data-year", $(this).attr("data-year"));
+			.attr("data-year", $(this).data("year"));
 
-		getFacultyGroups($("#faculty_sel a.dropdown-toggle").attr("data-faculty-id"), $(this).attr("data-year"));
+		getFacultyGroups($("#faculty_sel a.dropdown-toggle").data("faculty-id"), $(this).data("year"));
 	});
 
 	function getFacultyGroups(faculty, year) {
@@ -39,6 +40,8 @@ define(['jquery',
 				contentView.hideTasksContent();
 				contentView.setTasksMessage(messages.noTasksFound);
 			}
+			storage.saveValue("faculty", faculty);
+			storage.saveValue("year", year);
 		})
 		.fail(function() {
 			contentView.hideScheduleContent();

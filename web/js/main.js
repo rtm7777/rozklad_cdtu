@@ -14,6 +14,7 @@ require([
 	'bootstrap',
 	'libs/socketEvents',
 	'controllers/initController',
+	'controllers/initDBController',
 	'controllers/mainController',
 	'controllers/contentController',
 ]);

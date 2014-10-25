@@ -57,7 +57,7 @@ define(['jquery',
 	function setTasksMessage(message) {
 		$("#tasks_loader p").text(message);
 	}
-	
+
 	return {
 		addGroup           : addGroup,
 		addTask            : addTask,

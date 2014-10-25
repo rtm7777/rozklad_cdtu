@@ -1,7 +1,7 @@
 define(['jquery',
 ],function($) {
-	$("").on("click", function() {
-
+	$("#schedule_container").on("click", ".btn", function() {
+		console.log("sfsdfs");
 	});
 
 	function filterTasks(value) {

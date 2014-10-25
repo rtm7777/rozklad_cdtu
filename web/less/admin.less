@@ -24,7 +24,7 @@
 	}
 }
 
-.top-left-border {
+.main-container {
 	border-top: 1px solid @table-border;
 	border-left: 1px solid @table-border;
 	border-right: 1px solid @table-border;
@@ -80,6 +80,10 @@
 
 			.pair-container {
 				border-bottom: 1px solid @table-border;
+
+				&.active {
+					background-color: @info-message;
+				}
 
 				&:hover {
 					background-color: @table-hover-cell;

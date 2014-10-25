@@ -1,0 +1,43 @@
+{{set . "title" "База Даних"}}
+{{set . "admin" "active"}}
+{{template "header.html" .}}
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<ul class="nav nav-pills action-menu">
+					<li id="delete_sel" class="dropdown pull-right">
+						<a href="#"><span class="glyphicon glyphicon-remove"></span> Видалити</a>
+					</li>
+					<li id="delete_sel" class="dropdown pull-right">
+						<a href="#"><span class="glyphicon glyphicon-edit"></span> Редагувати</a>
+					</li>
+					<h4 id="admin_facylty_name" class="center-text"></h4>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Категорія:</div>
+				<div id="database_categories" class="list-group">
+					{{range $i := .categories}}
+					<a href="#" data-category="{{$i.Category}}" class="list-group-item">{{$i.Name}}</a>
+					{{end}}
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<div class="main-container">
+				<div id="content_loader" class="admin-content-loader">Для початку роботи виберіть категорію</div>
+				<div id="database_container" class="database-container hide"></div>
+			</div>
+		</div>
+	</div>
+</div>
+{{template "footer_admin.html" .}}
