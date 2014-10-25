@@ -9,7 +9,24 @@ define(['jquery',
 		$category.addClass("active");
 	}
 
+	function addRow(item) {
+		$("#database_container").append(item);
+	}
+
+	function showDBContent() {
+		$("#content_loader").addClass("hide");
+		$("#database_container").removeClass("hide");
+	}
+
+	function hideDBContent() {
+		$("#database_container").addClass("hide");
+		$("#content_loader").removeClass("hide");
+	}
+
 	return {
-		setActiveCategory: setActiveCategory
+		setActiveCategory: setActiveCategory,
+		addRow           : addRow,
+		showDBContent  : showDBContent,
+		hideDBContent  : hideDBContent
 	};
 });

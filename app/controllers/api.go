@@ -38,3 +38,10 @@ func (c Api) GetFacultyTasks(faculty_id int64, year int) revel.Result {
 
 	return c.RenderJson(tasks)
 }
+
+func (c Api) GetCategoryItems(category string) revel.Result {
+	// db := qbsDB.DB
+	items := []string{"Sgsdg", "sdgsdg"}
+
+	return c.RenderJson(items)
+}
