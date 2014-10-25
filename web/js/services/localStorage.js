@@ -8,7 +8,7 @@ define([],function() {
 		},
 
 		getValue: function(name) {
-			storage.getItem(name);
+			return storage.getItem(name);
 		}
 	};
 });

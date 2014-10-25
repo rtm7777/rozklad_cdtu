@@ -4,9 +4,9 @@ define(['jquery',
 		'text!templates/group.html',
 		'text!templates/task.html'
 ], function($, _, config, groupTemplate, taskTemplate) {
-	function setActiveCategory(category) {
+	function setActiveCategory($category) {
 		$("#database_categories a").removeClass("active");
-		$(category).addClass("active");
+		$category.addClass("active");
 	}
 
 	return {

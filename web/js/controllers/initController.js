@@ -3,20 +3,24 @@ define(['jquery',
 		'../views/contentView',
 		'../config/messages',
 ],function($, storage, contentView, messages) {
-	$("#faculty_sel .dropdown-menu a").on("click", function() {
-		$("#faculty_sel .dropdown-toggle")
-			.html($(this).text() + ' <span class="caret"></span>')
-			.attr("data-faculty-id", $(this).data("faculty-id"));
+	if ($("#page").data("id") == "schedule") {
+		var storageFaculty = storage.getValue("faculty");
+		var storageYear = storage.getValue("year");
+		if (storageFaculty && storageYear) {
+			getFacultyGroups(storageFaculty, storageYear);
+			contentView.setDropdownValue($("#faculty_sel .dropdown-toggle"), $("#faculty_sel .dropdown-menu a[data-filter-id='" + storageFaculty + "']"));
+			contentView.setDropdownValue($("#year_sel .dropdown-toggle"), $("#year_sel .dropdown-menu a[data-filter-id='" + storageYear + "']"));
+		}
+	}
 
-		getFacultyGroups($(this).data("faculty-id"), $("#year_sel a.dropdown-toggle").data("year"));
+	$("#faculty_sel .dropdown-menu a").on("click", function() {
+		contentView.setDropdownValue($("#faculty_sel .dropdown-toggle"), $(this));
+		getFacultyGroups($(this).attr("data-filter-id"), $("#year_sel a.dropdown-toggle").attr("data-filter-id"));
 	});
 
 	$("#year_sel .dropdown-menu a").on("click", function() {
-		$("#year_sel .dropdown-toggle")
-			.html($(this).text() + '<span class="caret"></span>')
-			.attr("data-year", $(this).data("year"));
-
-		getFacultyGroups($("#faculty_sel a.dropdown-toggle").data("faculty-id"), $(this).data("year"));
+		contentView.setDropdownValue($("#year_sel .dropdown-toggle"), $(this));
+		getFacultyGroups($("#faculty_sel a.dropdown-toggle").attr("data-filter-id"), $(this).attr("data-filter-id"));
 	});
 
 	function getFacultyGroups(faculty, year) {

@@ -8,25 +8,25 @@
 			<div class="panel panel-default">
 				<ul class="nav nav-pills action-menu">
 					<li id="faculty_sel" class="dropdown pull-left">
-						<a class="dropdown-toggle" data-toggle="dropdown" data-faculty-id="" href="#">
+						<a class="dropdown-toggle" data-toggle="dropdown" data-filter-id="" href="#">
 							Факультет <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							{{range $faculty := $.faculties}}
-							<li><a href="#" title="{{$faculty.FullName}}" data-faculty-id="{{$faculty.Id}}">{{$faculty.ShortName}}</a></li>
+							<li><a href="#" title="{{$faculty.FullName}}" data-filter-id="{{$faculty.Id}}">{{$faculty.ShortName}}</a></li>
 							{{end}}
 						</ul>
 					</li>
 					<li id="year_sel" class="dropdown pull-left">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-year="1">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-filter-id="1">
 							1 Курс <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#" data-year="1">1 Курс</a></li>
-							<li><a href="#" data-year="2">2 Курс</a></li>
-							<li><a href="#" data-year="3">3 Курс</a></li>
-							<li><a href="#" data-year="4">4 Курс</a></li>
-							<li><a href="#" data-year="5">5 Курс</a></li>
+							<li><a href="#" data-filter-id="1">1 Курс</a></li>
+							<li><a href="#" data-filter-id="2">2 Курс</a></li>
+							<li><a href="#" data-filter-id="3">3 Курс</a></li>
+							<li><a href="#" data-filter-id="4">4 Курс</a></li>
+							<li><a href="#" data-filter-id="5">5 Курс</a></li>
 						</ul>
 					</li>
 					<li id="delete_sel" class="dropdown pull-right">
@@ -81,4 +81,5 @@
 		</div>
 	</div>
 </div>
+<div id="page" data-id="schedule" class="hide"></div>
 {{template "footer_admin.html" .}}

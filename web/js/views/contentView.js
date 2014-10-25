@@ -30,6 +30,12 @@ define(['jquery',
 		$("#" + pair.Id).html("<div class='admin-sub'>" + pair.Subject +"</div><hr class='admin-sub-separator'><div class='admin-sub'></div>");
 	}
 
+	function setDropdownValue($dropdown, $element) {
+		$dropdown
+			.html($element.text() + ' <span class="caret"></span>')
+			.attr("data-filter-id", $element.attr("data-filter-id"));
+	}
+
 	function showScheduleContent() {
 		$("#content_loader").addClass("hide");
 		$("#day_table_col, #pair_table_col, #schedule_container").removeClass("hide");
@@ -62,6 +68,7 @@ define(['jquery',
 		addGroup           : addGroup,
 		addTask            : addTask,
 		setPair            : setPair,
+		setDropdownValue   : setDropdownValue,
 		showScheduleContent: showScheduleContent,
 		hideScheduleContent: hideScheduleContent,
 		setLoaderMessage   : setLoaderMessage,
