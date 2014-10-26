@@ -234,3 +234,23 @@ func FacultyTasks(db *qbs.Qbs, faculty_id int64, year int) []json_models.Task {
 
 	return tasks_json
 }
+
+func CategoryItems(db *qbs.Qbs, category string) interface{} {
+	var items interface{}
+	loadItems := func(i interface{}) interface{} {
+		err := db.FindAll(i)
+		if err != nil {
+			panic(err)
+		}
+		return i
+	}
+	switch category {
+	case "faculties":
+		var item []*models.Faculties
+		items = loadItems(&item)
+	case "audiences":
+		var item []*models.Audiences
+		items = loadItems(&item)
+	}
+	return items
+}
