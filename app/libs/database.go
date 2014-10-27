@@ -251,6 +251,9 @@ func CategoryItems(db *qbs.Qbs, category string) interface{} {
 	case "audiences":
 		var item []*models.Audiences
 		items = loadItems(&item)
+	case "departments":
+		var item []*models.Departments
+		items = loadItems(&item)
 	}
 	return items
 }
