@@ -6,7 +6,7 @@ define(['jquery',
 	if ($("#page").data("id") == "database") {
 		var storageCategory = storage.getValue("category");
 		if (storageCategory) {
-			// getCategory(storageCategory);
+			getCategory(storageCategory);
 			dbView.setActiveCategory($("#database_categories a[data-category='" + storageCategory + "']"));
 		}
 	}
@@ -25,8 +25,9 @@ define(['jquery',
 			})
 		.done(function(data) {
 			dbView.showDBContent();
-			for (var item in data) {
-				dbView.addRow(item);
+			if (data) {
+				$("#database_container").html("");
+				dbView.addItems(data, category);
 			}
 		})
 		.fail(function() {

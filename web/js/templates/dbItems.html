@@ -1,0 +1,12 @@
+<div class="db-items-header">
+	<% _.each(cols, function(name){ %>
+		<div><%= name %></div>
+	<% }); %>
+</div>
+<% _.each(items, function(item){ %>
+	<div class="db-item" data-id="<%= item.Id %>">
+		<% _.each(item, function(field){ %>
+			<div><%= field %></div>
+		<% }); %>
+	</div>
+<% }); %>

@@ -1,16 +1,21 @@
 define(['jquery',
 		'underscore',
 		'../config/config',
-		'text!templates/group.html',
-		'text!templates/task.html'
-], function($, _, config, groupTemplate, taskTemplate) {
+		'text!templates/dbItems.html',
+], function($, _, config, dbItemsTemplate) {
 	function setActiveCategory($category) {
 		$("#database_categories a").removeClass("active");
 		$category.addClass("active");
 	}
 
-	function addRow(item) {
-		$("#database_container").append(item);
+	function addItems(data, category) {
+		var cols = config.database[category];
+		console.log(cols);
+		$("#database_container").append(_.template(dbItemsTemplate, {
+			cols : cols,
+			items: data
+		}));
+
 	}
 
 	function showDBContent() {
@@ -25,8 +30,8 @@ define(['jquery',
 
 	return {
 		setActiveCategory: setActiveCategory,
-		addRow           : addRow,
-		showDBContent  : showDBContent,
-		hideDBContent  : hideDBContent
+		addItems         : addItems,
+		showDBContent    : showDBContent,
+		hideDBContent    : hideDBContent
 	};
 });
