@@ -1,28 +1,33 @@
 package json_models
 
 type Pair struct {
-	Id       int64
-	Num      string
-	Subject1 string
-	Subject2 string
-	Type     int
+	Id       int64  `json:"id"`
+	Num      string `json:"num"`
+	Subject1 string `json:"subject1"`
+	Subject2 string `json:"subject2"`
+	Type     int    `json:"type"`
 }
 
 type Day struct {
-	Id   int64
-	Day  string
-	Pair []Pair
+	Id   int64  `json:"id"`
+	Day  string `json:"day"`
+	Pair []Pair `json:"pair"`
 }
 
 type Schedule struct {
-	Id      string
-	Type    string
-	Subject string
+	Id      string `json:"id"`
+	Type    string `json:"type"`
+	Subject string `json:"subject"`
 }
 
 type Task struct {
-	Id       string
-	Subject  string
-	Type     string
-	Progress string
+	Id       string `json:"id"`
+	Subject  string `json:"subject"`
+	Type     string `json:"type"`
+	Progress string `json:"progress"`
+}
+
+type DBItems struct {
+	Items interface{} `json:"items"`
+	Type  string      `json:"type"`
 }

@@ -10,8 +10,8 @@ define(['jquery',
 
 	function addGroup(group) {
 		$contentDiv.append(_.template(groupTemplate, {
-			group  : group.ShortName,
-			groupId: group.Id,
+			group  : group.shortName,
+			groupId: group.id,
 			days   : config.days,
 			pairs  : config.pairs
 		}));
@@ -19,10 +19,10 @@ define(['jquery',
 
 	function addTask(task) {
 		$taskDiv.append(_.template(taskTemplate, {
-			id      : task.Id,
-			subject : task.Subject,
-			type    : task.Type,
-			progress: task.Progress
+			id      : task.id,
+			subject : task.subject,
+			type    : task.type,
+			progress: task.progress
 		}));
 	}
 

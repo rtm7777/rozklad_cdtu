@@ -13,7 +13,7 @@ define(['jquery',
 		console.log(cols);
 		$("#database_container").append(_.template(dbItemsTemplate, {
 			cols : cols,
-			items: data
+			data: data
 		}));
 
 	}

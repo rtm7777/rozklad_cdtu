@@ -3,10 +3,12 @@
 		<div><%= name %></div>
 	<% }); %>
 </div>
-<% _.each(items, function(item){ %>
-	<div class="db-item" data-id="<%= item.Id %>">
+<table id="database_items" class="table table-bordered table-hover table-striped table-condensed">
+<% _.each(data.items, function(item){ %>
+	<tr>
 		<% _.each(item, function(field){ %>
-			<div><%= field %></div>
+			<td><%= field %></td>
 		<% }); %>
-	</div>
+	</tr>
 <% }); %>
+</table>

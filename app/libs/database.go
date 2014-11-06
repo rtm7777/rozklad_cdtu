@@ -235,8 +235,8 @@ func FacultyTasks(db *qbs.Qbs, faculty_id int64, year int) []json_models.Task {
 	return tasks_json
 }
 
-func CategoryItems(db *qbs.Qbs, category string) interface{} {
-	var items interface{}
+func CategoryItems(db *qbs.Qbs, category string) json_models.DBItems {
+	var items json_models.DBItems
 	loadItems := func(i interface{}) interface{} {
 		err := db.FindAll(i)
 		if err != nil {
@@ -247,25 +247,26 @@ func CategoryItems(db *qbs.Qbs, category string) interface{} {
 	switch category {
 	case "faculties":
 		var item []*models.Faculties
-		items = loadItems(&item)
+		items.Items = loadItems(&item)
 	case "audiences":
 		var item []*models.Audiences
-		items = loadItems(&item)
+		items.Items = loadItems(&item)
 	case "teachers":
 		var item []*models.Teachers
-		items = loadItems(&item)
+		items.Items = loadItems(&item)
 	case "subjects":
 		var item []*models.Subjects
-		items = loadItems(&item)
+		items.Items = loadItems(&item)
 	case "groups":
 		var item []*models.Groups
-		items = loadItems(&item)
+		items.Items = loadItems(&item)
 	case "housings":
 		var item []*models.Housings
-		items = loadItems(&item)
+		items.Items = loadItems(&item)
 	case "departments":
 		var item []*models.Departments
-		items = loadItems(&item)
+		items.Items = loadItems(&item)
 	}
+	items.Type = category
 	return items
 }
