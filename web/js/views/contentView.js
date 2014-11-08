@@ -27,7 +27,7 @@ define(['jquery',
 	}
 
 	function setPair(pair) {
-		$("#" + pair.Id).html("<div class='admin-sub'>" + pair.Subject +"</div><hr class='admin-sub-separator'><div class='admin-sub'></div>");
+		$("#" + pair.id).html("<div class='admin-sub'>" + pair.subject +"</div><hr class='admin-sub-separator'><div class='admin-sub'></div>");
 	}
 
 	function setDropdownValue($dropdown, $element) {

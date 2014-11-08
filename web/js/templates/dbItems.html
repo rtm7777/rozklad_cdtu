@@ -1,14 +1,21 @@
-<div class="db-items-header">
-	<% _.each(cols, function(name){ %>
-		<div><%= name %></div>
-	<% }); %>
-</div>
-<table id="database_items" class="table table-bordered table-hover table-striped table-condensed">
-<% _.each(data.items, function(item){ %>
+<thead>
 	<tr>
-		<% _.each(item, function(field){ %>
-			<td><%= field %></td>
+		<% _.each(config.database[category], function(col){ %>
+			<th><%= col.name %></th>
 		<% }); %>
 	</tr>
-<% }); %>
-</table>
+</thead>
+<tbody>
+	<% _.each(data.items, function(item){ %>
+		<tr>
+			<% _.each(config.database[category], function(field){ %>
+				<% var path = field.field.split("."); %>
+				<% if (path.length == 1) { %>
+					<td><%= item[path[0]] %></td>
+				<% } else { %>
+					<td><%= item[path[0]][path[1]] %></td>
+				<% } %>
+			<% }); %>
+		</tr>
+	<% }); %>
+</tbody>

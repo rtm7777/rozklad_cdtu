@@ -9,11 +9,10 @@ define(['jquery',
 	}
 
 	function addItems(data, category) {
-		var cols = config.database[category];
-		console.log(cols);
 		$("#database_container").append(_.template(dbItemsTemplate, {
-			cols : cols,
-			data: data
+			config: config,
+			data: data,
+			category: category
 		}));
 
 	}
