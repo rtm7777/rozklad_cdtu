@@ -8,14 +8,14 @@
 <tbody>
 	<% _.each(data.items, function(item){ %>
 		<tr>
-			<% _.each(config.database[category], function(field){ %>
-				<% var path = field.field.split("."); %>
-				<% if (path.length == 1) { %>
-					<td><%= item[path[0]] %></td>
+			<% _.each(config.database[category], function(field){
+				var path = field.field.split(".");
+				if (path.length == 1) { %>
+					<td <% if (field.editable) { %>contenteditable<% }%>><%= item[path[0]] %></td>
 				<% } else { %>
 					<td><%= item[path[0]][path[1]] %></td>
-				<% } %>
-			<% }); %>
+				<% }
+			}); %>
 		</tr>
 	<% }); %>
 </tbody>

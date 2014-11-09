@@ -17,4 +17,5 @@ require([
 	'controllers/initDBController',
 	'controllers/mainController',
 	'controllers/contentController',
+	'controllers/dbController',
 ]);
