@@ -29,7 +29,6 @@ define(['jquery',
 		},
 
 		addEmptyField: function(category) {
-			console.log(category);
 			$("#database_container tbody").prepend(_.template(emptyItemTemplate, {
 				category: category
 			}));
