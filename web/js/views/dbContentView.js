@@ -2,36 +2,56 @@ define(['jquery',
 		'underscore',
 		'../config/config',
 		'text!templates/dbItems.html',
-		'text!templates/emptyDBItems.html',
-], function($, _, config, dbItemsTemplate, emptyItemTemplate) {
+		'text!templates/db/audience.html',
+		'text!templates/db/department.html',
+		'text!templates/db/faculty.html',
+		'text!templates/db/group.html',
+		'text!templates/db/housing.html',
+		'text!templates/db/subject.html',
+		'text!templates/db/teacher.html',
+], function($, _, config, dbItemsTemplate, audienceTmp, departmentTmp, facultyTmp, groupTmp, housingTmp, subjectTmp, teacherTmp) {
+	var templates = {
+		audience: audienceTmp,
+		department: departmentTmp,
+		faculty: facultyTmp,
+		group: groupTmp,
+		housing: housingTmp,
+		subject: subjectTmp,
+		teacher: teacherTmp
+	};
+	var dbContainer = $("#database_container");
+
 	return {
+
 		setActiveCategory: function($category) {
 			$("#database_categories a").removeClass("active");
 			$category.addClass("active");
 		},
 
 		addItems: function(data, category) {
-			$("#database_container").append(_.template(dbItemsTemplate, {
-				config: config,
-				data: data,
-				category: category
+			dbContainer.append(_.template(dbItemsTemplate, {
+				category: category,
+				config: config
 			}));
+			for (var item in data.items) {
+				dbContainer.append(_.template(templates[category], {
+					item: data.items[item]
+				}));
+			}
 		},
 
 		showDBContent: function() {
 			$("#content_loader").addClass("hide");
-			$("#database_container").removeClass("hide");
+			dbContainer.removeClass("hide");
 		},
 
 		hideDBContent: function() {
-			$("#database_container").addClass("hide");
+			dbContainer.addClass("hide");
 			$("#content_loader").removeClass("hide");
 		},
 
 		addEmptyField: function(category) {
-			$("#database_container tbody").prepend(_.template(emptyItemTemplate, {
-				category: category
-			}));
+			dbContainer.find("tbody").prepend(_.template(templates[category], {}));
 		}
 	};
 });

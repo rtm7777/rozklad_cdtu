@@ -245,25 +245,25 @@ func CategoryItems(db *qbs.Qbs, category string) json_models.DBItems {
 		return i
 	}
 	switch category {
-	case "faculties":
+	case "faculty":
 		var item []*models.Faculties
 		items.Items = loadItems(&item)
-	case "audiences":
+	case "audience":
 		var item []*models.Audiences
 		items.Items = loadItems(&item)
-	case "teachers":
+	case "teacher":
 		var item []*models.Teachers
 		items.Items = loadItems(&item)
-	case "subjects":
+	case "subject":
 		var item []*models.Subjects
 		items.Items = loadItems(&item)
-	case "groups":
+	case "group":
 		var item []*models.Groups
 		items.Items = loadItems(&item)
-	case "housings":
+	case "housing":
 		var item []*models.Housings
 		items.Items = loadItems(&item)
-	case "departments":
+	case "department":
 		var item []*models.Departments
 		items.Items = loadItems(&item)
 	}

@@ -56,13 +56,13 @@ func (c Admin) DataBase() revel.Result {
 	}
 
 	categories := []Categories{
-		{Category: "faculties", Name: "Факультети"},
-		{Category: "departments", Name: "Кафедри"},
-		{Category: "groups", Name: "Групи"},
-		{Category: "housings", Name: "Корпуси"},
-		{Category: "audiences", Name: "Аудиторії"},
-		{Category: "teachers", Name: "Викладачі"},
-		{Category: "subjects", Name: "Предмети"},
+		{Category: "faculty", Name: "Факультети"},
+		{Category: "department", Name: "Кафедри"},
+		{Category: "group", Name: "Групи"},
+		{Category: "housing", Name: "Корпуси"},
+		{Category: "audience", Name: "Аудиторії"},
+		{Category: "teacher", Name: "Викладачі"},
+		{Category: "subject", Name: "Предмети"},
 	}
 
 	return c.Render(User, categories)
