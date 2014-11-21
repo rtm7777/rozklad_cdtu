@@ -1,4 +1,11 @@
-<tr>
-	<td contenteditable><%= typeof item != "undefined" ? item.fullName : "" %></td>
-	<td contenteditable><%= typeof item != "undefined" ? item.shortName : "" %></td>
-</tr>
+<% if (typeof item != 'undefined') {%>
+	<tr data-item_id="<%= item.id %>">
+		<td contenteditable><%= item.fullName %></td>
+		<td contenteditable><%= item.shortName %></td>
+	</tr>
+<% } else {%>
+	<tr data-item_id="">
+		<td contenteditable></td>
+		<td contenteditable></td>
+	</tr>
+<% } %>

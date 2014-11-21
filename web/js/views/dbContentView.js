@@ -34,7 +34,7 @@ define(['jquery',
 				config: config
 			}));
 			for (var item in data.items) {
-				dbContainer.append(_.template(templates[category], {
+				dbContainer.find("tbody").append(_.template(templates[category], {
 					item: data.items[item]
 				}));
 			}

@@ -1,6 +1,15 @@
-<tr>
-	<td><%= typeof item != "undefined" ? item.faculty.shortName : "" %></td>
-	<td><%= typeof item != "undefined" ? item.department.name : "" %></td>
-	<td><%= typeof item != "undefined" ? item.lastName : "" %></td>
-	<td contenteditable><%= typeof item != "undefined" ? item.rank : "" %></td>
-</tr>typeof item != "undefined"
+<% if (typeof item != 'undefined') {%>
+	<tr data-item_id="<%= item.id %>">
+		<td><%= item.faculty.shortName %></td>
+		<td><%= item.department.name %></td>
+		<td><%= item.lastName %></td>
+		<td contenteditable><%= item.rank %></td>
+	</tr>
+<% } else {%>
+	<tr data-item_id="">
+		<td></td>
+		<td></td>
+		<td></td>
+		<td contenteditable></td>
+	</tr>
+<% } %>
