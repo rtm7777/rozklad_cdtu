@@ -1,0 +1,41 @@
+#database_container {
+	tbody {
+		td {
+
+			&.no-padding {
+				padding: 0;
+
+				.glyphicon {
+					position: absolute;
+					right: 10px;
+					top: 5px;
+					font-size: 20px;
+					color: #666;
+				}
+			}
+
+			&[contenteditable]:focus {
+				outline: none;
+			}
+
+			.dropdown {
+				button {
+					width: 100%;
+					height: 30px;
+					background: transparent;
+					border: none;
+					text-align: left;
+
+					&:active {
+						padding-left: 6px;
+					}
+				}
+
+				.dropdown-menu {
+					width: 100%;
+					min-width: 80px;
+				}
+			}
+		}
+	}
+}

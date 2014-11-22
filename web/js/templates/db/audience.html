@@ -1,15 +1,43 @@
 <% if (typeof item != 'undefined') {%>
 	<tr data-item_id="<%= item.id %>">
 		<td contenteditable><%= item.number %></td>
-		<td><%= item.housing.number %></td>
-		<td><%= item.type %></td>
+		<td class="no-padding">
+			<div class="dropdown">
+				<button class="dropdown-toggle" data-toggle="dropdown" data-id=""><%= item.housing.number %><span class="glyphicon glyphicon-chevron-down"></span></button>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1" href="#">Action</a></li>
+				</ul>
+			</div>
+		</td>
+		<td class="no-padding">
+			<div class="dropdown">
+				<button class="dropdown-toggle" data-toggle="dropdown" data-id=""><%= item.type %><span class="glyphicon glyphicon-chevron-down"></span></button>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1" href="#">Action</a></li>
+				</ul>
+			</div>
+		</td>
 		<td contenteditable><%= item.sets %></td>
 	</tr>
 <% } else {%>
 	<tr data-item_id="">
 		<td contenteditable></td>
-		<td></td>
-		<td></td>
+		<td class="no-padding">
+			<div class="dropdown">
+				<button class="dropdown-toggle" data-toggle="dropdown">Dropdown<span class="glyphicon glyphicon-chevron-down"></span></button>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1" href="#">Action</a></li>
+				</ul>
+			</div>
+		</td>
+		<td class="no-padding">
+			<div class="dropdown">
+				<button class="dropdown-toggle" data-toggle="dropdown">Dropdown<span class="glyphicon glyphicon-chevron-down"></span></button>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1" href="#">Action</a></li>
+				</ul>
+			</div>
+		</td>
 		<td contenteditable></td>
 	</tr>
 <% } %>
