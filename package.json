@@ -1,0 +1,29 @@
+{
+  "name": "rozklad_cdtu",
+  "version": "0.1.1",
+  "description": "WebApp for showing and editing the students schedule, written on Revel web framework",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-requirejs": "~0.4.4",
+    "grunt-contrib-watch": "~0.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rtm7777/rozklad_cdtu.git"
+  },
+  "author": "rtm7777",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rtm7777/rozklad_cdtu/issues"
+  }
+}
