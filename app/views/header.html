@@ -24,34 +24,34 @@
 	<body>
 		<header class="navbar navbar-inverse">
 			<div class="container">
-				<a href="/" class="navbar-brand">Розклад ЧДТУ</a>
+				<a href="/" class="navbar-brand">{{msg . "app_header"}}</a>
 				<ul class="nav navbar-nav">
 					<li class="{{.schedulegroup}}">
-						<a href="/group/">Розклад груп</a>
+						<a href="/group/">{{msg . "groups_schedule"}}</a>
 					</li>
 					<li class="{{.scheduleteacher}}">
-						<a href="/teacher/">Розклад викладачів</a>
+						<a href="/teacher/">{{msg . "teachers_schedule"}}</a>
 					</li>
 					<li class="dropdown {{.info}}">
-						<a class="dropdown-toggle " data-toggle="dropdown" href="#">Інформація<b class="caret"></b></a>
+						<a class="dropdown-toggle " data-toggle="dropdown" href="#">{{msg . "info"}}<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="/gmaps/">Розміщення корпусів</a></li>
-							<li><a href="/about/">Про сайт</a></li>
+							<li><a href="/gmaps/">{{msg . "housings_location"}}</a></li>
+							<li><a href="/about/">{{msg . "about_site"}}</a></li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown {{.admin}}">
-						<a class="dropdown-toggle " data-toggle="dropdown" href="#">Адміністрування<b class="caret"></b></a>
+						<a class="dropdown-toggle " data-toggle="dropdown" href="#">{{msg . "administration"}}<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="/admin/">Розклад</a></li>
-							<li><a href="/tasks/">Завдання</a></li>
-							<li><a href="/database/">База даних</a></li>
+							<li><a href="/admin/">{{msg . "admin_schedule"}}</a></li>
+							<li><a href="/tasks/">{{msg . "admin_tasks"}}</a></li>
+							<li><a href="/database/">{{msg . "abmin_db"}}</a></li>
 						</ul>
 					</li>
 					{{if .User}}
-						<p class="navbar-text">Ви зайшли як <a href="#" class="navbar-link">{{.User}}</a></p>
-						<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Вийти</a></li>
+						<p class="navbar-text">{{msg . "logined_as"}} <a href="#" class="navbar-link">{{.User}}</a></p>
+						<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>{{msg . "logout"}}</a></li>
 					{{end}}
 				</ul>
 			</div>

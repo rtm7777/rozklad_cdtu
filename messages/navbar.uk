@@ -1,0 +1,12 @@
+app_header        =Розклад ЧДТУ
+groups_schedule   =Розклад груп
+teachers_schedule =Розклад викладачів
+info              =Інформація
+housings_location =Розміщення корпусів
+about_site        =Про сайт
+administration    =Адміністрування
+admin_schedule    =Розклад
+admin_tasks       =Завдання
+abmin_db          =База даних
+logined_as        =Ви зайшли як
+logout            =Вийти

@@ -1,4 +1,4 @@
-{{set . "title" "База Даних"}}
+{{set . "title" (msg . "page_title.db")}}
 {{set . "admin" "active"}}
 {{template "header.html" .}}
 
@@ -8,10 +8,10 @@
 			<div class="panel panel-default">
 				<ul class="nav nav-pills action-menu">
 					<li id="delete_db" class="dropdown pull-right hide">
-						<a href="#"><span class="glyphicon glyphicon-remove"></span> Видалити</a>
+						<a href="#"><span class="glyphicon glyphicon-remove"></span> {{msg . "action_menu.delete"}}</a>
 					</li>
 					<li id="add_db" class="dropdown pull-right">
-						<a href="#"><span class="glyphicon glyphicon-plus"></span> Додати</a>
+						<a href="#"><span class="glyphicon glyphicon-plus"></span> {{msg . "action_menu.add"}}</a>
 					</li>
 					<h4 id="admin_facylty_name" class="center-text"></h4>
 				</ul>
@@ -24,7 +24,7 @@
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="panel panel-default">
-				<div class="panel-heading">Категорія:</div>
+				<div class="panel-heading">{{msg . "left_sidebar.category"}}:</div>
 				<div id="database_categories" class="list-group">
 					{{range $i := .categories}}
 					<a href="#" data-category="{{$i.Category}}" class="list-group-item">{{$i.Name}}</a>
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<div class="col-lg-9">
-			<div id="content_loader" class="admin-content-loader">Для початку роботи виберіть категорію</div>
+			<div id="content_loader" class="admin-content-loader">{{msg . "message.select_category"}}</div>
 			<table id="database_container" class="table table-bordered table-hover table-striped table-condensed hide"></table>
 		</div>
 	</div>

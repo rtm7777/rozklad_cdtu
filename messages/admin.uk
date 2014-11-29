@@ -1,0 +1,12 @@
+page_title.admin_main =Адміністрування розкладу
+page_title.db         =База Даних
+page_title.tasks      =Завдання
+
+action_menu.faculty   =Факультет
+action_menu.s_year    =Курс
+action_menu.delete    =Видалити
+action_menu.edit      =Редагувати
+action_menu.add       =Додати
+
+left_sidebar.department_tasks =Завдання кафедр
+left_sidebar.category         =Категорія

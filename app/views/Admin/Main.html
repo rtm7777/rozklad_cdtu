@@ -1,4 +1,4 @@
-{{set . "title" "Адміністрування розкладу"}}
+{{set . "title" (msg . "page_title.admin_main")}}
 {{set . "admin" "active"}}
 {{template "header.html" .}}
 
@@ -9,7 +9,7 @@
 				<ul class="nav nav-pills action-menu">
 					<li id="faculty_sel" class="dropdown pull-left">
 						<a class="dropdown-toggle" data-toggle="dropdown" data-filter-id="" href="#">
-							Факультет <span class="caret"></span>
+							{{msg . "action_menu.faculty"}} <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							{{range $faculty := $.faculties}}
@@ -19,21 +19,21 @@
 					</li>
 					<li id="year_sel" class="dropdown pull-left">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-filter-id="1">
-							1 Курс <span class="caret"></span>
+							1 {{msg . "action_menu.s_year"}} <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#" data-filter-id="1">1 Курс</a></li>
-							<li><a href="#" data-filter-id="2">2 Курс</a></li>
-							<li><a href="#" data-filter-id="3">3 Курс</a></li>
-							<li><a href="#" data-filter-id="4">4 Курс</a></li>
-							<li><a href="#" data-filter-id="5">5 Курс</a></li>
+							<li><a href="#" data-filter-id="1">1 {{msg . "action_menu.s_year"}}</a></li>
+							<li><a href="#" data-filter-id="2">2 {{msg . "action_menu.s_year"}}</a></li>
+							<li><a href="#" data-filter-id="3">3 {{msg . "action_menu.s_year"}}</a></li>
+							<li><a href="#" data-filter-id="4">4 {{msg . "action_menu.s_year"}}</a></li>
+							<li><a href="#" data-filter-id="5">5 {{msg . "action_menu.s_year"}}</a></li>
 						</ul>
 					</li>
 					<li id="delete_sel" class="dropdown pull-right">
-						<a href="#"><span class="glyphicon glyphicon-remove"></span> Видалити</a>
+						<a href="#"><span class="glyphicon glyphicon-remove"></span> {{msg . "action_menu.delete"}}</a>
 					</li>
 					<li id="delete_sel" class="dropdown pull-right">
-						<a href="#"><span class="glyphicon glyphicon-edit"></span> Редагувати</a>
+						<a href="#"><span class="glyphicon glyphicon-edit"></span> {{msg . "action_menu.edit"}}</a>
 					</li>
 					<h4 id="admin_facylty_name" class="center-text"></h4>
 				</ul>
@@ -46,10 +46,10 @@
 	<div class="row">
 		<div class="col-lg-3">
 			<div class="panel panel-default">
-				<div class="panel-heading">Завдання кафедр:</div>
+				<div class="panel-heading">{{msg . "left_sidebar.department_tasks"}}:</div>
 				<div class="list-group task_wrapper">
 					<div id="tasks_loader" class="list-group-item" draggable="true">
-						<p class="font12">Для початку роботи виберіть факультет та рік навчання</p>
+						<p class="font12">{{msg . "message.select_faculty"}}</p>
 					</div>
 					<div id="tasks_container" class="hide"></div>
 				</div>
@@ -57,7 +57,7 @@
 		</div>
 		<div class="col-lg-9">
 			<div class="main-container">
-				<div id="content_loader" class="admin-content-loader">Для початку роботи виберіть факультет та рік навчання</div>
+				<div id="content_loader" class="admin-content-loader">{{msg . "message.select_faculty"}}</div>
 				<div id="day_table_col" class="day-pair-col hide">
 					<div class="day-pair-row height47"></div>
 					{{range $day := $.days}}
