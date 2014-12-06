@@ -4,6 +4,11 @@ go:
 branches:
   only:
     - master
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
+  - java -jar selenium-server-standalone-2.44.0.jar &
 install:
   - go get -v github.com/revel/revel
   - go get -v github.com/revel/revel/cache
@@ -11,7 +16,9 @@ install:
   - go get -v code.google.com/p/go.crypto/bcrypt
   - go get -v github.com/go-sql-driver/mysql
   - go get -v github.com/coocood/qbs
+  - go get -v bitbucket.org/tebeka/selenium
   - export PATH=$HOME/gopath/bin:$PATH
+
 before_script:
   - cd $HOME/gopath/src
   - ln -s $HOME/gopath/src/github.com/rtm7777/rozklad_cdtu rozklad_cdtu
