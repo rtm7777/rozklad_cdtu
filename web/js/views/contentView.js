@@ -9,7 +9,7 @@ define(['jquery',
 	var $taskDiv = $("#tasks_container");
 
 	return {
-		addGroup: function(group) {
+		addGroup(group) {
 			$contentDiv.append(_.template(groupTemplate, {
 				group  : group.shortName,
 				groupId: group.id,
@@ -18,7 +18,7 @@ define(['jquery',
 			}));
 		},
 
-		addTask: function(task) {
+		addTask(task) {
 			$taskDiv.append(_.template(taskTemplate, {
 				id      : task.id,
 				subject : task.subject,
@@ -27,41 +27,41 @@ define(['jquery',
 			}));
 		},
 
-		setPair: function(pair) {
+		setPair(pair) {
 			$("#" + pair.id).html("<div class='admin-sub'>" + pair.subject +"</div><hr class='admin-sub-separator'><div class='admin-sub'></div>");
 		},
 
-		setDropdownValue: function($dropdown, $element) {
+		setDropdownValue($dropdown, $element) {
 			$dropdown
 				.html($element.text() + ' <span class="caret"></span>')
 				.attr("data-filter-id", $element.attr("data-filter-id"));
 		},
 
-		showScheduleContent: function() {
+		showScheduleContent() {
 			$("#content_loader").addClass("hide");
 			$("#day_table_col, #pair_table_col, #schedule_container").removeClass("hide");
 		},
 
-		hideScheduleContent: function() {
+		hideScheduleContent() {
 			$("#content_loader").removeClass("hide");
 			$("#day_table_col, #pair_table_col, #schedule_container").addClass("hide");
 		},
 
-		setLoaderMessage: function(message) {
+		setLoaderMessage(message) {
 			$("#content_loader").text(message);
 		},
 
-		showTasksContent: function() {
+		showTasksContent() {
 			$("#tasks_loader").addClass("hide");
 			$("#tasks_container").removeClass("hide");
 		},
 
-		hideTasksContent: function() {
+		hideTasksContent() {
 			$("#tasks_container").addClass("hide");
 			$("#tasks_loader").removeClass("hide");
 		},
 
-		setTasksMessage: function(message) {
+		setTasksMessage(message) {
 			$("#tasks_loader p").text(message);
 		}
 	};

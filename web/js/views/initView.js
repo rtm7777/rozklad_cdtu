@@ -2,5 +2,4 @@ define(['jquery',
 
 ], function($) {
 
-
 });

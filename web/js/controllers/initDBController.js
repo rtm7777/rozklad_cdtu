@@ -1,8 +1,9 @@
 define(['jquery',
+		'../config/config',
 		'../services/localStorage',
 		'../views/dbContentView',
 		'../config/messages',
-],function($, storage, dbView, messages) {
+],function($, config, storage, dbView, messages) {
 	if ($("#page").data("id") == "database") {
 		var storageCategory = storage.getValue("category");
 		if (storageCategory) {
@@ -21,13 +22,15 @@ define(['jquery',
 	function getCategory(category) {
 		$.post('/get_category',
 			{
-				category: category
+				category: category,
+				subCategories: config.database[category].filters
 			})
 		.done(function(data) {
 			dbView.showDBContent();
 			if (data) {
 				$("#database_container").html("");
 				dbView.addItems(data, category);
+				$(".popove").popover();
 			}
 		})
 		.fail(function() {

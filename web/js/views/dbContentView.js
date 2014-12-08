@@ -23,12 +23,12 @@ define(['jquery',
 
 	return {
 
-		setActiveCategory: function($category) {
+		setActiveCategory($category) {
 			$("#database_categories a").removeClass("active");
 			$category.addClass("active");
 		},
 
-		addItems: function(data, category) {
+		addItems(data, category) {
 			dbContainer.append(_.template(dbItemsTemplate, {
 				category: category,
 				config: config
@@ -40,17 +40,17 @@ define(['jquery',
 			}
 		},
 
-		showDBContent: function() {
+		showDBContent() {
 			$("#content_loader").addClass("hide");
 			dbContainer.removeClass("hide");
 		},
 
-		hideDBContent: function() {
+		hideDBContent() {
 			dbContainer.addClass("hide");
 			$("#content_loader").removeClass("hide");
 		},
 
-		addEmptyField: function(category) {
+		addEmptyField(category) {
 			dbContainer.find("tbody").prepend(_.template(templates[category], {}));
 		}
 	};

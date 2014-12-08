@@ -1,26 +1,32 @@
 language: go
 go:
-  - 1.3
+- 1.3
 branches:
   only:
-    - master
+  - master
 before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
-  - java -jar selenium-server-standalone-2.44.0.jar &
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
+- java -jar selenium-server-standalone-2.44.0.jar &
 install:
-  - go get -v github.com/revel/revel
-  - go get -v github.com/revel/revel/cache
-  - go get -v github.com/revel/cmd/revel
-  - go get -v code.google.com/p/go.crypto/bcrypt
-  - go get -v github.com/go-sql-driver/mysql
-  - go get -v github.com/coocood/qbs
-  - go get -v bitbucket.org/tebeka/selenium
-  - export PATH=$HOME/gopath/bin:$PATH
-
+- go get -v github.com/revel/revel
+- go get -v github.com/revel/revel/cache
+- go get -v github.com/revel/cmd/revel
+- go get -v code.google.com/p/go.crypto/bcrypt
+- go get -v github.com/go-sql-driver/mysql
+- go get -v github.com/coocood/qbs
+- go get -v bitbucket.org/tebeka/selenium
+- export PATH=$HOME/gopath/bin:$PATH
 before_script:
-  - cd $HOME/gopath/src
-  - ln -s $HOME/gopath/src/github.com/rtm7777/rozklad_cdtu rozklad_cdtu
+- cd $HOME/gopath/src
+- ln -s $HOME/gopath/src/github.com/rtm7777/rozklad_cdtu rozklad_cdtu
 script:
-  - revel test rozklad_cdtu
+- revel test rozklad_cdtu
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: pLYNpj7KMgSG56Hg8YFHrdcXt0YALJphvcaLeMmrRElrcL9BLbDTb85YWMRxfc2jkVHFCYMc6/iTY23OY30WdMY/Qr3KPMDdufFjvOu+/y2oT6ghyFWN8Y2TDwiHdbII+bdMPvhFOcyQvZLAMkzphZdMzaNeXuU8e2jlEtcCobo=
+#   app: rozkladchdtu
+#   on:
+#     repo: rtm7777/rozklad_cdtu

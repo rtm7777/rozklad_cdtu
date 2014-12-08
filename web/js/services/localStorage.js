@@ -3,11 +3,11 @@ define([],function() {
 	var storage = localStorage;
 
 	return {
-		saveValue: function(name, value) {
+		saveValue(name, value) {
 			storage.setItem(name, value);
 		},
 
-		getValue: function(name) {
+		getValue(name) {
 			return storage.getItem(name);
 		}
 	};
