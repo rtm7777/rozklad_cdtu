@@ -1,7 +1,7 @@
 define(['jquery',
 		'../views/contentView',
-], function($, v) {
-	$("#lalala").on("click", function() {
+], ($, v) => {
+	$("#lalala").on("click", () => {
 		v.addGroup("KT-901");
 	});
 

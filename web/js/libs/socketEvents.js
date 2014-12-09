@@ -1,24 +1,24 @@
 define(['jquery',
 		'../services/socketInterface',
-],function($, socket) {
+], ($, socket) => {
 
 	socketChannels = {
 
 	};
 
-	socket.onopen = function(event) {
+	socket.onopen = (event) => {
 
 	};
 
-	socket.onmessage = function(event) {
+	socket.onmessage = (event) => {
 
 	};
 
-	socket.onclose = function(event) {
+	socket.onclose = (event) => {
 
 	};
 
-	socket.onerror = function(event) {
+	socket.onerror = (event) => {
 
 	};
 

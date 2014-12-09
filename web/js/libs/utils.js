@@ -1,13 +1,13 @@
 define(['jquery',
-	
-],function($) {
+
+], ($) => {
 
 	function showScheduleLoader() {
-		
+
 	}
 
 	function hideScheduleLoader() {
-		
+
 	}
 
 	return {

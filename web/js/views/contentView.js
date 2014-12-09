@@ -3,7 +3,7 @@ define(['jquery',
 		'../config/config',
 		'text!templates/group.html',
 		'text!templates/task.html'
-], function($, _, config, groupTemplate, taskTemplate) {
+], ($, _, config, groupTemplate, taskTemplate) => {
 
 	var $contentDiv = $("#schedule_container");
 	var $taskDiv = $("#tasks_container");

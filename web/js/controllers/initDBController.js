@@ -3,7 +3,7 @@ define(['jquery',
 		'../services/localStorage',
 		'../views/dbContentView',
 		'../config/messages',
-],function($, config, storage, dbView, messages) {
+], ($, config, storage, dbView, messages) => {
 	if ($("#page").data("id") == "database") {
 		var storageCategory = storage.getValue("category");
 		if (storageCategory) {
@@ -12,7 +12,7 @@ define(['jquery',
 		}
 	}
 
-	$("#database_categories a").on("click", function(e) {
+	$("#database_categories a").on("click", (e) => {
 		e.preventDefault();
 		dbView.setActiveCategory($(this));
 		storage.saveValue("category", $(this).data("category"));
@@ -25,7 +25,7 @@ define(['jquery',
 				category: category,
 				subCategories: config.database[category].filters
 			})
-		.done(function(data) {
+		.done((data) => {
 			dbView.showDBContent();
 			if (data) {
 				$("#database_container").html("");
@@ -33,7 +33,7 @@ define(['jquery',
 				$(".popove").popover();
 			}
 		})
-		.fail(function() {
+		.fail(() => {
 			dbView.hideDBContent();
 		});
 	}

@@ -1,12 +1,12 @@
 define(['jquery',
 		'../views/dbContentView',
-],function($, dbView) {
-	$("#add_db").on("click", function() {
+], ($, dbView) => {
+	$("#add_db").on("click", () => {
 		var category = $("#database_categories .active").attr("data-category");
 		dbView.addEmptyField(category);
 	});
 
-	$("#database_container").on("click", "tbody tr", function(e) {
+	$("#database_container").on("click", "tbody tr", (e) => {
 		if (e.ctrlKey) {
 			var selectedItems;
 			if ($(this).hasClass("info")) {

@@ -9,7 +9,7 @@ define(['jquery',
 		'text!templates/db/housing.html',
 		'text!templates/db/subject.html',
 		'text!templates/db/teacher.html',
-], function($, _, config, dbItemsTemplate, audienceTmp, departmentTmp, facultyTmp, groupTmp, housingTmp, subjectTmp, teacherTmp) {
+], ($, _, config, dbItemsTemplate, audienceTmp, departmentTmp, facultyTmp, groupTmp, housingTmp, subjectTmp, teacherTmp) => {
 	var templates = {
 		audience: audienceTmp,
 		department: departmentTmp,

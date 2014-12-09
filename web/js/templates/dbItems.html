@@ -1,6 +1,6 @@
 <thead>
 	<tr>
-		<% _.each(config.database[category].fields, function(col){ %>
+		<% _.each(config.database[category].fields, (col) => { %>
 			<th><%= col %></th>
 		<% }); %>
 	</tr>

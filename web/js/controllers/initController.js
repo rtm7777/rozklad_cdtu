@@ -2,7 +2,7 @@ define(['jquery',
 		'../services/localStorage',
 		'../views/contentView',
 		'../config/messages',
-],function($, storage, contentView, messages) {
+], ($, storage, contentView, messages) => {
 	if ($("#page").data("id") == "schedule") {
 		var storageFaculty = storage.getValue("faculty");
 		var storageYear = storage.getValue("year");
@@ -13,12 +13,12 @@ define(['jquery',
 		}
 	}
 
-	$("#faculty_sel .dropdown-menu a").on("click", function() {
+	$("#faculty_sel .dropdown-menu a").on("click", () => {
 		contentView.setDropdownValue($("#faculty_sel .dropdown-toggle"), $(this));
 		getFacultyGroups($(this).attr("data-filter-id"), $("#year_sel a.dropdown-toggle").attr("data-filter-id"));
 	});
 
-	$("#year_sel .dropdown-menu a").on("click", function() {
+	$("#year_sel .dropdown-menu a").on("click", () => {
 		contentView.setDropdownValue($("#year_sel .dropdown-toggle"), $(this));
 		getFacultyGroups($("#faculty_sel a.dropdown-toggle").attr("data-filter-id"), $(this).attr("data-filter-id"));
 	});
@@ -29,7 +29,7 @@ define(['jquery',
 				faculty_id: faculty,
 				year: year
 			})
-		.done(function(data){
+		.done((data) => {
 			if (data) {
 				$("#schedule_container").html("");
 				contentView.showScheduleContent();
@@ -47,11 +47,11 @@ define(['jquery',
 			storage.saveValue("faculty", faculty);
 			storage.saveValue("year", year);
 		})
-		.fail(function() {
+		.fail(() => {
 			contentView.hideScheduleContent();
 			contentView.setLoaderMessage(messages.loadErr);
 		})
-		.always(function() {
+		.always(() => {
 
 		});
 	}
@@ -62,12 +62,12 @@ define(['jquery',
 				faculty_id: faculty,
 				year: year
 			})
-		.done(function(data) {
+		.done((data) => {
 			for (var pair in data) {
 				contentView.setPair(data[pair]);
 			}
 		})
-		.fail(function() {
+		.fail(() => {
 
 		});
 	}
@@ -78,7 +78,7 @@ define(['jquery',
 				faculty_id: faculty,
 				year: year
 			})
-		.done(function(data) {
+		.done((data) => {
 			if (data) {
 				$("#tasks_container").html("");
 				contentView.showTasksContent();
@@ -90,14 +90,14 @@ define(['jquery',
 				contentView.setTasksMessage(messages.noTasksFound);
 			}
 		})
-		.fail(function() {
+		.fail(() => {
 			contentView.hideTasksContent();
 			contentView.setTasksMessage(messages.loadErr);
 		});
 	}
 
-	$(document).on('click', function (e) {
-		$('[data-toggle="popover"]').each(function () {
+	$(document).on('mouseup', (e) => {
+		$('[data-toggle="popover"]').each(() => {
 			if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
 				$(this).popover('hide');
 			}

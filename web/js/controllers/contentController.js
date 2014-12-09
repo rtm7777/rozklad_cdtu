@@ -1,11 +1,11 @@
 define(['jquery',
-],function($) {
-	$("#schedule_container").on("click", ".btn", function() {
+], ($) => {
+	$("#schedule_container").on("click", ".btn", () => {
 		console.log("sfsdfs");
 	});
 
 	function filterTasks(value) {
-		$('.map-list .btn').each(function() {
+		$('.map-list .btn').each(() => {
 			if(this.textContent.toLowerCase().indexOf(value) > -1) {
 				$(this).show();
 			} else {
