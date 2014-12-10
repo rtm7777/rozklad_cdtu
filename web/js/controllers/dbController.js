@@ -7,12 +7,13 @@ define(['jquery',
 	});
 
 	$("#database_container").on("click", "tbody tr", (e) => {
+		$this = $(e.currentTarget);
 		if (e.ctrlKey) {
 			var selectedItems;
-			if ($(this).hasClass("info")) {
-				$(this).removeClass("info");
+			if ($this.hasClass("info")) {
+				$this.removeClass("info");
 			} else {
-				$(this).addClass("info");
+				$this.addClass("info");
 			}
 			selectedItems = $("#database_container tbody tr.info");
 			if (selectedItems.length > 0) {

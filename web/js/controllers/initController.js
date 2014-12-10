@@ -13,14 +13,16 @@ define(['jquery',
 		}
 	}
 
-	$("#faculty_sel .dropdown-menu a").on("click", () => {
-		contentView.setDropdownValue($("#faculty_sel .dropdown-toggle"), $(this));
-		getFacultyGroups($(this).attr("data-filter-id"), $("#year_sel a.dropdown-toggle").attr("data-filter-id"));
+	$("#faculty_sel .dropdown-menu a").on("click", (e) => {
+		$this = $(e.currentTarget);
+		contentView.setDropdownValue($("#faculty_sel .dropdown-toggle"), $this);
+		getFacultyGroups($this.attr("data-filter-id"), $("#year_sel a.dropdown-toggle").attr("data-filter-id"));
 	});
 
-	$("#year_sel .dropdown-menu a").on("click", () => {
-		contentView.setDropdownValue($("#year_sel .dropdown-toggle"), $(this));
-		getFacultyGroups($("#faculty_sel a.dropdown-toggle").attr("data-filter-id"), $(this).attr("data-filter-id"));
+	$("#year_sel .dropdown-menu a").on("click", (e) => {
+		$this = $(e.currentTarget);
+		contentView.setDropdownValue($("#year_sel .dropdown-toggle"), $this);
+		getFacultyGroups($("#faculty_sel a.dropdown-toggle").attr("data-filter-id"), $this.attr("data-filter-id"));
 	});
 
 	function getFacultyGroups(faculty, year) {
@@ -97,9 +99,10 @@ define(['jquery',
 	}
 
 	$(document).on('mouseup', (e) => {
-		$('[data-toggle="popover"]').each(() => {
-			if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-				$(this).popover('hide');
+		$('[data-toggle="popover"]').each((i, elem) => {
+			$elem = $(elem);
+			if (!$elem.is(e.target) && $elem.has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+				$elem.popover('hide');
 			}
 		});
 	});

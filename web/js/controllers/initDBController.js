@@ -13,10 +13,11 @@ define(['jquery',
 	}
 
 	$("#database_categories a").on("click", (e) => {
+		$this = $(e.currentTarget);
 		e.preventDefault();
-		dbView.setActiveCategory($(this));
-		storage.saveValue("category", $(this).data("category"));
-		getCategory($(this).data("category"));
+		dbView.setActiveCategory($this);
+		storage.saveValue("category", $this.data("category"));
+		getCategory($this.data("category"));
 	});
 
 	function getCategory(category) {
