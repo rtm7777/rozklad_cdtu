@@ -4,6 +4,12 @@ import (
 	_ "github.com/coocood/qbs"
 )
 
+type Lalala struct { // example user fields
+	Id       int64
+	Name     string
+	Password string `sql:"-"`
+}
+
 type Faculties struct {
 	Id        int64  `qbs:"pk" json:"id"`
 	FullName  string `qbs:"size:100" json:"fullName"`

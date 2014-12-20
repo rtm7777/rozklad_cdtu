@@ -10,6 +10,7 @@ import (
 
 type Application struct {
 	*revel.Controller
+	GormController
 }
 
 func (c Application) Index() revel.Result {
