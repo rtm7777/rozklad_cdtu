@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs"
 	"rozklad_cdtu/app/models"
@@ -35,8 +36,17 @@ func (c Application) Index() revel.Result {
 }
 
 func (c Application) Main() revel.Result {
-	// db_lib.CreateTables()
-	return c.Render()
+	var department models.Departments
+	var faculty models.Faculties
+
+	c.Txn.First(&department)
+	c.Txn.Model(&department).Related(&faculty, "FacultyId")
+	department.SetFaculty(faculty)
+
+	fmt.Println(department.Faculty)
+	fmt.Println(faculty)
+
+	return c.RenderJson(department)
 }
 
 func (c Application) Gmaps() revel.Result {

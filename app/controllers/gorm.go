@@ -59,7 +59,18 @@ func InitDB() {
 		revel.ERROR.Println("FATAL", err)
 		panic(err)
 	}
-	Gdb.AutoMigrate(&models.Lalala{})
+	Gdb.AutoMigrate(&models.Faculties{})
+	Gdb.AutoMigrate(&models.Departments{})
+	Gdb.AutoMigrate(&models.Groups{})
+	Gdb.AutoMigrate(&models.Teachers{})
+	Gdb.AutoMigrate(&models.Housings{})
+	Gdb.AutoMigrate(&models.Audiences{})
+	Gdb.AutoMigrate(&models.Subjects{})
+	Gdb.AutoMigrate(&models.Days{})
+	Gdb.AutoMigrate(&models.Pairs{})
+	Gdb.AutoMigrate(&models.Schedule{})
+	Gdb.AutoMigrate(&models.Tasks{})
+	Gdb.AutoMigrate(&models.Users{})
 }
 
 // transactions
