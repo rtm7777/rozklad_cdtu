@@ -13,7 +13,7 @@ import (
 // c.Txn will keep `Gdb *gorm.DB`
 type GormController struct {
 	*revel.Controller
-	Txn *gorm.DB
+	DB *gorm.DB
 }
 
 var (
@@ -77,36 +77,36 @@ func InitDB() {
 
 // This method fills the c.Txn before each transaction
 func (c *GormController) Begin() revel.Result {
-	txn := Gdb.Begin()
-	if txn.Error != nil {
-		panic(txn.Error)
+	db := Gdb.Begin()
+	if db.Error != nil {
+		panic(db.Error)
 	}
-	c.Txn = txn
+	c.DB = db
 	return nil
 }
 
 // This method clears the c.Txn after each transaction
 func (c *GormController) Commit() revel.Result {
-	if c.Txn == nil {
+	if c.DB == nil {
 		return nil
 	}
-	c.Txn.Commit()
-	if err := c.Txn.Error; err != nil && err != sql.ErrTxDone {
+	c.DB.Commit()
+	if err := c.DB.Error; err != nil && err != sql.ErrTxDone {
 		panic(err)
 	}
-	c.Txn = nil
+	c.DB = nil
 	return nil
 }
 
 // This method clears the c.Txn after each transaction, too
 func (c *GormController) Rollback() revel.Result {
-	if c.Txn == nil {
+	if c.DB == nil {
 		return nil
 	}
-	c.Txn.Rollback()
-	if err := c.Txn.Error; err != nil && err != sql.ErrTxDone {
+	c.DB.Rollback()
+	if err := c.DB.Error; err != nil && err != sql.ErrTxDone {
 		panic(err)
 	}
-	c.Txn = nil
+	c.DB = nil
 	return nil
 }

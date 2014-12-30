@@ -3,11 +3,9 @@ package controllers
 import (
 	"code.google.com/p/go.crypto/bcrypt"
 	"code.google.com/p/go.net/websocket"
-	_ "github.com/coocood/qbs"
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
 	"rozklad_cdtu/app/libs"
-	"rozklad_cdtu/app/qbsDB"
 	"rozklad_cdtu/app/roomevents"
 	"time"
 )
@@ -40,9 +38,8 @@ func (c Admin) Main() revel.Result {
 	connection := c.connected()
 	User := connection.Username
 
-	db := qbsDB.DB
-	days, pairs := db_lib.DaysPairsData(db)
-	faculties := db_lib.FacultiesList(db)
+	days, pairs := db_lib.DaysPairsData(c.DB)
+	faculties := db_lib.FacultiesList(c.DB)
 	return c.Render(User, days, pairs, faculties)
 }
 
@@ -56,13 +53,13 @@ func (c Admin) DataBase() revel.Result {
 	}
 
 	categories := []Categories{
-		{Category: "faculty", Name: "Факультети"},
-		{Category: "department", Name: "Кафедри"},
-		{Category: "group", Name: "Групи"},
-		{Category: "housing", Name: "Корпуси"},
-		{Category: "audience", Name: "Аудиторії"},
-		{Category: "teacher", Name: "Викладачі"},
-		{Category: "subject", Name: "Предмети"},
+		{Category: "faculties", Name: "Факультети"},
+		{Category: "departments", Name: "Кафедри"},
+		{Category: "groups", Name: "Групи"},
+		{Category: "housings", Name: "Корпуси"},
+		{Category: "audiences", Name: "Аудиторії"},
+		{Category: "teachers", Name: "Викладачі"},
+		{Category: "subjects", Name: "Предмети"},
 	}
 
 	return c.Render(User, categories)

@@ -5,29 +5,26 @@ import (
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs"
 	"rozklad_cdtu/app/models"
-	"rozklad_cdtu/app/qbsDB"
 	"strings"
 )
 
 type Application struct {
-	*revel.Controller
 	GormController
 }
 
 func (c Application) Index() revel.Result {
-	db := qbsDB.DB
 	type Days struct {
 		Id  int64  `qbs:"pk"`
 		Day string `qbs:"size:65536"`
 	}
 	day := new(Days)
 	day.Id = 1
-	e := db.Find(day)
+	e := c.DB.First(&day).Error
 	if e != nil {
 		panic(e)
 	}
 	var days []*Days
-	err := db.FindAll(&days)
+	err := c.DB.Find(&days).Error
 	if err != nil {
 		panic(err)
 	}
@@ -39,8 +36,8 @@ func (c Application) Main() revel.Result {
 	var department models.Departments
 	var faculty models.Faculties
 
-	c.Txn.First(&department)
-	c.Txn.Model(&department).Related(&faculty, "FacultyId")
+	c.DB.First(&department)
+	c.DB.Model(&department).Related(&faculty, "FacultyId")
 	department.SetFaculty(faculty)
 
 	fmt.Println(department.Faculty)
@@ -58,47 +55,42 @@ func (c Application) About() revel.Result {
 }
 
 func (c Application) Group() revel.Result {
-	db := qbsDB.DB
-	faculties, groups, years := db_lib.GroupsData(db)
-	days, pairs := db_lib.DaysPairsData(db)
+	faculties, groups, years := db_lib.GroupsData(c.DB)
+	days, pairs := db_lib.DaysPairsData(c.DB)
 	return c.Render(faculties, groups, years, days, pairs)
 }
 
 func (c Application) GroupCurrent(groupName string) revel.Result {
-	db := qbsDB.DB
 	group := new(models.Groups)
-	err := db.WhereEqual("groups.short_name", groupName).Find(group)
+	err := c.DB.Where("short_name = ?", groupName).First(&group)
 
 	if err != nil {
 		return c.Redirect(Application.Group)
 	} else {
-		faculties, groups, years := db_lib.GroupsData(db)
-		days, pairs := db_lib.DaysPairsData(db)
-		days_out := db_lib.GroupSchedule(db, group.Id, days, pairs)
+		faculties, groups, years := db_lib.GroupsData(c.DB)
+		days, pairs := db_lib.DaysPairsData(c.DB)
+		days_out := db_lib.GroupSchedule(c.DB, group.Id, days, pairs)
 
 		return c.Render(faculties, groups, years, days, pairs, group, days_out)
 	}
-
 }
 
 func (c Application) Teacher() revel.Result {
-	db := qbsDB.DB
-	faculties, departments, teachers := db_lib.TeachersData(db)
-	days, pairs := db_lib.DaysPairsData(db)
+	faculties, departments, teachers := db_lib.TeachersData(c.DB)
+	days, pairs := db_lib.DaysPairsData(c.DB)
 	return c.Render(faculties, departments, teachers, days, pairs)
 }
 
 func (c Application) TeacherCurrent(teacherName string) revel.Result {
-	db := qbsDB.DB
 	teacher := new(models.Teachers)
 	parsedTeacherName := strings.Split(teacherName, "_")
-	err := db.WhereEqual("first_name", parsedTeacherName[0]).WhereEqual("last_name", parsedTeacherName[1]).WhereEqual("middle_name", parsedTeacherName[2]).Find(teacher)
+	err := c.DB.Where(&models.Teachers{FirstName: parsedTeacherName[0], LastName: parsedTeacherName[1], MiddleName: parsedTeacherName[2]}).First(&teacher).Error
 	if err != nil {
 		return c.Redirect(Application.Teacher)
 	} else {
-		faculties, departments, teachers := db_lib.TeachersData(db)
-		days, pairs := db_lib.DaysPairsData(db)
-		days_out := db_lib.TeacherSchedule(db, teacher.Id, days, pairs)
+		faculties, departments, teachers := db_lib.TeachersData(c.DB)
+		days, pairs := db_lib.DaysPairsData(c.DB)
+		days_out := db_lib.TeacherSchedule(c.DB, teacher.Id, days, pairs)
 
 		return c.Render(faculties, departments, teachers, days, pairs, teacher, days_out)
 	}

@@ -102,7 +102,7 @@ type Tasks struct {
 type Users struct {
 	Id             int64
 	Username       string `sql:"size:40"`
-	HashedPassword []byte
+	HashedPassword []byte `sql:"size:65535"`
 }
 
 func (d *Departments) SetFaculty(f Faculties) {
