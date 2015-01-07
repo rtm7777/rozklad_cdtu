@@ -12,38 +12,8 @@ type Application struct {
 	GormController
 }
 
-func (c Application) Index() revel.Result {
-	type Days struct {
-		Id  int64  `qbs:"pk"`
-		Day string `qbs:"size:65536"`
-	}
-	day := new(Days)
-	day.Id = 1
-	e := c.DB.First(&day).Error
-	if e != nil {
-		panic(e)
-	}
-	var days []*Days
-	err := c.DB.Find(&days).Error
-	if err != nil {
-		panic(err)
-	}
-
-	return c.Render(day, days)
-}
-
 func (c Application) Main() revel.Result {
-	var department models.Departments
-	var faculty models.Faculties
-
-	c.DB.First(&department)
-	c.DB.Model(&department).Related(&faculty, "FacultyId")
-	department.SetFaculty(faculty)
-
-	fmt.Println(department.Faculty)
-	fmt.Println(faculty)
-
-	return c.RenderJson(department)
+	return c.Render()
 }
 
 func (c Application) Gmaps() revel.Result {
