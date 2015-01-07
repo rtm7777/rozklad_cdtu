@@ -15,7 +15,7 @@ install:
 - go get -v github.com/revel/cmd/revel
 - go get -v code.google.com/p/go.crypto/bcrypt
 - go get -v github.com/go-sql-driver/mysql
-- go get -v github.com/coocood/qbs
+- go get -v github.com/jinzhu/gorm
 - go get -v bitbucket.org/tebeka/selenium
 - export PATH=$HOME/gopath/bin:$PATH
 before_script:
