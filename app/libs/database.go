@@ -7,27 +7,6 @@ import (
 	"rozklad_cdtu/app/models/json_models"
 )
 
-// func CreateTables() error {
-// migration, err := qbs.GetMigration()
-// if err != nil {
-// 	return err
-// }
-// defer migration.Close()
-// err = migration.CreateTableIfNotExists(new(models.Faculties))
-// err = migration.CreateTableIfNotExists(new(models.Departments))
-// err = migration.CreateTableIfNotExists(new(models.Groups))
-// err = migration.CreateTableIfNotExists(new(models.Teachers))
-// err = migration.CreateTableIfNotExists(new(models.Housings))
-// err = migration.CreateTableIfNotExists(new(models.Audiences))
-// err = migration.CreateTableIfNotExists(new(models.Subjects))
-// err = migration.CreateTableIfNotExists(new(models.Days))
-// err = migration.CreateTableIfNotExists(new(models.Pairs))
-// err = migration.CreateTableIfNotExists(new(models.Schedule))
-// err = migration.CreateTableIfNotExists(new(models.Tasks))
-// err = migration.CreateTableIfNotExists(new(models.Users))
-// 	return Error
-// }
-
 func DaysPairsData(db *gorm.DB) ([]*models.Days, []*models.Pairs) {
 	var days []*models.Days
 	err := db.Find(&days).Error
@@ -43,7 +22,6 @@ func DaysPairsData(db *gorm.DB) ([]*models.Days, []*models.Pairs) {
 }
 
 func GroupsData(db *gorm.DB) ([]*models.Faculties, []*models.Groups, []int) {
-
 	years := make([]int, 6)
 	for i := 0; i < 6; i++ {
 		years[i] = i + 1
@@ -121,57 +99,44 @@ func EmptySchedule(days []*models.Days, pairs []*models.Pairs) []json_models.Day
 }
 
 func GroupPairString(db *gorm.DB, subject *models.Schedule) string {
-	// housing := new(models.Housings)
-	// housing.Id = subject.Audience.HousingId
-	// err := db.Find(housing)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// return subject.Subject.Subject + " - " +
-	// 	subject.SubjectType + " " +
-	// 	subject.Audience.Number + "-" +
-	// 	housing.Number + " " +
-	// 	subject.Teacher.Rank + " - " +
-	// 	subject.Teacher.LastName + " " +
-	// 	subject.Teacher.FirstName + " " +
-	// 	subject.Teacher.MiddleName
-	return "dfsfs"
+	subject = subject.LoadRelated(db)
+	return subject.Subject.Subject + " - " +
+		subject.SubjectType + " " +
+		subject.Audience.Number + "-" +
+		subject.Audience.Housing.Number + " " +
+		subject.Teacher.Rank + " - " +
+		subject.Teacher.LastName + " " +
+		subject.Teacher.FirstName + " " +
+		subject.Teacher.MiddleName
 }
 
 func TeacherPairString(db *gorm.DB, subject *models.Schedule) string {
-	// housing := new(models.Housings)
-	// housing.Id = subject.Audience.HousingId
-	// err := db.Find(housing)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// fmt.Println(subject.Audience)
-	// return subject.Subject.Subject + " - " +
-	// 	subject.SubjectType + " " +
-	// 	subject.Audience.Number + "-" +
-	// 	housing.Number + " " +
-	// 	subject.Group.ShortName + " - " +
-	// 	fmt.Sprintf("%v", subject.Group.Year) + "курс"
-	return "dhd"
+	subject = subject.LoadRelatedTeacher(db)
+	return subject.Subject.Subject + " - " +
+		subject.SubjectType + " " +
+		subject.Audience.Number + "-" +
+		subject.Audience.Housing.Number + " " +
+		subject.Group.ShortName + " - " +
+		fmt.Sprintf("%v", subject.Group.Year) + " курс"
 }
 
 func GroupSchedule(db *gorm.DB, group_id int64, days []*models.Days, pairs []*models.Pairs) []json_models.Day {
-	// var schedule []*models.Schedule
+	var schedule []*models.Schedule
 	days_out := EmptySchedule(days, pairs)
 
-	// err := db.WhereEqual("schedule.group_id", group_id).FindAll(&schedule)
-	// if err == nil {
-	// 	for _, i := range schedule {
-	// 		if i.PairType == "0" {
-	// 			days_out[i.DayId-1].Pair[i.PairId-1].Subject1 = GroupPairString(db, i)
-	// 			days_out[i.DayId-1].Pair[i.PairId-1].Type = 1
-	// 		} else if i.PairType == "1" {
-	// 			days_out[i.DayId-1].Pair[i.PairId-1].Subject1 += GroupPairString(db, i)
-	// 		} else if i.PairType == "2" {
-	// 			days_out[i.DayId-1].Pair[i.PairId-1].Subject2 += GroupPairString(db, i)
-	// 		}
-	// 	}
-	// }
+	err := db.Find(&schedule, "group_id = ?", group_id).Error
+	if err == nil {
+		for _, i := range schedule {
+			if i.PairType == "0" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject1 = GroupPairString(db, i)
+				days_out[i.DayId-1].Pair[i.PairId-1].Type = 1
+			} else if i.PairType == "1" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject1 += GroupPairString(db, i)
+			} else if i.PairType == "2" {
+				days_out[i.DayId-1].Pair[i.PairId-1].Subject2 += GroupPairString(db, i)
+			}
+		}
+	}
 
 	return days_out
 }
@@ -222,12 +187,13 @@ func FacultyTasks(db *gorm.DB, faculty_id int64, year int) []json_models.Task {
 	var tasks_json []json_models.Task
 	groups := FacultyGroupsIds(db, faculty_id, year)
 
-	err := db.Debug().Where("group_id in (?)", groups).Find(&tasks).Error
+	err := db.Where("group_id in (?)", groups).Find(&tasks).Error
 	if err != nil {
 		panic(err)
 	}
 
 	for _, i := range tasks {
+		i.LoadRelated(db)
 		tasks_json = append(tasks_json, json_models.Task{
 			fmt.Sprintf("%v", i.Id),
 			i.Subject.Subject,

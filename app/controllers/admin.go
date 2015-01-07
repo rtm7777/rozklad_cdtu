@@ -23,7 +23,7 @@ func (c Admin) checkUser() revel.Result {
 
 func (c Admin) GetWSToken() revel.Result {
 	secret, _ := revel.Config.String("app.secret")
-	token, err := bcrypt.GenerateFromPassword([]byte(time.Now().String()+secret), bcrypt.DefaultCost)
+	token, err := bcrypt.GenerateFromPassword([]byte(time.Now().String()+secret), bcrypt.MinCost)
 	if err != nil {
 		panic(err)
 	}

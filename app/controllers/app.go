@@ -61,8 +61,8 @@ func (c Application) Group() revel.Result {
 }
 
 func (c Application) GroupCurrent(groupName string) revel.Result {
-	group := new(models.Groups)
-	err := c.DB.Where("short_name = ?", groupName).First(&group)
+	group := models.Groups{}
+	err := c.DB.Where("short_name = ?", groupName).First(&group).Error
 
 	if err != nil {
 		return c.Redirect(Application.Group)
@@ -82,10 +82,11 @@ func (c Application) Teacher() revel.Result {
 }
 
 func (c Application) TeacherCurrent(teacherName string) revel.Result {
-	teacher := new(models.Teachers)
+	teacher := models.Teachers{}
 	parsedTeacherName := strings.Split(teacherName, "_")
-	err := c.DB.Where(&models.Teachers{FirstName: parsedTeacherName[0], LastName: parsedTeacherName[1], MiddleName: parsedTeacherName[2]}).First(&teacher).Error
+	err := c.DB.Where(&models.Teachers{FirstName: parsedTeacherName[1], LastName: parsedTeacherName[0], MiddleName: parsedTeacherName[2]}).First(&teacher).Error
 	if err != nil {
+		fmt.Println(err)
 		return c.Redirect(Application.Teacher)
 	} else {
 		faculties, departments, teachers := db_lib.TeachersData(c.DB)
