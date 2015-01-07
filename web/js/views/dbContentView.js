@@ -2,22 +2,22 @@ define(['jquery',
 		'underscore',
 		'../config/config',
 		'text!templates/dbItems.html',
-		'text!templates/db/audience.html',
-		'text!templates/db/department.html',
-		'text!templates/db/faculty.html',
-		'text!templates/db/group.html',
-		'text!templates/db/housing.html',
-		'text!templates/db/subject.html',
-		'text!templates/db/teacher.html',
+		'text!templates/db/audiences.html',
+		'text!templates/db/departments.html',
+		'text!templates/db/faculties.html',
+		'text!templates/db/groups.html',
+		'text!templates/db/housings.html',
+		'text!templates/db/subjects.html',
+		'text!templates/db/teachers.html',
 ], ($, _, config, dbItemsTemplate, audienceTmp, departmentTmp, facultyTmp, groupTmp, housingTmp, subjectTmp, teacherTmp) => {
 	var templates = {
-		audience: audienceTmp,
-		department: departmentTmp,
-		faculty: facultyTmp,
-		group: groupTmp,
-		housing: housingTmp,
-		subject: subjectTmp,
-		teacher: teacherTmp
+		audiences: audienceTmp,
+		departments: departmentTmp,
+		faculties: facultyTmp,
+		groups: groupTmp,
+		housings: housingTmp,
+		subjects: subjectTmp,
+		teachers: teacherTmp
 	};
 	var dbContainer = $("#database_container");
 

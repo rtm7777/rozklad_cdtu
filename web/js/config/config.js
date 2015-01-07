@@ -3,31 +3,31 @@ define([], () => {
 		days : {"Понеділок": 1, "Вівторок": 2, "Середа": 3, "Четвер": 4, "П'ятниця": 5, "Субота": 6},
 		pairs : {"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7},
 		database : {
-			faculty: {
+			faculties: {
 				fields: ["Повне і'мя", "Скорочене і'мя"],
 				filters: []
 			},
-			audience: {
+			audiences: {
 				fields: ["Номер", "Корпус", "Тип", "Кількість місць"],
 				filters: ["housing"]
 			},
-			teacher: {
+			teachers: {
 				fields: ["Факультет", "Кафедра", "П.І.Б", "Звання"],
 				filters: ["faculty", "department"]
 			},
-			subject: {
+			subjects: {
 				fields: ["Назва"],
 				filters: []
 			},
-			group: {
+			groups: {
 				fields: ["Факультет", "Повне і'мя", "Скорочене і'мя", "Кількість студентів", "Курс"],
 				filters: ["faculty", "year"]
 			},
-			housing: {
+			housings: {
 				fields: ["Номер"],
 				filters: []
 			},
-			department: {
+			departments: {
 				fields: ["Факультет", "Назва"],
 				filters: ["faculty"]
 			}

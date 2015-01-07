@@ -2,11 +2,8 @@ package controllers
 
 import (
 	"code.google.com/p/go.crypto/bcrypt"
-	_ "fmt"
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/models"
-	"rozklad_cdtu/app/qbsDB"
-	_ "strings"
 )
 
 func (c Application) connected() *models.Users {
@@ -20,13 +17,12 @@ func (c Application) connected() *models.Users {
 }
 
 func (c Application) getUser(username string) *models.Users {
-	db := qbsDB.DB
-	user := new(models.Users)
-	err := db.WhereEqual("username", username).Find(user)
+	user := models.Users{}
+	err := c.DB.Where(&models.Users{Username: username}).First(&user).Error
 	if err != nil {
-		return nil
+		panic(err)
 	}
-	return user
+	return &user
 }
 
 func (c Application) Login() revel.Result {
@@ -34,7 +30,6 @@ func (c Application) Login() revel.Result {
 }
 
 func (c Application) LoginPost(email, password string) revel.Result {
-	//db := qbsDB.DB
 	user := c.getUser(email)
 	if user != nil {
 		err := bcrypt.CompareHashAndPassword(user.HashedPassword, []byte(password))
@@ -43,20 +38,16 @@ func (c Application) LoginPost(email, password string) revel.Result {
 			c.Session.SetDefaultExpiration()
 			return c.Redirect(Admin.Main)
 		}
-	} //else {
-	// 	fmt.Println("false")
-	// 	user := new(models.Users)
-	// 	user.Username = email
+	} else {
+		user := models.Users{Username: email}
+		user.HashedPassword, _ = bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+		c.DB.NewRecord(user)
+		c.DB.Create(&user)
 
-	// 	user.HashedPassword, _ = bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	// 	_, err := db.Save(user)
-	// 	if err != nil {
-	// 		panic(err)
-	// 	}
-	// 	c.Session["user"] = user.Username
-	// 	c.Session.SetDefaultExpiration()
-	// 	return c.Redirect(Admin.Main)
-	// }
+		c.Session["user"] = user.Username
+		c.Session.SetDefaultExpiration()
+		return c.Redirect(Admin.Main)
+	}
 	return c.Redirect(Application.Login)
 }
 
