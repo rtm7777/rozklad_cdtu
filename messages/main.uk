@@ -1,0 +1,12 @@
+page_title.main             =Головна
+page_title.group_schedule   =Розклад груп
+page_title.teacher_schedule =Розклад викладачів
+page_title.gmaps            =Розміщення корпусів
+page_title.about            =Про сайт
+
+main_page.message           =На даному сайті кожен студент та викладач Черкаського Державного Технологічного Університету може дізнатися свій розклад
+main_page.social_message    =Розкажіть про сайт в соціальних мережах:
+
+schedule.day     =День
+schedule.pair    =Пара
+schedule.subject =Предмет

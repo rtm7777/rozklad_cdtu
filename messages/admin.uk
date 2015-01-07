@@ -1,6 +1,7 @@
 page_title.admin_main =Адміністрування розкладу
 page_title.db         =База Даних
 page_title.tasks      =Завдання
+page_title.login      =Вхід
 
 action_menu.faculty   =Факультет
 action_menu.s_year    =Курс
@@ -10,3 +11,7 @@ action_menu.add       =Додати
 
 left_sidebar.department_tasks =Завдання кафедр
 left_sidebar.category         =Категорія
+
+login.header   =Вхід на сайт
+login.password =Пароль
+login.login    =Ввійти

@@ -1,4 +1,4 @@
-{{set . "title" "Розклад викладачів"}}
+{{set . "title" (msg . "page_title.teacher_schedule")}}
 {{set . "scheduleteacher" "active"}}
 {{template "header.html" .}}
 
@@ -29,15 +29,13 @@
 										</h4>
 									</div>
 									<div id="collapse{{$d.Id}}{{$f.Id}}" class="panel-collapse collapse">
-										
-											<div class="list-group no-bottom-margin">
-											{{range $t := $.teachers}}
-											{{if eq $t.DepartmentId $d.Id}}
-												<a class="list-group-item small-padding top-border-only no-border-radius" href="/teacher/{{$t.LastName}}_{{$t.FirstName}}_{{$t.MiddleName}}">{{$t.LastName}} {{$t.FirstName}} {{$t.MiddleName}} {{$t.Rank}}</a>
-											{{end}}
-											{{end}}
-											</div>
-										
+										<div class="list-group no-bottom-margin">
+										{{range $t := $.teachers}}
+										{{if eq $t.DepartmentId $d.Id}}
+											<a class="list-group-item small-padding top-border-only no-border-radius" href="/teacher/{{$t.LastName}}_{{$t.FirstName}}_{{$t.MiddleName}}">{{$t.LastName}} {{$t.FirstName}} {{$t.MiddleName}} {{$t.Rank}}</a>
+										{{end}}
+										{{end}}
+										</div>
 									</div>
 								</div>
 							{{end}}
@@ -53,9 +51,9 @@
 			<table id="group_teacher_table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="th-day">День</th>
-						<th class="th-pair">Пара</th>
-						<th>Предмет</th>
+						<th class="th-day">{{msg . "schedule.day"}}</th>
+						<th class="th-pair">{{msg . "schedule.pair"}}</th>
+						<th>{{msg . "schedule.subject"}}</th>
 					</tr>
 				</thead>
 				<tbody>

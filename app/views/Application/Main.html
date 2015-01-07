@@ -1,11 +1,11 @@
-{{set . "title" "Головна"}}
+{{set . "title" (msg . "page_title.main")}}
 {{template "header.html" .}}
 <div class="container">
 	<div class="jumbotron">
-		<h1><img src="/web/img/schedule.png"> Розклад ЧДТУ</h1>
-		<p>На даному сайті кожен студент та викладач Черкаського Державного Технологічного Університету може дізнатися свій розклад </p>
+		<h1><img src="/web/img/schedule.png"> {{msg . "app_name"}}</h1>
+		<p>{{msg . "main_page.message"}}</p>
 		<blockquote>
-			<p>Розкажіть про сайт в соціальних мережах:</p>
+			<p>{{msg . "main_page.social_message"}}</p>
 		</blockquote>
 		<div>
 			<div class="g-plusone" data-annotation="inline" data-width="300"></div>

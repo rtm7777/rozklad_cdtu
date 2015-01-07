@@ -1,4 +1,4 @@
-app_header        =Розклад ЧДТУ
+app_name          =Розклад ЧДТУ
 groups_schedule   =Розклад груп
 teachers_schedule =Розклад викладачів
 info              =Інформація

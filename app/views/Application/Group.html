@@ -1,4 +1,4 @@
-{{set . "title" "Розклад груп"}}
+{{set . "title" (msg . "page_title.group_schedule")}}
 {{set . "schedulegroup" "active"}}
 {{template "header.html" .}}
 
@@ -53,9 +53,9 @@
 			<table id="group_teacher_table" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="th-day">День</th>
-						<th class="th-pair">Пара</th>
-						<th>Предмет</th>
+						<th class="th-day">{{msg . "schedule.day"}}</th>
+						<th class="th-pair">{{msg . "schedule.pair"}}</th>
+						<th>{{msg . "schedule.subject"}}</th>
 					</tr>
 				</thead>
 				<tbody>
