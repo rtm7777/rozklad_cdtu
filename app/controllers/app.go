@@ -3,7 +3,7 @@ package controllers
 import (
 	"fmt"
 	"github.com/revel/revel"
-	"rozklad_cdtu/app/libs"
+	"rozklad_cdtu/app/libs/database"
 	"rozklad_cdtu/app/models"
 	"strings"
 )
@@ -25,8 +25,8 @@ func (c Application) About() revel.Result {
 }
 
 func (c Application) Group() revel.Result {
-	faculties, groups, years := db_lib.GroupsData(c.DB)
-	days, pairs := db_lib.DaysPairsData(c.DB)
+	faculties, groups, years := database.GroupsData(c.DB)
+	days, pairs := database.DaysPairsData(c.DB)
 	return c.Render(faculties, groups, years, days, pairs)
 }
 
@@ -37,17 +37,17 @@ func (c Application) GroupCurrent(groupName string) revel.Result {
 	if err != nil {
 		return c.Redirect(Application.Group)
 	} else {
-		faculties, groups, years := db_lib.GroupsData(c.DB)
-		days, pairs := db_lib.DaysPairsData(c.DB)
-		days_out := db_lib.GroupSchedule(c.DB, group.Id, days, pairs)
+		faculties, groups, years := database.GroupsData(c.DB)
+		days, pairs := database.DaysPairsData(c.DB)
+		days_out := database.GroupSchedule(c.DB, group.Id, days, pairs)
 
 		return c.Render(faculties, groups, years, days, pairs, group, days_out)
 	}
 }
 
 func (c Application) Teacher() revel.Result {
-	faculties, departments, teachers := db_lib.TeachersData(c.DB)
-	days, pairs := db_lib.DaysPairsData(c.DB)
+	faculties, departments, teachers := database.TeachersData(c.DB)
+	days, pairs := database.DaysPairsData(c.DB)
 	return c.Render(faculties, departments, teachers, days, pairs)
 }
 
@@ -59,9 +59,9 @@ func (c Application) TeacherCurrent(teacherName string) revel.Result {
 		fmt.Println(err)
 		return c.Redirect(Application.Teacher)
 	} else {
-		faculties, departments, teachers := db_lib.TeachersData(c.DB)
-		days, pairs := db_lib.DaysPairsData(c.DB)
-		days_out := db_lib.TeacherSchedule(c.DB, teacher.Id, days, pairs)
+		faculties, departments, teachers := database.TeachersData(c.DB)
+		days, pairs := database.DaysPairsData(c.DB)
+		days_out := database.TeacherSchedule(c.DB, teacher.Id, days, pairs)
 
 		return c.Render(faculties, departments, teachers, days, pairs, teacher, days_out)
 	}

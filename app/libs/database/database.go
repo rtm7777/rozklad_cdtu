@@ -1,4 +1,4 @@
-package db_lib
+package database
 
 import (
 	"fmt"

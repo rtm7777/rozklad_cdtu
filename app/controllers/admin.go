@@ -5,7 +5,7 @@ import (
 	"code.google.com/p/go.net/websocket"
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
-	"rozklad_cdtu/app/libs"
+	"rozklad_cdtu/app/libs/database"
 	"rozklad_cdtu/app/roomevents"
 	"time"
 )
@@ -38,8 +38,8 @@ func (c Admin) Main() revel.Result {
 	connection := c.connected()
 	User := connection.Username
 
-	days, pairs := db_lib.DaysPairsData(c.DB)
-	faculties := db_lib.FacultiesList(c.DB)
+	days, pairs := database.DaysPairsData(c.DB)
+	faculties := database.FacultiesList(c.DB)
 	return c.Render(User, days, pairs, faculties)
 }
 
