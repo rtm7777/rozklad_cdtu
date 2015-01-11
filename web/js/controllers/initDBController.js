@@ -1,22 +1,22 @@
 define(['jquery',
 		'../config/config',
 		'../services/localStorage',
-		'../views/dbContentView',
+		'jsx!../views/databaseView',
 		'../config/messages',
 ], ($, config, storage, dbView, messages) => {
-	if ($("#page").data("id") == "database") {
-		var storageCategory = storage.getValue("category");
-		if (storageCategory) {
-			getCategory(storageCategory);
-			dbView.setActiveCategory($("#database_categories a[data-category='" + storageCategory + "']"));
-		}
-	}
+	// if ($("#page").data("id") == "database") {
+	// 	var storageCategory = storage.getValue("category");
+	// 	if (storageCategory) {
+	// 		getCategory(storageCategory);
+	// 		dbView.setActiveCategory($("#database_categories a[data-category='" + storageCategory + "']"));
+	// 	}
+	// }
 
 	$("#database_categories a").on("click", (e) => {
 		$this = $(e.currentTarget);
 		e.preventDefault();
-		dbView.setActiveCategory($this);
-		storage.saveValue("category", $this.data("category"));
+		// dbView.setActiveCategory($this);
+		// storage.saveValue("category", $this.data("category"));
 		getCategory($this.data("category"));
 	});
 

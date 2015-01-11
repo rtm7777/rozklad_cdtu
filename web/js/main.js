@@ -1,13 +1,19 @@
 require.config({
 	paths: {
-		'jquery'    : 'bower_components/jquery/dist/jquery',
-		'text'      : 'bower_components/requirejs-text/text',
-		'bootstrap' : 'bower_components/bootstrap/dist/js/bootstrap',
-		'underscore': 'bower_components/underscore/underscore'
+		'jquery'        : 'bower_components/jquery/dist/jquery',
+		'text'          : 'bower_components/requirejs-text/text',
+		'react'         : 'bower_components/react/react',
+		"JSXTransformer": "JSXTransformer",
+		'jsx'           : 'jsx',
+		'bootstrap'     : 'bower_components/bootstrap/dist/js/bootstrap',
+		'underscore'    : 'bower_components/underscore/underscore'
 	},
 	shim: {
 		'bootstrap' : ["jquery"],
-	}
+	},
+	jsx: {
+		harmony: true
+    }
 });
 
 require([
@@ -17,5 +23,5 @@ require([
 	'controllers/initDBController',
 	'controllers/mainController',
 	'controllers/contentController',
-	'controllers/dbController',
+	// 'controllers/dbController',
 ]);
