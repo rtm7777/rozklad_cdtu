@@ -1,27 +1,32 @@
-define(['jquery',
+/** @jsx */
+define(['../services/localStorage',
 				'react',
 				'jsx!../components/dbActionMenu',
 				'jsx!../components/dbContent',
-], ($, React, ActionMenu, Content) => {
+				'jsx!../components/dbNavigation',
+], (storage, React, ActionMenu, Content, Navigation) => {
 
 	var DataBase = React.createClass({
+		getInitialState: function() {
+			var storageCategory = storage.getValue("category");
+
+			return {};
+		},
 		render() {
-			var dbCols = this.props.categoryFields.map(function (field) {
-				return (
-					<th>
-						{field}
-					</th>
-				);
-			});
 
 			return (
 				<div>
 					<ActionMenu filters={[{id: "1", name: "First"}, {id: "2", name: "Second"}]} />
-					<Content />
+					<div className="container">
+						<div className="row">
+							<Navigation navList={["sdf"]}/>
+							<Content categoryFields={["sdf"]}/>
+						</div>
+					</div>
 				</div>
 			);
 		},
 	});
 
-	return DataBase
+	return DataBase;
 });

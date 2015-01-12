@@ -20,7 +20,7 @@ require([
 	'bootstrap',
 	'libs/socketEvents',
 	'controllers/initController',
-	'controllers/initDBController',
+	'jsx!controllers/initDBController',
 	'controllers/mainController',
 	'controllers/contentController',
 	// 'controllers/dbController',

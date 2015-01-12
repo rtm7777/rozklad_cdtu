@@ -1,3 +1,4 @@
+/** @jsx */
 define(['jquery',
 				'react'
 ], ($, React) => {
@@ -10,7 +11,7 @@ define(['jquery',
 				<li onClick={this.changeValue}><a tabIndex="-1" data-id={this.props.data.id} href="#">{this.props.data.name}{this.props.kreactKey}</a></li>
 			);
 		},
-	})
+	});
 
 	var Select = React.createClass({
 		getInitialState() {
@@ -18,8 +19,7 @@ define(['jquery',
 		},
 		changeValue(child) {
 			this.refs.button.getDOMNode().setAttribute("data-id", child.props.data.id);
-			this.props.current = child.props.data.name
-			// this.setState({selected: child.props.data.name})
+			this.setState({selected: child.props.data.name});
 		},
 		render() {
 			var selectOptions = this.props.data.map(function (option) {
@@ -28,13 +28,11 @@ define(['jquery',
 				);
 			}.bind(this));
 
-			var selected = this.state.selected ? this.state.selected : this.props.current
-
 			if (this.props.dropdownType == "button") {
 				return (
 					<div className="dropdown">
 						<button className="dropdown-toggle" data-toggle="dropdown" ref="button" data-id="">
-							{selected}
+							{this.state.selected}
 							<span className="glyphicon glyphicon-chevron-down"/>
 						</button>
 						<ul className="dropdown-menu">
@@ -58,5 +56,5 @@ define(['jquery',
 		},
 	});
 
-	return Select
+	return Select;
 });

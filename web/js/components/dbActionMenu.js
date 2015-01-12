@@ -1,3 +1,4 @@
+/** @jsx */
 define(['jquery',
 				'react',
 				'jsx!../components/select',
@@ -7,7 +8,7 @@ define(['jquery',
 			return {data: []};
 		},
 		render() {
-			var f = this.props.filters
+			var f = this.props.filters;
 			var filters = this.props.filters.map(function (filter) {
 				return (
 					<Select data={f} current={"selected"} />
@@ -40,5 +41,5 @@ define(['jquery',
 		},
 	});
 
-	return ActionMenu
+	return ActionMenu;
 });
