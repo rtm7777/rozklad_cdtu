@@ -2,7 +2,7 @@ require.config({
 	paths: {
 		'jquery'        : 'bower_components/jquery/dist/jquery',
 		'text'          : 'bower_components/requirejs-text/text',
-		'react'         : 'bower_components/react/react',
+		'react'         : 'bower_components/react/react-with-addons',
 		"JSXTransformer": "JSXTransformer",
 		'jsx'           : 'jsx',
 		'bootstrap'     : 'bower_components/bootstrap/dist/js/bootstrap',

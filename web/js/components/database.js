@@ -7,7 +7,7 @@ define(['../services/localStorage',
 ], (storage, React, ActionMenu, Content, Navigation) => {
 
 	var DataBase = React.createClass({
-		getInitialState: function() {
+		getInitialState() {
 			var storageCategory = storage.getValue("category");
 
 			return {};

@@ -2,10 +2,14 @@
 define(['jquery',
 				'react',
 				'jsx!../components/select',
-], ($, React, Select) => {
+				'jsx!../components/action',
+], ($, React, Select, Action) => {
 	var ActionMenu = React.createClass({
 		getInitialState() {
-			return {data: []};
+			return {actions: [{name: "Add", hidden: false}, {name: "Sdf", hidden: true}]}
+		},
+		actionClicked(action) {
+			console.log(action)
 		},
 		render() {
 			var f = this.props.filters;
@@ -14,6 +18,11 @@ define(['jquery',
 					<Select data={f} current={"selected"} />
 				);
 			});
+			var actions = this.state.actions.map(function (action) {
+				return (
+					<Action onClick={this.actionClicked} name={action.name} hidden={action.hidden} />
+					);
+			}.bind(this));
 			return (
 				<div className="container">
 					<div className="row">
@@ -23,15 +32,7 @@ define(['jquery',
 									{filters}
 								</ul>
 								<ul className="nav nav-pills pull-right action-menu">
-									<li id="delete_db" className="dropdown hide">
-										<a href="#"><span className="glyphicon glyphicon-remove"></span> Delete</a>
-									</li>
-									<li id="add_db" className="dropdown">
-										<a href="#"><span className="glyphicon glyphicon-plus"></span> Add</a>
-									</li>
-									<li id="add_tmp" className="dropdown">
-										<a href="#"><span className="glyphicon glyphicon-plus"></span> tmp</a>
-									</li>
+									{actions}
 								</ul>
 							</div>
 						</div>

@@ -10,7 +10,7 @@ define(['jquery',
 			return (
 				<li onClick={this.changeValue}><a tabIndex="-1" data-id={this.props.data.id} href="#">{this.props.data.name}{this.props.kreactKey}</a></li>
 			);
-		},
+		}
 	});
 
 	var Select = React.createClass({
@@ -53,7 +53,7 @@ define(['jquery',
 					</li>
 				);
 			}
-		},
+		}
 	});
 
 	return Select;
