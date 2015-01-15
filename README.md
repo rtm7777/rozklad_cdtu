@@ -9,31 +9,41 @@ When my Raspberry Pi is powered on, this project is also available here: [rozkla
 1. Install Google Go (_ver. 1.3+_), I use [GoVM](https://coderwall.com/p/21svdq/how-do-you-manage-go-s-version-let-s-use-govm).
 2. Create `gocode` directory in HOME.
 3. Add env. variables to `.bashrc`
-```bash
-export GOPATH=~/gocode
-export PATH="$PATH:$GOPATH/bin"
-export GOVM_ROOT=~/.govm
-export GOROOT=$GOVM_ROOT/versions/current
-export PATH=$GOROOT/bin:$PATH
-```
+
+    ```bash
+    export GOPATH=~/gocode
+    export PATH="$PATH:$GOPATH/bin"
+    export GOVM_ROOT=~/.govm
+    export GOROOT=$GOVM_ROOT/versions/current
+    export PATH=$GOROOT/bin:$PATH
+    ```
+
 4. Install [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Mercurial](http://mercurial.selenic.com/wiki/Download).
 5. Install Revel Web Framework
-```bash
-go get github.com/revel/revel
-```
+
+    ```bash
+    go get github.com/revel/revel
+    ```
+
 6. Install Revel cmd tool:
-```bash
-go get github.com/revel/cmd/revel
-go build -o bin/revel github.com/revel/cmd/revel
-```
+
+    ```bash
+    go get github.com/revel/cmd/revel
+    go build -o bin/revel github.com/revel/cmd/revel
+    ```
+
 7. Go to `HOME/gocode/src/` and clone this project with using **Git**
-```bash
-git clone https://github.com/rtm7777/rozklad_cdtu.git
-```
+
+    ```bash
+    git clone https://github.com/rtm7777/rozklad_cdtu.git
+    ```
+
 8. Run project
-```bash
-revel run rozklad_cdtu
-```
+
+    ```bash
+    revel run rozklad_cdtu
+    ```
+
 P.S. After running you may have errors related with missed packages. just install it with using `go get package_name`
 
 ####Additional resources, used in this project:
