@@ -6,7 +6,10 @@ define(['jquery',
 ], ($, React, Select, Action) => {
 	var ActionMenu = React.createClass({
 		getInitialState() {
-			return {actions: [{name: "Add", hidden: false}, {name: "Sdf", hidden: true}]}
+			return {actions: [
+				{name: "Delete", hidden: false, icon: "remove"},
+				{name: "Add", hidden: false, icon: "plus"},
+			]}
 		},
 		actionClicked(action) {
 			console.log(action)
@@ -20,7 +23,7 @@ define(['jquery',
 			});
 			var actions = this.state.actions.map(function (action) {
 				return (
-					<Action onClick={this.actionClicked} name={action.name} hidden={action.hidden} />
+					<Action onClick={this.actionClicked} data={action} />
 					);
 			}.bind(this));
 			return (

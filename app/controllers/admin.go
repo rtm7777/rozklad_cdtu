@@ -47,22 +47,7 @@ func (c Admin) DataBase() revel.Result {
 	connection := c.connected()
 	User := connection.Username
 
-	type Categories struct {
-		Category string
-		Name     string
-	}
-
-	categories := []Categories{
-		{Category: "faculties", Name: "Факультети"},
-		{Category: "departments", Name: "Кафедри"},
-		{Category: "groups", Name: "Групи"},
-		{Category: "housings", Name: "Корпуси"},
-		{Category: "audiences", Name: "Аудиторії"},
-		{Category: "teachers", Name: "Викладачі"},
-		{Category: "subjects", Name: "Предмети"},
-	}
-
-	return c.Render(User, categories)
+	return c.Render(User)
 }
 
 func (c Admin) Tasks() revel.Result {

@@ -15,3 +15,11 @@ left_sidebar.category         =Категорія
 login.header   =Вхід на сайт
 login.password =Пароль
 login.login    =Ввійти
+
+faculties   =Факультети
+departments =Кафедри
+groups      =Групи
+housings    =Корпуси
+audiences   =Аудиторії
+teachers    =Викладачі
+subjects    =Предмети

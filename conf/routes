@@ -26,6 +26,7 @@ GET     /get_ws_token                           Admin.GetWSToken
 POST    /get_faculty_groups                     Api.GetFacultyGroups
 POST    /get_faculty_schedule                   Api.GetFacultySchedule
 POST    /get_faculty_tasks                      Api.GetFacultyTasks
+POST    /get_category_list                      Api.GetCategoryList
 POST    /get_category                           Api.GetCategoryItems
 
 Application

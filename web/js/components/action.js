@@ -1,7 +1,5 @@
 /** @jsx */
-define(['jquery',
-				'react'
-], ($, React) => {
+define(['react'], (React) => {
 	var Action = React.createClass({
 		changeValue() {
 			this.props.onClick(this);
@@ -9,11 +7,12 @@ define(['jquery',
 		render() {
 			var cx = React.addons.classSet;
 			var classes = cx({
-		    'hide': this.props.hidden
+		    'hide': this.props.data.hidden
 		  });
+		  var icon = "glyphicon glyphicon-" + this.props.data.icon;
 			return (
 				<li className={classes}>
-					<a onClick={this.changeValue} href="#"><span className="glyphicon glyphicon-plus"></span> {this.props.name}</a>
+					<a onClick={this.changeValue} href="#"><span className={"glyphicon glyphicon-" + this.props.data.icon}></span> {this.props.data.name}</a>
 				</li>
 			);
 		}
