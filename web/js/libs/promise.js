@@ -9,11 +9,11 @@ define([], () => {
 	}
 	return {
 		get(url) {
-			return new Promise(function(resolve, reject) {
+			return new Promise((resolve, reject) => {
 				var req = new XMLHttpRequest();
 				req.open('GET', url);
 
-				req.onload = function() {
+				req.onload = () => {
 					if (req.status >= 200 && req.status < 300 || req.status === 304) {
 						resolve(req.response);
 					}
@@ -22,7 +22,7 @@ define([], () => {
 					}
 				};
 
-				req.onerror = function() {
+				req.onerror = () => {
 					reject(Error("Network Error"));
 				};
 
@@ -31,19 +31,24 @@ define([], () => {
 		},
 
 		post(url, data) {
-			return new Promise(function(resolve, reject) {
+			return new Promise((resolve, reject) => {
 				var req = new XMLHttpRequest();
 
 				req.open('POST', url);
-				req.onload = function() {
+				req.onload = () => {
 					if (req.status >= 200 && req.status < 300 || req.status === 304) {
-						resolve(req.response);
+						try {
+							resolve(JSON.parse(req.response));
+						}
+						catch(err) {
+							resolve(req.response);
+						}
 					}
 					else {
 						reject(Error(req.statusText));
 					}
 				};
-				req.onerror = function() {
+				req.onerror = () => {
 					reject(Error("Network Error"));
 				};
 

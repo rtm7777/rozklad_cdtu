@@ -9,23 +9,23 @@ define(['jquery',
 			return {actions: [
 				{name: "Delete", hidden: false, icon: "remove"},
 				{name: "Add", hidden: false, icon: "plus"},
-			]}
+			]};
 		},
 		actionClicked(action) {
-			console.log(action)
+			console.log(action);
 		},
 		render() {
 			var f = this.props.filters;
-			var filters = this.props.filters.map(function (filter) {
+			var filters = this.props.filters.map(filter => {
 				return (
 					<Select data={f} current={"selected"} />
 				);
 			});
-			var actions = this.state.actions.map(function (action) {
+			var actions = this.state.actions.map(action => {
 				return (
 					<Action onClick={this.actionClicked} data={action} />
 					);
-			}.bind(this));
+			});
 			return (
 				<div className="container">
 					<div className="row">

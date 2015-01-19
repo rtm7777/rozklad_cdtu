@@ -10,37 +10,49 @@ define(['../services/localStorage',
 	var DataBase = React.createClass({
 		getInitialState() {
 			return {
-				selectedCategory: "",
+				categoryList: [],
+				selectedCategory: storage.getValue("category") || "",
 				fields: [],
 				loader: "",
 				error_message: ""
 			};
 		},
+
 		componentWillMount() {
-			var storageCategory = storage.getValue("category");
-			if (storageCategory) {
-				this.loadFields(storageCategory);
-				this.setState({selectedCategory: storageCategory});
+			if (this.state.selectedCategory) {
+				Promise.all([
+					promise.post('/get_category_list'),
+					promise.post('/get_category', {category: this.state.selectedCategory})
+				]).then(data => {
+					this.setState({categoryList: data[0]});
+					this.setState({fields: data[1]});
+				});
+			} else {
+				promise.post('/get_category_list').then(data => {
+					this.setState({categoryList: data});
+				});
 			}
 		},
+
 		changeCategory(child) {
-			console.log(child);
+
+			this.setState({selectedCategory: child.category});
+			loadFields(child.category);
 		},
+
 		loadFields(category) {
-			Promise.all([
-				promise.post('/get_category_list'),
-				promise.post('/get_category', {category: category})
-			]).then(function(a, b) {
-				console.log(a, b);
+			promise.post('/get_category', {category: this.state.selectedCategory}).then(data => {
+				this.setState({fields: data});
 			});
 		},
+
 		render() {
 			return (
 				<div>
 					<ActionMenu filters={[{id: "1", name: "First"}, {id: "2", name: "Second"}]} />
 					<div className="container">
 						<div className="row">
-							<Navigation onClick={this.changeCategory} navList={[this.state.selectedCategory]}/>
+							<Navigation onClick={this.changeCategory} navList={this.state.categoryList} selectedCategory={this.state.selectedCategory}/>
 							<Content categoryFields={this.state.fields} loader={this.state.loader} />
 						</div>
 					</div>

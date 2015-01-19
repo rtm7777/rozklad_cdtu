@@ -22,11 +22,11 @@ define(['jquery',
 			this.setState({selected: child.props.data.name});
 		},
 		render() {
-			var selectOptions = this.props.data.map(function (option) {
+			var selectOptions = this.props.data.map(option => {
 				return (
 					<SelectOption onClick={this.changeValue} key={option.id} data={option} />
 				);
-			}.bind(this));
+			});
 
 			if (this.props.dropdownType == "button") {
 				return (

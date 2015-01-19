@@ -2,7 +2,7 @@
 define(['react'], (React) => {
 	var Content = React.createClass({
 		render() {
-			var headerCols = this.props.categoryFields.map(function (field) {
+			var headerCols = this.props.categoryFields.map(field => {
 				return (
 					<th>
 						{field}

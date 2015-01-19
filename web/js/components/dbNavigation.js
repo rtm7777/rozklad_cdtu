@@ -5,11 +5,11 @@ define(['react'], (React) => {
 			this.props.onClick(this);
 		},
 		render() {
-			var navigation = this.props.navList.map(function (field) {
+			var navigation = this.props.navList.map(field => {
 				return (
-					<a onClick={this.changeCategory} href="#" data-category="" className="list-group-item">{field}</a>
+					<a onClick={this.changeCategory} href="#" data-category={field.category} className="list-group-item">{field.name}</a>
 				);
-			}.bind(this));
+			});
 			return (
 				<div className="col-lg-3">
 					<div className="panel panel-default">

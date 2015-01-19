@@ -33,8 +33,8 @@ func (c Api) GetFacultyTasks(faculty_id int64, year int) revel.Result {
 func (c Api) GetCategoryList() revel.Result {
 	categories := [7]string{"faculties", "departments", "groups", "housings", "audiences", "teachers", "subjects"}
 	type Categories struct {
-		Category string
-		Name     string
+		Category string `json:"category"`
+		Name     string `json:"name"`
 	}
 	var categoriesList []Categories
 
