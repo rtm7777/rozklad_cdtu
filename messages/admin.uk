@@ -23,3 +23,11 @@ housings    =Корпуси
 audiences   =Аудиторії
 teachers    =Викладачі
 subjects    =Предмети
+
+faculties_columns   =Повне і'мя,Скорочене і'мя
+departments_columns =Факультет,Назва
+groups_columns      =Факультет,Повне і'мя,Скорочене і'мя,Кількість студентів,Курс
+housings_columns    =Номер
+audiences_columns   =Номер,Корпус,Тип,Кількість місць
+teachers_columns    =Факультет,Кафедра,П.І.Б,Звання
+subjects_columns    =Назва

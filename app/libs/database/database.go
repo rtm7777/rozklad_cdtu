@@ -236,6 +236,6 @@ func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 		var item []*models.Departments
 		loadItems(&item)
 	}
-	items.Type = category
+
 	return items
 }

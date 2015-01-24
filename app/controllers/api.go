@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs/database"
+	"strings"
 	"time"
 )
 
@@ -47,6 +48,7 @@ func (c Api) GetCategoryList() revel.Result {
 
 func (c Api) GetCategoryItems(category string) revel.Result {
 	items := database.CategoryItems(c.DB, category)
-	time.Sleep(3000 * time.Millisecond)
+	items.Columns = strings.Split(c.Message(category+"_columns"), ",")
+	time.Sleep(2000 * time.Millisecond)
 	return c.RenderJson(items)
 }

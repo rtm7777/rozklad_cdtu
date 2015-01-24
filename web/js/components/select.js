@@ -3,7 +3,8 @@ define(['jquery',
 				'react'
 ], ($, React) => {
 	var SelectOption = React.createClass({
-		changeValue() {
+		changeValue(e) {
+			e.preventDefault();
 			this.props.onClick(this);
 		},
 		render() {

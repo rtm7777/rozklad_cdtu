@@ -85,6 +85,20 @@ type Schedule struct {
 	SubjectType string    `sql:"size:25" json:"subjectType"`
 }
 
+func (schedule *Schedule) LoadRelated(db *gorm.DB) *Schedule {
+	db.Model(schedule).Related(&schedule.Teacher, "TeacherId")
+	db.Model(schedule).Related(&schedule.Audience, "AudienceId").Related(&schedule.Audience.Housing, "HousingId")
+	db.Model(schedule).Related(&schedule.Subject, "SubjectId")
+	return schedule
+}
+
+func (schedule *Schedule) LoadRelatedTeacher(db *gorm.DB) *Schedule {
+	db.Model(schedule).Related(&schedule.Group, "GroupId")
+	db.Model(schedule).Related(&schedule.Audience, "AudienceId").Related(&schedule.Audience.Housing, "HousingId")
+	db.Model(schedule).Related(&schedule.Subject, "SubjectId")
+	return schedule
+}
+
 type Tasks struct {
 	Id           int64       `json:"id"`
 	DepartmentId int64       `json:"departmentId"`
@@ -101,31 +115,13 @@ type Tasks struct {
 	SubjectType  string      `sql:"size:25" json:"subjectType"`
 }
 
+func (task *Tasks) LoadRelated(db *gorm.DB) *Tasks {
+	db.Model(task).Related(&task.Subject, "SubjectId")
+	return task
+}
+
 type Users struct {
 	Id             int64
 	Username       string `sql:"size:40"`
 	HashedPassword []byte `sql:"size:65535"`
-}
-
-func (d *Departments) SetFaculty(f Faculties) {
-	d.Faculty = f
-}
-
-func (schedule *Schedule) LoadRelated(db *gorm.DB) *Schedule {
-	db.Model(schedule).Related(&schedule.Teacher, "TeacherId")
-	db.Model(schedule).Related(&schedule.Audience, "AudienceId").Related(&schedule.Audience.Housing, "HousingId")
-	db.Model(schedule).Related(&schedule.Subject, "SubjectId")
-	return schedule
-}
-
-func (schedule *Schedule) LoadRelatedTeacher(db *gorm.DB) *Schedule {
-	db.Model(schedule).Related(&schedule.Group, "GroupId")
-	db.Model(schedule).Related(&schedule.Audience, "AudienceId").Related(&schedule.Audience.Housing, "HousingId")
-	db.Model(schedule).Related(&schedule.Subject, "SubjectId")
-	return schedule
-}
-
-func (task *Tasks) LoadRelated(db *gorm.DB) *Tasks {
-	db.Model(task).Related(&task.Subject, "SubjectId")
-	return task
 }

@@ -1,4 +1,50 @@
+#database {
+	.invisible {
+		visibility:hidden;
+		opacity: 0;
+		transition: opacity 0.3s ease-in;
+	}
+	.visible {
+		visibility:visible;
+		opacity: 1;
+		transition: opacity 0.5s ease-in;
+	}
+}
+
+#db_navigation {
+	min-height: 85px;
+	position: relative;
+
+	.loader {
+		position: absolute;
+		display: flex;
+		min-height: 42px;
+		width: 100%;
+		height: calc(~'100% - 41px');
+		z-index: 3;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(128, 128, 128, 0.1);
+
+		img {
+			width: 50px;
+		}
+	}
+}
+
 #database_container {
+	position: relative;
+	min-height: 200px;
+	.loader {
+		position: absolute;
+		display: flex;
+		height: 200px;
+		width: 100%;
+		margin-left: -15px;
+		align-items: center;
+		justify-content: center;
+	}
+
 	tbody {
 		td {
 
