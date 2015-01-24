@@ -7,9 +7,8 @@ define(['react'], (React) => {
 		render() {
 			var cx = React.addons.classSet;
 			var classes = cx({
-		    'hide': this.props.data.hidden
-		  });
-		  var icon = "glyphicon glyphicon-" + this.props.data.icon;
+				'hide': this.props.data.hidden
+			});
 			return (
 				<li className={classes}>
 					<a onClick={this.changeValue} href="#"><span className={"glyphicon glyphicon-" + this.props.data.icon}></span> {this.props.data.name}</a>
