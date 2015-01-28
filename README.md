@@ -29,6 +29,7 @@ When my Raspberry Pi is powered on, this project is also available here: [rozkla
 
     ```bash
     go get github.com/revel/cmd/revel
+    cd gocode
     go build -o bin/revel github.com/revel/cmd/revel
     ```
 
