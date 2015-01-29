@@ -14,6 +14,7 @@ define(['../services/localStorage',
 				selectedCategory: storage.getValue("category") || "",
 				fields: [],
 				columns: [],
+				filters: [],
 				loader: true,
 				error_message: ""
 			};
@@ -33,6 +34,8 @@ define(['../services/localStorage',
 
 		changeCategory(child) {
 			this.setState({loader: true});
+			this.setState({filters: []});
+
 			var category = child.props.data.category;
 			storage.saveValue("category", category);
 			this.setState({selectedCategory: category});
@@ -45,13 +48,14 @@ define(['../services/localStorage',
 			return promise.post('/get_category', {category: category}).then(data => {
 				this.setState({fields: data.items});
 				this.setState({columns: data.columns});
+				this.setState({filters: data.filters || []});
 			});
 		},
 
 		render() {
 			return (
 				<div>
-					<ActionMenu filters={[{id: "1", name: "First"}, {id: "2", name: "Second"}]} />
+					<ActionMenu filters={this.state.filters} />
 					<div className="container">
 						<div className="row">
 							<Navigation onClick={this.changeCategory} loader={this.state.loader} navList={this.state.categoryList} selectedCategory={this.state.selectedCategory} />

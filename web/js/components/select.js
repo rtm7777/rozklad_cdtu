@@ -9,23 +9,23 @@ define(['jquery',
 		},
 		render() {
 			return (
-				<li onClick={this.changeValue}><a tabIndex="-1" data-id={this.props.data.id} href="#">{this.props.data.name}{this.props.kreactKey}</a></li>
+				<li onClick={this.changeValue}><a tabIndex="-1" href="#">{this.props.data}</a></li>
 			);
 		}
 	});
 
 	var Select = React.createClass({
 		getInitialState() {
-			return {selected: this.props.current};
+			return {selected: ""};
 		},
 		changeValue(child) {
-			this.refs.button.getDOMNode().setAttribute("data-id", child.props.data.id);
-			this.setState({selected: child.props.data.name});
+			this.setState({selected: child.props.data});
 		},
 		render() {
-			var selectOptions = this.props.data.map(option => {
+			var selectboxName = [this.state.selected, this.props.initialName].join(" ");
+			var selectOptions = this.props.values.map((option, i) => {
 				return (
-					<SelectOption onClick={this.changeValue} key={option.id} data={option} />
+					<SelectOption onClick={this.changeValue} key={i} data={option} />
 				);
 			});
 
@@ -33,7 +33,7 @@ define(['jquery',
 				return (
 					<div className="dropdown">
 						<button className="dropdown-toggle" data-toggle="dropdown" ref="button" data-id="">
-							{this.state.selected}
+							{selectboxName}
 							<span className="glyphicon glyphicon-chevron-down"/>
 						</button>
 						<ul className="dropdown-menu">
@@ -45,7 +45,7 @@ define(['jquery',
 				return (
 					<li className="dropdown">
 						<a className="dropdown-toggle" data-toggle="dropdown" ref="button" data-id="" href="#">
-							{this.state.selected}
+							{selectboxName}
 							<span className="caret"/>
 						</a>
 						<ul className="dropdown-menu">

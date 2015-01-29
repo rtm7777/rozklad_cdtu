@@ -6,24 +6,25 @@ define(['jquery',
 ], ($, React, Select, Action) => {
 	var ActionMenu = React.createClass({
 		getInitialState() {
-			return {actions: [
-				{name: "Delete", hidden: false, icon: "remove"},
-				{name: "Add", hidden: false, icon: "plus"},
-			]};
+			return {
+				actions: [
+					{name: "Delete", hidden: false, icon: "remove"},
+					{name: "Add", hidden: false, icon: "plus"},
+				]
+			};
 		},
 		actionClicked(action) {
 			console.log(action);
 		},
 		render() {
-			var f = this.props.filters;
-			var filters = this.props.filters.map(filter => {
+			var filters = this.props.filters.map((filter, i) => {
 				return (
-					<Select data={f} current={"selected"} />
+					<Select values={filter.values} key={i} initialName={filter.name} />
 				);
 			});
-			var actions = this.state.actions.map(action => {
+			var actions = this.state.actions.map((action, i) => {
 				return (
-					<Action onClick={this.actionClicked} data={action} />
+					<Action onClick={this.actionClicked} key={i} data={action} />
 					);
 			});
 			return (

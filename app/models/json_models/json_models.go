@@ -27,14 +27,9 @@ type Task struct {
 	Progress string `json:"progress"`
 }
 
-type FilterValue struct {
-	Id    int    `json: "id"`
-	Value string `json: "value"`
-}
-
 type Filter struct {
-	Name   string        `json:"name"`
-	Values []FilterValue `json:"values"`
+	Name   string   `json:"name"`
+	Values []string `json:"values"`
 }
 
 type DBItems struct {
