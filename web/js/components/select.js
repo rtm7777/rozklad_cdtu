@@ -1,7 +1,5 @@
 /** @jsx */
-define(['jquery',
-				'react'
-], ($, React) => {
+define(['react'], (React) => {
 	var SelectOption = React.createClass({
 		changeValue(e) {
 			e.preventDefault();

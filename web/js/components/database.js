@@ -35,6 +35,7 @@ define(['../services/localStorage',
 		changeCategory(child) {
 			this.setState({loader: true});
 			this.setState({filters: []});
+			this.setState({fields: []});
 
 			var category = child.props.data.category;
 			storage.saveValue("category", category);
@@ -59,7 +60,7 @@ define(['../services/localStorage',
 					<div className="container">
 						<div className="row">
 							<Navigation onClick={this.changeCategory} loader={this.state.loader} navList={this.state.categoryList} selectedCategory={this.state.selectedCategory} />
-							<Content loader={this.state.loader} categoryFields={this.state.fields} columns={this.state.columns} />
+							<Content loader={this.state.loader} fields={this.state.fields} columns={this.state.columns} selectedCategory={this.state.selectedCategory} />
 						</div>
 					</div>
 				</div>

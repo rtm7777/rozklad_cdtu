@@ -1,12 +1,17 @@
 /** @jsx */
-define(['react'], (React) => {
+define(['react', 'jsx!../components/dbItem'], (React, DBItem) => {
 	var Content = React.createClass({
 		render() {
-			var headerCols = this.props.columns.map(field => {
+			var headerCols = this.props.columns.map((column, i) => {
 				return (
-					<th>
-						{field}
+					<th key={i}>
+						{column}
 					</th>
+				);
+			});
+			var items = this.props.fields.map(field => {
+				return (
+					<DBItem key={field.id} data={field} category={this.props.selectedCategory}/>
 				);
 			});
 			var loaderShow = 'visible';
@@ -24,7 +29,9 @@ define(['react'], (React) => {
 								{headerCols}
 							</tr>
 						</thead>
-						<tbody></tbody>
+						<tbody>
+							{items}
+						</tbody>
 					</table>
 				</div>
 			);

@@ -15,9 +15,9 @@ define(['react'], (React) => {
 
 	var Navigation = React.createClass({
 		render() {
-			var navigation = this.props.navList.map(field => {
+			var navigation = this.props.navList.map((field, i) => {
 				return (
-					<NavOption onClick={this.props.onClick} data={field} active={this.props.selectedCategory} />
+					<NavOption key={i} onClick={this.props.onClick} data={field} active={this.props.selectedCategory} />
 				);
 			});
 			var loaderShow = 'visible';
