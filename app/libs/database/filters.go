@@ -10,21 +10,21 @@ import (
 )
 
 var filterFuncs = map[string]interface{}{
-	"faculties": func(db *gorm.DB, rows *[]string) *[]string {
-		db.Model(&models.Faculties{}).Pluck("short_name", rows)
+	"faculties": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {
+		db.Model(&models.Faculties{}).Select("id, short_name as value").Scan(rows)
 		return rows
 	},
-	"departments": func(db *gorm.DB, rows *[]string) *[]string {
-		db.Model(&models.Departments{}).Pluck("name", rows)
+	"departments": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {
+		db.Model(&models.Departments{}).Select("id, name as value").Scan(rows)
 		return rows
 	},
-	"housings": func(db *gorm.DB, rows *[]string) *[]string {
-		db.Model(&models.Housings{}).Pluck("number", rows)
+	"housings": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {
+		db.Model(&models.Housings{}).Select("id, number as value").Scan(rows)
 		return rows
 	},
-	"year": func(db *gorm.DB, rows *[]string) *[]string {
+	"year": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {
 		for i := 1; i < 6; i++ {
-			*rows = append(*rows, strconv.Itoa(i))
+			*rows = append(*rows, json_models.FilterValue{Id: int64(i) - 1, Value: strconv.Itoa(i)})
 		}
 		return rows
 	},
@@ -33,9 +33,10 @@ var filterFuncs = map[string]interface{}{
 func CategoryFilters(db *gorm.DB, filters []string, locale string) []json_models.Filter {
 	var result []json_models.Filter
 
-	filterValues := func(filter string) []string {
-		var rows []string
-		filterFunction := filterFuncs[filter].(func(*gorm.DB, *[]string) *[]string)
+	filterValues := func(filter string) []json_models.FilterValue {
+		var rows []json_models.FilterValue
+		rows = append(rows, json_models.FilterValue{Id: 0, Value: "---"})
+		filterFunction := filterFuncs[filter].(func(*gorm.DB, *[]json_models.FilterValue) *[]json_models.FilterValue)
 		filterFunction(db, &rows)
 		return rows
 	}

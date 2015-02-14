@@ -1,36 +1,86 @@
 /** @jsx */
-define(['react'], (React) => {
+define(['react', 'jsx!../components/select'], (React, Select) => {
 	var filters = {
 		audiences(data) {
-			return [data.number, data.housingId, data.type, data.sets];
+			return [
+				{data: data.number},
+				{data: data.housingId, type: 'selectbox', order: 0},
+				{data: data.type},
+				{data: data.sets}
+			];
 		},
 		departments(data) {
-			return [data.facultyId, data.name];
+			return [
+				{data: data.facultyId, type: 'selectbox', order: 0},
+				{data: data.name}
+			];
 		},
 		faculties(data) {
-			return [data.fullName, data.shortName];
+			return [
+				{data: data.fullName},
+				{data: data.shortName}
+			];
 		},
 		groups(data) {
-			return [data.facultyId, data.fullName, data.fullName, data.studentsCount, data.year];
+			return [
+				{data: data.facultyId, type: 'selectbox', order: 0},
+				{data: data.fullName},
+				{data: data.fullName},
+				{data: data.studentsCount},
+				{data: data.year, type: 'selectbox', order: 1}
+			];
 		},
 		housings(data) {
-			return [data.number];
+			return [
+				{data: data.number}
+			];
 		},
 		subjects(data) {
-			return [data.subject];
+			return [
+				{data: data.subject}
+			];
 		},
 		teachers(data) {
-			return [data.facultyId, data.departmentId, data.lastName, data.sets];
+			return [
+				{data: data.facultyId, type: 'selectbox', order: 0},
+				{data: data.departmentId, type: 'selectbox', order: 1},
+				{data: [data.firstName, data.lastName, data.middleName], type: 'name'},
+				{data: data.rank}
+			];
 		}
 	};
 
 	var ItemCell = React.createClass({
 		render() {
-			return (
-				<td>
-					{this.props.data}
-				</td>
-			);
+			if (this.props.data.type == 'selectbox') {
+				if (this.props.filters.length) {
+					return (
+						<td className="no-padding">
+							<Select values={this.props.filters[this.props.data.order].values} selected={this.props.data.data} button={true} />
+						</td>
+					);
+				} else {
+					return (
+						<td className="no-padding">
+							<Select values={[{id: 0, value: "---"}]} button={true} />
+						</td>
+					);
+				}
+			} else if (this.props.data.type == 'name') {
+				return (
+					<td className="no-padding">
+						<div className="dropdown">
+							<button tabindex="0" className="popove btn" role="button" data-toggle="popover" data-placement="bottom" data-content="khhkufjh">{this.props.data.data[1]}</button>
+						</div>
+					</td>
+				);
+			} else {
+				return (
+					<td contentEditable>
+						{this.props.data.data}
+					</td>
+				);
+			}
 		}
 	});
 
@@ -39,13 +89,9 @@ define(['react'], (React) => {
 			this.props.onClick(this);
 		},
 		render() {
-			// var cx = React.addons.classSet;
-			// var classes = cx({
-			// 	'hide': this.props.data.hidden
-			// });
 			var itemCells = filters[this.props.category](this.props.data).map((cell, i) => {
 				return (
-					<ItemCell key={i} data={cell}/>
+					<ItemCell key={i} data={cell} filters={this.props.filters}/>
 				);
 			});
 			return (

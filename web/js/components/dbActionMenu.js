@@ -19,7 +19,7 @@ define(['jquery',
 		render() {
 			var filters = this.props.filters.map((filter, i) => {
 				return (
-					<Select values={filter.values} key={i} initialName={filter.name} />
+					<Select values={filter.values} key={i} name={filter.name} />
 				);
 			});
 			var actions = this.state.actions.map((action, i) => {

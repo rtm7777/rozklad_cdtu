@@ -27,15 +27,19 @@ define(['../services/localStorage',
 				promises.push(this.loadFields(this.state.selectedCategory));
 			}
 			Promise.all(promises).then(data => {
-				this.setState({categoryList: data[0]});
-				this.setState({loader: false});
+				this.setState({
+					categoryList: data[0],
+					loader: false
+				});
 			});
 		},
 
 		changeCategory(child) {
-			this.setState({loader: true});
-			this.setState({filters: []});
-			this.setState({fields: []});
+			this.setState({
+				loader: true,
+				filters: [],
+				fields: []
+			});
 
 			var category = child.props.data.category;
 			storage.saveValue("category", category);
@@ -47,9 +51,11 @@ define(['../services/localStorage',
 
 		loadFields(category) {
 			return promise.post('/get_category', {category: category}).then(data => {
-				this.setState({fields: data.items});
-				this.setState({columns: data.columns});
-				this.setState({filters: data.filters || []});
+				this.setState({
+					fields: data.items,
+					columns: data.columns,
+					filters: data.filters || []
+				});
 			});
 		},
 
@@ -60,7 +66,7 @@ define(['../services/localStorage',
 					<div className="container">
 						<div className="row">
 							<Navigation onClick={this.changeCategory} loader={this.state.loader} navList={this.state.categoryList} selectedCategory={this.state.selectedCategory} />
-							<Content loader={this.state.loader} fields={this.state.fields} columns={this.state.columns} selectedCategory={this.state.selectedCategory} />
+							<Content loader={this.state.loader} fields={this.state.fields} columns={this.state.columns} selectedCategory={this.state.selectedCategory} filters={this.state.filters} />
 						</div>
 					</div>
 				</div>

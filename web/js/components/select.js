@@ -7,30 +7,41 @@ define(['react'], (React) => {
 		},
 		render() {
 			return (
-				<li onClick={this.changeValue}><a tabIndex="-1" href="#">{this.props.data}</a></li>
+				<li onClick={this.changeValue}><a tabIndex="-1" href="#">{this.props.data.value}</a></li>
 			);
 		}
 	});
 
 	var Select = React.createClass({
 		getInitialState() {
-			return {selected: ""};
+			return {selected: this.props.selected || 0};
 		},
 		changeValue(child) {
-			this.setState({selected: child.props.data});
+			this.setState({selected: child.props.data.id});
+		},
+		generateDropdownLabel() {
+			if (this.props.name) {
+				return (
+					<div className='dropdown-label'>{this.props.name}</div>
+				);
+			}
 		},
 		render() {
-			var selectboxName = [this.state.selected, this.props.initialName].join(" ");
+			console.log(this.state.selected);
+			var selectboxName = this.props.values[this.state.selected].value + " ";
+
 			var selectOptions = this.props.values.map((option, i) => {
 				return (
 					<SelectOption onClick={this.changeValue} key={i} data={option} />
 				);
 			});
 
-			if (this.props.dropdownType == "button") {
+			var name = this.generateDropdownLabel();
+
+			if (this.props.button) {
 				return (
 					<div className="dropdown">
-						<button className="dropdown-toggle" data-toggle="dropdown" ref="button" data-id="">
+						<button className="dropdown-toggle" data-toggle="dropdown">
 							{selectboxName}
 							<span className="glyphicon glyphicon-chevron-down"/>
 						</button>
@@ -42,7 +53,8 @@ define(['react'], (React) => {
 			} else {
 				return (
 					<li className="dropdown">
-						<a className="dropdown-toggle" data-toggle="dropdown" ref="button" data-id="" href="#">
+						{name}
+						<a className="dropdown-toggle" data-toggle="dropdown" href="#">
 							{selectboxName}
 							<span className="caret"/>
 						</a>

@@ -1,4 +1,4 @@
-/** @jsx */
+/** @jsx React.DOM */
 define(['react', 'jsx!../components/dbItem'], (React, DBItem) => {
 	var Content = React.createClass({
 		render() {
@@ -11,7 +11,7 @@ define(['react', 'jsx!../components/dbItem'], (React, DBItem) => {
 			});
 			var items = this.props.fields.map(field => {
 				return (
-					<DBItem key={field.id} data={field} category={this.props.selectedCategory}/>
+					<DBItem key={field.id} data={field} category={this.props.selectedCategory} filters={this.props.filters}/>
 				);
 			});
 			var loaderShow = 'visible';
