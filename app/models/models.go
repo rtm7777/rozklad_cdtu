@@ -49,6 +49,7 @@ type Audiences struct {
 	Number    string   `sql:"size:10" json:"number"`
 	Sets      int      `json:"sets"`
 	Type      string   `sql:"size:50" json:"type"`
+	Note      string   `sql:"size:200" json:"note"`
 }
 
 type Subjects struct {
