@@ -53,19 +53,11 @@ define(['react', 'jsx!../components/select'], (React, Select) => {
 	var ItemCell = React.createClass({
 		render() {
 			if (this.props.data.type == 'selectbox') {
-				if (this.props.filters.length) {
-					return (
-						<td className="no-padding">
-							<Select values={this.props.filters[this.props.data.order].values} selected={this.props.data.data} button={true} />
-						</td>
-					);
-				} else {
-					return (
-						<td className="no-padding">
-							<Select values={[{id: 0, value: "---"}]} button={true} />
-						</td>
-					);
-				}
+				return (
+					<td className="no-padding">
+						<Select values={this.props.filters[this.props.data.order].values} selected={this.props.data.data} button={true} />
+					</td>
+				);
 			} else if (this.props.data.type == 'name') {
 				return (
 					<td className="no-padding">
@@ -76,8 +68,8 @@ define(['react', 'jsx!../components/select'], (React, Select) => {
 				);
 			} else {
 				return (
-					<td contentEditable>
-						{this.props.data.data}
+					<td>
+						<input type="text" defaultValue={this.props.data.data} />
 					</td>
 				);
 			}

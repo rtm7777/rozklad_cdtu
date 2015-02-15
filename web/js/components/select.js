@@ -22,20 +22,17 @@ define(['react'], (React) => {
 		generateDropdownLabel() {
 			if (this.props.name) {
 				return (
-					<div className='dropdown-label'>{this.props.name}</div>
+					<div className='dropdown-label'>{this.props.name + ":"}</div>
 				);
 			}
 		},
 		render() {
-			console.log(this.state.selected);
 			var selectboxName = this.props.values[this.state.selected].value + " ";
-
 			var selectOptions = this.props.values.map((option, i) => {
 				return (
 					<SelectOption onClick={this.changeValue} key={i} data={option} />
 				);
 			});
-
 			var name = this.generateDropdownLabel();
 
 			if (this.props.button) {
