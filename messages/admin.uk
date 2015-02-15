@@ -3,11 +3,11 @@ page_title.db         =База Даних
 page_title.tasks      =Завдання
 page_title.login      =Вхід
 
-action_menu.faculty   =Факультет
-action_menu.s_year    =Курс
-action_menu.delete    =Видалити
-action_menu.edit      =Редагувати
-action_menu.add       =Додати
+action_menu.faculty =Факультет
+action_menu.s_year  =Курс
+action_menu.delete  =Видалити
+action_menu.edit    =Редагувати
+action_menu.add     =Додати
 
 left_sidebar.department_tasks =Завдання кафедр
 left_sidebar.category         =Категорія
@@ -15,3 +15,24 @@ left_sidebar.category         =Категорія
 login.header   =Вхід на сайт
 login.password =Пароль
 login.login    =Ввійти
+
+faculties   =Факультети
+departments =Кафедри
+groups      =Групи
+housings    =Корпуси
+audiences   =Аудиторії
+teachers    =Викладачі
+subjects    =Предмети
+
+faculties_filter   =Факультет
+departments_filter =Кафедра
+housings_filter    =Корпус
+year_filter        =Курс
+
+faculties_columns   =Повне і'мя,Скорочене і'мя
+departments_columns =Факультет,Назва
+groups_columns      =Факультет,Повне і'мя,Скорочене і'мя,Кількість студентів,Курс
+housings_columns    =Номер
+audiences_columns   =Номер,Корпус,Тип,Кількість місць
+teachers_columns    =Факультет,Кафедра,П.І.Б,Звання
+subjects_columns    =Назва
