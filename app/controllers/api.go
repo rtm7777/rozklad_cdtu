@@ -1,11 +1,9 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs/database"
 	"strings"
-	_ "time"
 )
 
 type Api struct {
@@ -24,7 +22,6 @@ var DBFilters = map[string][]string{
 
 func (c Api) GetFaculties() revel.Result {
 	faculties := database.FacultiesList(c.DB)
-	fmt.Println("Sdf")
 	return c.RenderJson(faculties)
 }
 
