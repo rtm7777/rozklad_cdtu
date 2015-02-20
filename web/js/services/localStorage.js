@@ -1,14 +1,11 @@
-define([], () => {
+var storage = localStorage;
 
-	var storage = localStorage;
+export default {
+	saveValue(name, value) {
+		storage.setItem(name, value);
+	},
 
-	return {
-		saveValue(name, value) {
-			storage.setItem(name, value);
-		},
-
-		getValue(name) {
-			return storage.getItem(name);
-		}
-	};
-});
+	getValue(name) {
+		return storage.getItem(name);
+	}
+};

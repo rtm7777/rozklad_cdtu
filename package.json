@@ -14,35 +14,27 @@
   "license": "MIT",
 
   "scripts": {
-    "build"    : "browserify main_common.js -o public/main.js",
+    "build"    : "browserify web/js/main_common.js -o public/main.js",
     "build_min": "uglifyjs public/main.js -o public/main.min.js",
-    "watch"    : "watchify main_common.js -u jquery -u underscore -v -d -o public/main.js"
+    "watch"    : "watchify web/js/main_common.js -v -d -o public/main.js",
+    "less"     : "lessc web/less/main.less > public/css/main.css"
   },
 
-  "browser": {
-    "jquery"    : "./web/js/bower_components/jquery/dist/jquery.js",
-    "bootstrap" : "./web/js/bower_components/bootstrap/dist/js/bootstrap.js"
-  },
-  "browserify-shim": {
-    "jquery"    : "$",
-    "bootstrap" : { "depends": [ "jquery" ] }
-  },
   "browserify": {
     "transform": [
-      "babelify",
-      "browserify-shim"
+      "babelify"
     ]
   },
   "devDependencies": {
-    "jquery": "^2.1.3",
-    "bootstrap": "^3.3.2",
-    "babelify": "^5.0.3",
-    "babel": "^4.3.0",
-    "react": "^0.12.2",
-    "browserify": "^8.1.3",
-    "browserify-shim": "^3.8.2",
-    "watchify": "^2.3.0",
-    "underscore": "^1.8.1",
-    "uglify-js": "^2.4.16"
+    "jquery"         : "^2.1.3",
+    "bootstrap"      : "^3.3.2",
+    "babelify"       : "^5.0.3",
+    "babel"          : "^4.3.0",
+    "react"          : "^0.12.2",
+    "less"           : "^2.4.0",
+    "browserify"     : "^8.1.3",
+    "watchify"       : "^2.3.0",
+    "underscore"     : "^1.8.1",
+    "uglify-js"      : "^2.4.16"
   }
 }
