@@ -1,29 +1,48 @@
 {
-  "name": "rozklad_cdtu",
-  "version": "0.1.1",
-  "description": "WebApp for showing and editing the students schedule, written on Revel web framework",
-  "main": "Gruntfile.js",
-  "directories": {
-    "test": "tests"
-  },
-  "dependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-contrib-requirejs": "~0.4.4",
-    "grunt-contrib-watch": "~0.6.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "name"       : "rozklad_cdtu",
+  "version"    : "0.0.1",
+  "description": "Webapp for showing and editing students schedule",
+  "main"       : "./web/js/main_common.js",
+  "author"     : "Nikolai Shitik",
   "repository": {
     "type": "git",
-    "url": "git://github.com/rtm7777/rozklad_cdtu.git"
+    "url" : "git://github.com/rtm7777/rozklad_cdtu.git"
   },
-  "author": "rtm7777",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rtm7777/rozklad_cdtu/issues"
+  },
+  "license": "MIT",
+
+  "scripts": {
+    "build"    : "browserify main_common.js -o public/main.js",
+    "build_min": "uglifyjs public/main.js -o public/main.min.js",
+    "watch"    : "watchify main_common.js -u jquery -u underscore -v -d -o public/main.js"
+  },
+
+  "browser": {
+    "jquery"    : "./web/js/bower_components/jquery/dist/jquery.js",
+    "bootstrap" : "./web/js/bower_components/bootstrap/dist/js/bootstrap.js"
+  },
+  "browserify-shim": {
+    "jquery"    : "$",
+    "bootstrap" : { "depends": [ "jquery" ] }
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "browserify-shim"
+    ]
+  },
+  "devDependencies": {
+    "jquery": "^2.1.3",
+    "bootstrap": "^3.3.2",
+    "babelify": "^5.0.3",
+    "babel": "^4.3.0",
+    "react": "^0.12.2",
+    "browserify": "^8.1.3",
+    "browserify-shim": "^3.8.2",
+    "watchify": "^2.3.0",
+    "underscore": "^1.8.1",
+    "uglify-js": "^2.4.16"
   }
 }
