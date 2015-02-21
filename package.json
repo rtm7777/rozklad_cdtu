@@ -14,10 +14,16 @@
   "license": "MIT",
 
   "scripts": {
-    "build"    : "browserify web/js/main_common.js -o public/main.js",
-    "build_min": "uglifyjs public/main.js -o public/main.min.js",
-    "watch"    : "watchify web/js/main_common.js -v -d -o public/main.js",
-    "less"     : "lessc web/less/main.less > public/css/main.css"
+    "build"         : "NODE_ENV=production browserify web/js/main_common.js -o public/main.js",
+    "build_min"     : "uglifyjs public/main.js -o public/main.min.js",
+    "watch"         : "watchify web/js/main_common.js -v -d -o public/main.js",
+    "less"          : "lessc web/less/main.less > public/css/main.css",
+    "copy:img"      : "rsync -av web/img public",
+    "copy:bs-fonts" : "rsync -av node_modules/bootstrap/dist/fonts public",
+    "copy:bs-css"   : "rsync -av node_modules/bootstrap/dist/css public",
+    "copy:jquery"   : "rsync -av node_modules/jquery/dist/jquery.min.js public",
+    "copy:bs"       : "rsync -av node_modules/bootstrap/dist/js/bootstrap.min.js public",
+    "copy"          : "npm run copy:img && npm run copy:bs-fonts && npm run copy:bs-css && npm run copy:jquery && npm run copy:bs"
   },
 
   "browserify": {
@@ -26,14 +32,16 @@
       "jstify"
     ]
   },
+  "dependencies": {
+    "jquery"   : "^2.1.3",
+    "bootstrap": "^3.3.2"
+  },
   "devDependencies": {
-    "jquery"         : "^2.1.3",
-    "bootstrap"      : "^3.3.2",
-    "babelify"       : "^5.0.3",
     "babel"          : "^4.3.0",
     "react"          : "^0.12.2",
     "less"           : "^2.4.0",
     "browserify"     : "^8.1.3",
+    "babelify"       : "^5.0.3",
     "watchify"       : "^2.3.0",
     "jstify"         : "^0.8.0",
     "underscore"     : "^1.8.1",

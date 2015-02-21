@@ -4,8 +4,8 @@
 			<input type="checkbox" checked><%= group %>
 		</label>
 	</div>
-	<% days.forEach(function(day) { %>
-		<% pairs.forEach(function(pair) { %>
+	<% _.each(days, function(day) { %>
+		<% _.each(pairs, function(pair) { %>
 			<div id="<%= groupId %>_<%= day %>_<%= pair %>" class="pair-container">
 				<div class="admin-sub"></div>
 					<hr class="admin-sub-separator">

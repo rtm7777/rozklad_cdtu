@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import config from "../config/config";
 import groupTemplate from '../templates/group.html';
 import taskTemplate from '../templates/task.html';
@@ -8,7 +7,7 @@ var $taskDiv = $("#tasks_container");
 
 export default {
 	addGroup(group) {
-		$contentDiv.append(_.template(groupTemplate, {
+		$contentDiv.append(groupTemplate({
 			group  : group.shortName,
 			groupId: group.id,
 			days   : config.days,
@@ -17,7 +16,7 @@ export default {
 	},
 
 	addTask(task) {
-		$taskDiv.append(_.template(taskTemplate, {
+		$taskDiv.append(taskTemplate({
 			id      : task.id,
 			subject : task.subject,
 			type    : task.type,
