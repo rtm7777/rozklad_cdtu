@@ -24,7 +24,7 @@ var filterFuncs = map[string]interface{}{
 	},
 	"year": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {
 		for i := 1; i < 6; i++ {
-			*rows = append(*rows, json_models.FilterValue{Id: int64(i) - 1, Value: strconv.Itoa(i)})
+			*rows = append(*rows, json_models.FilterValue{Id: int64(i), Value: strconv.Itoa(i)})
 		}
 		return rows
 	},

@@ -36,7 +36,7 @@ WS      /ws/socket                              Admin.SocketConn
 GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /web/*filepath                       Static.Serve("web")
+GET     /public/*filepath                       Static.Serve("public")
 
 # Catch all
 *       /:controller/:action                    :controller.:action
