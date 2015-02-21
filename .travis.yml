@@ -24,6 +24,8 @@ before_script:
 - cd rozklad_cdtu
 - npm install
 - npm run copy
+- npm run build
+- npm run less
 script:
 - revel test rozklad_cdtu
 # deploy:
