@@ -1,11 +1,6 @@
-define(['jquery',
-		'../services/socketInterface',
-], ($, socket) => {
+import {socket} from "../services/socketInterface";
 
-	socketChannels = {
-
-	};
-
+socket.then((socket) => {
 	socket.onopen = (event) => {
 
 	};
@@ -21,5 +16,4 @@ define(['jquery',
 	socket.onerror = (event) => {
 
 	};
-
 });

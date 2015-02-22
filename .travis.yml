@@ -21,6 +21,11 @@ install:
 before_script:
 - cd $HOME/gopath/src
 - ln -s $HOME/gopath/src/github.com/rtm7777/rozklad_cdtu rozklad_cdtu
+- cd rozklad_cdtu
+- npm install
+- npm run copy
+- npm run build
+- npm run less
 script:
 - revel test rozklad_cdtu
 # deploy:
