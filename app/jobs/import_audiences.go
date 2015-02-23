@@ -2,9 +2,7 @@ package jobs
 
 import (
 	"fmt"
-	_ "github.com/revel/revel"
-	_ "github.com/revel/revel/modules/jobs/app/jobs"
-	"github.com/tealeg/xlsx"
+	"github.com/fatih/color"
 	"rozklad_cdtu/app/controllers"
 	"rozklad_cdtu/app/models"
 	"strconv"
@@ -12,18 +10,6 @@ import (
 )
 
 type AudiencesImport struct{}
-
-func OpenExcelFile(filename string) *xlsx.File {
-	fmt.Println("| Opening file")
-	xlFile, err := xlsx.OpenFile(filename)
-	if err != nil {
-		fmt.Printf("| Can't open file - \"%s\"\n", filename)
-		return nil
-	} else {
-		fmt.Printf("| File \"%s\" successfully opened\n", filename)
-		return xlFile
-	}
-}
 
 func (j AudiencesImport) Run() {
 	start := time.Now()
@@ -99,14 +85,10 @@ func (j AudiencesImport) Run() {
 	fmt.Println("------------------------------")
 	fmt.Printf("| Import finished at %s\n", time.Now().Format("2006-01-02 15:04:05.000"))
 	fmt.Printf("| Importing time %s\n", elapsed)
-	fmt.Println("------------------------------")
-	fmt.Printf("| Audiences in file         : %d\n", rowCount)
-	fmt.Printf("| Imported audiences        : %d\n", successCount)
-	fmt.Printf("| Audiences without sets    : %d\n", withoutSets)
-	fmt.Printf("| Audiences with wrong type : %d\n", wrongType)
-	fmt.Println("------------------------------")
+	color.Blue("------------------------------")
+	color.Blue("| Audiences in file         : %d", rowCount)
+	color.Blue("| Imported audiences        : %d", successCount)
+	color.Blue("| Audiences without sets    : %d", withoutSets)
+	color.Blue("| Audiences with wrong type : %d", wrongType)
+	color.Blue("------------------------------")
 }
-
-// func init() {
-// 	revel.OnAppStart(func() { jobs.Now(AudiencesImport{}) })
-// }

@@ -54,7 +54,7 @@ type Audiences struct {
 
 type Subjects struct {
 	Id      int64  `json:"id"`
-	Subject string `sql:"size:100" json:"subject"`
+	Subject string `sql:"size:100;unique" json:"subject"`
 }
 
 type Days struct {
