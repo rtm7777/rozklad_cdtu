@@ -1,11 +1,12 @@
 package jobs
 
 import (
-	"github.com/revel/revel"
-	"github.com/revel/revel/modules/jobs/app/jobs"
+	_ "github.com/revel/revel"
+	_ "github.com/revel/revel/modules/jobs/app/jobs"
 )
 
 func init() {
-	// 	revel.OnAppStart(func() { jobs.Now(AudiencesImport{}) })
-	revel.OnAppStart(func() { jobs.Now(SubjectsImport{}) })
+	// revel.OnAppStart(func() { jobs.Now(AudiencesImport{}) })
+	// revel.OnAppStart(func() { jobs.Now(SubjectsImport{}) })
+	// revel.OnAppStart(func() { jobs.Now(GroupsImport{}) })
 }

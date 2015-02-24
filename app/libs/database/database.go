@@ -116,7 +116,7 @@ func TeacherPairString(db *gorm.DB, subject *models.Schedule) string {
 		subject.SubjectType + " " +
 		subject.Audience.Number + "-" +
 		subject.Audience.Housing.Number + " " +
-		subject.Group.ShortName + " - " +
+		subject.Group.Name + " - " +
 		fmt.Sprintf("%v", subject.Group.Year) + " курс"
 }
 

@@ -26,7 +26,8 @@ func (j SubjectsImport) Run() {
 	alreadyExist := 0
 
 	for _, row := range file.Sheets[1].Rows[10:] {
-		rowCount += 1
+		var subject models.Subjects
+
 		re := regexp.MustCompile("[^\\S]+")
 		re2 := regexp.MustCompile("([^\x00-\x7F])i")
 		re3 := regexp.MustCompile("i([^\x00-\x7F])")
@@ -36,24 +37,32 @@ func (j SubjectsImport) Run() {
 		subjectName = re2.ReplaceAllString(subjectName, "${1}і")
 		subjectName = re3.ReplaceAllString(subjectName, "i${1}")
 
-		var subject models.Subjects
-
 		subject.Subject = subjectName
 
-		db.NewRecord(subject)
-		err := db.Save(&subject).Error
-		if err != nil {
-			if regexp.MustCompile(`^Error 1062:`).MatchString(err.Error()) == true {
-				alreadyExist += 1
-				color.Cyan("| \"%s\" - is already exist", subjectName)
-			} else {
-				color.Red("| Saving error for - \"%s\"", subjectName)
+		result := db.Where(&subject).First(&subject)
+
+		if result.Error != nil {
+			if result.RecordNotFound() {
+				db.NewRecord(subject)
+				err := db.Save(&subject).Error
+				if err != nil {
+					if regexp.MustCompile(`^Error 1062:`).MatchString(err.Error()) == true {
+						alreadyExist += 1
+						color.Cyan("| \"%s\" - is already exist", subjectName)
+					} else {
+						color.Red("| Saving error for - \"%s\"", subjectName)
+					}
+				} else {
+					successCount += 1
+					color.Green("| \"%s\" - added", subjectName)
+				}
 			}
 		} else {
-			successCount += 1
-			color.Green("| \"%s\" - added", subjectName)
+			alreadyExist += 1
+			color.Cyan("| \"%s\" - is already exist", subjectName)
 		}
 
+		rowCount += 1
 	}
 	elapsed := time.Since(start)
 	fmt.Println("------------------------------")

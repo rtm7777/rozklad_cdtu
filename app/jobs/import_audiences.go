@@ -3,6 +3,7 @@ package jobs
 import (
 	"fmt"
 	"github.com/fatih/color"
+	"regexp"
 	"rozklad_cdtu/app/controllers"
 	"rozklad_cdtu/app/models"
 	"strconv"
@@ -21,6 +22,7 @@ func (j AudiencesImport) Run() {
 
 	rowCount := 0
 	successCount := 0
+	alreadyExist := 0
 	withoutSets := 0
 	wrongType := 0
 
@@ -44,11 +46,9 @@ func (j AudiencesImport) Run() {
 
 	for _, row := range file.Sheets[0].Rows {
 		audienceType := row.Cells[2].Value
-		rowCount += 1
 
 		if audienceType != "НВНП" && audienceType != "" && audienceType != "Спорт. зал" && audienceType != "ФПФ" {
 			var audience models.Audiences
-			successCount += 1
 
 			housingId, err := strconv.Atoi(row.Cells[1].Value)
 			if err != nil {
@@ -77,9 +77,30 @@ func (j AudiencesImport) Run() {
 			audience.Note = row.Cells[7].Value
 			audience.Type = audienceType
 
-			db.NewRecord(audience)
-			db.Save(&audience)
+			result := db.Where(&audience).First(&audience)
+
+			if result.Error != nil {
+				if result.RecordNotFound() {
+					db.NewRecord(audience)
+					err = db.Save(&audience).Error
+					if err != nil {
+						if regexp.MustCompile(`^Error 1062:`).MatchString(err.Error()) == true {
+							alreadyExist += 1
+							color.Cyan("| \"%s\" - is already exist", row.Cells[0].Value)
+						} else {
+							color.Red("| Saving error for - \"%s\"", row.Cells[0].Value)
+						}
+					} else {
+						successCount += 1
+						color.Green("| \"%s\" - added", row.Cells[0].Value)
+					}
+				}
+			} else {
+				alreadyExist += 1
+				color.Cyan("| \"%s\" - is already exist", row.Cells[0].Value)
+			}
 		}
+		rowCount += 1
 	}
 	elapsed := time.Since(start)
 	fmt.Println("------------------------------")
@@ -88,6 +109,7 @@ func (j AudiencesImport) Run() {
 	color.Blue("------------------------------")
 	color.Blue("| Audiences in file         : %d", rowCount)
 	color.Blue("| Imported audiences        : %d", successCount)
+	color.Blue("| Already exist audiences   : %d", alreadyExist)
 	color.Blue("| Audiences without sets    : %d", withoutSets)
 	color.Blue("| Audiences with wrong type : %d", wrongType)
 	color.Blue("------------------------------")

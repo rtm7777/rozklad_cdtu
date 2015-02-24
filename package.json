@@ -15,7 +15,7 @@
 
   "scripts": {
     "build"         : "NODE_ENV=production browserify web/js/main_common.js -o public/main.js",
-    "build_min"     : "uglifyjs public/main.js -o public/main.min.js",
+    "build_min"     : "uglifyjs public/main.js -o public/main.min.js -m -p -c dead_code,conditionals,unused,drop_console --screw-ie8 ",
     "watch"         : "watchify web/js/main_common.js -v -d -o public/main.js",
     "less"          : "lessc web/less/main.less > public/css/main.css",
     "copy:img"      : "rsync -av web/img public",

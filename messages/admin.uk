@@ -31,8 +31,8 @@ year_filter        =Курс
 
 faculties_columns   =Повне і'мя,Скорочене і'мя
 departments_columns =Факультет,Назва
-groups_columns      =Факультет,Повне і'мя,Скорочене і'мя,Кількість студентів,Курс
+groups_columns      =Факультет,I'мя,Кількість студентів,Курс
 housings_columns    =Номер
-audiences_columns   =Номер,Корпус,Тип,Кількість місць
+audiences_columns   =Номер,Корпус,Тип,Кількість місць,Примітка
 teachers_columns    =Факультет,Кафедра,П.І.Б,Звання
 subjects_columns    =Назва

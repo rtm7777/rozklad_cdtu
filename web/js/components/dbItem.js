@@ -8,7 +8,8 @@ var filters = {
 			{data: data.number},
 			{data: data.housingId, type: 'selectbox', order: 0},
 			{data: data.type},
-			{data: data.sets}
+			{data: data.sets},
+			{data: data.note}
 		];
 	},
 	departments(data) {
@@ -26,8 +27,7 @@ var filters = {
 	groups(data) {
 		return [
 			{data: data.facultyId, type: 'selectbox', order: 0},
-			{data: data.fullName},
-			{data: data.fullName},
+			{data: data.name},
 			{data: data.studentsCount},
 			{data: data.year, type: 'selectbox', order: 1}
 		];
