@@ -33,7 +33,7 @@
 											{{range $g := $.groups}}
 											{{if eq $g.Year $y}}
 											{{if eq $f.Id $g.FacultyId}}
-												<li class="{{if eq $g.ShortName $.group.ShortName}} active {{end}}"><a href="/group/{{.ShortName}}">{{.ShortName}}</a></li>
+												<li class="{{if eq $g.Name $.group.Name}} active {{end}}"><a href="/group/{{.Name}}">{{.Name}}</a></li>
 											{{end}}
 											{{end}}
 											{{end}}

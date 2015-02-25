@@ -19,8 +19,7 @@ type Groups struct {
 	Id            int64     `json:"id"`
 	FacultyId     int64     `json:"facultyId"`
 	Faculty       Faculties `json:"faculty"`
-	FullName      string    `sql:"size:100" json:"fullName"`
-	ShortName     string    `sql:"size:20" json:"shortName"`
+	Name          string    `sql:"size:100" json:"name"`
 	NumOfStudents int       `json:"studentsCount"`
 	Year          int       `json:"year"`
 }
@@ -49,11 +48,12 @@ type Audiences struct {
 	Number    string   `sql:"size:10" json:"number"`
 	Sets      int      `json:"sets"`
 	Type      string   `sql:"size:50" json:"type"`
+	Note      string   `sql:"size:200" json:"note"`
 }
 
 type Subjects struct {
 	Id      int64  `json:"id"`
-	Subject string `sql:"size:100" json:"subject"`
+	Subject string `sql:"size:100;unique" json:"subject"`
 }
 
 type Days struct {

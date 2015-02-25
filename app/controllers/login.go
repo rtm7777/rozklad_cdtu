@@ -20,7 +20,11 @@ func (c Application) getUser(username string) *models.Users {
 	user := models.Users{}
 	err := c.DB.Where(&models.Users{Username: username}).First(&user).Error
 	if err != nil {
-		panic(err)
+		if err.Error() == "record not found" {
+			return nil
+		} else {
+			panic(err)
+		}
 	}
 	return &user
 }

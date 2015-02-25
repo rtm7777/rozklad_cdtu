@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+/** @jsx */
 import React from "react";
 import {DBItem} from "../components/dbItem";
 
@@ -11,11 +11,16 @@ export var Content = React.createClass({
 				</th>
 			);
 		});
-		var items = this.props.fields.map(field => {
-			return (
-				<DBItem key={field.id} data={field} category={this.props.selectedCategory} filters={this.props.filters}/>
-			);
-		});
+
+		var items = [];
+		if (this.props.fields) {
+			items = this.props.fields.map(field => {
+				return (
+					<DBItem key={field.id} data={field} category={this.props.selectedCategory} filters={this.props.filters}/>
+				);
+			});
+		}
+
 		var loaderShow = 'visible';
 		var tableShow = 'invisible';
 		if (!this.props.loader) {

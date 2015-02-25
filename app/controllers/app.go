@@ -32,7 +32,7 @@ func (c Application) Group() revel.Result {
 
 func (c Application) GroupCurrent(groupName string) revel.Result {
 	group := models.Groups{}
-	err := c.DB.Where("short_name = ?", groupName).First(&group).Error
+	err := c.DB.Where("name = ?", groupName).First(&group).Error
 
 	if err != nil {
 		return c.Redirect(Application.Group)

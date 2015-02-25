@@ -1,12 +1,10 @@
 		<footer>
-			<p class="text-center text-muted"><a href="mailto:kolan678@gmail.com">rtm7777</a> &copy; 2013</p>
+			<p class="text-center text-muted"><a href="mailto:kolan678@gmail.com">rtm7777</a> &copy; 2015</p>
 		</footer>
-		<script type="text/javascript" src="/public/main.js"></script>
-		{{range .moreStyles}}
-			<link rel="stylesheet" type="text/css" href="/public/{{.}}">
-		{{end}}
-		{{range .moreScripts}}
-			<script src="/web/{{.}}" type="text/javascript" charset="utf-8"></script>
+		{{if eq .RunMode "dev"}}
+			<script type="text/javascript" src="/public/main.js"></script>
+		{{else}}
+			<script type="text/javascript" src="/public/main.min.js"></script>
 		{{end}}
 	</body>
 </html>
