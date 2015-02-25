@@ -2,7 +2,7 @@
 import React from "react";
 import {Select} from "../components/select";
 
-var filters = {
+const filters = {
 	audiences(data) {
 		return [
 			{data: data.number},
@@ -52,7 +52,11 @@ var filters = {
 	}
 };
 
-var ItemCell = React.createClass({
+class ItemCell extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		if (this.props.data.type == 'selectbox') {
 			return (
@@ -76,12 +80,17 @@ var ItemCell = React.createClass({
 			);
 		}
 	}
-});
+}
 
-export var DBItem = React.createClass({
+export class DBItem extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
 	changeValue() {
 		this.props.onClick(this);
-	},
+	}
+
 	render() {
 		var itemCells = filters[this.props.category](this.props.data).map((cell, i) => {
 			return (
@@ -94,4 +103,4 @@ export var DBItem = React.createClass({
 			</tr>
 		);
 	}
-});
+}

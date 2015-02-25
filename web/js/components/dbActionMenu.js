@@ -3,18 +3,21 @@ import React from "react";
 import {Select} from "../components/select";
 import {Action} from "../components/action";
 
-export var ActionMenu = React.createClass({
-	getInitialState() {
-		return {
+export class ActionMenu extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
 			actions: [
 				{name: "Delete", hidden: false, icon: "remove"},
 				{name: "Add", hidden: false, icon: "plus"},
 			]
 		};
-	},
+	}
+
 	actionClicked(action) {
 		console.log(action);
-	},
+	}
+
 	render() {
 		var filters = this.props.filters.map((filter, i) => {
 			return (
@@ -42,5 +45,5 @@ export var ActionMenu = React.createClass({
 				</div>
 			</div>
 		);
-	},
-});
+	}
+}

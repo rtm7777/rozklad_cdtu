@@ -1,20 +1,29 @@
 /** @jsx */
 import React from "react";
 
-var NavOption = React.createClass({
+class NavOption extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
 	changeCategory(e) {
 		e.preventDefault();
 		this.props.onClick(this);
-	},
+	}
+
 	render() {
 		var active = this.props.data.category == this.props.active ? "active" : "";
 		return (
-			<a onClick={this.changeCategory} href="#" data-category={this.props.data.category} className={"list-group-item " + active}>{this.props.data.name}</a>
+			<a onClick={this.changeCategory.bind(this)} href="#" data-category={this.props.data.category} className={"list-group-item " + active}>{this.props.data.name}</a>
 		);
 	}
-});
+}
 
-export var Navigation = React.createClass({
+export class Navigation extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		var navigation = this.props.navList.map((field, i) => {
 			return (
@@ -36,5 +45,5 @@ export var Navigation = React.createClass({
 				</div>
 			</div>
 		);
-	},
-});
+	}
+}

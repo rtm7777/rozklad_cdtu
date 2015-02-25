@@ -6,9 +6,10 @@ import {ActionMenu} from "../components/dbActionMenu";
 import {Content} from "../components/dbContent";
 import {Navigation} from "../components/dbNavigation";
 
-export var DataBase = React.createClass({
-	getInitialState() {
-		return {
+export class DataBase extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
 			categoryList: [],
 			selectedCategory: storage.getValue("category") || "",
 			fields: [],
@@ -17,10 +18,10 @@ export var DataBase = React.createClass({
 			loader: true,
 			error_message: ""
 		};
-	},
+	}
 
 	componentWillMount() {
-		var promises = [];
+		let promises = [];
 		promises.push(promise.post('/get_category_list'));
 		if (this.state.selectedCategory) {
 			promises.push(this.loadFields(this.state.selectedCategory));
@@ -31,7 +32,7 @@ export var DataBase = React.createClass({
 				loader: false
 			});
 		});
-	},
+	}
 
 	changeCategory(child) {
 		this.setState({
@@ -40,13 +41,13 @@ export var DataBase = React.createClass({
 			fields: []
 		});
 
-		var category = child.props.data.category;
+		let category = child.props.data.category;
 		storage.saveValue("category", category);
 		this.setState({selectedCategory: category});
 		this.loadFields(category).then(data => {
 			this.setState({loader: false});
 		});
-	},
+	}
 
 	loadFields(category) {
 		return promise.post('/get_category', {category: category}).then(data => {
@@ -56,19 +57,32 @@ export var DataBase = React.createClass({
 				filters: data.filters || []
 			});
 		});
-	},
+	}
 
 	render() {
+		let navProps = {
+			onClick: this.changeCategory.bind(this),
+			loader: this.state.loader,
+			navList: this.state.categoryList,
+			selectedCategory: this.state.selectedCategory
+		};
+		let contentProps = {
+			loader: this.state.loader,
+			fields: this.state.fields,
+			columns: this.state.columns,
+			selectedCategory: this.state.selectedCategory,
+			filters: this.state.filters
+		};
 		return (
 			<div>
 				<ActionMenu filters={this.state.filters} />
 				<div className="container">
 					<div className="row">
-						<Navigation onClick={this.changeCategory} loader={this.state.loader} navList={this.state.categoryList} selectedCategory={this.state.selectedCategory} />
-						<Content loader={this.state.loader} fields={this.state.fields} columns={this.state.columns} selectedCategory={this.state.selectedCategory} filters={this.state.filters} />
+						<Navigation {...navProps} />
+						<Content {...contentProps} />
 					</div>
 				</div>
 			</div>
 		);
-	},
-});
+	}
+}

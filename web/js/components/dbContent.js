@@ -2,7 +2,11 @@
 import React from "react";
 import {DBItem} from "../components/dbItem";
 
-export var Content = React.createClass({
+export class Content extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		var headerCols = this.props.columns.map((column, i) => {
 			return (
@@ -42,5 +46,5 @@ export var Content = React.createClass({
 				</table>
 			</div>
 		);
-	},
-});
+	}
+}
