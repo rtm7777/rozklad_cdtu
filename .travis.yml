@@ -17,6 +17,9 @@ install:
 - go get -v github.com/go-sql-driver/mysql
 - go get -v github.com/jinzhu/gorm
 - go get -v bitbucket.org/tebeka/selenium
+- go get -v github.com/fatih/color
+- go get -v github.com/robfig/cron
+- go get -v github.com/tealeg/xlsx
 - export PATH=$HOME/gopath/bin:$PATH
 before_script:
 - cd $HOME/gopath/src
