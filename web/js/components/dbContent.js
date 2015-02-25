@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+/** @jsx */
 import React from "react";
 import {DBItem} from "../components/dbItem";
 
