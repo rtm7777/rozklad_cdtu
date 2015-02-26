@@ -68,7 +68,9 @@ class ItemCell extends React.Component {
 			return (
 				<td className="no-padding">
 					<div className="dropdown">
-						<button tabindex="0" className="popove btn" role="button" data-toggle="popover" data-placement="bottom" data-content="khhkufjh">{this.props.data.data[1]}</button>
+						<button tabindex="0" className="popove btn" role="button" data-toggle="popover" data-placement="bottom" data-content="khhkufjh">
+							{this.props.data.data[1]}
+						</button>
 					</div>
 				</td>
 			);
@@ -92,9 +94,15 @@ export class DBItem extends React.Component {
 	}
 
 	render() {
-		var itemCells = filters[this.props.category](this.props.data).map((cell, i) => {
+		let itemCells = filters[this.props.category](this.props.data).map((cell, i) => {
+			let props = {
+				filters: this.props.filters,
+				data: cell,
+				key: i
+			};
+
 			return (
-				<ItemCell key={i} data={cell} filters={this.props.filters}/>
+				<ItemCell {...props} />
 			);
 		});
 		return (

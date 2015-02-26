@@ -12,7 +12,7 @@ class NavOption extends React.Component {
 	}
 
 	render() {
-		var active = this.props.data.category == this.props.active ? "active" : "";
+		let active = this.props.data.category == this.props.active ? "active" : "";
 		return (
 			<a onClick={this.changeCategory.bind(this)} href="#" data-category={this.props.data.category} className={"list-group-item " + active}>{this.props.data.name}</a>
 		);
@@ -25,12 +25,17 @@ export class Navigation extends React.Component {
 	}
 
 	render() {
-		var navigation = this.props.navList.map((field, i) => {
-			return (
-				<NavOption key={i} onClick={this.props.onClick} data={field} active={this.props.selectedCategory} />
-			);
+		let navigation = this.props.navList.map((field, i) => {
+			let props = {
+				data: field,
+				active: this.props.selectedCategory,
+				onClick: this.props.onClick,
+				key: i
+			};
+
+			return <NavOption {...props} />;
 		});
-		var loaderShow = 'visible';
+		let loaderShow = 'visible';
 		if (!this.props.loader) {
 			loaderShow = 'invisible';
 		}

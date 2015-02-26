@@ -33,13 +33,17 @@ export class Select extends React.Component {
 	}
 
 	render() {
-		var selectboxName = this.props.values[this.state.selected].value + " ";
-		var selectOptions = this.props.values.map((option, i) => {
-			return (
-				<SelectOption onClick={this.changeValue.bind(this)} key={i} data={option} />
-			);
+		let selectboxName = this.props.values[this.state.selected].value + " ";
+		let selectOptions = this.props.values.map((option, i) => {
+			let props = {
+				onClick: this.changeValue.bind(this),
+				data: option,
+				key: i
+			};
+
+			return <SelectOption {...props} />;
 		});
-		var name = this.generateDropdownLabel();
+		let name = this.generateDropdownLabel();
 
 		if (this.props.button) {
 			return (

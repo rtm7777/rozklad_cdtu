@@ -21,8 +21,7 @@ export class DataBase extends React.Component {
 	}
 
 	componentWillMount() {
-		let promises = [];
-		promises.push(promise.post('/get_category_list'));
+		let promises = [promise.post('/get_category_list')];
 		if (this.state.selectedCategory) {
 			promises.push(this.loadFields(this.state.selectedCategory));
 		}
@@ -49,6 +48,10 @@ export class DataBase extends React.Component {
 		});
 	}
 
+	actionClicked(action) {
+		console.log(action);
+	}
+
 	loadFields(category) {
 		return promise.post('/get_category', {category: category}).then(data => {
 			this.setState({
@@ -60,6 +63,10 @@ export class DataBase extends React.Component {
 	}
 
 	render() {
+		let actionMenuProps = {
+			filters: this.state.filters,
+			actionClicked: this.actionClicked.bind(this),
+		};
 		let navProps = {
 			onClick: this.changeCategory.bind(this),
 			loader: this.state.loader,
@@ -73,9 +80,10 @@ export class DataBase extends React.Component {
 			selectedCategory: this.state.selectedCategory,
 			filters: this.state.filters
 		};
+
 		return (
 			<div>
-				<ActionMenu filters={this.state.filters} />
+				<ActionMenu {...actionMenuProps} />
 				<div className="container">
 					<div className="row">
 						<Navigation {...navProps} />

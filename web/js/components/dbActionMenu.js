@@ -14,21 +14,27 @@ export class ActionMenu extends React.Component {
 		};
 	}
 
-	actionClicked(action) {
-		console.log(action);
-	}
-
 	render() {
-		var filters = this.props.filters.map((filter, i) => {
-			return (
-				<Select values={filter.values} key={i} name={filter.name} />
-			);
+		let filters = this.props.filters.map((filter, i) => {
+			let props = {
+				values: filter.values,
+				key: i,
+				name: filter.name
+			};
+
+			return <Select {...props} />;
 		});
-		var actions = this.state.actions.map((action, i) => {
-			return (
-				<Action onClick={this.actionClicked} key={i} data={action} />
-				);
+
+		let actions = this.state.actions.map((action, i) => {
+			let props = {
+				actionClicked: this.props.actionClicked,
+				key: i,
+				data: action
+			};
+
+			return <Action {...props} />;
 		});
+
 		return (
 			<div className="container">
 				<div className="row">

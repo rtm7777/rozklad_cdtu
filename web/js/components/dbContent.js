@@ -8,7 +8,7 @@ export class Content extends React.Component {
 	}
 
 	render() {
-		var headerCols = this.props.columns.map((column, i) => {
+		let headerCols = this.props.columns.map((column, i) => {
 			return (
 				<th key={i}>
 					{column}
@@ -16,17 +16,22 @@ export class Content extends React.Component {
 			);
 		});
 
-		var items = [];
+		let items = [];
 		if (this.props.fields) {
 			items = this.props.fields.map(field => {
-				return (
-					<DBItem key={field.id} data={field} category={this.props.selectedCategory} filters={this.props.filters}/>
-				);
+				let props = {
+					category: this.props.selectedCategory,
+					filters: this.props.filters,
+					data: field,
+					key: field.id
+				};
+
+				return <DBItem {...props} />;
 			});
 		}
 
-		var loaderShow = 'visible';
-		var tableShow = 'invisible';
+		let loaderShow = 'visible';
+		let tableShow = 'invisible';
 		if (!this.props.loader) {
 			loaderShow = 'invisible';
 			tableShow = 'visible';
