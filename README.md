@@ -48,7 +48,7 @@ When my Raspberry Pi is powered on, this project is also available here: [rozkla
     revel run rozklad_cdtu
     ```
 
-P.S. After running you may have errors related with missed packages. just install it with using `go get package_name`
+P.S. After running you may have errors related with missed packages. just install it with using `go get ./...`
 
 ####Additional resources, used in this project:
 
