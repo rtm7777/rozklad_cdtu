@@ -37,12 +37,13 @@
     "bootstrap": "^3.3.2"
   },
   "devDependencies": {
-    "babel"          : "^4.5.1",
-    "react"          : "^0.13.0-rc1",
+    "babel"          : "^4.6.6",
+    "react"          : "^0.13.0-rc2",
+    "flux"           : "^2.0.1",
     "less"           : "^2.4.0",
-    "browserify"     : "^8.1.3",
-    "babelify"       : "^5.0.3",
-    "watchify"       : "^2.3.0",
+    "browserify"     : "^9.0.3",
+    "babelify"       : "^5.0.4",
+    "watchify"       : "^2.4.0",
     "jstify"         : "^0.8.0",
     "underscore"     : "^1.8.1",
     "uglify-js"      : "^2.4.16"
