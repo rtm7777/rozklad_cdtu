@@ -1,9 +1,10 @@
 import dbDispatcher from "../dispatcher/dbDispatcher";
 
 export var dbActions = {
-	create: function() {
+	create(count) {
 		dbDispatcher.dispatch({
-			actionType: 'create'
+			actionType: 'create',
+			count
 		});
 	}
 };
