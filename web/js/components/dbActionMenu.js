@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 import {Select} from "../components/select";
-import {Action} from "../components/action";
+import Action from "../components/action";
 
 export class ActionMenu extends React.Component {
 	constructor(props) {

@@ -1,10 +1,16 @@
 import dbDispatcher from "../dispatcher/dbDispatcher";
 
-export var dbActions = {
+class DBActions {
+	constructor(dispatcher) {
+		this.dispatcher = dispatcher;
+	}
+
 	create(count) {
-		dbDispatcher.dispatch({
+		this.dispatcher.dispatch({
 			actionType: 'create',
 			count
 		});
 	}
-};
+}
+
+export default DBActions;

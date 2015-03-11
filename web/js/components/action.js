@@ -1,9 +1,8 @@
 /** @jsx */
 import React from "react/addons";
-import {dbActions} from "../actions/dbActions";
-import {dbstore} from "../stores/dbStore";
+import DBStore from "../stores/dbStore";
 
-export class Action extends React.Component {
+class Action extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {count: 1};
@@ -12,10 +11,11 @@ export class Action extends React.Component {
 	actionClicked(e) {
 		e.preventDefault();
 		console.log("action clicked");
-		dbActions.create(this.state.count);
+		this.context.actions.create(this.state.count);
 	}
 	componentDidMount() {
-		dbstore.addChangeListener(this.onChange.bind(this));
+		console.log(this);
+		this.context.store.addChangeListener(this.onChange.bind(this));
 	}
 
 	componentWillUnmount() {
@@ -37,5 +37,11 @@ export class Action extends React.Component {
 	onChange() {
     this.setState({count: this.state.count + 1});
   }
-
 }
+
+Action.contextTypes = {
+  actions: React.PropTypes.object.isRequired,
+  store: React.PropTypes.instanceOf(DBStore).isRequired
+};
+
+export default Action;

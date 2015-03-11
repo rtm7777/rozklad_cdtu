@@ -6,7 +6,18 @@ const CHANGE_EVENT = 'change';
 var _items = ['la', 'lala', 'lalala'];
 
 
-class dbStore extends EventEmitter {
+class DBStore extends EventEmitter {
+	constructor(dispatcher) {
+		dispatcher.register((action) => {
+			switch(action.actionType) {
+				case 'create':
+					console.log(action, action.count);
+					this.emitChange();
+					break;
+				}
+		});
+	}
+
 	getAll() {
 		return _items;
 	}
@@ -24,13 +35,4 @@ class dbStore extends EventEmitter {
 	}
 }
 
-export var dbstore = new dbStore();
-
-dbDispatcher.register((action) => {
-	switch(action.actionType) {
-		case 'create':
-			console.log(action, action.count);
-			dbstore.emitChange();
-			break;
-		}
-});
+export default DBStore;

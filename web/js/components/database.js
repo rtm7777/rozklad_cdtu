@@ -2,11 +2,12 @@
 import storage from "../services/localStorage";
 import promise from "../libs/promise";
 import React from "react";
+import DBStore from "../stores/dbStore";
 import {ActionMenu} from "../components/dbActionMenu";
 import {Content} from "../components/dbContent";
 import {Navigation} from "../components/dbNavigation";
 
-export class DataBase extends React.Component {
+class DataBase extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -19,6 +20,13 @@ export class DataBase extends React.Component {
 			error_message: ""
 		};
 	}
+
+	getChildContext() {
+    return {
+      actions: this.props.actions,
+      store: this.props.store
+    };
+  }
 
 	componentWillMount() {
 		let promises = [promise.post('/get_category_list')];
@@ -94,3 +102,15 @@ export class DataBase extends React.Component {
 		);
 	}
 }
+
+DataBase.childContextTypes = {
+  actions: React.PropTypes.object.isRequired,
+  store: React.PropTypes.instanceOf(DBStore).isRequired
+};
+
+DataBase.propTypes = {
+  actions: React.PropTypes.object.isRequired,
+  store: React.PropTypes.instanceOf(DBStore).isRequired
+};
+
+export default DataBase;
