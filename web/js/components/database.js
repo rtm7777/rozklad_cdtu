@@ -3,7 +3,7 @@ import React from "react";
 import DBStore from "../stores/dbStore";
 import {ActionMenu} from "../components/dbActionMenu";
 import {Content} from "../components/dbContent";
-import {Navigation} from "../components/dbNavigation";
+import Navigation from "../components/dbNavigation";
 
 class DataBase extends React.Component {
 	constructor(props) {

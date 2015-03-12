@@ -17,6 +17,13 @@ class DBActions {
 			count
 		});
 	}
+
+	selectCategory(category) {
+		this.dispatcher.dispatch({
+			actionType: 'categorySelected',
+			name: category
+		});
+	}
 }
 
 export default DBActions;

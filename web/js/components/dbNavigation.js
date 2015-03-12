@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import DBStore from "../stores/dbStore";
 
 class NavOption extends React.Component {
 	constructor(props) {
@@ -19,9 +20,13 @@ class NavOption extends React.Component {
 	}
 }
 
-export class Navigation extends React.Component {
+class Navigation extends React.Component {
 	constructor(props) {
 		super(props);
+	}
+
+	selectCategory(el) {
+		this.context.actions.selectCategory(el.props.data.category);
 	}
 
 	render() {
@@ -29,7 +34,7 @@ export class Navigation extends React.Component {
 			let props = {
 				data: field,
 				active: this.props.selectedCategory,
-				onClick: this.props.onClick,
+				onClick: this.selectCategory.bind(this),
 				key: i
 			};
 
@@ -52,3 +57,10 @@ export class Navigation extends React.Component {
 		);
 	}
 }
+
+Navigation.contextTypes = {
+	actions: React.PropTypes.object.isRequired,
+	store: React.PropTypes.instanceOf(DBStore).isRequired
+};
+
+export default Navigation;

@@ -12,14 +12,15 @@ class DBStore extends EventEmitter {
 		dispatcher.register((action) => {
 			switch(action.actionType) {
 				case 'create':
-					console.log(action, action.count);
 					this.emit('change');
 					break;
 				case 'load':
-					console.log(action);
-					console.log("load action emited");
-					this.load();
+					this.load().then(() => {
+						this.emit('load');
+					});
 					break;
+				case 'categorySelected':
+					this.changeCategory(action);
 				}
 		});
 	}
@@ -32,23 +33,25 @@ class DBStore extends EventEmitter {
 		return Promise.all(promises).then((data) => {
 			this.state.categoryList = data[0];
 			this.state.loader = false;
-
-			this.emit('load');
+		}, Promise.resolve()).catch(() => {
+			console.log("loading error");
 		});
 	}
 
-	changeCategory(child) {
-		this.setState({
-			loader: true,
-			filters: [],
-			fields: []
-		});
+	changeCategory(action) {
+		this.state.loader = true;
+		this.state.filters = [];
+		this.state.fields = [];
 
-		let category = child.props.data.category;
+		this.emit('load');
+
+		let category = action.name;
 		storage.saveValue("category", category);
-		this.setState({selectedCategory: category});
+		this.state.selectedCategory = category;
+		this.emit('load');
 		this.loadFields(category).then(data => {
-			this.setState({loader: false});
+			this.state.loader = false;
+			this.emit('load');
 		});
 	}
 
@@ -65,8 +68,8 @@ class DBStore extends EventEmitter {
 	}
 
 	getState() {
-    return this.state;
-  }
+		return this.state;
+	}
 }
 
 DBStore.defaultState = {
