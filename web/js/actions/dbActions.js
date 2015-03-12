@@ -5,6 +5,12 @@ class DBActions {
 		this.dispatcher = dispatcher;
 	}
 
+	load() {
+		this.dispatcher.dispatch({
+			actionType: 'load'
+		});
+	}
+
 	create(count) {
 		this.dispatcher.dispatch({
 			actionType: 'create',

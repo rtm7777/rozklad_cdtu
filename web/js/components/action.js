@@ -10,12 +10,13 @@ class Action extends React.Component {
 
 	actionClicked(e) {
 		e.preventDefault();
-		console.log("action clicked");
 		this.context.actions.create(this.state.count);
 	}
+
 	componentDidMount() {
-		console.log(this);
-		this.context.store.addChangeListener(this.onChange.bind(this));
+		this.context.store.on('change', () => {
+			this.onChange.bind(this);
+		});
 	}
 
 	componentWillUnmount() {
@@ -35,13 +36,13 @@ class Action extends React.Component {
 	}
 
 	onChange() {
-    this.setState({count: this.state.count + 1});
-  }
+		this.setState({count: this.state.count + 1});
+	}
 }
 
 Action.contextTypes = {
-  actions: React.PropTypes.object.isRequired,
-  store: React.PropTypes.instanceOf(DBStore).isRequired
+	actions: React.PropTypes.object.isRequired,
+	store: React.PropTypes.instanceOf(DBStore).isRequired
 };
 
 export default Action;

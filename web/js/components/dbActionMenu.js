@@ -27,7 +27,6 @@ export class ActionMenu extends React.Component {
 
 		let actions = this.state.actions.map((action, i) => {
 			let props = {
-				actionClicked: this.props.actionClicked,
 				key: i,
 				data: action
 			};
