@@ -14,7 +14,7 @@ class SelectOption extends React.Component {
 	}
 }
 
-export class Select extends React.Component {
+class Select extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {selected: this.props.selected || 0};
@@ -73,3 +73,5 @@ export class Select extends React.Component {
 		}
 	}
 }
+
+export default Select;

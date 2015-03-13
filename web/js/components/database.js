@@ -1,80 +1,43 @@
 /** @jsx */
-import storage from "../services/localStorage";
-import promise from "../libs/promise";
 import React from "react";
-import {ActionMenu} from "../components/dbActionMenu";
-import {Content} from "../components/dbContent";
-import {Navigation} from "../components/dbNavigation";
+import DBStore from "../stores/dbStore";
+import ActionMenu from "../components/dbActionMenu";
+import Content from "../components/dbContent";
+import Navigation from "../components/dbNavigation";
 
-export class DataBase extends React.Component {
+class DataBase extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			categoryList: [],
-			selectedCategory: storage.getValue("category") || "",
-			fields: [],
-			columns: [],
-			filters: [],
-			loader: true,
-			error_message: ""
+		this.state = this.props.store.getState();
+	}
+
+	getChildContext() {
+		return {
+			actions: this.props.actions,
+			store: this.props.store
 		};
 	}
 
 	componentWillMount() {
-		let promises = [promise.post('/get_category_list')];
-		if (this.state.selectedCategory) {
-			promises.push(this.loadFields(this.state.selectedCategory));
-		}
-		Promise.all(promises).then(data => {
-			this.setState({
-				categoryList: data[0],
-				loader: false
-			});
-		});
-	}
+		let store = this.props.store;
 
-	changeCategory(child) {
-		this.setState({
-			loader: true,
-			filters: [],
-			fields: []
+		store.on('load', () => {
+			let state = store.getState();
+			this.setState(state);
 		});
 
-		let category = child.props.data.category;
-		storage.saveValue("category", category);
-		this.setState({selectedCategory: category});
-		this.loadFields(category).then(data => {
-			this.setState({loader: false});
-		});
-	}
-
-	actionClicked(action) {
-		console.log(action);
-	}
-
-	loadFields(category) {
-		return promise.post('/get_category', {category: category}).then(data => {
-			this.setState({
-				fields: data.items,
-				columns: data.columns,
-				filters: data.filters || []
-			});
-		});
+		this.props.actions.load();
 	}
 
 	render() {
 		let actionMenuProps = {
-			filters: this.state.filters,
-			actionClicked: this.actionClicked.bind(this),
+			filters: this.state.filters
 		};
 		let navProps = {
-			onClick: this.changeCategory.bind(this),
-			loader: this.state.loader,
 			navList: this.state.categoryList,
 			selectedCategory: this.state.selectedCategory
 		};
 		let contentProps = {
-			loader: this.state.loader,
 			fields: this.state.fields,
 			columns: this.state.columns,
 			selectedCategory: this.state.selectedCategory,
@@ -94,3 +57,15 @@ export class DataBase extends React.Component {
 		);
 	}
 }
+
+DataBase.childContextTypes = {
+	actions: React.PropTypes.object.isRequired,
+	store: React.PropTypes.instanceOf(DBStore).isRequired
+};
+
+DataBase.propTypes = {
+	actions: React.PropTypes.object.isRequired,
+	store: React.PropTypes.instanceOf(DBStore).isRequired
+};
+
+export default DataBase;

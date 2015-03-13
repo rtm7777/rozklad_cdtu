@@ -1,14 +1,18 @@
 /** @jsx */
 import React from "react/addons";
+import DBStore from "../stores/dbStore";
 
-export class Action extends React.Component {
+class Action extends React.Component {
 	constructor(props) {
 		super(props);
 	}
 
 	actionClicked(e) {
 		e.preventDefault();
-		this.props.actionClicked(this);
+	}
+
+	componentDidMount() {
+
 	}
 
 	render() {
@@ -18,8 +22,15 @@ export class Action extends React.Component {
 		});
 		return (
 			<li className={classes}>
-				<a onClick={this.actionClicked.bind(this)} href="#"><span className={"glyphicon glyphicon-" + this.props.data.icon}></span> {this.props.data.name}</a>
+				<a onClick={this.actionClicked.bind(this)} href="#"><span className={`glyphicon glyphicon-${this.props.data.icon}`}></span> {this.props.data.name}</a>
 			</li>
 		);
 	}
 }
+
+Action.contextTypes = {
+	actions: React.PropTypes.object.isRequired,
+	store: React.PropTypes.instanceOf(DBStore).isRequired
+};
+
+export default Action;

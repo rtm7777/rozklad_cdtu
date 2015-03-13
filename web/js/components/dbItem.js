@@ -1,6 +1,6 @@
 /** @jsx */
 import React from "react";
-import {Select} from "../components/select";
+import Select from "../components/select";
 
 const filters = {
 	audiences(data) {
@@ -84,7 +84,7 @@ class ItemCell extends React.Component {
 	}
 }
 
-export class DBItem extends React.Component {
+class DBItem extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -112,3 +112,5 @@ export class DBItem extends React.Component {
 		);
 	}
 }
+
+export default DBItem;

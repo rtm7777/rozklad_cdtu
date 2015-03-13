@@ -2,8 +2,8 @@ import config from "../config/config";
 import groupTemplate from '../templates/group.html';
 import taskTemplate from '../templates/task.html';
 
-var $contentDiv = $("#schedule_container");
-var $taskDiv = $("#tasks_container");
+let $contentDiv = $("#schedule_container");
+let $taskDiv = $("#tasks_container");
 
 export default {
 	addGroup(group) {
@@ -25,12 +25,12 @@ export default {
 	},
 
 	setPair(pair) {
-		$("#" + pair.id).html("<div class='admin-sub'>" + pair.subject +"</div><hr class='admin-sub-separator'><div class='admin-sub'></div>");
+		$(`#${pair.id}`).html(`<div class='admin-sub'>${pair.subject}</div><hr class='admin-sub-separator'><div class='admin-sub'></div>`);
 	},
 
 	setDropdownValue($dropdown, $element) {
 		$dropdown
-			.html($element.text() + ' <span class="caret"></span>')
+			.html(`${$element.text()} <span class="caret"></span>`)
 			.attr("data-filter-id", $element.attr("data-filter-id"));
 	},
 
