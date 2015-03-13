@@ -5,22 +5,14 @@ import DBStore from "../stores/dbStore";
 class Action extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {count: 1};
 	}
 
 	actionClicked(e) {
 		e.preventDefault();
-		this.context.actions.create(this.state.count);
 	}
 
 	componentDidMount() {
-		this.context.store.on('change', () => {
-			this.onChange.bind(this);
-		});
-	}
 
-	componentWillUnmount() {
-		dbstore.removeChangeListener(this.onChange.bind(this));
 	}
 
 	render() {
@@ -30,13 +22,9 @@ class Action extends React.Component {
 		});
 		return (
 			<li className={classes}>
-				<a onClick={this.actionClicked.bind(this)} href="#"><span className={"glyphicon glyphicon-" + this.props.data.icon}></span> {this.props.data.name}</a>
+				<a onClick={this.actionClicked.bind(this)} href="#"><span className={`glyphicon glyphicon-${this.props.data.icon}`}></span> {this.props.data.name}</a>
 			</li>
 		);
-	}
-
-	onChange() {
-		this.setState({count: this.state.count + 1});
 	}
 }
 

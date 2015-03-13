@@ -1,7 +1,7 @@
 function generateUrlData(data) {
-	var urlEncodedDataPairs = [];
-	for (var name in data) {
-		urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
+	let urlEncodedDataPairs = [];
+	for (let name in data) {
+		urlEncodedDataPairs.push(`${encodeURIComponent(name)}=${encodeURIComponent(data[name])}`);
 	}
 
 	return urlEncodedDataPairs.join('&').replace(/%20/g, '+');
@@ -10,7 +10,7 @@ function generateUrlData(data) {
 export default {
 	get(url) {
 		return new Promise((resolve, reject) => {
-			var req = new XMLHttpRequest();
+			let req = new XMLHttpRequest();
 			req.open('GET', url);
 
 			req.onload = () => {
@@ -32,7 +32,7 @@ export default {
 
 	post(url, data) {
 		return new Promise((resolve, reject) => {
-			var req = new XMLHttpRequest();
+			let req = new XMLHttpRequest();
 
 			req.open('POST', url);
 			req.onload = () => {

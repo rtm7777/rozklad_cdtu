@@ -4,8 +4,8 @@ import "./libs/socketEvents";
 import "./controllers/initController";
 import DBApp from  "./controllers/initDBController";
 
-var state;
-var app;
+let state;
+let app;
 
 if (document.getElementById('page').dataset.id == "database") {
 	app = new DBApp(state);

@@ -1,11 +1,11 @@
-export var socket = new Promise((resolve, reject) => {
-	var req = new XMLHttpRequest();
+export let socket = new Promise((resolve, reject) => {
+	let req = new XMLHttpRequest();
 	req.open('GET', "/get_ws_token");
 
 	req.onload = () => {
 		if (req.status >= 200 && req.status < 300 || req.status === 304) {
-			var token = req.getResponseHeader ("Web-Socket-Token");
-			resolve(new WebSocket('ws://'+window.location.host+'/ws/socket?token=' + token));
+			let token = req.getResponseHeader("Web-Socket-Token");
+			resolve(new WebSocket(`ws://${window.location.host}/ws/socket?token=${token}`));
 		}
 		else {
 			reject(Error(req.statusText));

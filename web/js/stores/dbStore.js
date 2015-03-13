@@ -8,15 +8,14 @@ const CHANGE_EVENT = 'change';
 class DBStore extends EventEmitter {
 	constructor(dispatcher) {
 		this.state = DBStore.defaultState;
+		this.loader = true;
 
 		dispatcher.register((action) => {
 			switch(action.actionType) {
-				case 'create':
-					this.emit('change');
-					break;
 				case 'load':
 					this.load().then(() => {
 						this.emit('load');
+						this.emit('loaderChange');
 					});
 					break;
 				case 'categorySelected':
@@ -32,27 +31,33 @@ class DBStore extends EventEmitter {
 		}
 		return Promise.all(promises).then((data) => {
 			this.state.categoryList = data[0];
-			this.state.loader = false;
-		}, Promise.resolve()).catch(() => {
+			this.loader = false;
+		}).catch(() => {
 			console.log("loading error");
 		});
 	}
 
 	changeCategory(action) {
-		this.state.loader = true;
+		this.loader = true;
+		this.emit('loaderChange');
+
 		this.state.filters = [];
 		this.state.fields = [];
-
-		this.emit('load');
 
 		let category = action.name;
 		storage.saveValue("category", category);
 		this.state.selectedCategory = category;
 		this.emit('load');
 		this.loadFields(category).then(data => {
-			this.state.loader = false;
 			this.emit('load');
+
+			this.loader = false;
+			this.emit('loaderChange');
 		});
+	}
+
+	removeChangeListener(callback) {
+		this.removeListener(CHANGE_EVENT, callback);
 	}
 
 	loadFields(category) {
@@ -63,12 +68,12 @@ class DBStore extends EventEmitter {
 		});
 	}
 
-	removeChangeListener(callback) {
-		this.removeListener(CHANGE_EVENT, callback);
-	}
-
 	getState() {
 		return this.state;
+	}
+
+	getLoaderState() {
+		return this.loader;
 	}
 }
 
@@ -78,7 +83,6 @@ DBStore.defaultState = {
 	fields: [],
 	columns: [],
 	filters: [],
-	loader: true,
 	error_message: ""
 };
 

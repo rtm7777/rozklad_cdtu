@@ -1,9 +1,9 @@
 /** @jsx */
 import React from "react";
-import {Select} from "../components/select";
+import Select from "../components/select";
 import Action from "../components/action";
 
-export class ActionMenu extends React.Component {
+class ActionMenu extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -52,3 +52,5 @@ export class ActionMenu extends React.Component {
 		);
 	}
 }
+
+export default ActionMenu;

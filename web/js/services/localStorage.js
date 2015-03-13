@@ -1,4 +1,4 @@
-var storage = localStorage;
+let storage = localStorage;
 
 export default {
 	saveValue(name, value) {

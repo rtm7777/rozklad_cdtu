@@ -11,13 +11,6 @@ class DBActions {
 		});
 	}
 
-	create(count) {
-		this.dispatcher.dispatch({
-			actionType: 'create',
-			count
-		});
-	}
-
 	selectCategory(category) {
 		this.dispatcher.dispatch({
 			actionType: 'categorySelected',
