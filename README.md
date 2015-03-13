@@ -5,7 +5,7 @@ When my Raspberry Pi is powered on, this project is also available here: [rozkla
 
 [![Build Status](https://travis-ci.org/rtm7777/rozklad_cdtu.svg?branch=master)](https://travis-ci.org/rtm7777/rozklad_cdtu)
 
-# How to run this project:
+# How to run backend part of project:
 1. Install [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Mercurial](http://mercurial.selenic.com/wiki/Download).
 
 2. Install Google Go (_ver. 1.3+_), I use [GoVM](https://coderwall.com/p/21svdq/how-do-you-manage-go-s-version-let-s-use-govm).
@@ -50,13 +50,32 @@ When my Raspberry Pi is powered on, this project is also available here: [rozkla
 
 P.S. After running you may have errors related with missed packages. just install it with using `go get ./...`
 
-####Additional resources, used in this project:
+# How to run frontend part of project:
+1. Install [Node](https://nodejs.org/) and [npm](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-an-ubuntu-14-04-server).
 
- - [Bootstrap][2]
- - [jQuery][3]
- - [GORM][5]
+2. Go to project folder and install dependencies.
+
+    ```bash
+    npm install
+    ```
+
+3. Build all frontend.
+
+    ```bash
+    npm run build_all
+    ```
+
+4. If need recompile only js, run:
+
+    ```bash
+    npm run build
+    npm run build_min
+    ```
+
+5. Run js watcher by next command:
+
+    ```bash
+    npm run watch
+    ```
 
   [1]: http://revel.github.io/index.html
-  [2]: https://github.com/twbs/bootstrap
-  [3]: https://github.com/jquery/jquery
-  [5]: https://github.com/jinzhu/gorm
