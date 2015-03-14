@@ -24,13 +24,26 @@
     "copy:jquery"   : "rsync -av node_modules/jquery/dist/jquery.min.js public",
     "copy:bs"       : "rsync -av node_modules/bootstrap/dist/js/bootstrap.min.js public",
     "copy"          : "npm run copy:img && npm run copy:bs-fonts && npm run copy:bs-css && npm run copy:jquery && npm run copy:bs",
-    "build_all"     : "npm run build && npm run build_min && npm run copy && npm run less"
+    "build_all"     : "npm run build && npm run build_min && npm run copy && npm run less",
+    "test"          : "jest"
   },
 
   "browserify": {
     "transform": [
       "babelify",
       "jstify"
+    ]
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ],
+    "testFileExtensions": ["js"],
+    "moduleFileExtensions": ["js"],
+    "testDirectoryName": "tests",
+    "testPathDirs": [
+      "<rootDir>/web/js/"
     ]
   },
   "dependencies": {
@@ -47,6 +60,8 @@
     "watchify"       : "^2.4.0",
     "jstify"         : "^0.8.0",
     "underscore"     : "^1.8.1",
-    "uglify-js"      : "^2.4.16"
+    "uglify-js"      : "^2.4.16",
+    "jest-cli"       : "^0.4.0",
+    "babel-jest"     : "^4.0.0"
   }
 }

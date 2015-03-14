@@ -5,6 +5,7 @@ import DBStore from "../stores/dbStore";
 class NavOption extends React.Component {
 	constructor(props) {
 		super(props);
+		this.changeCategory = this.changeCategory.bind(this);
 	}
 
 	changeCategory(e) {
@@ -15,7 +16,7 @@ class NavOption extends React.Component {
 	render() {
 		let active = this.props.data.category == this.props.active ? "active" : "";
 		return (
-			<a onClick={this.changeCategory.bind(this)} href="#" data-category={this.props.data.category} className={`list-group-item ${active}`}>{this.props.data.name}</a>
+			<a onClick={this.changeCategory} href="#" data-category={this.props.data.category} className={`list-group-item ${active}`}>{this.props.data.name}</a>
 		);
 	}
 }
@@ -24,6 +25,7 @@ class Navigation extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {loader: true};
+		this.selectCategory = this.selectCategory.bind(this);
 	}
 
 	componentDidMount() {
@@ -42,7 +44,7 @@ class Navigation extends React.Component {
 			let props = {
 				data: field,
 				active: this.props.selectedCategory,
-				onClick: this.selectCategory.bind(this),
+				onClick: this.selectCategory,
 				key: i
 			};
 

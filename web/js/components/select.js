@@ -2,6 +2,11 @@
 import React from "react";
 
 class SelectOption extends React.Component {
+	constructor(props) {
+		super(props);
+		this.changeValue= this.changeValue.bind(this);
+	}
+
 	changeValue(e) {
 		e.preventDefault();
 		this.props.onClick(this);
@@ -9,7 +14,7 @@ class SelectOption extends React.Component {
 
 	render() {
 		return (
-			<li onClick={this.changeValue.bind(this)}><a tabIndex="-1" href="#">{this.props.data.value}</a></li>
+			<li onClick={this.changeValue}><a tabIndex="-1" href="#">{this.props.data.value}</a></li>
 		);
 	}
 }
@@ -18,6 +23,7 @@ class Select extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {selected: this.props.selected || 0};
+		this.changeValue = this.changeValue.bind(this);
 	}
 
 	changeValue(child) {
@@ -36,7 +42,7 @@ class Select extends React.Component {
 		let selectboxName = this.props.values[this.state.selected].value + " ";
 		let selectOptions = this.props.values.map((option, i) => {
 			let props = {
-				onClick: this.changeValue.bind(this),
+				onClick: this.changeValue,
 				data: option,
 				key: i
 			};

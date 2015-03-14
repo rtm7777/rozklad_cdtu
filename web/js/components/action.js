@@ -5,6 +5,7 @@ import DBStore from "../stores/dbStore";
 class Action extends React.Component {
 	constructor(props) {
 		super(props);
+		this.actionClicked = this.actionClicked.bind(this);
 	}
 
 	actionClicked(e) {
@@ -22,7 +23,7 @@ class Action extends React.Component {
 		});
 		return (
 			<li className={classes}>
-				<a onClick={this.actionClicked.bind(this)} href="#"><span className={`glyphicon glyphicon-${this.props.data.icon}`}></span> {this.props.data.name}</a>
+				<a onClick={this.actionClicked} href="#"><span className={`glyphicon glyphicon-${this.props.data.icon}`}></span> {this.props.data.name}</a>
 			</li>
 		);
 	}

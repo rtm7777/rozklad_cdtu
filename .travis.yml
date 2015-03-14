@@ -31,6 +31,8 @@ before_script:
 - npm run less
 script:
 - revel test rozklad_cdtu
+- cd $HOME/gopath/src/rozklad_cdtu
+- npm run test
 # deploy:
 #   provider: heroku
 #   api_key:
