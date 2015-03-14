@@ -1,19 +1,12 @@
 /** @jsx */
 import React from "react";
+import ComponentWithloader from "./componentWithLoader";
 import DBItem from "../components/dbItem";
 import DBStore from "../stores/dbStore";
 
-class Content extends React.Component {
+class Content extends ComponentWithloader {
 	constructor(props) {
 		super(props);
-		this.state = {loader: true};
-	}
-
-	componentDidMount() {
-		let store = this.context.store;
-		store.on('loaderChange', () => {
-			this.setState({loader: store.getLoaderState()});
-		});
 	}
 
 	render() {

@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import ComponentWithloader from "./componentWithLoader";
 import DBStore from "../stores/dbStore";
 
 class NavOption extends React.Component {
@@ -21,18 +22,10 @@ class NavOption extends React.Component {
 	}
 }
 
-class Navigation extends React.Component {
+class Navigation extends ComponentWithloader {
 	constructor(props) {
 		super(props);
-		this.state = {loader: true};
 		this.selectCategory = this.selectCategory.bind(this);
-	}
-
-	componentDidMount() {
-		let store = this.context.store;
-		store.on('loaderChange', () => {
-			this.setState({loader: store.getLoaderState()});
-		});
 	}
 
 	selectCategory(el) {
