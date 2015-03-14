@@ -87,10 +87,20 @@ class ItemCell extends React.Component {
 class DBItem extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			selected: false
+		};
+		this.toggleItem = this.toggleItem.bind(this);
 	}
 
-	changeValue() {
-		this.props.onClick(this);
+	toggleItem(e) {
+		if (e.ctrlKey) {
+			if (this.state.selected) {
+				this.setState({selected: false});
+			} else {
+				this.setState({selected: true});
+			}
+		}
 	}
 
 	render() {
@@ -105,8 +115,11 @@ class DBItem extends React.Component {
 				<ItemCell {...props} />
 			);
 		});
+
+		let itemClass = this.state.selected ? "info" : "";
+
 		return (
-			<tr>
+			<tr onClick={this.toggleItem} className={itemClass}>
 				{itemCells}
 			</tr>
 		);
