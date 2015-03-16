@@ -5,8 +5,8 @@
 module:testrunner
 
 GET     /                                       Application.Main
-GET     /gmaps                                  Application.Gmaps
 GET     /about                                  Application.About
+GET     /gmaps                                  Application.Gmaps
 GET     /group                                  Application.Group
 GET     /group/:groupName                       Application.GroupCurrent
 GET     /teacher                                Application.Teacher
@@ -19,15 +19,15 @@ GET     /logout                                 Application.Logout
 
 GET     /admin                                  Admin.Main
 GET     /database                               Admin.DataBase
-GET     /tasks                                  Admin.Tasks
 GET     /get_ws_token                           Admin.GetWSToken
+GET     /tasks                                  Admin.Tasks
 
 # API
+POST    /get_category                           Api.GetCategoryItems
+POST    /get_category_list                      Api.GetCategoryList
 POST    /get_faculty_groups                     Api.GetFacultyGroups
 POST    /get_faculty_schedule                   Api.GetFacultySchedule
 POST    /get_faculty_tasks                      Api.GetFacultyTasks
-POST    /get_category_list                      Api.GetCategoryList
-POST    /get_category                           Api.GetCategoryItems
 
 Application
 WS      /ws/socket                              Admin.SocketConn

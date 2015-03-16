@@ -1,38 +1,38 @@
 page_title.admin_main =Адміністрування розкладу
 page_title.db         =База Даних
-page_title.tasks      =Завдання
 page_title.login      =Вхід
+page_title.tasks      =Завдання
 
-action_menu.faculty =Факультет
-action_menu.s_year  =Курс
+action_menu.add     =Додати
 action_menu.delete  =Видалити
 action_menu.edit    =Редагувати
-action_menu.add     =Додати
+action_menu.faculty =Факультет
+action_menu.s_year  =Курс
 
-left_sidebar.department_tasks =Завдання кафедр
 left_sidebar.category         =Категорія
+left_sidebar.department_tasks =Завдання кафедр
 
 login.header   =Вхід на сайт
-login.password =Пароль
 login.login    =Ввійти
+login.password =Пароль
 
-faculties   =Факультети
+audiences   =Аудиторії
 departments =Кафедри
+faculties   =Факультети
 groups      =Групи
 housings    =Корпуси
-audiences   =Аудиторії
-teachers    =Викладачі
 subjects    =Предмети
+teachers    =Викладачі
 
-faculties_filter   =Факультет
 departments_filter =Кафедра
+faculties_filter   =Факультет
 housings_filter    =Корпус
 year_filter        =Курс
 
-faculties_columns   =Повне і'мя,Скорочене і'мя
+audiences_columns   =Номер,Корпус,Тип,Кількість місць,Примітка
 departments_columns =Факультет,Назва
+faculties_columns   =Повне і'мя,Скорочене і'мя
 groups_columns      =Факультет,I'мя,Кількість студентів,Курс
 housings_columns    =Номер
-audiences_columns   =Номер,Корпус,Тип,Кількість місць,Примітка
-teachers_columns    =Факультет,Кафедра,П.І.Б,Звання
 subjects_columns    =Назва
+teachers_columns    =Факультет,Кафедра,П.І.Б,Звання

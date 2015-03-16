@@ -11,13 +11,13 @@ type Api struct {
 }
 
 var DBFilters = map[string][]string{
-	"faculties":   []string{},
 	"audiences":   []string{"housings"},
-	"teachers":    []string{"faculties", "departments"},
-	"subjects":    []string{},
+	"departments": []string{"faculties"},
+	"faculties":   []string{},
 	"groups":      []string{"faculties", "year"},
 	"housings":    []string{},
-	"departments": []string{"faculties"},
+	"subjects":    []string{},
+	"teachers":    []string{"faculties", "departments"},
 }
 
 func (c Api) GetFaculties() revel.Result {
