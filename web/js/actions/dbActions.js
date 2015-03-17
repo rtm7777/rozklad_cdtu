@@ -17,6 +17,14 @@ class DBActions {
 			name: category
 		});
 	}
+
+	itemSelected(item, state) {
+		this.dispatcher.dispatch({
+			actionType: 'itemSelected',
+			id: item,
+			selected: state
+		});
+	}
 }
 
 export default DBActions;

@@ -29,6 +29,10 @@ class DataBase extends React.Component {
 		this.props.actions.load();
 	}
 
+	componentWillUnmount() {
+		this.props.store.removeListener('load');
+	}
+
 	render() {
 		let actionMenuProps = {
 			filters: this.state.filters

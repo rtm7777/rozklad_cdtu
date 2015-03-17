@@ -97,8 +97,10 @@ class DBItem extends React.Component {
 		if (e.ctrlKey) {
 			if (this.state.selected) {
 				this.setState({selected: false});
+				this.context.actions.itemSelected(this.props.data.id, false);
 			} else {
 				this.setState({selected: true});
+				this.context.actions.itemSelected(this.props.data.id, true);
 			}
 		}
 	}
@@ -125,5 +127,9 @@ class DBItem extends React.Component {
 		);
 	}
 }
+
+DBItem.contextTypes = {
+	actions: React.PropTypes.object.isRequired
+};
 
 export default DBItem;

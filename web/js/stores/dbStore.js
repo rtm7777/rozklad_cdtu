@@ -3,12 +3,11 @@ import promise from "../libs/promise";
 import dbDispatcher from "../dispatcher/dbDispatcher";
 import {EventEmitter} from "events";
 
-const CHANGE_EVENT = 'change';
-
 class DBStore extends EventEmitter {
 	constructor(dispatcher) {
 		this.state = DBStore.defaultState;
 		this.loader = true;
+		this.selectedItems = [];
 
 		dispatcher.register((action) => {
 			switch(action.actionType) {
@@ -20,6 +19,10 @@ class DBStore extends EventEmitter {
 					break;
 				case 'categorySelected':
 					this.changeCategory(action);
+					break;
+				case 'itemSelected':
+					this.itemSelected(action);
+					break;
 				}
 		});
 	}
@@ -41,6 +44,9 @@ class DBStore extends EventEmitter {
 		this.loader = true;
 		this.emit('loaderChange');
 
+		this.selectedItems = [];
+		this.actionMenuChange();
+
 		this.state.filters = [];
 		this.state.fields = [];
 
@@ -56,10 +62,6 @@ class DBStore extends EventEmitter {
 		});
 	}
 
-	removeChangeListener(callback) {
-		this.removeListener(CHANGE_EVENT, callback);
-	}
-
 	loadFields(category) {
 		return promise.post('/get_category', {category: category}).then(data => {
 			this.state.fields = data.items;
@@ -68,12 +70,33 @@ class DBStore extends EventEmitter {
 		});
 	}
 
+	itemSelected(item) {
+		let selectedItems = this.selectedItems;
+		if (item.selected) {
+			selectedItems.push(item.id);
+		} else {
+			let i;
+			if ((i = selectedItems.indexOf(item.id)) > -1) {
+				selectedItems.splice(i, 1);
+			}
+		}
+		this.actionMenuChange();
+	}
+
+	actionMenuChange() {
+		this.emit('itemSelected');
+	}
+
 	getState() {
 		return this.state;
 	}
 
 	getLoaderState() {
 		return this.loader;
+	}
+
+	getSelectedItems() {
+		return this.selectedItems;
 	}
 }
 

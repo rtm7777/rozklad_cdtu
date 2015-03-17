@@ -2,16 +2,42 @@
 import React from "react";
 import Select from "../components/select";
 import Action from "../components/action";
+import DBStore from "../stores/dbStore";
 
 class ActionMenu extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			actions: [
-				{name: "Delete", hidden: false, icon: "remove"},
-				{name: "Add", hidden: false, icon: "plus"},
-			]
+		this.actionButtons = {
+			delete: {
+				name: "Delete",
+				hidden: true,
+				icon: "remove"
+			},
+			add: {
+				name: "Add",
+				hidden: false,
+				icon: "plus"
+			}
 		};
+		this.state = {
+			actions: this.actionButtons
+		};
+	}
+
+	componentDidMount() {
+		let store = this.context.store;
+		store.on('itemSelected', () => {
+			if (store.getSelectedItems().length) {
+				this.actionButtons.delete.hidden = false;
+			} else {
+				this.actionButtons.delete.hidden = true;
+			}
+			this.setState({actions: this.actionButtons});
+		});
+	}
+
+	componentWillUnmount() {
+		this.context.store.removeListener('itemSelected');
 	}
 
 	render() {
@@ -25,14 +51,17 @@ class ActionMenu extends React.Component {
 			return <Select {...props} />;
 		});
 
-		let actions = this.state.actions.map((action, i) => {
+		let actions = [];
+		let i = 0;
+		for (let key of Object.keys(this.state.actions)) {
 			let props = {
 				key: i,
-				data: action
+				data: this.state.actions[key]
 			};
 
-			return <Action {...props} />;
-		});
+			actions.push(<Action {...props} />);
+			i++;
+		}
 
 		return (
 			<div className="container">
@@ -52,5 +81,9 @@ class ActionMenu extends React.Component {
 		);
 	}
 }
+
+ActionMenu.contextTypes = {
+	store: React.PropTypes.instanceOf(DBStore).isRequired
+};
 
 export default ActionMenu;
