@@ -23,6 +23,12 @@ class DBStore extends EventEmitter {
 				case 'itemSelected':
 					this.itemSelected(action);
 					break;
+				case 'deleteAction':
+					this.deleteItems();
+					break;
+				case 'addAction':
+					this.addItem();
+					break;
 				}
 		});
 	}
@@ -81,6 +87,14 @@ class DBStore extends EventEmitter {
 			}
 		}
 		this.actionMenuChange();
+	}
+
+	deleteItems() {
+		console.log("items deleted");
+	}
+
+	addItem() {
+		console.log("adding new item");
 	}
 
 	actionMenuChange() {

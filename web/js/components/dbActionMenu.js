@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 import Select from "../components/select";
-import Action from "../components/action";
+import ActionMenuButton from "../components/actionMenuButton";
 import DBStore from "../stores/dbStore";
 
 class ActionMenu extends React.Component {
@@ -9,11 +9,13 @@ class ActionMenu extends React.Component {
 		super(props);
 		this.actionButtons = {
 			delete: {
+				action: 'delete',
 				name: "Delete",
 				hidden: true,
 				icon: "remove"
 			},
 			add: {
+				action: 'add',
 				name: "Add",
 				hidden: false,
 				icon: "plus"
@@ -22,6 +24,16 @@ class ActionMenu extends React.Component {
 		this.state = {
 			actions: this.actionButtons
 		};
+		this.actionButtonsActions = this.actionButtonsActions.bind(this);
+	}
+
+	actionButtonsActions(child) {
+		let actions = {
+			delete: () => {this.context.actions.deleteAction();},
+			add: () => {this.context.actions.addAction();}
+		};
+
+		return actions[child.props.data.action]();
 	}
 
 	componentDidMount() {
@@ -55,11 +67,12 @@ class ActionMenu extends React.Component {
 		let i = 0;
 		for (let key of Object.keys(this.state.actions)) {
 			let props = {
+				onClick: this.actionButtonsActions,
 				key: i,
 				data: this.state.actions[key]
 			};
 
-			actions.push(<Action {...props} />);
+			actions.push(<ActionMenuButton {...props} />);
 			i++;
 		}
 
@@ -83,6 +96,7 @@ class ActionMenu extends React.Component {
 }
 
 ActionMenu.contextTypes = {
+	actions: React.PropTypes.object.isRequired,
 	store: React.PropTypes.instanceOf(DBStore).isRequired
 };
 

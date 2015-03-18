@@ -25,6 +25,18 @@ class DBActions {
 			selected: state
 		});
 	}
+
+	deleteAction() {
+		this.dispatcher.dispatch({
+			actionType: 'deleteAction'
+		});
+	}
+
+	addAction() {
+		this.dispatcher.dispatch({
+			actionType: 'addAction'
+		});
+	}
 }
 
 export default DBActions;
