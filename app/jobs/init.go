@@ -1,8 +1,8 @@
 package jobs
 
 import (
+	_ "github.com/revel/modules/jobs/app/jobs"
 	_ "github.com/revel/revel"
-	_ "github.com/revel/revel/modules/jobs/app/jobs"
 )
 
 func init() {

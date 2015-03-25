@@ -3,11 +3,11 @@ package tests
 import (
 	"bitbucket.org/tebeka/selenium"
 	_ "fmt"
-	"github.com/revel/revel"
+	"github.com/revel/revel/testing"
 )
 
 type InterfaceTest struct {
-	revel.TestSuite
+	testing.TestSuite
 }
 
 func (t *InterfaceTest) TestMain() {

@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"code.google.com/p/go.crypto/bcrypt"
-	"code.google.com/p/go.net/websocket"
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
+	"golang.org/x/crypto/bcrypt"
+	"golang.org/x/net/websocket"
 	"rozklad_cdtu/app/libs/database"
 	"rozklad_cdtu/app/roomevents"
 	"time"
