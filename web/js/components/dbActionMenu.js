@@ -29,8 +29,8 @@ class ActionMenu extends React.Component {
 
 	actionButtonsActions(child) {
 		let actions = {
-			delete: () => {this.context.actions.deleteAction();},
-			add: () => {this.context.actions.addAction();}
+			delete: () => this.context.actions.deleteAction(),
+			add: () => this.context.actions.addAction()
 		};
 
 		return actions[child.props.data.action]();

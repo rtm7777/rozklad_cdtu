@@ -1,67 +1,32 @@
 /** @jsx */
 import React from "react";
 import Select from "../components/select";
-
-const filters = {
-	audiences(data) {
-		return [
-			{data: data.number},
-			{data: data.housingId, type: 'selectbox', order: 0},
-			{data: data.type},
-			{data: data.sets},
-			{data: data.note}
-		];
-	},
-	departments(data) {
-		return [
-			{data: data.facultyId, type: 'selectbox', order: 0},
-			{data: data.name}
-		];
-	},
-	faculties(data) {
-		return [
-			{data: data.fullName},
-			{data: data.shortName}
-		];
-	},
-	groups(data) {
-		return [
-			{data: data.facultyId, type: 'selectbox', order: 0},
-			{data: data.name},
-			{data: data.studentsCount},
-			{data: data.year, type: 'selectbox', order: 1}
-		];
-	},
-	housings(data) {
-		return [
-			{data: data.number}
-		];
-	},
-	subjects(data) {
-		return [
-			{data: data.subject}
-		];
-	},
-	teachers(data) {
-		return [
-			{data: data.facultyId, type: 'selectbox', order: 0},
-			{data: data.departmentId, type: 'selectbox', order: 1},
-			{data: [data.firstName, data.lastName, data.middleName], type: 'name'},
-			{data: data.rank}
-		];
-	}
-};
+import itemCellsSchema from "../schemas/itemCellsSchema";
 
 class ItemCell extends React.Component {
 	constructor(props) {
 		super(props);
+		this.onInputChanged = this.onInputChanged.bind(this);
+		this.onSelectChanged = this.onSelectChanged.bind(this);
+	}
+
+	onInputChanged(event) {
+		let currentValue = event.target.value;
+		let changed = currentValue != event.target.defaultValue;
+		this.props.onChange(this);
+	}
+
+	onSelectChanged(event) {
+		let currentValue = event.props.data.id;
+		let changed = currentValue != this.props.data.data;
+		this.props.onChange(this);
 	}
 
 	render() {
 		if (this.props.data.type == 'selectbox') {
 			return (
 				<td className="no-padding">
-					<Select values={this.props.filters[this.props.data.order].values} selected={this.props.data.data} button={true} />
+					<Select onChange={this.onSelectChanged} values={this.props.filters[this.props.data.order].values} selected={this.props.data.data} button={true} />
 				</td>
 			);
 		} else if (this.props.data.type == 'name') {
@@ -77,7 +42,7 @@ class ItemCell extends React.Component {
 		} else {
 			return (
 				<td>
-					<input type="text" defaultValue={this.props.data.data} />
+					<input onChange={this.onInputChanged} type="text" defaultValue={this.props.data.data} />
 				</td>
 			);
 		}
@@ -91,6 +56,7 @@ class DBItem extends React.Component {
 			selected: false
 		};
 		this.toggleItem = this.toggleItem.bind(this);
+		this.itemChanged = this.itemChanged.bind(this);
 	}
 
 	toggleItem(e) {
@@ -105,10 +71,20 @@ class DBItem extends React.Component {
 		}
 	}
 
+	itemChanged(item) {
+		console.log(this);
+		console.log(this.props.data);
+	}
+
 	render() {
-		let itemCells = filters[this.props.category](this.props.data).map((cell, i) => {
+		let itemCells = itemCellsSchema[this.props.category](this.props.data).map((cell, i) => {
+			console.log(cell);
+			if (cell.data === undefined) {
+				cell.data = "";
+			}
 			let props = {
 				filters: this.props.filters,
+				onChange: this.itemChanged,
 				data: cell,
 				key: i
 			};

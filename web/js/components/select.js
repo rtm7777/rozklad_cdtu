@@ -28,6 +28,9 @@ class Select extends React.Component {
 
 	changeValue(child) {
 		this.setState({selected: child.props.data.id});
+		if (this.props.onChange) {
+			this.props.onChange(child);
+		}
 	}
 
 	generateDropdownLabel() {

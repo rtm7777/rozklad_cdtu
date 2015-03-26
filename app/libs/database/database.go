@@ -1,6 +1,7 @@
 package database
 
 import (
+	"errors"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"rozklad_cdtu/app/models"
@@ -238,4 +239,12 @@ func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 	}
 
 	return items
+}
+
+func UpdateItem(db *gorm.DB, data string) (string, error) {
+	if data != "" {
+		return "lalal", nil
+	} else {
+		return "ldskghsl", errors.New("sldgjlsdkghslkhg")
+	}
 }

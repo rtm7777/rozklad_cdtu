@@ -30,7 +30,7 @@ export default {
 		});
 	},
 
-	post(url, data) {
+	post(url, data, type = '') {
 		return new Promise((resolve, reject) => {
 			let req = new XMLHttpRequest();
 
@@ -52,8 +52,13 @@ export default {
 				reject(Error("Network Error"));
 			};
 
-			req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-			req.send(generateUrlData(data));
+			if (type == 'json') {
+				req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+				req.send(JSON.stringify(data));
+			} else {
+				req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+				req.send(generateUrlData(data));
+			}
 		});
 	}
 };

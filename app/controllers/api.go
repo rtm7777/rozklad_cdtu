@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs/database"
+	"rozklad_cdtu/app/models/custom_responses"
 	"strings"
 )
 
@@ -71,4 +74,23 @@ func (c Api) GetCategoryItems(category string) revel.Result {
 	}
 
 	return c.RenderJson(items)
+}
+
+func (c Api) UpdateItem() revel.Result {
+	fmt.Println("updating item")
+	type PostPayload struct {
+		Category string
+		Data     []interface{}
+	}
+	var payload PostPayload
+	err := json.NewDecoder(c.Request.Body).Decode(&payload)
+	if err != nil {
+		c.Response.Status = 400
+		return c.RenderJson("Bad request")
+	} else {
+		return custom_responses.JsonErrorResult{
+			StatusCode:   400,
+			ErrorMessage: "Assertion required.",
+		}
+	}
 }
