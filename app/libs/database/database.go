@@ -1,11 +1,14 @@
 package database
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"rozklad_cdtu/app/models"
+	"rozklad_cdtu/app/models/custom_structs"
 	"rozklad_cdtu/app/models/json_models"
+	// "strconv"
 )
 
 func DaysPairsData(db *gorm.DB) ([]*models.Days, []*models.Pairs) {
@@ -241,10 +244,30 @@ func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 	return items
 }
 
-func UpdateItem(db *gorm.DB, data string) (string, error) {
-	if data != "" {
-		return "lalal", nil
+func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) (string, error) {
+	if data.Category == "faculties" {
+		var itemsData = data.Data
+		var items []models.Faculties
+
+		err := json.Unmarshal(itemsData, &items)
+		if err != nil {
+			return "failed", err
+		} else {
+			for _, item := range items {
+				fmt.Println(item)
+				if item.Id != 0 {
+					err = db.Model(item).Updates(item).Error
+					if err != nil {
+						return "failed", err
+					}
+				} else {
+					return "failed", errors.New("Item id can't be 0")
+				}
+			}
+			return "success", nil
+		}
+
 	} else {
-		return "ldskghsl", errors.New("sldgjlsdkghslkhg")
+		return "failed", errors.New("Undefined category")
 	}
 }
