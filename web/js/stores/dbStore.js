@@ -5,6 +5,7 @@ import {EventEmitter} from "events";
 
 class DBStore extends EventEmitter {
 	constructor(dispatcher) {
+		super();
 		this.state = DBStore.defaultState;
 		this.loader = true;
 		this.selectedItems = [];
