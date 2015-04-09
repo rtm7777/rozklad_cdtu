@@ -24,6 +24,9 @@ class DBStore extends EventEmitter {
 				case 'itemSelected':
 					this.itemSelected(action);
 					break;
+				case 'itemChanged':
+					this.itemChanged(action);
+					break;
 				case 'deleteAction':
 					this.deleteItems();
 					break;
@@ -90,6 +93,10 @@ class DBStore extends EventEmitter {
 		this.actionMenuChange();
 	}
 
+	itemChanged(item) {
+		console.log(item);
+	}
+
 	deleteItems() {
 		console.log("items deleted");
 	}
@@ -101,7 +108,6 @@ class DBStore extends EventEmitter {
 	}
 
 	actionMenuChange() {
-		console.log(this.selectedItems);
 		this.emit('itemSelected');
 	}
 

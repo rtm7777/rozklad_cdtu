@@ -1,62 +1,23 @@
 /** @jsx */
 import React from "react";
-import Select from "../components/select";
-import itemCellsSchema from "../schemas/itemCellsSchema";
-
-class ItemCell extends React.Component {
-	constructor(props) {
-		super(props);
-		this.onInputChanged = this.onInputChanged.bind(this);
-		this.onSelectChanged = this.onSelectChanged.bind(this);
-	}
-
-	onInputChanged(event) {
-		let currentValue = event.target.value;
-		let changed = currentValue != event.target.defaultValue;
-		this.props.onChange(this);
-	}
-
-	onSelectChanged(event) {
-		let currentValue = event.props.data.id;
-		let changed = currentValue != this.props.data.data;
-		this.props.onChange(this);
-	}
-
-	render() {
-		if (this.props.data.type == 'selectbox') {
-			return (
-				<td className="no-padding">
-					<Select onChange={this.onSelectChanged} values={this.props.filters[this.props.data.order].values} selected={this.props.data.data} button={true} />
-				</td>
-			);
-		} else if (this.props.data.type == 'name') {
-			return (
-				<td className="no-padding">
-					<div className="dropdown">
-						<button tabindex="0" className="popove btn" role="button" data-toggle="popover" data-placement="bottom" data-content="khhkufjh">
-							{this.props.data.data[1]}
-						</button>
-					</div>
-				</td>
-			);
-		} else {
-			return (
-				<td>
-					<input onChange={this.onInputChanged} type="text" defaultValue={this.props.data.data} />
-				</td>
-			);
-		}
-	}
-}
+import debounce from "debounce";
 
 class DBItem extends React.Component {
 	constructor(props) {
 		super(props);
+		this.itemClass = "";
 		this.state = {
 			selected: false
 		};
+		this.data = {};
 		this.toggleItem = this.toggleItem.bind(this);
-		this.itemChanged = this.itemChanged.bind(this);
+		this.onItemChange = debounce(this.onItemChange, 600).bind(this);
+		this.onInputChanged = this.onInputChanged.bind(this);
+		this.onSelectChanged = this.onSelectChanged.bind(this);
+	}
+
+	componentDidMount() {
+		this.data = this.props.data;
 	}
 
 	toggleItem(e) {
@@ -71,36 +32,22 @@ class DBItem extends React.Component {
 		}
 	}
 
-	itemChanged(item) {
-		console.log(this);
-		console.log(this.props.data);
+	onItemChange() {
+		this.context.actions.itemChanged(this.data);
+	}
+
+	onInputChanged(event) {
+		this.data[event.target.name] = event.target.value;
+		this.onItemChange();
+	}
+
+	onSelectChanged(event) {
+		let currentValue = event.props.data.id;
+		let changed = currentValue != this.props.data.data;
 	}
 
 	render() {
-		let itemCells = itemCellsSchema[this.props.category](this.props.data).map((cell, i) => {
-			console.log(cell);
-			if (cell.data === undefined) {
-				cell.data = "";
-			}
-			let props = {
-				filters: this.props.filters,
-				onChange: this.itemChanged,
-				data: cell,
-				key: i
-			};
-
-			return (
-				<ItemCell {...props} />
-			);
-		});
-
-		let itemClass = this.state.selected ? "info" : "";
-
-		return (
-			<tr onClick={this.toggleItem} className={itemClass}>
-				{itemCells}
-			</tr>
-		);
+		this.itemClass = this.state.selected ? "info" : "";
 	}
 }
 

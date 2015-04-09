@@ -26,6 +26,13 @@ class DBActions {
 		});
 	}
 
+	itemChanged(data) {
+		this.dispatcher.dispatch({
+			actionType: 'itemChanged',
+			data
+		});
+	}
+
 	deleteAction() {
 		this.dispatcher.dispatch({
 			actionType: 'deleteAction'
