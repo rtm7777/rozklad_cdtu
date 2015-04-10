@@ -5,6 +5,6 @@ import (
 )
 
 type ItemsData struct {
-	Category string
-	Data     json.RawMessage
+	Category string          `json:"category"`
+	Data     json.RawMessage `json:"data"`
 }

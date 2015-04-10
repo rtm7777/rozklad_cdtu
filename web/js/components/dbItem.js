@@ -1,6 +1,7 @@
 /** @jsx */
 import React from "react";
 import debounce from "debounce";
+import {validateNumber} from "../libs/validation";
 
 class DBItem extends React.Component {
 	constructor(props) {
@@ -42,8 +43,12 @@ class DBItem extends React.Component {
 	}
 
 	onSelectChanged(event) {
-		let currentValue = event.props.data.id;
-		let changed = currentValue != this.props.data.data;
+		this.data[event.name] = event.value;
+		this.onItemChange();
+	}
+
+	onNumberKeyDown(event) {
+		validateNumber(event);
 	}
 
 	render() {

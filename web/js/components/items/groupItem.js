@@ -35,6 +35,7 @@ class GroupItem extends DBItem {
 						defaultValue={this.props.data.studentsCount}
 						name="studentsCount"
 						onChange={this.onInputChanged}
+						onKeyDown={this.onNumberKeyDown}
 						type="number"
 					/>
 				</td>

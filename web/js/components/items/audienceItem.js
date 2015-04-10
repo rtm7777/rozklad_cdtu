@@ -43,6 +43,7 @@ class AudienceItem extends DBItem {
 						defaultValue={this.props.data.sets}
 						name="sets"
 						onChange={this.onInputChanged}
+						onKeyDown={this.onNumberKeyDown}
 						type="number"
 					/>
 				</td>

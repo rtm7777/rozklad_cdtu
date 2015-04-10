@@ -9,7 +9,7 @@ type Audiences struct {
 	HousingId int64    `json:"housingId"`
 	Housing   Housings `json:"-"`
 	Number    string   `sql:"size:10" json:"number"`
-	Sets      int      `json:"sets"`
+	Sets      int      `json:"sets,string"`
 	Type      string   `sql:"size:50" json:"type"`
 	Note      string   `sql:"size:200" json:"note"`
 }

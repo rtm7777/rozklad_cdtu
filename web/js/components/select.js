@@ -29,7 +29,10 @@ class Select extends React.Component {
 	changeValue(child) {
 		this.setState({selected: child.props.data.id});
 		if (this.props.onChange) {
-			this.props.onChange(child);
+			this.props.onChange({
+				value: child.props.data.id,
+				name: this.props.name || ""
+			});
 		}
 	}
 
