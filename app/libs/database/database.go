@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"rozklad_cdtu/app/models"
+	"rozklad_cdtu/app/models/custom_structs"
 	"rozklad_cdtu/app/models/json_models"
 )
 
@@ -238,4 +239,65 @@ func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 	}
 
 	return items
+}
+
+func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) error {
+	update := func(item interface{}) error {
+		err := db.Model(item).Updates(item).Error
+		if err != nil {
+			return err
+		}
+		return nil
+	}
+
+	var err error
+
+	switch data.Category {
+	case "faculties":
+		var item models.Faculties
+		err = item.Decode(data.Data)
+		if err == nil {
+			err = update(item)
+		}
+	case "audiences":
+		var item models.Audiences
+		err = item.Decode(data.Data)
+		if err == nil {
+			err = update(item)
+		}
+	case "teachers":
+		var item models.Teachers
+		err = item.Decode(data.Data)
+		if err == nil {
+			err = update(item)
+		}
+	case "subjects":
+		var item models.Subjects
+		err = item.Decode(data.Data)
+		if err == nil {
+			err = update(item)
+		}
+	case "groups":
+		var item models.Groups
+		err = item.Decode(data.Data)
+		if err == nil {
+			err = update(item)
+		}
+	case "housings":
+		var item models.Housings
+		err = item.Decode(data.Data)
+		if err == nil {
+			err = update(item)
+		}
+	case "departments":
+		var item models.Departments
+		err = item.Decode(data.Data)
+		if err == nil {
+			err = update(item)
+		}
+	}
+	if err != nil {
+		return err
+	}
+	return nil
 }

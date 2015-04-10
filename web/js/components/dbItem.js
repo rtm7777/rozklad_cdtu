@@ -1,96 +1,24 @@
 /** @jsx */
 import React from "react";
-import Select from "../components/select";
-
-const filters = {
-	audiences(data) {
-		return [
-			{data: data.number},
-			{data: data.housingId, type: 'selectbox', order: 0},
-			{data: data.type},
-			{data: data.sets},
-			{data: data.note}
-		];
-	},
-	departments(data) {
-		return [
-			{data: data.facultyId, type: 'selectbox', order: 0},
-			{data: data.name}
-		];
-	},
-	faculties(data) {
-		return [
-			{data: data.fullName},
-			{data: data.shortName}
-		];
-	},
-	groups(data) {
-		return [
-			{data: data.facultyId, type: 'selectbox', order: 0},
-			{data: data.name},
-			{data: data.studentsCount},
-			{data: data.year, type: 'selectbox', order: 1}
-		];
-	},
-	housings(data) {
-		return [
-			{data: data.number}
-		];
-	},
-	subjects(data) {
-		return [
-			{data: data.subject}
-		];
-	},
-	teachers(data) {
-		return [
-			{data: data.facultyId, type: 'selectbox', order: 0},
-			{data: data.departmentId, type: 'selectbox', order: 1},
-			{data: [data.firstName, data.lastName, data.middleName], type: 'name'},
-			{data: data.rank}
-		];
-	}
-};
-
-class ItemCell extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		if (this.props.data.type == 'selectbox') {
-			return (
-				<td className="no-padding">
-					<Select values={this.props.filters[this.props.data.order].values} selected={this.props.data.data} button={true} />
-				</td>
-			);
-		} else if (this.props.data.type == 'name') {
-			return (
-				<td className="no-padding">
-					<div className="dropdown">
-						<button tabindex="0" className="popove btn" role="button" data-toggle="popover" data-placement="bottom" data-content="khhkufjh">
-							{this.props.data.data[1]}
-						</button>
-					</div>
-				</td>
-			);
-		} else {
-			return (
-				<td>
-					<input type="text" defaultValue={this.props.data.data} />
-				</td>
-			);
-		}
-	}
-}
+import debounce from "debounce";
+import {validateNumber} from "../libs/validation";
 
 class DBItem extends React.Component {
 	constructor(props) {
 		super(props);
+		this.itemClass = "";
 		this.state = {
 			selected: false
 		};
+		this.data = {};
 		this.toggleItem = this.toggleItem.bind(this);
+		this.onItemChange = debounce(this.onItemChange, 600).bind(this);
+		this.onInputChanged = this.onInputChanged.bind(this);
+		this.onSelectChanged = this.onSelectChanged.bind(this);
+	}
+
+	componentDidMount() {
+		this.data = this.props.data;
 	}
 
 	toggleItem(e) {
@@ -105,26 +33,26 @@ class DBItem extends React.Component {
 		}
 	}
 
+	onItemChange() {
+		this.context.actions.itemChanged(this.data);
+	}
+
+	onInputChanged(event) {
+		this.data[event.target.name] = event.target.value;
+		this.onItemChange();
+	}
+
+	onSelectChanged(event) {
+		this.data[event.name] = event.value;
+		this.onItemChange();
+	}
+
+	onNumberKeyDown(event) {
+		validateNumber(event);
+	}
+
 	render() {
-		let itemCells = filters[this.props.category](this.props.data).map((cell, i) => {
-			let props = {
-				filters: this.props.filters,
-				data: cell,
-				key: i
-			};
-
-			return (
-				<ItemCell {...props} />
-			);
-		});
-
-		let itemClass = this.state.selected ? "info" : "";
-
-		return (
-			<tr onClick={this.toggleItem} className={itemClass}>
-				{itemCells}
-			</tr>
-		);
+		this.itemClass = this.state.selected ? "info" : "";
 	}
 }
 

@@ -5,6 +5,7 @@ import {EventEmitter} from "events";
 
 class DBStore extends EventEmitter {
 	constructor(dispatcher) {
+		super();
 		this.state = DBStore.defaultState;
 		this.loader = true;
 		this.selectedItems = [];
@@ -22,6 +23,9 @@ class DBStore extends EventEmitter {
 					break;
 				case 'itemSelected':
 					this.itemSelected(action);
+					break;
+				case 'itemChanged':
+					this.itemChanged(action);
 					break;
 				case 'deleteAction':
 					this.deleteItems();
@@ -69,8 +73,8 @@ class DBStore extends EventEmitter {
 	}
 
 	loadFields(category) {
-		return promise.post('/get_category', {category: category}).then(data => {
-			this.state.fields = data.items;
+		return promise.post('/get_category', {category: category}).then((data) => {
+			this.state.fields = data.items || [];
 			this.state.columns = data.columns;
 			this.state.filters = data.filters || [];
 		});
@@ -89,11 +93,24 @@ class DBStore extends EventEmitter {
 		this.actionMenuChange();
 	}
 
+	itemChanged(item) {
+		let json = {
+			category : this.state.selectedCategory,
+			data: item.data
+		};
+
+		promise.post('/update_item', json, 'json').then((data) => {
+
+		});
+	}
+
 	deleteItems() {
 		console.log("items deleted");
 	}
 
 	addItem() {
+		this.state.fields.push({});
+		this.emit('load');
 		console.log("adding new item");
 	}
 

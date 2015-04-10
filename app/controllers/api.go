@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"encoding/json"
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs/database"
+	"rozklad_cdtu/app/models/custom_responses"
+	"rozklad_cdtu/app/models/custom_structs"
 	"strings"
 )
 
@@ -71,4 +74,28 @@ func (c Api) GetCategoryItems(category string) revel.Result {
 	}
 
 	return c.RenderJson(items)
+}
+
+func (c Api) UpdateItem() revel.Result {
+	var data custom_structs.ItemsData
+
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
+	if err != nil {
+		return custom_responses.JsonErrorResult{
+			StatusCode:   400,
+			ErrorMessage: err.Error(),
+		}
+	} else {
+		err := database.UpdateItem(c.DB, data)
+		if err != nil {
+			return custom_responses.JsonErrorResult{
+				StatusCode:   400,
+				ErrorMessage: err.Error(),
+			}
+		} else {
+			return custom_responses.EmptyResult{
+				StatusCode: 200,
+			}
+		}
+	}
 }

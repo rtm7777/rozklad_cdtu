@@ -1,12 +1,32 @@
 /** @jsx */
 import React from "react";
 import ComponentWithloader from "./componentWithLoader";
-import DBItem from "../components/dbItem";
+import AudienceItem from "./items/audienceItem";
+import DepartmentItem from "./items/departmentItem";
+import FacultyItem from "./items/facultyItem";
+import GroupItem from "./items/groupItem";
+import HousingItem from "./items/housingItem";
+import SubjectItem from "./items/subjectItem";
+import TeacherItem from "./items/teacherItem";
 import DBStore from "../stores/dbStore";
 
 class Content extends ComponentWithloader {
 	constructor(props) {
 		super(props);
+	}
+
+	itemByType(type, props) {
+		let items = {
+			audiences:   (props) => <AudienceItem {...props} />,
+			departments: (props) => <DepartmentItem {...props} />,
+			faculties:   (props) => <FacultyItem {...props} />,
+			groups:      (props) => <GroupItem {...props} />,
+			housings:    (props) => <HousingItem {...props} />,
+			subjects:    (props) => <SubjectItem {...props} />,
+			teachers:    (props) => <TeacherItem {...props} />
+		};
+
+		return items[type](props);
 	}
 
 	render() {
@@ -28,7 +48,7 @@ class Content extends ComponentWithloader {
 					key: field.id
 				};
 
-				return <DBItem {...props} />;
+				return this.itemByType(this.props.selectedCategory, props);
 			});
 		}
 

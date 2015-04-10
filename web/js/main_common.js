@@ -1,4 +1,4 @@
-window.$ = window.jQuery = require('jquery');
+import "./jquery";
 import "bootstrap";
 import "./libs/socketEvents";
 import "./controllers/initController";
