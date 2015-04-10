@@ -7,9 +7,9 @@ import (
 type Teachers struct {
 	Id           int64       `json:"id"`
 	FacultyId    int64       `json:"facultyId"`
-	Faculty      Faculties   `json:"faculty"`
+	Faculty      Faculties   `json:"-"`
 	DepartmentId int64       `json:"departmentId"`
-	Department   Departments `json:"department"`
+	Department   Departments `json:"-"`
 	FirstName    string      `sql:"size:25" json:"firstName"`
 	LastName     string      `sql:"size:25" json:"lastName"`
 	MiddleName   string      `sql:"size:30" json:"meddleName"`

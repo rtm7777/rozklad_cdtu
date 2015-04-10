@@ -13,7 +13,12 @@ class HousingItem extends DBItem {
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td>
-					<input onChange={this.onInputChanged} type="text" name="number" defaultValue={this.props.data.number} />
+					<input
+						defaultValue={this.props.data.number}
+						name="number"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
 				</td>
 			</tr>
 		);

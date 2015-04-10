@@ -7,7 +7,7 @@ import (
 type Audiences struct {
 	Id        int64    `json:"id"`
 	HousingId int64    `json:"housingId"`
-	Housing   Housings `json:"housing"`
+	Housing   Housings `json:"-"`
 	Number    string   `sql:"size:10" json:"number"`
 	Sets      int      `json:"sets"`
 	Type      string   `sql:"size:50" json:"type"`

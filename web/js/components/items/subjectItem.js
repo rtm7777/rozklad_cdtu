@@ -13,7 +13,12 @@ class SubjectItem extends DBItem {
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td>
-					<input onChange={this.onInputChanged} type="text" name="subject" defaultValue={this.props.data.subject} />
+					<input
+						defaultValue={this.props.data.subject}
+						name="subject"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
 				</td>
 			</tr>
 		);

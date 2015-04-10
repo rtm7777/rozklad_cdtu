@@ -14,19 +14,45 @@ class AudienceItem extends DBItem {
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td>
-					<input onChange={this.onInputChanged} type="text" name="number" defaultValue={this.props.data.number} />
+					<input
+						defaultValue={this.props.data.number}
+						name="number"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
 				</td>
 				<td className="no-padding">
-					<Select onChange={this.onSelectChanged} values={this.props.filters[0].values} selected={this.props.data.housingId} button={true} />
+					<Select
+						button={true}
+						name="housingId"
+						onChange={this.onSelectChanged}
+						selected={this.props.data.housingId}
+						values={this.props.filters[0].values}
+					/>
 				</td>
 				<td>
-					<input onChange={this.onInputChanged} type="text" name="type" defaultValue={this.props.data.type} />
+					<input
+						defaultValue={this.props.data.type}
+						name="type"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
 				</td>
 				<td>
-					<input onChange={this.onInputChanged} type="number" name="sets" defaultValue={this.props.data.sets} />
+					<input
+						defaultValue={this.props.data.sets}
+						name="sets"
+						onChange={this.onInputChanged}
+						type="number"
+					/>
 				</td>
 				<td>
-					<input onChange={this.onInputChanged} type="text" name="note" defaultValue={this.props.data.note} />
+					<input
+						defaultValue={this.props.data.note}
+						name="note"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
 				</td>
 			</tr>
 		);

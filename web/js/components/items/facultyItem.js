@@ -13,10 +13,20 @@ class FacultyItem extends DBItem {
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td>
-					<input onChange={this.onInputChanged} type="text" name="fullName" defaultValue={this.props.data.fullName} />
+					<input
+						defaultValue={this.props.data.fullName}
+						name="fullName"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
 				</td>
 				<td>
-					<input onChange={this.onInputChanged} type="text" name="shortName" defaultValue={this.props.data.shortName} />
+					<input
+						defaultValue={this.props.data.shortName}
+						name="shortName"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
 				</td>
 			</tr>
 		);

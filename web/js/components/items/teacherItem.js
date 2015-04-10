@@ -14,10 +14,20 @@ class TeacherItem extends DBItem {
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td className="no-padding">
-					<Select onChange={this.onSelectChanged} values={this.props.filters[0].values} selected={this.props.data.facultyId} button={true} />
+					<Select
+						button={true}
+						onChange={this.onSelectChanged}
+						selected={this.props.data.facultyId}
+						values={this.props.filters[0].values}
+					/>
 				</td>
 				<td className="no-padding">
-					<Select onChange={this.onSelectChanged} values={this.props.filters[1].values} selected={this.props.data.departmentId} button={true} />
+					<Select
+						button={true}
+						onChange={this.onSelectChanged}
+						selected={this.props.data.departmentId}
+						values={this.props.filters[1].values}
+					/>
 				</td>
 				<td className="no-padding">
 					<div className="dropdown">
@@ -27,7 +37,12 @@ class TeacherItem extends DBItem {
 					</div>
 				</td>
 				<td>
-					<input onChange={this.onInputChanged} type="text" name="rank" defaultValue={this.props.data.rank} />
+					<input
+						defaultValue={this.props.data.rank}
+						name="rank"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
 				</td>
 			</tr>
 		);
