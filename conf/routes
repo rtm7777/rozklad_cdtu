@@ -22,13 +22,15 @@ GET     /database                               Admin.DataBase
 GET     /get_ws_token                           Admin.GetWSToken
 GET     /tasks                                  Admin.Tasks
 
-# API
-POST    /get_category                           Api.GetCategoryItems
-POST    /get_category_list                      Api.GetCategoryList
-POST    /get_faculty_groups                     Api.GetFacultyGroups
-POST    /get_faculty_schedule                   Api.GetFacultySchedule
-POST    /get_faculty_tasks                      Api.GetFacultyTasks
-POST    /update_item                            Api.UpdateItem
+# DataBase
+GET     /get_category                           DataBase.GetCategoryItems
+GET     /get_category_list                      DataBase.GetCategoryList
+POST    /update_item                            DataBase.UpdateItem
+
+# Schedule
+POST    /get_faculty_groups                     Schedule.GetFacultyGroups
+POST    /get_faculty_schedule                   Schedule.GetFacultySchedule
+POST    /get_faculty_tasks                      Schedule.GetFacultyTasks
 
 Application
 WS      /ws/socket                              Admin.SocketConn

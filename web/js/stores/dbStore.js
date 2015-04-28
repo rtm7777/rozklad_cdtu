@@ -38,7 +38,7 @@ class DBStore extends EventEmitter {
 	}
 
 	load() {
-		let promises = [promise.post('/get_category_list')];
+		let promises = [promise.get('/get_category_list')];
 		if (this.state.selectedCategory) {
 			promises.push(this.loadFields(this.state.selectedCategory));
 		}
@@ -73,7 +73,7 @@ class DBStore extends EventEmitter {
 	}
 
 	loadFields(category) {
-		return promise.post('/get_category', {category: category}).then((data) => {
+		return promise.get('/get_category', {category: category}).then((data) => {
 			this.state.fields = data.items || [];
 			this.state.columns = data.columns;
 			this.state.filters = data.filters || [];
