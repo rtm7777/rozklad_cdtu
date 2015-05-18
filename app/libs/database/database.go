@@ -242,8 +242,18 @@ func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 }
 
 func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) error {
+	var types = map[string]models.DBModel{
+		"audiences":   &models.Audiences{},
+		"departments": &models.Departments{},
+		"faculties":   &models.Faculties{},
+		"groups":      &models.Groups{},
+		"housings":    &models.Housings{},
+		"subjects":    &models.Subjects{},
+		"teachers":    &models.Teachers{},
+	}
+
 	update := func(item interface{}) error {
-		err := db.Model(item).Updates(item).Error
+		err := db.Debug().Model(item).Updates(item).Error
 		if err != nil {
 			return err
 		}
@@ -251,53 +261,18 @@ func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) error {
 	}
 
 	var err error
+	item := types[data.Category]
 
-	switch data.Category {
-	case "faculties":
-		var item models.Faculties
-		err = item.Decode(data.Data)
-		if err == nil {
-			err = update(item)
-		}
-	case "audiences":
-		var item models.Audiences
-		err = item.Decode(data.Data)
-		if err == nil {
-			err = update(item)
-		}
-	case "teachers":
-		var item models.Teachers
-		err = item.Decode(data.Data)
-		if err == nil {
-			err = update(item)
-		}
-	case "subjects":
-		var item models.Subjects
-		err = item.Decode(data.Data)
-		if err == nil {
-			err = update(item)
-		}
-	case "groups":
-		var item models.Groups
-		err = item.Decode(data.Data)
-		if err == nil {
-			err = update(item)
-		}
-	case "housings":
-		var item models.Housings
-		err = item.Decode(data.Data)
-		if err == nil {
-			err = update(item)
-		}
-	case "departments":
-		var item models.Departments
-		err = item.Decode(data.Data)
-		if err == nil {
-			err = update(item)
-		}
+	err = item.Decode(data.Data)
+	if err == nil {
+		err = update(item.Data())
 	}
 	if err != nil {
 		return err
 	}
 	return nil
+}
+
+func AddItem(db *gorm.DB, category string) (string, error) {
+	return "1234342", nil
 }

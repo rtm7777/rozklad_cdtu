@@ -20,3 +20,7 @@ func (faculty *Faculties) Decode(b []byte) error {
 	}
 	return nil
 }
+
+func (faculty *Faculties) Data() interface{} {
+	return *faculty
+}

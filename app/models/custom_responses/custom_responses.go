@@ -5,13 +5,17 @@ import (
 	"github.com/revel/revel"
 )
 
+type EmptyResult struct {
+	StatusCode int
+}
+
+func (r EmptyResult) Apply(req *revel.Request, resp *revel.Response) {
+	resp.WriteHeader(r.StatusCode, "text/html; charset=utf-8")
+}
+
 type JsonErrorResult struct {
 	StatusCode   int
 	ErrorMessage string
-}
-
-type EmptyResult struct {
-	StatusCode int
 }
 
 type JsonError struct {
@@ -31,8 +35,4 @@ func (r JsonErrorResult) Apply(req *revel.Request, resp *revel.Response) {
 
 	resp.WriteHeader(r.StatusCode, "application/json; charset=utf-8")
 	resp.Out.Write(b)
-}
-
-func (r EmptyResult) Apply(req *revel.Request, resp *revel.Response) {
-	resp.WriteHeader(r.StatusCode, "text/html; charset=utf-8")
 }

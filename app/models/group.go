@@ -23,3 +23,7 @@ func (group *Groups) Decode(b []byte) error {
 	}
 	return nil
 }
+
+func (group *Groups) Data() interface{} {
+	return *group
+}

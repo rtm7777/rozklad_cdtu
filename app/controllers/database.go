@@ -79,3 +79,15 @@ func (c DataBase) UpdateItem() revel.Result {
 		}
 	}
 }
+
+func (c DataBase) AddItem(category string) revel.Result {
+	item, err := database.AddItem(c.DB, category)
+	if err != nil {
+		return custom_responses.JsonErrorResult{
+			StatusCode:   400,
+			ErrorMessage: err.Error(),
+		}
+	} else {
+		return c.RenderJson(item)
+	}
+}

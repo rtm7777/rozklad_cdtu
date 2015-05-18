@@ -109,9 +109,10 @@ class DBStore extends EventEmitter {
 	}
 
 	addItem() {
-		this.state.fields.push({});
-		this.emit('load');
-		console.log("adding new item");
+		promise.post('add_item', {category: this.state.selectedCategory}).then((data) => {
+			this.state.fields.push(data);
+			this.emit('load');
+		});
 	}
 
 	actionMenuChange() {

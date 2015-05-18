@@ -19,3 +19,7 @@ func (housing *Housings) Decode(b []byte) error {
 	}
 	return nil
 }
+
+func (housing *Housings) Data() interface{} {
+	return *housing
+}

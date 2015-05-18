@@ -1,5 +1,5 @@
 /** @jsx */
-import React from 'react/addons';
+import React from 'react';
 import {Dispatcher} from 'flux';
 import DataBase from "../components/database";
 import DBStore from "../stores/dbStore";

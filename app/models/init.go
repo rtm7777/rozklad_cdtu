@@ -4,6 +4,11 @@ import (
 	"errors"
 )
 
+type DBModel interface {
+	Decode(b []byte) error
+	Data() interface{}
+}
+
 var itemIdErr error = errors.New("item id can't be less than 1")
 
 type Days struct {

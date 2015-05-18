@@ -24,3 +24,7 @@ func (audience *Audiences) Decode(b []byte) error {
 	}
 	return nil
 }
+
+func (audience *Audiences) Data() interface{} {
+	return *audience
+}
