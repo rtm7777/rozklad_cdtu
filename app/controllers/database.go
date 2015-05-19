@@ -81,7 +81,7 @@ func (c DataBase) UpdateItem() revel.Result {
 }
 
 func (c DataBase) AddItem(category string) revel.Result {
-	item, err := database.AddItem(c.DB, category)
+	err, item := database.AddItem(c.DB, category)
 	if err != nil {
 		return custom_responses.JsonErrorResult{
 			StatusCode:   400,
@@ -89,5 +89,20 @@ func (c DataBase) AddItem(category string) revel.Result {
 		}
 	} else {
 		return c.RenderJson(item)
+	}
+}
+
+func (c DataBase) DeleteItems() revel.Result {
+	var data custom_structs.ItemsForDeleting
+
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
+	if err != nil {
+		return custom_responses.JsonErrorResult{
+			StatusCode:   400,
+			ErrorMessage: err.Error(),
+		}
+	} else {
+		database.DeleteItems(c.DB, data)
+		return c.RenderJson(data)
 	}
 }

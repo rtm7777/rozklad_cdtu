@@ -242,30 +242,16 @@ func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 }
 
 func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) error {
-	var types = map[string]models.DBModel{
-		"audiences":   &models.Audiences{},
-		"departments": &models.Departments{},
-		"faculties":   &models.Faculties{},
-		"groups":      &models.Groups{},
-		"housings":    &models.Housings{},
-		"subjects":    &models.Subjects{},
-		"teachers":    &models.Teachers{},
-	}
-
-	update := func(item interface{}) error {
-		err := db.Debug().Model(item).Updates(item).Error
-		if err != nil {
-			return err
-		}
-		return nil
-	}
-
 	var err error
-	item := types[data.Category]
+	item := models.DatabaseTypes[data.Category]()
 
 	err = item.Decode(data.Data)
 	if err == nil {
-		err = update(item.Data())
+		itemValue := item.Value()
+		err = db.Model(itemValue).Updates(itemValue).Error
+		if err != nil {
+			return err
+		}
 	}
 	if err != nil {
 		return err
@@ -273,6 +259,19 @@ func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) error {
 	return nil
 }
 
-func AddItem(db *gorm.DB, category string) (string, error) {
-	return "1234342", nil
+func AddItem(db *gorm.DB, category string) (error, interface{}) {
+	item := models.DatabaseTypes[category]()
+	db.NewRecord(item)
+	db.Create(item)
+	return nil, item
+}
+
+func DeleteItems(db *gorm.DB, data custom_structs.ItemsForDeleting) error {
+	item := models.DatabaseTypes[data.Category]()
+	err := db.Where("id in (?)", data.Ids).Delete(item).Error
+	if err != nil {
+		return err
+	}
+	fmt.Println(data)
+	return nil
 }

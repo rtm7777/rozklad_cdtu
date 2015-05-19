@@ -21,6 +21,6 @@ func (faculty *Faculties) Decode(b []byte) error {
 	return nil
 }
 
-func (faculty *Faculties) Data() interface{} {
+func (faculty *Faculties) Value() interface{} {
 	return *faculty
 }

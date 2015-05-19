@@ -99,13 +99,22 @@ class DBStore extends EventEmitter {
 			data: item.data
 		};
 
-		promise.post('/update_item', json, 'json').then((data) => {
+		promise.post('update_item', json, 'json').then((data) => {
 
 		});
 	}
 
 	deleteItems() {
-		console.log("items deleted");
+		let json = {
+			ids: this.selectedItems,
+			category : this.state.selectedCategory
+		};
+		promise.post('delete_items', json, 'json').then((data) => {
+			this.state.fields = this.state.fields.filter((item) => {
+				return this.selectedItems.indexOf(item.id) == -1;
+			});
+			this.emit('load');
+		});
 	}
 
 	addItem() {

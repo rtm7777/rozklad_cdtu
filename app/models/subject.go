@@ -20,6 +20,6 @@ func (subject *Subjects) Decode(b []byte) error {
 	return nil
 }
 
-func (subject *Subjects) Data() interface{} {
+func (subject *Subjects) Value() interface{} {
 	return *subject
 }

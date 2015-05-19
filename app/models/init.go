@@ -6,7 +6,17 @@ import (
 
 type DBModel interface {
 	Decode(b []byte) error
-	Data() interface{}
+	Value() interface{}
+}
+
+var DatabaseTypes = map[string]func() DBModel{
+	"audiences":   func() DBModel { return new(Audiences) },
+	"departments": func() DBModel { return new(Departments) },
+	"faculties":   func() DBModel { return new(Faculties) },
+	"groups":      func() DBModel { return new(Groups) },
+	"housings":    func() DBModel { return new(Housings) },
+	"subjects":    func() DBModel { return new(Subjects) },
+	"teachers":    func() DBModel { return new(Teachers) },
 }
 
 var itemIdErr error = errors.New("item id can't be less than 1")

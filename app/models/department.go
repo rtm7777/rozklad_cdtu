@@ -22,6 +22,6 @@ func (department *Departments) Decode(b []byte) error {
 	return nil
 }
 
-func (department *Departments) Data() interface{} {
+func (department *Departments) Value() interface{} {
 	return *department
 }

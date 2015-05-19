@@ -25,6 +25,6 @@ func (audience *Audiences) Decode(b []byte) error {
 	return nil
 }
 
-func (audience *Audiences) Data() interface{} {
+func (audience *Audiences) Value() interface{} {
 	return *audience
 }

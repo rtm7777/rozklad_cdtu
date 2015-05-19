@@ -25,7 +25,9 @@ GET     /tasks                                  Admin.Tasks
 # DataBase
 GET     /get_category                           DataBase.GetCategoryItems
 GET     /get_category_list                      DataBase.GetCategoryList
-POST    /update_item                            DataBase.UpdateItem
+POST    /database/update_item                   DataBase.UpdateItem
+POST    /database/add_item                      DataBase.AddItem
+POST    /database/delete_items                  DataBase.DeleteItems
 
 # Schedule
 POST    /get_faculty_groups                     Schedule.GetFacultyGroups
