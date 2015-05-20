@@ -207,36 +207,13 @@ func FacultyTasks(db *gorm.DB, faculty_id int64, year int) []json_models.Task {
 
 func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 	var items json_models.DBItems
-	loadItems := func(i interface{}) {
-		err := db.Find(i).Error
-		if err != nil {
-			panic(err)
-		}
-		items.Items = i
+	records := models.DatabaseTypesCollection[category]()
+
+	err := db.Find(records).Error
+	if err != nil {
+		panic(err)
 	}
-	switch category {
-	case "faculties":
-		var item []*models.Faculties
-		loadItems(&item)
-	case "audiences":
-		var item []*models.Audiences
-		loadItems(&item)
-	case "teachers":
-		var item []*models.Teachers
-		loadItems(&item)
-	case "subjects":
-		var item []*models.Subjects
-		loadItems(&item)
-	case "groups":
-		var item []*models.Groups
-		loadItems(&item)
-	case "housings":
-		var item []*models.Housings
-		loadItems(&item)
-	case "departments":
-		var item []*models.Departments
-		loadItems(&item)
-	}
+	items.Items = records
 
 	return items
 }

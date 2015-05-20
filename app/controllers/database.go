@@ -61,17 +61,11 @@ func (c DataBase) UpdateItem() revel.Result {
 
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
-		return custom_responses.JsonErrorResult{
-			StatusCode:   400,
-			ErrorMessage: err.Error(),
-		}
+		return jsonError(400, err)
 	} else {
 		err := database.UpdateItem(c.DB, data)
 		if err != nil {
-			return custom_responses.JsonErrorResult{
-				StatusCode:   400,
-				ErrorMessage: err.Error(),
-			}
+			return jsonError(400, err)
 		} else {
 			return custom_responses.EmptyResult{
 				StatusCode: 200,
@@ -83,10 +77,7 @@ func (c DataBase) UpdateItem() revel.Result {
 func (c DataBase) AddItem(category string) revel.Result {
 	err, item := database.AddItem(c.DB, category)
 	if err != nil {
-		return custom_responses.JsonErrorResult{
-			StatusCode:   400,
-			ErrorMessage: err.Error(),
-		}
+		return jsonError(400, err)
 	} else {
 		return c.RenderJson(item)
 	}
@@ -97,10 +88,7 @@ func (c DataBase) DeleteItems() revel.Result {
 
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
-		return custom_responses.JsonErrorResult{
-			StatusCode:   400,
-			ErrorMessage: err.Error(),
-		}
+		return jsonError(400, err)
 	} else {
 		database.DeleteItems(c.DB, data)
 		return c.RenderJson(data)
