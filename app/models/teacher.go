@@ -26,3 +26,7 @@ func (teacher *Teachers) Decode(b []byte) error {
 	}
 	return nil
 }
+
+func (teacher *Teachers) Value() interface{} {
+	return *teacher
+}

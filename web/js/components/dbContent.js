@@ -60,7 +60,11 @@ class Content extends ComponentWithloader {
 		}
 		return (
 			<div id="database_container" className="col-lg-9">
-				<div className={`loader ${loaderShow}`}><img src="/public/img/loader.svg"/></div>
+				<div className={`loader ${loaderShow}`}>
+					<div className="bounce1"></div>
+					<div className="bounce2"></div>
+					<div className="bounce3"></div>
+				</div>
 				<table className={`table table-bordered table-hover table-striped table-condensed ${tableShow}`}>
 					<thead>
 						<tr>

@@ -1,3 +1,4 @@
+import "array.prototype.find";
 import "./jquery";
 import "bootstrap";
 import "./libs/socketEvents";

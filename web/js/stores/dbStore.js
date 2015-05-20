@@ -38,7 +38,7 @@ class DBStore extends EventEmitter {
 	}
 
 	load() {
-		let promises = [promise.post('/get_category_list')];
+		let promises = [promise.get('/get_category_list')];
 		if (this.state.selectedCategory) {
 			promises.push(this.loadFields(this.state.selectedCategory));
 		}
@@ -73,7 +73,7 @@ class DBStore extends EventEmitter {
 	}
 
 	loadFields(category) {
-		return promise.post('/get_category', {category: category}).then((data) => {
+		return promise.get('/get_category', {category: category}).then((data) => {
 			this.state.fields = data.items || [];
 			this.state.columns = data.columns;
 			this.state.filters = data.filters || [];
@@ -99,19 +99,29 @@ class DBStore extends EventEmitter {
 			data: item.data
 		};
 
-		promise.post('/update_item', json, 'json').then((data) => {
+		promise.post('update_item', json, 'json').then((data) => {
 
 		});
 	}
 
 	deleteItems() {
-		console.log("items deleted");
+		let json = {
+			ids: this.selectedItems,
+			category : this.state.selectedCategory
+		};
+		promise.post('delete_items', json, 'json').then((data) => {
+			this.state.fields = this.state.fields.filter((item) => {
+				return this.selectedItems.indexOf(item.id) == -1;
+			});
+			this.emit('load');
+		});
 	}
 
 	addItem() {
-		this.state.fields.push({});
-		this.emit('load');
-		console.log("adding new item");
+		promise.post('add_item', {category: this.state.selectedCategory}).then((data) => {
+			this.state.fields.push(data);
+			this.emit('load');
+		});
 	}
 
 	actionMenuChange() {

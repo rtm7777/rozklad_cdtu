@@ -19,3 +19,7 @@ func (subject *Subjects) Decode(b []byte) error {
 	}
 	return nil
 }
+
+func (subject *Subjects) Value() interface{} {
+	return *subject
+}

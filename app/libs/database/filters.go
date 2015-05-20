@@ -9,7 +9,7 @@ import (
 	"strconv"
 )
 
-var filterFuncs = map[string]interface{}{
+var filterFuncs = map[string]func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue{
 	"faculties": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {
 		db.Model(&models.Faculties{}).Select("id, short_name as value").Scan(rows)
 		return rows
@@ -36,8 +36,7 @@ func CategoryFilters(db *gorm.DB, filters []string, locale string) []json_models
 	filterValues := func(filter string) []json_models.FilterValue {
 		var rows []json_models.FilterValue
 		rows = append(rows, json_models.FilterValue{Id: 0, Value: "---"})
-		filterFunction := filterFuncs[filter].(func(*gorm.DB, *[]json_models.FilterValue) *[]json_models.FilterValue)
-		filterFunction(db, &rows)
+		filterFuncs[filter](db, &rows)
 		return rows
 	}
 
