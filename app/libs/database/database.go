@@ -207,7 +207,7 @@ func FacultyTasks(db *gorm.DB, faculty_id int64, year int) []json_models.Task {
 
 func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 	var items json_models.DBItems
-	records := models.DatabaseTypesCollection[category]()
+	records := models.DBTypesCollectionMap()[category]
 
 	err := db.Find(records).Error
 	if err != nil {
@@ -220,7 +220,7 @@ func CategoryItems(db *gorm.DB, category string) json_models.DBItems {
 
 func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) error {
 	var err error
-	item := models.DatabaseTypes[data.Category]()
+	item := models.DBTypesMap()[data.Category]
 
 	err = item.Decode(data.Data)
 	if err == nil {
@@ -237,18 +237,17 @@ func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) error {
 }
 
 func AddItem(db *gorm.DB, category string) (error, interface{}) {
-	item := models.DatabaseTypes[category]()
+	item := models.DBTypesMap()[category]
 	db.NewRecord(item)
 	db.Create(item)
 	return nil, item
 }
 
 func DeleteItems(db *gorm.DB, data custom_structs.ItemsForDeleting) error {
-	item := models.DatabaseTypes[data.Category]()
+	item := models.DBTypesMap()[data.Category]
 	err := db.Where("id in (?)", data.Ids).Delete(item).Error
 	if err != nil {
 		return err
 	}
-	fmt.Println(data)
 	return nil
 }

@@ -114,6 +114,8 @@ class DBStore extends EventEmitter {
 				return this.selectedItems.indexOf(item.id) == -1;
 			});
 			this.emit('load');
+			this.selectedItems = [];
+			this.actionMenuChange();
 		});
 	}
 

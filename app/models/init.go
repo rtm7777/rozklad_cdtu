@@ -4,6 +4,8 @@ import (
 	"errors"
 )
 
+var itemIdErr error = errors.New("item id can't be less than 1")
+
 type DBModel interface {
 	Decode(b []byte) error
 	Value() interface{}
@@ -11,27 +13,29 @@ type DBModel interface {
 
 type DBModelCollection interface{}
 
-var DatabaseTypes = map[string]func() DBModel{
-	"audiences":   func() DBModel { return new(Audiences) },
-	"departments": func() DBModel { return new(Departments) },
-	"faculties":   func() DBModel { return new(Faculties) },
-	"groups":      func() DBModel { return new(Groups) },
-	"housings":    func() DBModel { return new(Housings) },
-	"subjects":    func() DBModel { return new(Subjects) },
-	"teachers":    func() DBModel { return new(Teachers) },
+func DBTypesMap() map[string]DBModel {
+	return map[string]DBModel{
+		"audiences":   new(Audiences),
+		"departments": new(Departments),
+		"faculties":   new(Faculties),
+		"groups":      new(Groups),
+		"housings":    new(Housings),
+		"subjects":    new(Subjects),
+		"teachers":    new(Teachers),
+	}
 }
 
-var DatabaseTypesCollection = map[string]func() DBModelCollection{
-	"audiences":   func() DBModelCollection { return &[]Audiences{} },
-	"departments": func() DBModelCollection { return &[]Departments{} },
-	"faculties":   func() DBModelCollection { return &[]Faculties{} },
-	"groups":      func() DBModelCollection { return &[]Groups{} },
-	"housings":    func() DBModelCollection { return &[]Housings{} },
-	"subjects":    func() DBModelCollection { return &[]Subjects{} },
-	"teachers":    func() DBModelCollection { return &[]Teachers{} },
+func DBTypesCollectionMap() map[string]DBModelCollection {
+	return map[string]DBModelCollection{
+		"audiences":   &[]Audiences{},
+		"departments": &[]Departments{},
+		"faculties":   &[]Faculties{},
+		"groups":      &[]Groups{},
+		"housings":    &[]Housings{},
+		"subjects":    &[]Subjects{},
+		"teachers":    &[]Teachers{},
+	}
 }
-
-var itemIdErr error = errors.New("item id can't be less than 1")
 
 type Days struct {
 	Id  int64  `json:"id"`
