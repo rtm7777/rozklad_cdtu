@@ -43,23 +43,10 @@ class Navigation extends ComponentWithloader {
 
 			return <NavOption {...props} />;
 		});
-		let loaderShow = 'visible';
-		if (!this.state.loader) {
-			loaderShow = 'invisible';
-		}
+
 		return (
-			<div className="col-lg-3">
-				<div id="db_navigation" className="panel panel-default">
-					<div className="panel-heading">Categories:</div>
-					<div className={`loader ${loaderShow}`}>
-						<div className="bounce1"></div>
-						<div className="bounce2"></div>
-						<div className="bounce3"></div>
-					</div>
-					<div id="database_categories" className="list-group">
-						{navigation}
-					</div>
-				</div>
+			<div id="database_categories" className="list-group">
+				{navigation}
 			</div>
 		);
 	}

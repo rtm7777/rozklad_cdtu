@@ -52,30 +52,22 @@ class Content extends ComponentWithloader {
 			});
 		}
 
-		let loaderShow = 'visible';
 		let tableShow = 'invisible';
 		if (!this.state.loader) {
-			loaderShow = 'invisible';
 			tableShow = 'visible';
 		}
+
 		return (
-			<div id="database_container" className="col-lg-9">
-				<div className={`loader ${loaderShow}`}>
-					<div className="bounce1"></div>
-					<div className="bounce2"></div>
-					<div className="bounce3"></div>
-				</div>
-				<table className={`table table-bordered table-hover table-striped table-condensed ${tableShow}`}>
-					<thead>
-						<tr>
-							{headerCols}
-						</tr>
-					</thead>
-					<tbody>
-						{items}
-					</tbody>
-				</table>
-			</div>
+			<table className={`table table-bordered table-hover table-striped table-condensed ${tableShow}`}>
+				<thead>
+					<tr>
+						{headerCols}
+					</tr>
+				</thead>
+				<tbody>
+					{items}
+				</tbody>
+			</table>
 		);
 	}
 }
