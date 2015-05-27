@@ -1,6 +1,7 @@
 /** @jsx */
 import React from "react";
 import DBStore from "../stores/dbStore";
+import Loader from "./loader";
 import ActionMenu from "../components/dbActionMenu";
 import Content from "../components/dbContent";
 import Navigation from "../components/dbNavigation";
@@ -53,8 +54,17 @@ class DataBase extends React.Component {
 				<ActionMenu {...actionMenuProps} />
 				<div className="container">
 					<div className="row">
-						<Navigation {...navProps} />
-						<Content {...contentProps} />
+						<div className="col-lg-3">
+							<div id="db_navigation" className="panel panel-default">
+								<div className="panel-heading">Categories:</div>
+								<Loader/>
+								<Navigation {...navProps} />
+							</div>
+						</div>
+						<div id="database_container" className="col-lg-9">
+							<Loader/>
+							<Content {...contentProps} />
+						</div>
 					</div>
 				</div>
 			</div>
