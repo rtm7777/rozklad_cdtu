@@ -1,37 +1,46 @@
 /** @jsx */
 import React from "react";
+import {Dispatcher} from 'flux';
+import DBActions from "../actions/dbActions";
 import DBStore from "../stores/dbStore";
+
 import Loader from "./loader";
 import ActionMenu from "../components/dbActionMenu";
 import Content from "../components/dbContent";
 import Navigation from "../components/dbNavigation";
 
+
+
 class DataBase extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = this.props.store.getState();
+		const dispatcher = new Dispatcher();
+
+		this.state = DBStore.defaultState;
+		this.actions = new DBActions(dispatcher);
+		this.store = new DBStore(dispatcher, this.state);
 	}
 
 	getChildContext() {
 		return {
-			actions: this.props.actions,
-			store: this.props.store
+			actions: this.actions,
+			store: this.store
 		};
 	}
 
 	componentWillMount() {
-		let store = this.props.store;
+		let store = this.store;
 
 		store.on('load', () => {
-			let state = store.getState();
+			let state = store.state;
 			this.setState(state);
 		});
 
-		this.props.actions.load();
+		this.actions.load();
 	}
 
 	componentWillUnmount() {
-		this.props.store.removeListener('load');
+		this.store.removeListener('load');
 	}
 
 	render() {
@@ -73,11 +82,6 @@ class DataBase extends React.Component {
 }
 
 DataBase.childContextTypes = {
-	actions: React.PropTypes.object.isRequired,
-	store: React.PropTypes.instanceOf(DBStore).isRequired
-};
-
-DataBase.propTypes = {
 	actions: React.PropTypes.object.isRequired,
 	store: React.PropTypes.instanceOf(DBStore).isRequired
 };

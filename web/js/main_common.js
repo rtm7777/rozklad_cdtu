@@ -2,13 +2,12 @@ import "array.prototype.find";
 import "./jquery";
 import "bootstrap";
 import "./libs/socketEvents";
-import "./controllers/initController";
-import DBApp from  "./controllers/initDBController";
+import React from 'react';
+import Router from 'react-router';
+import routes from './routes';
 
-let state;
-let app;
+const rootEl = document.getElementById('database');
 
-if (document.getElementById('page').dataset.id == "database") {
-	app = new DBApp(state);
-	app.renderToDOM(document.getElementById('database'));
-}
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+  React.render(<Handler/>, rootEl);
+});
