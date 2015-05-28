@@ -9,5 +9,5 @@ import routes from './routes';
 const rootEl = document.getElementById('database');
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
-  React.render(<Handler/>, rootEl);
+	React.render(<Handler/>, rootEl);
 });
