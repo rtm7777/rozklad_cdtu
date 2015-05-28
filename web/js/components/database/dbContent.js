@@ -1,6 +1,5 @@
 /** @jsx */
 import React from "react";
-import ComponentWithloader from "./componentWithLoader";
 import AudienceItem from "./items/audienceItem";
 import DepartmentItem from "./items/departmentItem";
 import FacultyItem from "./items/facultyItem";
@@ -8,11 +7,12 @@ import GroupItem from "./items/groupItem";
 import HousingItem from "./items/housingItem";
 import SubjectItem from "./items/subjectItem";
 import TeacherItem from "./items/teacherItem";
-import DBStore from "../stores/dbStore";
+import DBStore from "../../stores/dbStore";
 
-class Content extends ComponentWithloader {
+class Content extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {loader: true};
 	}
 
 	itemByType(type, props) {
@@ -27,6 +27,17 @@ class Content extends ComponentWithloader {
 		};
 
 		return items[type](props);
+	}
+
+	componentDidMount() {
+		let store = this.context.store;
+		store.on('loaderChange', () => {
+			this.setState({loader: store.getLoaderState()});
+		});
+	}
+
+	componentWillUnmount() {
+		this.context.store.removeListener('loaderChange');
 	}
 
 	render() {

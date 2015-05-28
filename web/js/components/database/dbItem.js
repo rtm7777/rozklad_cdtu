@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 import debounce from "debounce";
-import {validateNumber} from "../libs/validation";
+import {validateNumber} from "../../libs/validation";
 
 class DBItem extends React.Component {
 	constructor(props) {

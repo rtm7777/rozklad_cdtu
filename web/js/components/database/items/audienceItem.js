@@ -1,9 +1,9 @@
 /** @jsx */
 import React from "react";
 import DBItem from "../dbItem";
-import Select from "../select";
+import Select from "../../select";
 
-class GroupItem extends DBItem {
+class AudienceItem extends DBItem {
 	constructor() {
 		super();
 	}
@@ -13,39 +13,46 @@ class GroupItem extends DBItem {
 
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
+				<td>
+					<input
+						defaultValue={this.props.data.number}
+						name="number"
+						onChange={this.onInputChanged}
+						type="text"
+					/>
+				</td>
 				<td className="no-padding">
 					<Select
 						button={true}
-						name="facultyId"
+						name="housingId"
 						onChange={this.onSelectChanged}
-						selected={this.props.data.facultyId}
+						selected={this.props.data.housingId}
 						values={this.props.filters[0].values}
 					/>
 				</td>
 				<td>
 					<input
-						defaultValue={this.props.data.name}
-						name="name"
+						defaultValue={this.props.data.type}
+						name="type"
 						onChange={this.onInputChanged}
 						type="text"
 					/>
 				</td>
 				<td>
 					<input
-						defaultValue={this.props.data.studentsCount}
-						name="studentsCount"
+						defaultValue={this.props.data.sets}
+						name="sets"
 						onChange={this.onInputChanged}
 						onKeyDown={this.onNumberKeyDown}
 						type="number"
 					/>
 				</td>
-				<td className="no-padding">
-					<Select
-						button={true}
-						name="year"
-						onChange={this.onSelectChanged}
-						selected={this.props.data.year}
-						values={this.props.filters[1].values}
+				<td>
+					<input
+						defaultValue={this.props.data.note}
+						name="note"
+						onChange={this.onInputChanged}
+						type="text"
 					/>
 				</td>
 			</tr>
@@ -53,4 +60,4 @@ class GroupItem extends DBItem {
 	}
 }
 
-export default GroupItem;
+export default AudienceItem;

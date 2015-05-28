@@ -1,9 +1,9 @@
 /** @jsx */
 import React from "react";
 import DBItem from "../dbItem";
-import Select from "../select";
+import Select from "../../select";
 
-class DepartmentItem extends DBItem {
+class GroupItem extends DBItem {
 	constructor() {
 		super();
 	}
@@ -30,9 +30,27 @@ class DepartmentItem extends DBItem {
 						type="text"
 					/>
 				</td>
+				<td>
+					<input
+						defaultValue={this.props.data.studentsCount}
+						name="studentsCount"
+						onChange={this.onInputChanged}
+						onKeyDown={this.onNumberKeyDown}
+						type="number"
+					/>
+				</td>
+				<td className="no-padding">
+					<Select
+						button={true}
+						name="year"
+						onChange={this.onSelectChanged}
+						selected={this.props.data.year}
+						values={this.props.filters[1].values}
+					/>
+				</td>
 			</tr>
 		);
 	}
 }
 
-export default DepartmentItem;
+export default GroupItem;

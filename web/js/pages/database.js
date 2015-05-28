@@ -4,10 +4,10 @@ import {Dispatcher} from 'flux';
 import DBActions from "../actions/dbActions";
 import DBStore from "../stores/dbStore";
 
-import Loader from "./loader";
-import ActionMenu from "../components/dbActionMenu";
-import Content from "../components/dbContent";
-import Navigation from "../components/dbNavigation";
+import Loader from "../components/database/loader";
+import ActionMenu from "../components/database/dbActionMenu";
+import Content from "../components/database/dbContent";
+import Navigation from "../components/database/dbNavigation";
 
 
 

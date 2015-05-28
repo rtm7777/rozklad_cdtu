@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 import DBItem from "../dbItem";
-import Select from "../select";
+import Select from "../../select";
 
 class TeacherItem extends DBItem {
 	constructor() {

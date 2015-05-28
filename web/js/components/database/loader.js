@@ -1,5 +1,5 @@
 import React from "react";
-import DBStore from "../stores/dbStore";
+import DBStore from "../../stores/dbStore";
 
 class Loader extends React.Component {
 	constructor(props) {
