@@ -1,7 +1,6 @@
 /** @jsx */
 import React from "react";
-import ComponentWithloader from "./componentWithLoader";
-import DBStore from "../stores/dbStore";
+import DBStore from "../../stores/dbStore";
 
 class NavOption extends React.Component {
 	constructor(props) {
@@ -22,7 +21,7 @@ class NavOption extends React.Component {
 	}
 }
 
-class Navigation extends ComponentWithloader {
+class Navigation extends React.Component {
 	constructor(props) {
 		super(props);
 		this.selectCategory = this.selectCategory.bind(this);

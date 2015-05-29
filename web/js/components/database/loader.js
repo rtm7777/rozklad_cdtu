@@ -1,5 +1,5 @@
 import React from "react";
-import DBStore from "../stores/dbStore";
+import DBStore from "../../stores/dbStore";
 
 class Loader extends React.Component {
 	constructor(props) {
@@ -16,9 +16,9 @@ class Loader extends React.Component {
 
 	componentWillUnmount() {
 		this.context.store.removeListener('loaderChange');
-  }
+	}
 
-  render() {
+	render() {
 		let loaderShow = 'visible';
 		if (!this.state.loader) {
 			loaderShow = 'invisible';

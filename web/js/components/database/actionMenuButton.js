@@ -1,6 +1,6 @@
 /** @jsx */
 import React from "react/addons";
-import DBStore from "../stores/dbStore";
+import DBStore from "../../stores/dbStore";
 
 class ActionMenuButton extends React.Component {
 	constructor(props) {
