@@ -4,6 +4,7 @@ import { Route } from 'react-router';
 import DataBase from "./pages/database";
 
 export default (
-	<Route name='explore' path='/database/' handler={DataBase}>
+	<Route name='admin' path='/admin/'>
+		<Route name="database" path="database/?" handler={DataBase}/>
 	</Route>
 );

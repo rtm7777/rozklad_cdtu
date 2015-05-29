@@ -18,9 +18,10 @@ POST    /login                                  Application.LoginPost
 GET     /logout                                 Application.Logout
 
 GET     /admin                                  Admin.Main
-GET     /database                               Admin.DataBase
+GET     /admin/database                         Admin.DataBase
+GET     /admin/schedule                         Admin.Schedule
+GET     /admin/tasks                            Admin.Tasks
 GET     /get_ws_token                           Admin.GetWSToken
-GET     /tasks                                  Admin.Tasks
 
 # DataBase
 GET     /get_category                           DataBase.GetCategoryItems

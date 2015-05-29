@@ -1,6 +1,8 @@
 {{set . "title" (msg . "page_title.tasks")}}
-{{set . "admin" "active"}}
-{{template "header.html" .}}
+{{set . "admin_tasks" "active"}}
+{{template "header_admin.html" .}}
+
+<div id="page"></div>
 
 <div class="container">
 	<div class="row">
@@ -81,5 +83,4 @@
 		</div>
 	</div>
 </div>
-<div id="page" data-id="tasks" class="hide"></div>
 {{template "footer_admin.html" .}}

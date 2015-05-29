@@ -59,7 +59,7 @@ class DataBase extends React.Component {
 		};
 
 		return (
-			<div>
+			<div className="database">
 				<ActionMenu {...actionMenuProps} />
 				<div className="container">
 					<div className="row">

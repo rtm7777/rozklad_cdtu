@@ -1,0 +1,33 @@
+{{template "header_shared.html" .}}
+
+<header class="navbar navbar-inverse">
+	<div class="container">
+		<a href="/" class="navbar-brand">{{msg . "app_name"}}</a>
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+				<a class="dropdown-toggle " data-toggle="dropdown" href="#">{{msg . "preview"}}<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="/group/">{{msg . "groups_schedule"}}</a></li>
+					<li><a href="/teacher/">{{msg . "teachers_schedule"}}</a></li>
+					<li><a href="/gmaps/">{{msg . "housings_location"}}</a></li>
+					<li><a href="/about/">{{msg . "about_site"}}</a></li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav pull-right">
+			<li class="{{.admin_schedule}}">
+				<a href="/admin/schedule">{{msg . "admin_schedule"}}</a>
+			</li>
+			<li class="{{.admin_tasks}}">
+				<a href="/admin/tasks/">{{msg . "admin_tasks"}}</a>
+			</li>
+			<li class="{{.admin_db}}">
+				<a href="/admin/database/">{{msg . "abmin_db"}}</a>
+			</li>
+			{{if .User}}
+				<p class="navbar-text">{{msg . "logined_as"}} <a href="#" class="navbar-link">{{.User}}</a></p>
+				<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> {{msg . "logout"}}</a></li>
+			{{end}}
+		</ul>
+	</div>
+</header>
