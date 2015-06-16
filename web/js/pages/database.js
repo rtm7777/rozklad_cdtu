@@ -1,6 +1,6 @@
 /** @jsx */
 import React from "react";
-import {Dispatcher} from 'flux';
+import Dispatcher from '../dispatcher/dispatcher';
 import DBActions from "../actions/dbActions";
 import DBStore from "../stores/dbStore";
 
@@ -14,7 +14,7 @@ import Navigation from "../components/database/dbNavigation";
 class DataBase extends React.Component {
 	constructor(props) {
 		super(props);
-		const dispatcher = new Dispatcher();
+		const dispatcher = Dispatcher;
 
 		this.state = DBStore.defaultState;
 		this.actions = new DBActions(dispatcher);

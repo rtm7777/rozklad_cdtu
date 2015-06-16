@@ -1,5 +1,3 @@
-import dbDispatcher from "../dispatcher/dbDispatcher";
-
 class DBActions {
 	constructor(dispatcher) {
 		this.dispatcher = dispatcher;

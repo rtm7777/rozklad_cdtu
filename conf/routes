@@ -26,9 +26,12 @@ GET     /get_ws_token                           Admin.GetWSToken
 # DataBase
 GET     /get_category                           DataBase.GetCategoryItems
 GET     /get_category_list                      DataBase.GetCategoryList
-POST    /database/update_item                   DataBase.UpdateItem
-POST    /database/add_item                      DataBase.AddItem
-POST    /database/delete_items                  DataBase.DeleteItems
+POST    /admin/database/update_item             DataBase.UpdateItem
+POST    /admin/database/add_item                DataBase.AddItem
+POST    /admin/database/delete_items            DataBase.DeleteItems
+
+# Tasks
+GET     /get_faculty_departments_list           Tasks.GetFacultyDepartmentsList
 
 # Schedule
 POST    /get_faculty_groups                     Schedule.GetFacultyGroups
