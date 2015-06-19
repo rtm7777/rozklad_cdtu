@@ -1,8 +1,9 @@
 /** @jsx */
 import React from "react";
 import Dispatcher from '../dispatcher/dispatcher';
-import TasksActions from "../actions/dbActions";
-import TasksStore from "../stores/dbStore";
+import DepartmentSelector from '../components/tasks/tasksDepartmentSelector';
+import TasksActions from "../actions/tasksActions";
+import TasksStore from "../stores/tasksStore";
 
 class Tasks extends React.Component {
 	constructor(props) {
@@ -37,14 +38,13 @@ class Tasks extends React.Component {
 	}
 
 	render() {
+
 		return (
 			<div className="database">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-3">
-							<div id="db_navigation" className="panel panel-default">
-								<div className="panel-heading">Categories:</div>
-							</div>
+							<DepartmentSelector data={this.state.facultiesDepartments} />
 						</div>
 						<div id="database_container" className="col-lg-9">
 						</div>

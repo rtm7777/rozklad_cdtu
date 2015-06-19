@@ -43,7 +43,7 @@ class DBItem extends React.Component {
 	}
 
 	onSelectChanged(event) {
-		this.data[event.name] = event.value;
+		this.data[event.name] = event.id;
 		this.onItemChange();
 	}
 

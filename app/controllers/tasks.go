@@ -10,10 +10,10 @@ type Tasks struct {
 }
 
 func (c Tasks) GetFacultyDepartmentsList() revel.Result {
-	err, item := database.AddItem(c.DB, "faculty")
+	result, err := database.FacultiesDepartments(c.DB)
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		return c.RenderJson(item)
+		return c.RenderJson(result)
 	}
 }

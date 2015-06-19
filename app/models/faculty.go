@@ -6,8 +6,8 @@ import (
 
 type Faculties struct {
 	Id        int64  `json:"id"`
-	FullName  string `sql:"size:100" json:"fullName"`
-	ShortName string `sql:"size:50" json:"shortName"`
+	FullName  string `sql:"size:100;unique" json:"fullName"`
+	ShortName string `sql:"size:50;unique" json:"shortName"`
 }
 
 func (faculty *Faculties) Decode(b []byte) error {

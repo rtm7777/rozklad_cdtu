@@ -30,7 +30,8 @@ class Select extends React.Component {
 		this.setState({selected: child.props.data.id});
 		if (this.props.onChange) {
 			this.props.onChange({
-				value: child.props.data.id,
+				id: child.props.data.id,
+				value: child.props.data.value,
 				name: this.props.name || ""
 			});
 		}
@@ -61,6 +62,7 @@ class Select extends React.Component {
 		if (this.props.button) {
 			return (
 				<div className="dropdown">
+					{name}
 					<button className="dropdown-toggle" data-toggle="dropdown">
 						{selectboxName}
 						<span className="glyphicon glyphicon-chevron-down"/>

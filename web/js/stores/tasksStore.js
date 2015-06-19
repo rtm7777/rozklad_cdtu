@@ -11,6 +11,12 @@ class TasksStore extends EventEmitter {
 
 		dispatcher.register((action) => {
 			switch(action.actionType) {
+				case 'load':
+					this.load().then(() => {
+						this.emit('load');
+						this.emit('loaderChange');
+					});
+					break;
 				case 'categorySelected':
 					this.changeCategory(action);
 					break;
@@ -18,6 +24,17 @@ class TasksStore extends EventEmitter {
 					this.itemSelected(action);
 					break;
 				}
+		});
+	}
+
+	load() {
+		let promises = [promise.get('/get_faculty_departments_list')];
+
+		return Promise.all(promises).then((data) => {
+			this.state.facultiesDepartments = data[0];
+			this.loader = false;
+		}).catch(() => {
+			console.log("loading error");
 		});
 	}
 
@@ -36,7 +53,7 @@ class TasksStore extends EventEmitter {
 }
 
 TasksStore.defaultState = {
-
+	facultiesDepartments: ["---"]
 };
 
 export default TasksStore;

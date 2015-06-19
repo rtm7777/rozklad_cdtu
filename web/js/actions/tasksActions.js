@@ -8,6 +8,13 @@ class TasksActions {
 			actionType: 'load'
 		});
 	}
+
+	selectDepartment(department) {
+		this.dispatcher.dispatch({
+			actionType: 'departmentSelected',
+			name: department
+		});
+	}
 }
 
 export default TasksActions;

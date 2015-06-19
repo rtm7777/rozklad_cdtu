@@ -7,7 +7,7 @@ import DBStore from "../stores/dbStore";
 import Loader from "../components/database/loader";
 import ActionMenu from "../components/database/dbActionMenu";
 import Content from "../components/database/dbContent";
-import Navigation from "../components/database/dbNavigation";
+import DBNavigation from "../components/database/dbNavigation";
 
 
 
@@ -49,7 +49,7 @@ class DataBase extends React.Component {
 		};
 		let navProps = {
 			navList: this.state.categoryList,
-			selectedCategory: this.state.selectedCategory
+			selectedOption: this.state.selectedCategory
 		};
 		let contentProps = {
 			fields: this.state.fields,
@@ -67,7 +67,7 @@ class DataBase extends React.Component {
 							<div id="db_navigation" className="panel panel-default">
 								<div className="panel-heading">Categories:</div>
 								<Loader/>
-								<Navigation {...navProps} />
+								<DBNavigation {...navProps} />
 							</div>
 						</div>
 						<div id="database_container" className="col-lg-9">

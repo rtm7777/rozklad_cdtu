@@ -2,7 +2,7 @@
 import React from "react";
 import Select from "../select";
 import ActionMenuButton from "./actionMenuButton";
-import DBStore from "../../stores/dbStore";
+import TasksStore from "../../stores/tasksStore";
 
 class ActionMenu extends React.Component {
 	constructor(props) {

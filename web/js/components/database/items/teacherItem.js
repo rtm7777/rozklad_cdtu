@@ -31,7 +31,7 @@ class TeacherItem extends DBItem {
 				</td>
 				<td className="no-padding">
 					<div className="dropdown">
-						<button tabindex="0" className="popove btn" role="button" data-toggle="popover" data-placement="bottom" data-content="khhkufjh">
+						<button tabIndex="0" className="popove btn" role="button" data-toggle="popover" data-placement="bottom" data-content="khhkufjh">
 							{this.props.data.firstName}
 						</button>
 					</div>
