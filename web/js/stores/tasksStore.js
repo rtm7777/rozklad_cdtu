@@ -7,7 +7,6 @@ class TasksStore extends EventEmitter {
 		super();
 		this.state = TasksStore.defaultState;
 		this.loader = true;
-		this.selectedItems = [];
 
 		dispatcher.register((action) => {
 			switch(action.actionType) {
@@ -17,11 +16,8 @@ class TasksStore extends EventEmitter {
 						this.emit('loaderChange');
 					});
 					break;
-				case 'categorySelected':
-					this.changeCategory(action);
-					break;
-				case 'itemSelected':
-					this.itemSelected(action);
+				case 'departmentSelected':
+					this.departmentSelected(action);
 					break;
 				}
 		});
@@ -34,12 +30,27 @@ class TasksStore extends EventEmitter {
 			this.state.facultiesDepartments = data[0];
 			this.loader = false;
 		}).catch(() => {
-			console.log("loading error");
+			console.log('loading error');
 		});
 	}
 
-	actionMenuChange() {
-		this.emit('itemSelected');
+	departmentSelected(action) {
+		this.loader = true;
+		this.emit('loaderChange');
+
+		this.selectedItems = [];
+		this.actionMenuChange();
+
+		let department = action.departmentId;
+		storage.saveValue('selectedDepartment', department);
+		this.state.selectedDepartment = department;
+		this.emit('load');
+		this.loadFields(category).then(data => {
+			this.emit('load');
+
+			this.loader = false;
+			this.emit('loaderChange');
+		});
 	}
 
 	getState() {
@@ -53,7 +64,9 @@ class TasksStore extends EventEmitter {
 }
 
 TasksStore.defaultState = {
-	facultiesDepartments: ["---"]
+	facultiesDepartments: ['---'],
+	selectedFaculty: storage.getValue('selectedFaculty') || '',
+	selectedDepartment: storage.getValue('selectedDepartment') || ''
 };
 
 export default TasksStore;

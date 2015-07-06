@@ -9,10 +9,10 @@ class TasksActions {
 		});
 	}
 
-	selectDepartment(department) {
+	selectDepartment(departmentId) {
 		this.dispatcher.dispatch({
 			actionType: 'departmentSelected',
-			name: department
+			departmentId
 		});
 	}
 }

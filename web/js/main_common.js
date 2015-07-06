@@ -2,9 +2,9 @@ import "array.prototype.find";
 import "./jquery";
 import "bootstrap";
 import "./libs/socketEvents";
-import React from 'react';
-import Router from 'react-router';
-import routes from './routes';
+import React from "react";
+import Router from "react-router";
+import routes from "./routes";
 
 const rootEl = document.getElementById('page');
 

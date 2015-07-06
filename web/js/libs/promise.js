@@ -29,7 +29,7 @@ function request(url, type, data, dataType = '') {
 		};
 
 		req.onerror = () => {
-			reject(new Error("Network Error"));
+			reject(new Error('Network Error'));
 		};
 
 		if (type == 'GET') {

@@ -1,6 +1,6 @@
 /** @jsx */
 import React from "react";
-import Dispatcher from '../dispatcher/dispatcher';
+import Dispatcher from "../dispatcher/dispatcher";
 import DBActions from "../actions/dbActions";
 import DBStore from "../stores/dbStore";
 
@@ -59,18 +59,18 @@ class DataBase extends React.Component {
 		};
 
 		return (
-			<div className="database">
+			<div className='database'>
 				<ActionMenu {...actionMenuProps} />
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-3">
-							<div id="db_navigation" className="panel panel-default">
-								<div className="panel-heading">Categories:</div>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-lg-3'>
+							<div id='db_navigation' className='panel panel-default'>
+								<div className='panel-heading'>Categories:</div>
 								<Loader/>
 								<DBNavigation {...navProps} />
 							</div>
 						</div>
-						<div id="database_container" className="col-lg-9">
+						<div id='database_container' className='col-lg-9'>
 							<Loader/>
 							<Content {...contentProps} />
 						</div>

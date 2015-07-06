@@ -16,15 +16,15 @@ class AudienceItem extends DBItem {
 				<td>
 					<input
 						defaultValue={this.props.data.number}
-						name="number"
+						name='number'
 						onChange={this.onInputChanged}
-						type="text"
+						type='text'
 					/>
 				</td>
-				<td className="no-padding">
+				<td className='no-padding'>
 					<Select
 						button={true}
-						name="housingId"
+						name='housingId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.housingId}
 						values={this.props.filters[0].values}
@@ -33,26 +33,26 @@ class AudienceItem extends DBItem {
 				<td>
 					<input
 						defaultValue={this.props.data.type}
-						name="type"
+						name='type'
 						onChange={this.onInputChanged}
-						type="text"
+						type='text'
 					/>
 				</td>
 				<td>
 					<input
 						defaultValue={this.props.data.sets}
-						name="sets"
+						name='sets'
 						onChange={this.onInputChanged}
 						onKeyDown={this.onNumberKeyDown}
-						type="number"
+						type='number'
 					/>
 				</td>
 				<td>
 					<input
 						defaultValue={this.props.data.note}
-						name="note"
+						name='note'
 						onChange={this.onInputChanged}
-						type="text"
+						type='text'
 					/>
 				</td>
 			</tr>

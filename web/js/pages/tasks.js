@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
-import Dispatcher from '../dispatcher/dispatcher';
-import DepartmentSelector from '../components/tasks/tasksDepartmentSelector';
+import Dispatcher from "../dispatcher/dispatcher";
+import DepartmentSelector from "../components/tasks/tasksDepartmentSelector";
 import TasksActions from "../actions/tasksActions";
 import TasksStore from "../stores/tasksStore";
 
@@ -38,15 +38,19 @@ class Tasks extends React.Component {
 	}
 
 	render() {
-
+		let departmentSelectorProps = {
+			data: this.state.facultiesDepartments,
+			selectedFaculty: this.state.selectedFaculty,
+			selectedDepartment: this.state.selectedDepartment
+		};
 		return (
-			<div className="database">
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-3">
-							<DepartmentSelector data={this.state.facultiesDepartments} />
+			<div className='database'>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-lg-3'>
+							<DepartmentSelector {...departmentSelectorProps} />
 						</div>
-						<div id="database_container" className="col-lg-9">
+						<div id='database_container' className='col-lg-9'>
 						</div>
 					</div>
 				</div>

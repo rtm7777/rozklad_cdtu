@@ -25,9 +25,9 @@ class Loader extends React.Component {
 		}
 		return (
 			<div className={`loader ${loaderShow}`}>
-				<div className="bounce1"></div>
-				<div className="bounce2"></div>
-				<div className="bounce3"></div>
+				<div className='bounce1'></div>
+				<div className='bounce2'></div>
+				<div className='bounce3'></div>
 			</div>
 		);
 	}

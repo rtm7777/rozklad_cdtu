@@ -13,9 +13,10 @@ class NavOption extends React.Component {
 	}
 
 	render() {
-		let active = this.props.data.optionValue == this.props.active ? "active" : "";
+		console.log(this.props.data.optionValue, this.props.active);
+		let active = this.props.data.optionValue == this.props.active ? 'active' : '';
 		return (
-			<a onClick={this.optionSelected} href="#" data-category={this.props.data.optionValue} className={`list-group-item ${active}`}>{this.props.data.name}</a>
+			<a onClick={this.optionSelected} href='#' data-category={this.props.data.optionValue} className={`list-group-item ${active}`}>{this.props.data.name}</a>
 		);
 	}
 }
@@ -27,7 +28,7 @@ class Navigation extends React.Component {
 	}
 
 	selectOption(el) {
-		console.error("Prease override this method");
+		console.error('Prease override this method');
 	}
 
 	render() {
@@ -43,7 +44,7 @@ class Navigation extends React.Component {
 		});
 
 		return (
-			<div id="database_categories" className="list-group">
+			<div className='list-group navigation'>
 				{navigation}
 			</div>
 		);

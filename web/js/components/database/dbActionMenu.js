@@ -10,15 +10,15 @@ class ActionMenu extends React.Component {
 		this.actionButtons = {
 			delete: {
 				action: 'delete',
-				name: "Delete",
+				name: 'Delete',
 				hidden: true,
-				icon: "remove"
+				icon: 'remove'
 			},
 			add: {
 				action: 'add',
-				name: "Add",
+				name: 'Add',
 				hidden: false,
-				icon: "plus"
+				icon: 'plus'
 			}
 		};
 		this.state = {
@@ -57,7 +57,8 @@ class ActionMenu extends React.Component {
 			let props = {
 				values: filter.values,
 				key: i,
-				name: filter.name
+				name: filter.name,
+				label: true
 			};
 
 			return <Select {...props} />;
@@ -77,14 +78,14 @@ class ActionMenu extends React.Component {
 		}
 
 		return (
-			<div className="container">
-				<div className="row">
-					<div className="col-lg-12">
-						<div className="panel clearfix panel-default">
-							<ul className="nav nav-pills pull-left filter-menu">
+			<div className='container'>
+				<div className='row'>
+					<div className='col-lg-12'>
+						<div className='panel clearfix panel-default'>
+							<ul className='nav nav-pills pull-left filter-menu'>
 								{filters}
 							</ul>
-							<ul className="nav nav-pills pull-right action-menu">
+							<ul className='nav nav-pills pull-right action-menu'>
 								{actions}
 							</ul>
 						</div>

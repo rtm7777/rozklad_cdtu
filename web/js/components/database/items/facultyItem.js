@@ -15,17 +15,17 @@ class FacultyItem extends DBItem {
 				<td>
 					<input
 						defaultValue={this.props.data.fullName}
-						name="fullName"
+						name='fullName'
 						onChange={this.onInputChanged}
-						type="text"
+						type='text'
 					/>
 				</td>
 				<td>
 					<input
 						defaultValue={this.props.data.shortName}
-						name="shortName"
+						name='shortName'
 						onChange={this.onInputChanged}
-						type="text"
+						type='text'
 					/>
 				</td>
 			</tr>

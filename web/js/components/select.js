@@ -14,7 +14,7 @@ class SelectOption extends React.Component {
 
 	render() {
 		return (
-			<li onClick={this.changeValue}><a tabIndex="-1" href="#">{this.props.data.value}</a></li>
+			<li onClick={this.changeValue}><a tabIndex='-1' href='#'>{this.props.data.value}</a></li>
 		);
 	}
 }
@@ -38,7 +38,7 @@ class Select extends React.Component {
 	}
 
 	generateDropdownLabel() {
-		if (this.props.name) {
+		if (this.props.label) {
 			return (
 				<div className='dropdown-label'>{this.props.name + ":"}</div>
 			);
@@ -61,26 +61,26 @@ class Select extends React.Component {
 
 		if (this.props.button) {
 			return (
-				<div className="dropdown">
+				<div className='dropdown'>
 					{name}
-					<button className="dropdown-toggle" data-toggle="dropdown">
+					<button className='dropdown-toggle' data-toggle='dropdown'>
 						{selectboxName}
-						<span className="glyphicon glyphicon-chevron-down"/>
+						<span className='glyphicon glyphicon-chevron-down'/>
 					</button>
-					<ul className="dropdown-menu">
+					<ul className='dropdown-menu'>
 						{selectOptions}
 					</ul>
 				</div>
 			);
 		} else {
 			return (
-				<li className="dropdown">
+				<li className='dropdown'>
 					{name}
-					<a className="dropdown-toggle" data-toggle="dropdown" href="#">
+					<a className='dropdown-toggle' data-toggle='dropdown' href='#'>
 						{selectboxName}
-						<span className="caret"/>
+						<span className='caret'/>
 					</a>
-					<ul className="dropdown-menu">
+					<ul className='dropdown-menu'>
 						{selectOptions}
 					</ul>
 				</li>

@@ -45,7 +45,7 @@ class DBStore extends EventEmitter {
 			this.state.categoryList = data[0];
 			this.loader = false;
 		}).catch(() => {
-			console.log("loading error");
+			console.log('loading error');
 		});
 	}
 
@@ -60,7 +60,7 @@ class DBStore extends EventEmitter {
 		this.state.fields = [];
 
 		let category = action.name;
-		storage.saveValue("category", category);
+		storage.saveValue('category', category);
 		this.state.selectedCategory = category;
 		this.emit('load');
 		this.loadFields(category).then(data => {
@@ -144,11 +144,11 @@ class DBStore extends EventEmitter {
 
 DBStore.defaultState = {
 	categoryList: [],
-	selectedCategory: storage.getValue("category") || "",
+	selectedCategory: storage.getValue('category') || '',
 	fields: [],
 	columns: [],
 	filters: [],
-	error_message: ""
+	error_message: ''
 };
 
 export default DBStore;

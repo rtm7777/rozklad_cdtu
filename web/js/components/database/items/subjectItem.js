@@ -15,9 +15,9 @@ class SubjectItem extends DBItem {
 				<td>
 					<input
 						defaultValue={this.props.data.subject}
-						name="subject"
+						name='subject'
 						onChange={this.onInputChanged}
-						type="text"
+						type='text'
 					/>
 				</td>
 			</tr>

@@ -6,7 +6,7 @@ import {validateNumber} from "../../libs/validation";
 class DBItem extends React.Component {
 	constructor(props) {
 		super(props);
-		this.itemClass = "";
+		this.itemClass = '';
 		this.state = {
 			selected: false
 		};
@@ -52,7 +52,7 @@ class DBItem extends React.Component {
 	}
 
 	render() {
-		this.itemClass = this.state.selected ? "info" : "";
+		this.itemClass = this.state.selected ? 'info' : '';
 	}
 }
 
