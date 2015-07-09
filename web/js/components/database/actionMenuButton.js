@@ -1,14 +1,12 @@
 /** @jsx */
 import React from "react/addons";
-import DBStore from "../../stores/dbStore";
 
 class ActionMenuButton extends React.Component {
 	constructor(props) {
 		super(props);
-		this.actionButtonClicked = this.actionButtonClicked.bind(this);
 	}
 
-	actionButtonClicked(e) {
+	actionButtonClicked = (e) => {
 		e.preventDefault();
 		this.props.onClick(this);
 	}

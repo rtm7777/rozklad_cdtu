@@ -15,6 +15,19 @@ class TasksActions {
 			departmentId
 		});
 	}
+
+	changedFaculty(facultyId) {
+		this.dispatcher.dispatch({
+			actionType: 'facultyChanged',
+			facultyId
+		});
+	}
+
+	loadTasks() {
+		this.dispatcher.dispatch({
+			actionType: 'loadTasks'
+		});
+	}
 }
 
 export default TasksActions;

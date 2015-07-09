@@ -19,6 +19,12 @@ class TasksStore extends EventEmitter {
 				case 'departmentSelected':
 					this.departmentSelected(action);
 					break;
+				case 'facultyChanged':
+					this.facultyChanged(action);
+					break;
+				case 'loadTasks':
+					this.loadTasks();
+					break;
 				}
 		});
 	}
@@ -34,23 +40,32 @@ class TasksStore extends EventEmitter {
 		});
 	}
 
+	facultyChanged(action) {
+		this.state.selectedFaculty = action.facultyId;
+		storage.saveValue('selectedFaculty', action.facultyId);
+		this.state.selectedDepartment = '';
+		storage.saveValue('selectedDepartment', '');
+		this.emit('load');
+	}
+
 	departmentSelected(action) {
 		this.loader = true;
 		this.emit('loaderChange');
-
-		this.selectedItems = [];
-		this.actionMenuChange();
 
 		let department = action.departmentId;
 		storage.saveValue('selectedDepartment', department);
 		this.state.selectedDepartment = department;
 		this.emit('load');
-		this.loadFields(category).then(data => {
-			this.emit('load');
+		// this.loadFields(category).then(data => {
+		// 	this.emit('load');
 
-			this.loader = false;
-			this.emit('loaderChange');
-		});
+		// 	this.loader = false;
+		// 	this.emit('loaderChange');
+		// });
+	}
+
+	loadTasks() {
+		return 0;
 	}
 
 	getState() {
@@ -64,7 +79,7 @@ class TasksStore extends EventEmitter {
 }
 
 TasksStore.defaultState = {
-	facultiesDepartments: ['---'],
+	facultiesDepartments: [{'facultyId': 0, 'facultyName': "---","departments": []}],
 	selectedFaculty: storage.getValue('selectedFaculty') || '',
 	selectedDepartment: storage.getValue('selectedDepartment') || ''
 };

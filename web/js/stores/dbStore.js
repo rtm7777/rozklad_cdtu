@@ -110,7 +110,7 @@ class DBStore extends EventEmitter {
 		};
 		promise.post('delete_items', json, 'json').then((data) => {
 			this.state.fields = this.state.fields.filter((item) => {
-				return this.selectedItems.indexOf(item.id) == -1;
+				return this.selectedItems.indexOf(item.id) === -1;
 			});
 			this.emit('load');
 			this.selectedItems = [];
@@ -148,7 +148,7 @@ DBStore.defaultState = {
 	fields: [],
 	columns: [],
 	filters: [],
-	error_message: ''
+	errorMessage: ''
 };
 
 export default DBStore;

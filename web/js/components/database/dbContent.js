@@ -15,6 +15,17 @@ class Content extends React.Component {
 		this.state = {loader: true};
 	}
 
+	componentDidMount() {
+		let store = this.context.store;
+		store.on('loaderChange', () => {
+			this.setState({loader: store.getLoaderState()});
+		});
+	}
+
+	componentWillUnmount() {
+		this.context.store.removeListener('loaderChange');
+	}
+
 	itemByType(type, props) {
 		let items = {
 			audiences:   (props) => <AudienceItem {...props} />,
@@ -27,17 +38,6 @@ class Content extends React.Component {
 		};
 
 		return items[type](props);
-	}
-
-	componentDidMount() {
-		let store = this.context.store;
-		store.on('loaderChange', () => {
-			this.setState({loader: store.getLoaderState()});
-		});
-	}
-
-	componentWillUnmount() {
-		this.context.store.removeListener('loaderChange');
 	}
 
 	render() {

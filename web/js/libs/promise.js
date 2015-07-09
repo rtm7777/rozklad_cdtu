@@ -10,7 +10,7 @@ function generateUrlData(data) {
 function request(url, type, data, dataType = '') {
 	return new Promise((resolve, reject) => {
 		let req = new XMLHttpRequest();
-		if (type == 'GET') url += `?${generateUrlData(data)}`;
+		if (type === 'GET') { url += `?${generateUrlData(data)}`; }
 
 		req.open(type, url);
 
@@ -32,9 +32,9 @@ function request(url, type, data, dataType = '') {
 			reject(new Error('Network Error'));
 		};
 
-		if (type == 'GET') {
+		if (type === 'GET') {
 			req.send();
-		} else if (dataType == 'json') {
+		} else if (dataType === 'json') {
 			req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 			req.send(JSON.stringify(data));
 		} else {

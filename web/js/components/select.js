@@ -4,10 +4,9 @@ import React from "react";
 class SelectOption extends React.Component {
 	constructor(props) {
 		super(props);
-		this.changeValue= this.changeValue.bind(this);
 	}
 
-	changeValue(e) {
+	changeValue = (e) => {
 		e.preventDefault();
 		this.props.onClick(this);
 	}
@@ -23,10 +22,9 @@ class Select extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {selected: this.props.selected || 0};
-		this.changeValue = this.changeValue.bind(this);
 	}
 
-	changeValue(child) {
+	changeValue = (child) => {
 		this.setState({selected: child.props.data.id});
 		if (this.props.onChange) {
 			this.props.onChange({
@@ -46,7 +44,7 @@ class Select extends React.Component {
 	}
 
 	render() {
-		let value = this.props.values.find((val) => val.id == this.state.selected);
+		let value = this.props.values.find((val) => val.id === this.state.selected);
 		let selectboxName = value ? value.value + " " : "--- ";
 		let selectOptions = this.props.values.map((option, i) => {
 			let props = {

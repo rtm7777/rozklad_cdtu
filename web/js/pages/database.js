@@ -9,8 +9,6 @@ import ActionMenu from "../components/database/dbActionMenu";
 import Content from "../components/database/dbContent";
 import DBNavigation from "../components/database/dbNavigation";
 
-
-
 class DataBase extends React.Component {
 	constructor(props) {
 		super(props);

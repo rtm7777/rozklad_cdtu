@@ -24,16 +24,6 @@ class ActionMenu extends React.Component {
 		this.state = {
 			actions: this.actionButtons
 		};
-		this.actionButtonsActions = this.actionButtonsActions.bind(this);
-	}
-
-	actionButtonsActions(child) {
-		let actions = {
-			delete: () => this.context.actions.deleteAction(),
-			add: () => this.context.actions.addAction()
-		};
-
-		return actions[child.props.data.action]();
 	}
 
 	componentDidMount() {
@@ -50,6 +40,15 @@ class ActionMenu extends React.Component {
 
 	componentWillUnmount() {
 		this.context.store.removeListener('itemSelected');
+	}
+
+	actionButtonsActions = (child) => {
+		let actions = {
+			delete: () => this.context.actions.deleteAction(),
+			add: () => this.context.actions.addAction()
+		};
+
+		return actions[child.props.data.action]();
 	}
 
 	render() {
