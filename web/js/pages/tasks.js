@@ -6,6 +6,11 @@ import TasksActions from "../actions/tasksActions";
 import TasksStore from "../stores/tasksStore";
 
 class Tasks extends React.Component {
+	static childContextTypes = {
+		actions: React.PropTypes.object.isRequired,
+		store: React.PropTypes.instanceOf(TasksStore).isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		const dispatcher = Dispatcher;
@@ -26,7 +31,7 @@ class Tasks extends React.Component {
 		let store = this.store;
 
 		store.on('load', () => {
-			let state = store.state;
+			let state = store.getState();
 			this.setState(state);
 		});
 
@@ -58,10 +63,5 @@ class Tasks extends React.Component {
 		);
 	}
 }
-
-Tasks.childContextTypes = {
-	actions: React.PropTypes.object.isRequired,
-	store: React.PropTypes.instanceOf(TasksStore).isRequired
-};
 
 export default Tasks;

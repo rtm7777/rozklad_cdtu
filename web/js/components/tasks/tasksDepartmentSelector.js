@@ -5,7 +5,6 @@ import DepartmentsNavigation from "./departmentsNavigation";
 import TasksStore from "../../stores/tasksStore";
 
 class DepartmentSelector extends React.Component {
-
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired,
 		store: React.PropTypes.instanceOf(TasksStore).isRequired
@@ -32,7 +31,7 @@ class DepartmentSelector extends React.Component {
 	}
 
 	selectDepartments = (facultyId) => {
-		let departments = this.props.data.find((val) => val.facultyId === facultyId).departments.map((department) => {
+		let departments = this.props.data.find((val) => val.facultyId == facultyId).departments.map((department) => {
 			return {optionValue: department.id, name: department.name};
 		});
 		this.setState({departments: departments});

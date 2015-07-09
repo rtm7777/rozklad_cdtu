@@ -10,6 +10,11 @@ import TeacherItem from "./items/teacherItem";
 import DBStore from "../../stores/dbStore";
 
 class Content extends React.Component {
+	static contextTypes = {
+		actions: React.PropTypes.object.isRequired,
+		store: React.PropTypes.instanceOf(DBStore).isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {loader: true};
@@ -82,10 +87,5 @@ class Content extends React.Component {
 		);
 	}
 }
-
-Content.contextTypes = {
-	actions: React.PropTypes.object.isRequired,
-	store: React.PropTypes.instanceOf(DBStore).isRequired
-};
 
 export default Content;

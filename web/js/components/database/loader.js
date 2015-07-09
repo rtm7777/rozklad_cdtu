@@ -2,6 +2,10 @@ import React from "react";
 import DBStore from "../../stores/dbStore";
 
 class Loader extends React.Component {
+	static contextTypes = {
+		store: React.PropTypes.instanceOf(DBStore).isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {loader: true};
@@ -32,9 +36,5 @@ class Loader extends React.Component {
 		);
 	}
 }
-
-Loader.contextTypes = {
-	store: React.PropTypes.instanceOf(DBStore).isRequired
-};
 
 export default Loader;

@@ -4,6 +4,10 @@ import debounce from "debounce";
 import {validateNumber} from "../../libs/validation";
 
 class DBItem extends React.Component {
+	static contextTypes = {
+		actions: React.PropTypes.object.isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		this.itemClass = '';
@@ -52,9 +56,5 @@ class DBItem extends React.Component {
 		this.itemClass = this.state.selected ? 'info' : '';
 	}
 }
-
-DBItem.contextTypes = {
-	actions: React.PropTypes.object.isRequired
-};
 
 export default DBItem;

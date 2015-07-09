@@ -5,6 +5,11 @@ import ActionMenuButton from "./actionMenuButton";
 import DBStore from "../../stores/dbStore";
 
 class ActionMenu extends React.Component {
+	static contextTypes = {
+		actions: React.PropTypes.object.isRequired,
+		store: React.PropTypes.instanceOf(DBStore).isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		this.actionButtons = {
@@ -94,10 +99,5 @@ class ActionMenu extends React.Component {
 		);
 	}
 }
-
-ActionMenu.contextTypes = {
-	actions: React.PropTypes.object.isRequired,
-	store: React.PropTypes.instanceOf(DBStore).isRequired
-};
 
 export default ActionMenu;

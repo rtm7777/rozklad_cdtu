@@ -10,6 +10,11 @@ import Content from "../components/database/dbContent";
 import DBNavigation from "../components/database/dbNavigation";
 
 class DataBase extends React.Component {
+	static childContextTypes = {
+		actions: React.PropTypes.object.isRequired,
+		store: React.PropTypes.instanceOf(DBStore).isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		const dispatcher = Dispatcher;
@@ -30,7 +35,7 @@ class DataBase extends React.Component {
 		let store = this.store;
 
 		store.on('load', () => {
-			let state = store.state;
+			let state = store.getState();
 			this.setState(state);
 		});
 
@@ -78,10 +83,5 @@ class DataBase extends React.Component {
 		);
 	}
 }
-
-DataBase.childContextTypes = {
-	actions: React.PropTypes.object.isRequired,
-	store: React.PropTypes.instanceOf(DBStore).isRequired
-};
 
 export default DataBase;
