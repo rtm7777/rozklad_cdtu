@@ -1,6 +1,5 @@
 import storage from "../services/localStorage";
 import promise from "../libs/promise";
-import dbDispatcher from "../dispatcher/dbDispatcher";
 import {EventEmitter} from "events";
 
 class DBStore extends EventEmitter {
@@ -46,7 +45,7 @@ class DBStore extends EventEmitter {
 			this.state.categoryList = data[0];
 			this.loader = false;
 		}).catch(() => {
-			console.log("loading error");
+			console.log('loading error');
 		});
 	}
 
@@ -61,7 +60,7 @@ class DBStore extends EventEmitter {
 		this.state.fields = [];
 
 		let category = action.name;
-		storage.saveValue("category", category);
+		storage.saveValue('category', category);
 		this.state.selectedCategory = category;
 		this.emit('load');
 		this.loadFields(category).then(data => {
@@ -73,7 +72,7 @@ class DBStore extends EventEmitter {
 	}
 
 	loadFields(category) {
-		return promise.get('/get_category', {category: category}).then((data) => {
+		return promise.get('/get_category', {category}).then((data) => {
 			this.state.fields = data.items || [];
 			this.state.columns = data.columns;
 			this.state.filters = data.filters || [];
@@ -111,7 +110,7 @@ class DBStore extends EventEmitter {
 		};
 		promise.post('delete_items', json, 'json').then((data) => {
 			this.state.fields = this.state.fields.filter((item) => {
-				return this.selectedItems.indexOf(item.id) == -1;
+				return this.selectedItems.indexOf(item.id) === -1;
 			});
 			this.emit('load');
 			this.selectedItems = [];
@@ -145,11 +144,11 @@ class DBStore extends EventEmitter {
 
 DBStore.defaultState = {
 	categoryList: [],
-	selectedCategory: storage.getValue("category") || "",
+	selectedCategory: storage.getValue('category') || '',
 	fields: [],
 	columns: [],
 	filters: [],
-	error_message: ""
+	errorMessage: ''
 };
 
 export default DBStore;

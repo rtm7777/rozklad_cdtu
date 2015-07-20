@@ -2,12 +2,12 @@
 import React from "react";
 import Select from "../select";
 import ActionMenuButton from "./actionMenuButton";
-import DBStore from "../../stores/dbStore";
+import TasksStore from "../../stores/tasksStore";
 
 class ActionMenu extends React.Component {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(DBStore).isRequired
+		store: React.PropTypes.instanceOf(TasksStore).isRequired
 	}
 
 	constructor(props) {
@@ -61,8 +61,7 @@ class ActionMenu extends React.Component {
 			let props = {
 				values: filter.values,
 				key: i,
-				name: filter.name,
-				label: true
+				name: filter.name
 			};
 
 			return <Select {...props} />;

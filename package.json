@@ -30,8 +30,11 @@
 
   "browserify": {
     "transform": [
-      ["babelify", {"extensions": [".jsx", ".js"]}]
+      ["babelify", {"extensions": [".jsx", ".js"], "stage": 0}]
     ]
+  },
+  "watchify": {
+    "stage": 0
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",

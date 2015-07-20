@@ -10,9 +10,25 @@ import TeacherItem from "./items/teacherItem";
 import DBStore from "../../stores/dbStore";
 
 class Content extends React.Component {
+	static contextTypes = {
+		actions: React.PropTypes.object.isRequired,
+		store: React.PropTypes.instanceOf(DBStore).isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {loader: true};
+	}
+
+	componentDidMount() {
+		let store = this.context.store;
+		store.on('loaderChange', () => {
+			this.setState({loader: store.getLoaderState()});
+		});
+	}
+
+	componentWillUnmount() {
+		this.context.store.removeListener('loaderChange');
 	}
 
 	itemByType(type, props) {
@@ -27,17 +43,6 @@ class Content extends React.Component {
 		};
 
 		return items[type](props);
-	}
-
-	componentDidMount() {
-		let store = this.context.store;
-		store.on('loaderChange', () => {
-			this.setState({loader: store.getLoaderState()});
-		});
-	}
-
-	componentWillUnmount() {
-		this.context.store.removeListener('loaderChange');
 	}
 
 	render() {
@@ -82,10 +87,5 @@ class Content extends React.Component {
 		);
 	}
 }
-
-Content.contextTypes = {
-	actions: React.PropTypes.object.isRequired,
-	store: React.PropTypes.instanceOf(DBStore).isRequired
-};
 
 export default Content;

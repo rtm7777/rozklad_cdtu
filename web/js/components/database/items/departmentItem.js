@@ -13,10 +13,10 @@ class DepartmentItem extends DBItem {
 
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
-				<td className="no-padding">
+				<td className='no-padding'>
 					<Select
 						button={true}
-						name="facultyId"
+						name='facultyId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.facultyId}
 						values={this.props.filters[0].values}
@@ -25,9 +25,9 @@ class DepartmentItem extends DBItem {
 				<td>
 					<input
 						defaultValue={this.props.data.name}
-						name="name"
+						name='name'
 						onChange={this.onInputChanged}
-						type="text"
+						type='text'
 					/>
 				</td>
 			</tr>

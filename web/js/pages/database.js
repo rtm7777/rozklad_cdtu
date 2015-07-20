@@ -1,20 +1,23 @@
 /** @jsx */
 import React from "react";
-import {Dispatcher} from 'flux';
+import Dispatcher from "../dispatcher/dispatcher";
 import DBActions from "../actions/dbActions";
 import DBStore from "../stores/dbStore";
 
 import Loader from "../components/database/loader";
 import ActionMenu from "../components/database/dbActionMenu";
 import Content from "../components/database/dbContent";
-import Navigation from "../components/database/dbNavigation";
-
-
+import DBNavigation from "../components/database/dbNavigation";
 
 class DataBase extends React.Component {
+	static childContextTypes = {
+		actions: React.PropTypes.object.isRequired,
+		store: React.PropTypes.instanceOf(DBStore).isRequired
+	}
+
 	constructor(props) {
 		super(props);
-		const dispatcher = new Dispatcher();
+		const dispatcher = Dispatcher;
 
 		this.state = DBStore.defaultState;
 		this.actions = new DBActions(dispatcher);
@@ -32,7 +35,7 @@ class DataBase extends React.Component {
 		let store = this.store;
 
 		store.on('load', () => {
-			let state = store.state;
+			let state = store.getState();
 			this.setState(state);
 		});
 
@@ -49,7 +52,7 @@ class DataBase extends React.Component {
 		};
 		let navProps = {
 			navList: this.state.categoryList,
-			selectedCategory: this.state.selectedCategory
+			selectedOption: this.state.selectedCategory
 		};
 		let contentProps = {
 			fields: this.state.fields,
@@ -59,18 +62,18 @@ class DataBase extends React.Component {
 		};
 
 		return (
-			<div>
+			<div className='database'>
 				<ActionMenu {...actionMenuProps} />
-				<div className="container">
-					<div className="row">
-						<div className="col-lg-3">
-							<div id="db_navigation" className="panel panel-default">
-								<div className="panel-heading">Categories:</div>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-lg-3'>
+							<div id='db_navigation' className='panel panel-default'>
+								<div className='panel-heading'>Categories:</div>
 								<Loader/>
-								<Navigation {...navProps} />
+								<DBNavigation {...navProps} />
 							</div>
 						</div>
-						<div id="database_container" className="col-lg-9">
+						<div id='database_container' className='col-lg-9'>
 							<Loader/>
 							<Content {...contentProps} />
 						</div>
@@ -80,10 +83,5 @@ class DataBase extends React.Component {
 		);
 	}
 }
-
-DataBase.childContextTypes = {
-	actions: React.PropTypes.object.isRequired,
-	store: React.PropTypes.instanceOf(DBStore).isRequired
-};
 
 export default DataBase;

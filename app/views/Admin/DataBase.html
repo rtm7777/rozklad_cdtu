@@ -1,8 +1,7 @@
 {{set . "title" (msg . "page_title.db")}}
-{{set . "admin" "active"}}
-{{template "header.html" .}}
+{{set . "admin_db" "active"}}
+{{template "header_admin.html" .}}
 
-<div id="database"></div>
+<div id="page"></div>
 
-<div id="page" data-id="database" class="hide"></div>
 {{template "footer_admin.html" .}}

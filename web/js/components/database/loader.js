@@ -2,6 +2,10 @@ import React from "react";
 import DBStore from "../../stores/dbStore";
 
 class Loader extends React.Component {
+	static contextTypes = {
+		store: React.PropTypes.instanceOf(DBStore).isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {loader: true};
@@ -25,16 +29,12 @@ class Loader extends React.Component {
 		}
 		return (
 			<div className={`loader ${loaderShow}`}>
-				<div className="bounce1"></div>
-				<div className="bounce2"></div>
-				<div className="bounce3"></div>
+				<div className='bounce1'></div>
+				<div className='bounce2'></div>
+				<div className='bounce3'></div>
 			</div>
 		);
 	}
 }
-
-Loader.contextTypes = {
-	store: React.PropTypes.instanceOf(DBStore).isRequired
-};
 
 export default Loader;

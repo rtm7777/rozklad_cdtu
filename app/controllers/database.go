@@ -26,13 +26,13 @@ var DBFilters = map[string][]string{
 func (c DataBase) GetCategoryList() revel.Result {
 	categories := [7]string{"faculties", "departments", "groups", "housings", "audiences", "teachers", "subjects"}
 	type Categories struct {
-		Category string `json:"category"`
-		Name     string `json:"name"`
+		OptionValue string `json:"optionValue"`
+		Name        string `json:"name"`
 	}
 	var categoriesList []Categories
 
 	for _, category := range categories {
-		categoriesList = append(categoriesList, Categories{Category: category, Name: c.Message(category)})
+		categoriesList = append(categoriesList, Categories{OptionValue: category, Name: c.Message(category)})
 	}
 
 	return c.RenderJson(categoriesList)

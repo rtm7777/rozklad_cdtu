@@ -42,3 +42,14 @@ type DBItems struct {
 	Filters []Filter    `json:"filters"`
 	Columns []string    `json:"columns"`
 }
+
+type Department struct {
+	Id   int64  `json:"id"`
+	Name string `json:"name"`
+}
+
+type FacultiesDepartments struct {
+	FacultyId   int64        `json:"facultyId"`
+	FacultyName string       `json:"facultyName"`
+	Departments []Department `json:"departments,interface"`
+}

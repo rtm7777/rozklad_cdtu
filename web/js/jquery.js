@@ -10,9 +10,9 @@ $(document).on('mouseup', (e) => {
 	});
 });
 
-$(document).on('click', ".dropdown-toggle", (e) => {
+$(document).on('click', '.dropdown-toggle', (e) => {
 	if (e.ctrlKey) {
-		if (e.currentTarget.getAttribute('aria-expanded') == "true") {
+		if (e.currentTarget.getAttribute('aria-expanded') == 'true') {
 			$(e.currentTarget).parent().removeClass('open');
 		}
 	}

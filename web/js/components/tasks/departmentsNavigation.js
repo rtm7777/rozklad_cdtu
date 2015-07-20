@@ -1,14 +1,14 @@
 import React from "react";
 import Navigation from "../navigation";
 
-class DBNavigation extends Navigation {
+class DepartmentsNavigation extends Navigation {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired
 	}
 
 	selectOption = (el) => {
-		this.context.actions.selectCategory(el.props.data.optionValue);
+		this.context.actions.selectDepartment(el.props.data.optionValue);
 	}
 }
 
-export default DBNavigation;
+export default DepartmentsNavigation;

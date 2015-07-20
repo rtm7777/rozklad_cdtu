@@ -8,7 +8,7 @@ type Groups struct {
 	Id            int64     `json:"id"`
 	FacultyId     int64     `json:"facultyId"`
 	Faculty       Faculties `json:"-"`
-	Name          string    `sql:"size:100" json:"name"`
+	Name          string    `sql:"size:100;unique" json:"name"`
 	NumOfStudents int       `json:"studentsCount,string"`
 	Year          int       `json:"year"`
 }

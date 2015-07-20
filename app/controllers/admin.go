@@ -35,6 +35,10 @@ func (c Admin) GetWSToken() revel.Result {
 }
 
 func (c Admin) Main() revel.Result {
+	return c.Redirect(Admin.Schedule)
+}
+
+func (c Admin) Schedule() revel.Result {
 	connection := c.connected()
 	User := connection.Username
 

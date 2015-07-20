@@ -15,9 +15,9 @@ class HousingItem extends DBItem {
 				<td>
 					<input
 						defaultValue={this.props.data.number}
-						name="number"
+						name='number'
 						onChange={this.onInputChanged}
-						type="text"
+						type='text'
 					/>
 				</td>
 			</tr>

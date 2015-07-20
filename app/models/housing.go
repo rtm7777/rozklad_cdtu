@@ -6,7 +6,7 @@ import (
 
 type Housings struct {
 	Id     int64  `json:"id"`
-	Number string `sql:"size:10" json:"number"`
+	Number string `sql:"size:10;unique" json:"number"`
 }
 
 func (housing *Housings) Decode(b []byte) error {

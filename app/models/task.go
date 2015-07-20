@@ -7,15 +7,15 @@ import (
 type Tasks struct {
 	Id           int64       `json:"id"`
 	DepartmentId int64       `json:"departmentId"`
-	Department   Departments `json:"department"`
+	Department   Departments `json:"-"`
 	GroupId      int64       `json:"groupId"`
-	Group        Groups      `json:"group"`
+	Group        Groups      `json:"-"`
 	SubjectId    int64       `json:"subjectId"`
-	Subject      Subjects    `json:"subject"`
+	Subject      Subjects    `json:"-"`
 	TeacherId    int64       `json:"teacherId"`
-	Teacher      Teachers    `json:"teacher"`
+	Teacher      Teachers    `json:"-"`
 	AudienceId   int64       `json:"audienceId"`
-	Audience     Audiences   `json:"audience"`
+	Audience     Audiences   `json:"-"`
 	Time         float32     `json:"time"`
 	SubjectType  string      `sql:"size:25" json:"subjectType"`
 }
