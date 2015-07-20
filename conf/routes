@@ -32,6 +32,7 @@ POST    /admin/database/delete_items            DataBase.DeleteItems
 
 # Tasks
 GET     /get_faculty_departments_list           Tasks.GetFacultyDepartmentsList
+GET     /get_tasks                              Tasks.GetTasks
 
 # Schedule
 POST    /get_faculty_groups                     Schedule.GetFacultyGroups

@@ -31,7 +31,9 @@ class TasksStore extends EventEmitter {
 
 	load() {
 		let promises = [promise.get('/get_faculty_departments_list')];
-
+		if (this.state.selectedFaculty && this.state.selectedDepartment) {
+			promises.push(this.loadTasks(this.state.selectedDepartment));
+		}
 		return Promise.all(promises).then((data) => {
 			this.state.facultiesDepartments = data[0];
 			this.loader = false;
@@ -56,16 +58,19 @@ class TasksStore extends EventEmitter {
 		storage.saveValue('selectedDepartment', department);
 		this.state.selectedDepartment = department;
 		this.emit('load');
-		// this.loadFields(category).then(data => {
-		// 	this.emit('load');
+		this.loadTasks(action.departmentId).then(data => {
+			this.emit('load');
 
-		// 	this.loader = false;
-		// 	this.emit('loaderChange');
-		// });
+			this.loader = false;
+			this.emit('loaderChange');
+		});
 	}
 
-	loadTasks() {
-		return 0;
+	loadTasks(departmentId) {
+		return promise.get('/get_tasks', {departmentId}).then((data) => {
+			this.state.fields = data || [];
+			// this.state.columns = data.columns;
+		});
 	}
 
 	getState() {
@@ -81,7 +86,9 @@ class TasksStore extends EventEmitter {
 TasksStore.defaultState = {
 	facultiesDepartments: [{'facultyId': 0, 'facultyName': "---", "departments": []}],
 	selectedFaculty: storage.getValue('selectedFaculty') || '',
-	selectedDepartment: storage.getValue('selectedDepartment') || ''
+	selectedDepartment: storage.getValue('selectedDepartment') || '',
+	fields: [],
+	columns: []
 };
 
 export default TasksStore;

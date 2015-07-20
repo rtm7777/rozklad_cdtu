@@ -2,6 +2,7 @@
 import React from "react";
 import Dispatcher from "../dispatcher/dispatcher";
 import DepartmentSelector from "../components/tasks/tasksDepartmentSelector";
+import Content from "../components/tasks/tasksContent";
 import TasksActions from "../actions/tasksActions";
 import TasksStore from "../stores/tasksStore";
 
@@ -48,6 +49,10 @@ class Tasks extends React.Component {
 			selectedFaculty: this.state.selectedFaculty,
 			selectedDepartment: this.state.selectedDepartment
 		};
+		let contentProps = {
+			fields: this.state.fields,
+			columns: this.state.columns
+		};
 		return (
 			<div className='database'>
 				<div className='container'>
@@ -56,6 +61,7 @@ class Tasks extends React.Component {
 							<DepartmentSelector {...departmentSelectorProps} />
 						</div>
 						<div id='database_container' className='col-lg-9'>
+							<Content {...contentProps} />
 						</div>
 					</div>
 				</div>
