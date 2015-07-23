@@ -1,9 +1,9 @@
 /** @jsx */
 import React from "react";
-import DBItem from "../dbItem";
+import Item from "../../item";
 import Select from "../../select";
 
-class TeacherItem extends DBItem {
+class TeacherItem extends Item {
 	constructor() {
 		super();
 	}
@@ -16,6 +16,7 @@ class TeacherItem extends DBItem {
 				<td className='no-padding'>
 					<Select
 						button={true}
+						name='facultyId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.facultyId}
 						values={this.props.filters[0].values}
@@ -24,6 +25,7 @@ class TeacherItem extends DBItem {
 				<td className='no-padding'>
 					<Select
 						button={true}
+						name='departmentId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.departmentId}
 						values={this.props.filters[1].values}

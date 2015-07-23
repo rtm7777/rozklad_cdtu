@@ -1,6 +1,7 @@
 /** @jsx */
 import React from "react";
 import Select from "../select";
+import Loader from "./tasksLoader";
 import DepartmentsNavigation from "./departmentsNavigation";
 import TasksStore from "../../stores/tasksStore";
 
@@ -17,12 +18,16 @@ class DepartmentSelector extends React.Component {
 		};
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		let store = this.context.store;
 		store.on('load', () => {
 			let facultyId = this.props.selectedFaculty;
 			if (facultyId) { this.selectDepartments(facultyId); }
 		});
+	}
+
+	componentWillUnmount() {
+		this.context.store.removeListener('load');
 	}
 
 	changedFaculty = (faculty) => {
@@ -59,6 +64,7 @@ class DepartmentSelector extends React.Component {
 				<div className='panel-heading'>
 					<Select {...selectProps} />
 				</div>
+				<Loader/>
 				<DepartmentsNavigation navList={this.state.departments} selectedOption={this.props.selectedDepartment} />
 			</div>
 		);

@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs/database"
+	"rozklad_cdtu/app/models/json_models"
 )
 
 type Tasks struct {
@@ -19,10 +20,13 @@ func (c Tasks) GetFacultyDepartmentsList() revel.Result {
 }
 
 func (c Tasks) GetTasks(departmentId int64) revel.Result {
+	var items json_models.TasksItems
+
 	result, err := database.DepartmentTasks(c.DB, departmentId)
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		return c.RenderJson(result)
+		items.Items = result
+		return c.RenderJson(items)
 	}
 }

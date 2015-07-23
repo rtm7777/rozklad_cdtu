@@ -19,6 +19,9 @@ class TasksStore extends EventEmitter {
 				case 'departmentSelected':
 					this.departmentSelected(action);
 					break;
+				case 'itemChanged':
+					this.itemChanged(action);
+					break;
 				case 'facultyChanged':
 					this.facultyChanged(action);
 					break;
@@ -58,7 +61,7 @@ class TasksStore extends EventEmitter {
 		storage.saveValue('selectedDepartment', department);
 		this.state.selectedDepartment = department;
 		this.emit('load');
-		this.loadTasks(action.departmentId).then(data => {
+		this.loadTasks(action.departmentId).then(() => {
 			this.emit('load');
 
 			this.loader = false;
@@ -68,9 +71,13 @@ class TasksStore extends EventEmitter {
 
 	loadTasks(departmentId) {
 		return promise.get('/get_tasks', {departmentId}).then((data) => {
-			this.state.fields = data || [];
-			// this.state.columns = data.columns;
+			this.state.fields = data.items || [];
+			this.state.columns = data.columns || [];
 		});
+	}
+
+	itemChanged(item) {
+		console.log(item);
 	}
 
 	getState() {

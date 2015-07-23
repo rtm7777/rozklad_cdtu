@@ -1,6 +1,7 @@
 /** @jsx */
 import React from "react";
 import TasksStore from "../../stores/tasksStore";
+import TaskItem from "./taskItem";
 
 class Content extends React.Component {
 	static contextTypes = {
@@ -37,9 +38,13 @@ class Content extends React.Component {
 		let items = [];
 		if (this.props.fields) {
 			items = this.props.fields.map(field => {
+				let props = {
+					data: field,
+					key: field.id
+				};
 
 				return (
-					<tr><td>lsihglsdkhg</td></tr>
+					<TaskItem {...props}/>
 				);
 			});
 		}

@@ -16,6 +16,13 @@ class TasksActions {
 		});
 	}
 
+	itemChanged(data) {
+		this.dispatcher.dispatch({
+			actionType: 'itemChanged',
+			data
+		});
+	}
+
 	changedFaculty(facultyId) {
 		this.dispatcher.dispatch({
 			actionType: 'facultyChanged',

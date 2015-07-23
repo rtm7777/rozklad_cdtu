@@ -1,9 +1,9 @@
 /** @jsx */
 import React from "react";
-import DBItem from "../dbItem";
+import Item from "../../item";
 import Select from "../../select";
 
-class DepartmentItem extends DBItem {
+class DepartmentItem extends Item {
 	constructor() {
 		super();
 	}

@@ -20,7 +20,7 @@ class Content extends React.Component {
 		this.state = {loader: true};
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		let store = this.context.store;
 		store.on('loaderChange', () => {
 			this.setState({loader: store.getLoaderState()});
@@ -33,16 +33,16 @@ class Content extends React.Component {
 
 	itemByType(type, props) {
 		let items = {
-			audiences:   (props) => <AudienceItem {...props} />,
-			departments: (props) => <DepartmentItem {...props} />,
-			faculties:   (props) => <FacultyItem {...props} />,
-			groups:      (props) => <GroupItem {...props} />,
-			housings:    (props) => <HousingItem {...props} />,
-			subjects:    (props) => <SubjectItem {...props} />,
-			teachers:    (props) => <TeacherItem {...props} />
+			audiences:   () => <AudienceItem {...props} />,
+			departments: () => <DepartmentItem {...props} />,
+			faculties:   () => <FacultyItem {...props} />,
+			groups:      () => <GroupItem {...props} />,
+			housings:    () => <HousingItem {...props} />,
+			subjects:    () => <SubjectItem {...props} />,
+			teachers:    () => <TeacherItem {...props} />
 		};
 
-		return items[type](props);
+		return items[type]();
 	}
 
 	render() {

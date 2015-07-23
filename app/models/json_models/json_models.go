@@ -1,5 +1,9 @@
 package json_models
 
+import (
+	"rozklad_cdtu/app/models"
+)
+
 type Pair struct {
 	Id       int64  `json:"id"`
 	Num      string `json:"num"`
@@ -41,6 +45,11 @@ type DBItems struct {
 	Items   interface{} `json:"items"`
 	Filters []Filter    `json:"filters"`
 	Columns []string    `json:"columns"`
+}
+
+type TasksItems struct {
+	Items   []models.Tasks `json:"items"`
+	Columns []string       `json:"columns"`
 }
 
 type Department struct {

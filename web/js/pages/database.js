@@ -4,7 +4,7 @@ import Dispatcher from "../dispatcher/dispatcher";
 import DBActions from "../actions/dbActions";
 import DBStore from "../stores/dbStore";
 
-import Loader from "../components/database/loader";
+import Loader from "../components/database/dbLoader";
 import ActionMenu from "../components/database/dbActionMenu";
 import Content from "../components/database/dbContent";
 import DBNavigation from "../components/database/dbNavigation";
@@ -22,6 +22,13 @@ class DataBase extends React.Component {
 		this.state = DBStore.defaultState;
 		this.actions = new DBActions(dispatcher);
 		this.store = new DBStore(dispatcher, this.state);
+
+		this.store.on('load', () => {
+			let state = this.store.getState();
+			this.setState(state);
+		});
+
+		this.actions.load();
 	}
 
 	getChildContext() {
@@ -29,17 +36,6 @@ class DataBase extends React.Component {
 			actions: this.actions,
 			store: this.store
 		};
-	}
-
-	componentWillMount() {
-		let store = this.store;
-
-		store.on('load', () => {
-			let state = store.getState();
-			this.setState(state);
-		});
-
-		this.actions.load();
 	}
 
 	componentWillUnmount() {

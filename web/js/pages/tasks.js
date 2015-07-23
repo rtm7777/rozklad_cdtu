@@ -1,10 +1,12 @@
 /** @jsx */
 import React from "react";
 import Dispatcher from "../dispatcher/dispatcher";
-import DepartmentSelector from "../components/tasks/tasksDepartmentSelector";
-import Content from "../components/tasks/tasksContent";
 import TasksActions from "../actions/tasksActions";
 import TasksStore from "../stores/tasksStore";
+
+import Loader from "../components/tasks/tasksLoader";
+import DepartmentSelector from "../components/tasks/tasksDepartmentSelector";
+import Content from "../components/tasks/tasksContent";
 
 class Tasks extends React.Component {
 	static childContextTypes = {
@@ -19,6 +21,13 @@ class Tasks extends React.Component {
 		this.state = TasksStore.defaultState;
 		this.actions = new TasksActions(dispatcher);
 		this.store = new TasksStore(dispatcher, this.state);
+
+		this.store.on('load', () => {
+			let state = this.store.getState();
+			this.setState(state);
+		});
+
+		this.actions.load();
 	}
 
 	getChildContext() {
@@ -26,17 +35,6 @@ class Tasks extends React.Component {
 			actions: this.actions,
 			store: this.store
 		};
-	}
-
-	componentWillMount() {
-		let store = this.store;
-
-		store.on('load', () => {
-			let state = store.getState();
-			this.setState(state);
-		});
-
-		this.actions.load();
 	}
 
 	componentWillUnmount() {
@@ -61,6 +59,7 @@ class Tasks extends React.Component {
 							<DepartmentSelector {...departmentSelectorProps} />
 						</div>
 						<div id='database_container' className='col-lg-9'>
+							<Loader/>
 							<Content {...contentProps} />
 						</div>
 					</div>

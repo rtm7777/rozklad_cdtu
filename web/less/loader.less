@@ -1,25 +1,51 @@
-.loader > div {
-	width: 18px;
-	height: 18px;
-	background-color: #76daff;
-
-	border-radius: 100%;
-	display: inline-block;
-	-webkit-animation: bouncedelay 1.4s infinite ease-in-out;
-	animation: bouncedelay 1.4s infinite ease-in-out;
-	/* Prevent first frame from flickering when animation starts */
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
+.invisible {
+	visibility: visible;
+	overflow: hidden;
+	opacity: 0;
+	transition: opacity 0.3s ease-in;
+}
+.visible {
+	opacity: 1;
+	transition: opacity 0.5s ease-in;
+	transition-delay:0s;
 }
 
-.loader .bounce1 {
-	-webkit-animation-delay: -0.32s;
-	animation-delay: -0.32s;
-}
+.loader {
+	position: absolute;
+	display: flex;
+	width: 100%;
+	z-index: 3;
+	align-items: center;
+	justify-content: center;
 
-.loader .bounce2 {
-	-webkit-animation-delay: -0.16s;
-	animation-delay: -0.16s;
+	&.invisible {
+		height: 0 !important;
+		min-height: 0 !important;
+	}
+
+	& > div {
+		width: 18px;
+		height: 18px;
+		background-color: #76daff;
+
+		border-radius: 100%;
+		display: inline-block;
+		-webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+		animation: bouncedelay 1.4s infinite ease-in-out;
+		/* Prevent first frame from flickering when animation starts */
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+	}
+
+	.bounce1 {
+		-webkit-animation-delay: -0.32s;
+		animation-delay: -0.32s;
+	}
+
+	.bounce2 {
+		-webkit-animation-delay: -0.16s;
+		animation-delay: -0.16s;
+	}
 }
 
 @-webkit-keyframes bouncedelay {

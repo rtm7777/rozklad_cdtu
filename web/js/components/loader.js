@@ -1,17 +1,12 @@
 import React from "react";
-import DBStore from "../../stores/dbStore";
 
 class Loader extends React.Component {
-	static contextTypes = {
-		store: React.PropTypes.instanceOf(DBStore).isRequired
-	}
-
 	constructor(props) {
 		super(props);
 		this.state = {loader: true};
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		let store = this.context.store;
 		store.on('loaderChange', () => {
 			this.setState({loader: store.getLoaderState()});

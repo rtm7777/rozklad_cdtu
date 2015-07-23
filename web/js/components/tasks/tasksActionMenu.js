@@ -31,7 +31,7 @@ class ActionMenu extends React.Component {
 		};
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		let store = this.context.store;
 		store.on('itemSelected', () => {
 			if (store.getSelectedItems().length) {

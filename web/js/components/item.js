@@ -1,9 +1,9 @@
 /** @jsx */
 import React from "react";
 import debounce from "debounce";
-import {validateNumber} from "../../libs/validation";
+import {validateNumber} from "../libs/validation";
 
-class DBItem extends React.Component {
+class Item extends React.Component {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired
 	}
@@ -57,4 +57,4 @@ class DBItem extends React.Component {
 	}
 }
 
-export default DBItem;
+export default Item;

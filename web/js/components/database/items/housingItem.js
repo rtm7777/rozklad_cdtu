@@ -1,8 +1,8 @@
 /** @jsx */
 import React from "react";
-import DBItem from "../dbItem";
+import Item from "../../item";
 
-class HousingItem extends DBItem {
+class HousingItem extends Item {
 	constructor() {
 		super();
 	}

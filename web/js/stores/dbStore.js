@@ -63,7 +63,7 @@ class DBStore extends EventEmitter {
 		storage.saveValue('category', category);
 		this.state.selectedCategory = category;
 		this.emit('load');
-		this.loadFields(category).then(data => {
+		this.loadFields(category).then(() => {
 			this.emit('load');
 
 			this.loader = false;
@@ -98,7 +98,7 @@ class DBStore extends EventEmitter {
 			data: item.data
 		};
 
-		promise.post('update_item', json, 'json').then((data) => {
+		promise.post('update_item', json, 'json').then(() => {
 
 		});
 	}
@@ -108,7 +108,7 @@ class DBStore extends EventEmitter {
 			ids: this.selectedItems,
 			category : this.state.selectedCategory
 		};
-		promise.post('delete_items', json, 'json').then((data) => {
+		promise.post('delete_items', json, 'json').then(() => {
 			this.state.fields = this.state.fields.filter((item) => {
 				return this.selectedItems.indexOf(item.id) === -1;
 			});
