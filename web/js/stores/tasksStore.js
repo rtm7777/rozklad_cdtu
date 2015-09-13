@@ -1,5 +1,6 @@
 import storage from "../services/localStorage";
 import promise from "../libs/promise";
+import Dexie from "../services/indexedDB";
 import {EventEmitter} from "events";
 
 class TasksStore extends EventEmitter {
@@ -7,6 +8,8 @@ class TasksStore extends EventEmitter {
 		super();
 		this.state = TasksStore.defaultState;
 		this.loader = true;
+		this.db = Dexie;
+		this.db.open();
 
 		dispatcher.register((action) => {
 			switch(action.actionType) {
@@ -33,10 +36,21 @@ class TasksStore extends EventEmitter {
 	}
 
 	load() {
-		let promises = [promise.get('/get_faculty_departments_list')];
+		let promises = [
+			promise.get('/get_faculty_departments_list'),
+		];
 		if (this.state.selectedFaculty && this.state.selectedDepartment) {
 			promises.push(this.loadTasks(this.state.selectedDepartment));
 		}
+
+		promise.get('/get_groups_sync').then((data) => {
+			this.db.transaction('rw', this.db.groups, () => {
+				data.forEach((group) => {
+					this.db.groups.put({ id: group.id, facultyId: group.facultyId, name: group.name });
+				});
+			});
+		});
+
 		return Promise.all(promises).then((data) => {
 			this.state.facultiesDepartments = data[0];
 			this.loader = false;
@@ -56,6 +70,8 @@ class TasksStore extends EventEmitter {
 	departmentSelected(action) {
 		this.loader = true;
 		this.emit('loaderChange');
+
+		this.state.fields = [];
 
 		let department = action.departmentId;
 		storage.saveValue('selectedDepartment', department);

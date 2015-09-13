@@ -62,3 +62,9 @@ type FacultiesDepartments struct {
 	FacultyName string       `json:"facultyName"`
 	Departments []Department `json:"departments,interface"`
 }
+
+type GroupsSync struct {
+	Id        int64  `json:"id"`
+	FacultyId int64  `json:"facultyId"`
+	Name      string `sql:"size:100;unique" json:"name"`
+}

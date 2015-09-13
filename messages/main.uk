@@ -10,3 +10,7 @@ main_page.social_message    =Розкажіть про сайт в соціал�
 schedule.day     =День
 schedule.pair    =Пара
 schedule.subject =Предмет
+
+subject_type.lecture    =Лекція
+subject_type.practice   =Практ. роб.
+subject_type.laboratory =Лаб. роб.

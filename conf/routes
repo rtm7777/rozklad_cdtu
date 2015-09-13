@@ -30,6 +30,9 @@ POST    /admin/database/update_item             DataBase.UpdateItem
 POST    /admin/database/add_item                DataBase.AddItem
 POST    /admin/database/delete_items            DataBase.DeleteItems
 
+# Synchronization
+GET     /get_groups_sync                        Synchronization.GetGroupsSync
+
 # Tasks
 GET     /get_faculty_departments_list           Tasks.GetFacultyDepartmentsList
 GET     /get_tasks                              Tasks.GetTasks
