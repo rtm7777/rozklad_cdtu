@@ -25,7 +25,7 @@
     "copy:bs"       : "rsync -av node_modules/bootstrap/dist/js/bootstrap.min.js public",
     "copy"          : "npm run copy:img && npm run copy:bs-fonts && npm run copy:bs-css && npm run copy:jquery && npm run copy:bs",
     "build_all"     : "npm run build && npm run build_min && npm run copy && npm run less",
-    "test"          : "jest"
+    "test"          : "BABEL_JEST_STAGE=0 jest"
   },
 
   "browserify": {
