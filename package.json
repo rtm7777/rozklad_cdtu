@@ -25,7 +25,7 @@
     "copy:bs"       : "rsync -av node_modules/bootstrap/dist/js/bootstrap.min.js public",
     "copy"          : "npm run copy:img && npm run copy:bs-fonts && npm run copy:bs-css && npm run copy:jquery && npm run copy:bs",
     "build_all"     : "npm run build && npm run build_min && npm run copy && npm run less",
-    "test"          : "jest"
+    "test"          : "BABEL_JEST_STAGE=0 jest"
   },
 
   "browserify": {
@@ -57,14 +57,16 @@
     "babel"               : "^5.0.0",
     "babel-jest"          : "^5.0.0",
     "babelify"            : "^6.0.0",
-    "browserify"          : "^10.0.0",
+    "browserify"          : "^11.0.0",
     "debounce"            : "^1.0.0",
     "dexie"               : "^1.0.0",
     "flux"                : "^2.0.0",
-    "jest-cli"            : "^0.4.0",
+    "history"             : "^1.0.0",
+    "jest-cli"            : "^0.5.0",
     "less"                : "^2.5.0",
-    "react"               : "^0.13.0",
-    "react-router"        : "^0.13.0",
+    "react"               : "^0.14.0-rc1",
+    "react-dom"           : "^0.14.0-rc1",
+    "react-router"        : "^1.0.0-rc1",
     "uglify-js"           : "^2.0.0",
     "watchify"            : "^3.0.0"
   }
