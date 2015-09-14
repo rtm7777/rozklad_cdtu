@@ -1,5 +1,5 @@
 /** @jsx */
-import React from "react/addons";
+import React from "react";
 
 class ActionMenuButton extends React.Component {
 	constructor(props) {
@@ -12,12 +12,8 @@ class ActionMenuButton extends React.Component {
 	}
 
 	render() {
-		let cx = React.addons.classSet;
-		let classes = cx({
-			'hide': this.props.data.hidden
-		});
 		return (
-			<li className={classes}>
+			<li className={this.props.data.hidden ? 'hide' : ''}>
 				<a onClick={this.actionButtonClicked} href='#'><span className={`glyphicon glyphicon-${this.props.data.icon}`}></span> {this.props.data.name}</a>
 			</li>
 		);
