@@ -28,6 +28,15 @@
     "test"          : "BABEL_JEST_STAGE=0 jest"
   },
 
+  "babel": {
+    "blacklist": [
+      "es6.constants",
+      "es6.literals",
+      "es6.templateLiterals",
+      "es6.spec.symbols"
+    ]
+  },
+
   "browserify": {
     "transform": [
       ["babelify", {"extensions": [".jsx", ".js"], "stage": 0}]

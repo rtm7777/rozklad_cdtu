@@ -31,7 +31,7 @@ POST    /admin/database/add_item                DataBase.AddItem
 POST    /admin/database/delete_items            DataBase.DeleteItems
 
 # Synchronization
-GET     /get_groups_sync                        Synchronization.GetGroupsSync
+GET     /synchronization/get_data               Synchronization.GetData
 
 # Tasks
 GET     /get_faculty_departments_list           Tasks.GetFacultyDepartmentsList

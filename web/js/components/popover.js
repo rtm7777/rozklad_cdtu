@@ -8,13 +8,13 @@ class Popover extends React.Component {
 	}
 
 	componentDidMount() {
-		this.left = React.findDOMNode(this.refs.popover).offsetWidth / 2 - React.findDOMNode(this.refs.control).offsetWidth / 2 - 5;
+		this.left = this.refs.popover.offsetWidth / 2 - this.refs.control.offsetWidth / 2 - 5;
 	}
 
 	render() {
 		return (
 			<div>
-				<div className="popover-control" ref="control">Button</div>
+				<div ref="control" className="popover-control">Button</div>
 				<div ref="popover" className="popover bottom" style={{left: `-${this.left}px`}}>
 					<div className="arrow"></div>
 					<div className="popover-content">{this.props.children}</div>
