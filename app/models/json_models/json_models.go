@@ -62,3 +62,24 @@ type FacultiesDepartments struct {
 	FacultyName string       `json:"facultyName"`
 	Departments []Department `json:"departments,interface"`
 }
+
+type GroupsSync struct {
+	Id        int64  `json:"id"`
+	FacultyId int64  `json:"facultyId"`
+	Name      string `json:"name"`
+}
+
+type TeachersSync struct {
+	Id         int64  `json:"id"`
+	FacultyId  int64  `json:"facultyId"`
+	FirstName  string `json:"firstName"`
+	LastName   string `json:"lastName"`
+	MiddleName string `json:"meddleName"`
+}
+
+type AudiencesSync struct {
+	Id        int64  `json:"id"`
+	HousingId int64  `json:"housingId"`
+	Number    string `json:"number"`
+	Type      string `json:"type"`
+}

@@ -17,16 +17,16 @@ install:
 - go get -v code.google.com/p/go.crypto/bcrypt
 - go get -v github.com/go-sql-driver/mysql
 - go get -v github.com/jinzhu/gorm
-- go get -v bitbucket.org/tebeka/selenium
+- go get -v github.com/tebeka/selenium
 - go get -v github.com/fatih/color
 - go get -v github.com/robfig/cron
 - go get -v github.com/tealeg/xlsx
-- export PATH=$HOME/gopath/bin:$PATH
+- npm install
 before_script:
+- export PATH=$HOME/gopath/bin:$PATH
 - cd $HOME/gopath/src
 - ln -s $HOME/gopath/src/github.com/rtm7777/rozklad_cdtu rozklad_cdtu
 - cd rozklad_cdtu
-- npm install
 - npm run copy
 - npm run build
 - npm run less

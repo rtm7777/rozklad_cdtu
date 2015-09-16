@@ -1,9 +1,9 @@
 package tests
 
 import (
-	"bitbucket.org/tebeka/selenium"
 	_ "fmt"
 	"github.com/revel/revel/testing"
+	"github.com/tebeka/selenium"
 )
 
 type InterfaceTest struct {
