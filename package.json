@@ -1,6 +1,6 @@
 {
   "name"       : "rozklad_cdtu",
-  "version"    : "0.0.1",
+  "version"    : "0.0.3",
   "description": "Webapp for showing and editing students schedule",
   "main"       : "./web/js/main_common.js",
   "author"     : "Nikolai Shitik",
@@ -64,11 +64,14 @@
   "devDependencies": {
     "array.prototype.find": "^1.0.0",
     "babel"               : "^5.0.0",
+    "babel-eslint"        : "^4.0.0",
     "babel-jest"          : "^5.0.0",
     "babelify"            : "^6.0.0",
     "browserify"          : "^11.0.0",
     "debounce"            : "^1.0.0",
     "dexie"               : "^1.0.0",
+    "eslint"              : "^1.0.0",
+    "eslint-plugin-react" : "^3.0.0",
     "flux"                : "^2.0.0",
     "history"             : "^1.0.0",
     "jest-cli"            : "^0.5.0",

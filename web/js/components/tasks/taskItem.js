@@ -16,7 +16,7 @@ class TaskItem extends Item {
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td>
 					<input
-						defaultValue={this.props.data.groupId}
+						defaultValue={this.props.data.group}
 						name='groupId'
 						onChange={this.onInputChanged}
 						type='text'
@@ -24,7 +24,7 @@ class TaskItem extends Item {
 				</td>
 				<td>
 					<input
-						defaultValue={this.props.data.subjectId}
+						defaultValue={this.props.data.subject}
 						name='subjectId'
 						onChange={this.onInputChanged}
 						type='text'
@@ -32,7 +32,7 @@ class TaskItem extends Item {
 				</td>
 				<td>
 					<input
-						defaultValue={this.props.data.teacherId}
+						defaultValue={this.props.data.teacher}
 						name='teacherId'
 						onChange={this.onInputChanged}
 						type='text'
@@ -40,7 +40,7 @@ class TaskItem extends Item {
 				</td>
 				<td>
 					<input
-						defaultValue={this.props.data.audienceId}
+						defaultValue={this.props.data.audience}
 						name='audienceId'
 						onChange={this.onInputChanged}
 						type='text'

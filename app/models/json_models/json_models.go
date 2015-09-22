@@ -74,7 +74,7 @@ type TeachersSync struct {
 	FacultyId  int64  `json:"facultyId"`
 	FirstName  string `json:"firstName"`
 	LastName   string `json:"lastName"`
-	MiddleName string `json:"meddleName"`
+	MiddleName string `json:"middleName"`
 }
 
 type AudiencesSync struct {

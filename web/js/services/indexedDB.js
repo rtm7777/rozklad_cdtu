@@ -28,6 +28,49 @@ class DataBase {
 			this.synchronize(key);
 		});
 	}
+
+	loadTasksDetails(tasks) {
+		let promises = [];
+
+		tasks.map((task) => {
+			promises.push(Promise.all([
+				this.db.groups.where('id').equals(task.groupId).first().then((row) => {
+					task.group = row ? row.name : '';
+				}),
+				this.db.subjects.where('id').equals(task.subjectId).first().then((row) => {
+					task.subject = row ? row.subject : '';
+				}),
+				this.db.teachers.where('id').equals(task.teacherId).first().then((row) => {
+					task.teacher = row ? `${row.lastName} ${row.firstName[0]}. ${row.middleName[0]}.` : '';
+				}),
+				this.db.audiences.where('id').equals(task.audienceId).first().then((row) => {
+					task.audience = row ? row.number : '';
+				}),
+			]).then(() => {
+				return task;
+			}));
+		});
+
+		return Promise.all(promises);
+	}
+
+	startsWithAnyOfIgnoreCase(tableOrCollection, index, prefixes) {
+		if (!prefixes || prefixes.length === 0) throw 'must supply at least one prefix';
+		return prefixes.reduce((collection, prefix) => {
+				return collection ?
+						collection.or(index).startsWithIgnoreCase(prefix) :
+						(tableOrCollection.where ? tableOrCollection.where(index) :
+							tableOrCollection.or(index)).startsWithIgnoreCase(prefix);
+		}, null);
+	}
+
+	searchMultiple(tableOrCollection, indices, prefixes) {
+		return indices.reduce((collection, index) => {
+			return collection ?
+				this.startsWithAnyOfIgnoreCase(collection, index, prefixes) :
+				this.startsWithAnyOfIgnoreCase(tableOrCollection, index, prefixes);
+		}, null);
+	}
 }
 
 export default DataBase;

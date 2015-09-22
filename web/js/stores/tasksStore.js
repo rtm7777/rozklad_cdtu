@@ -43,6 +43,11 @@ class TasksStore extends EventEmitter {
 		}
 
 		this.db.synchronizeAll();
+		// let db = this.db.getInstance();
+
+		// this.db.searchMultiple(db.teachers, ["firstName", "lastName"], ["p","v"]).toArray(function (result) {
+		// 		console.log(JSON.stringify(result));
+		// });
 
 		return Promise.all(promises).then((data) => {
 			this.state.facultiesDepartments = data[0];
@@ -79,9 +84,14 @@ class TasksStore extends EventEmitter {
 	}
 
 	loadTasks(departmentId) {
-		return promise.get('/get_tasks', {departmentId}).then((data) => {
-			this.state.fields = data.items || [];
-			this.state.columns = data.columns || [];
+		return new Promise((resolve, reject) => {
+			promise.get('/get_tasks', {departmentId}).then((data) => {
+				this.db.loadTasksDetails(data.items).then((data) => {
+					this.state.fields = data || [];
+					resolve();
+				});
+				this.state.columns = data.columns || [];
+			});
 		});
 	}
 
