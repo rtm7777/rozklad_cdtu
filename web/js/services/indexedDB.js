@@ -30,10 +30,8 @@ class DataBase {
 	}
 
 	loadTasksDetails(tasks) {
-		let promises = [];
-
-		tasks.map((task) => {
-			promises.push(Promise.all([
+		return Promise.all(tasks.map((task) => {
+			return Promise.all([
 				this.db.groups.where('id').equals(task.groupId).first().then((row) => {
 					task.group = row ? row.name : '';
 				}),
@@ -48,10 +46,17 @@ class DataBase {
 				}),
 			]).then(() => {
 				return task;
-			}));
-		});
+			});
+		}));
+	}
 
-		return Promise.all(promises);
+	searchInTeachers = (request) => {
+		let indices = request.trim().split(" ");
+		return new Promise((resolve) => {
+			this.searchMultiple(this.db.teachers, ["firstName", "lastName"], indices).toArray(function (result) {
+				resolve(JSON.stringify(result));
+			});
+		});
 	}
 
 	startsWithAnyOfIgnoreCase(tableOrCollection, index, prefixes) {

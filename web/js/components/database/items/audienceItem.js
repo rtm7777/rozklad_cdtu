@@ -23,7 +23,7 @@ class AudienceItem extends Item {
 				</td>
 				<td className='no-padding'>
 					<Select
-						button={true}
+						button
 						name='housingId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.housingId}

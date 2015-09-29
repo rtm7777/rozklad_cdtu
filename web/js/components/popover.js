@@ -1,21 +1,39 @@
 /** @jsx */
 import React from "react";
+import ClickAway from "./clickAway";
 
-class Popover extends React.Component {
+class Popover extends ClickAway {
 	constructor(props) {
 		super(props);
-		this.left = 0;
+		this.state = {opened: false};
 	}
 
-	componentDidMount() {
-		this.left = this.refs.popover.offsetWidth / 2 - this.refs.control.offsetWidth / 2 - 5;
+	togglePopover = () => {
+		this.setState({opened: !this.state.opened});
+	}
+
+	componentClickAway = () => {
+		this.setState({opened: false});
+	}
+
+	calculateLeft() {
+		if (this.refs.control) {
+			return 90 - this.refs.control.offsetWidth / 2;
+		} else {
+			return 0;
+		}
 	}
 
 	render() {
+		let left = this.calculateLeft();
+		let style = {
+			left: `-${left}px`,
+			display: this.state.opened ? 'block' : 'none'
+		};
 		return (
-			<div>
-				<div ref="control" className="popover-control">Button</div>
-				<div ref="popover" className="popover bottom" style={{left: `-${this.left}px`}}>
+			<div ref="control" onClick={this.togglePopover}>
+				<div className="popover-control">{this.props.text}</div>
+				<div ref="popover" className="popover bottom" style={style}>
 					<div className="arrow"></div>
 					<div className="popover-content">{this.props.children}</div>
 				</div>

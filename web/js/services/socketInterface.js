@@ -1,4 +1,4 @@
-export let socket = new Promise((resolve, reject) => {
+export const socket = new Promise((resolve, reject) => {
 	let req = new XMLHttpRequest();
 	req.open('GET', '/get_ws_token');
 

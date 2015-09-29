@@ -84,13 +84,10 @@ class TasksStore extends EventEmitter {
 	}
 
 	loadTasks(departmentId) {
-		return new Promise((resolve, reject) => {
-			promise.get('/get_tasks', {departmentId}).then((data) => {
-				this.db.loadTasksDetails(data.items).then((data) => {
-					this.state.fields = data || [];
-					resolve();
-				});
-				this.state.columns = data.columns || [];
+		return promise.get('/get_tasks', {departmentId}).then(({columns, items}) => {
+			this.state.columns = columns || [];
+			return this.db.loadTasksDetails(items).then((data) => {
+				this.state.fields = data || [];
 			});
 		});
 	}

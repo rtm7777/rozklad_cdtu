@@ -2,11 +2,21 @@
 import React from "react";
 import Item from "../item";
 import Select from "../select";
+import SelectInput from "../selectInput";
 import Popover from "../popover";
+import TasksStore from "../../stores/tasksStore";
 
 class TaskItem extends Item {
+	static contextTypes = {
+		store: React.PropTypes.instanceOf(TasksStore).isRequired
+	}
+
 	constructor() {
 		super();
+	}
+
+	onInputSelectChanged(value) {
+		console.log(value);
 	}
 
 	render() {
@@ -31,11 +41,11 @@ class TaskItem extends Item {
 					/>
 				</td>
 				<td>
-					<input
-						defaultValue={this.props.data.teacher}
-						name='teacherId'
-						onChange={this.onInputChanged}
-						type='text'
+					<SelectInput
+						value={this.props.data.teacher}
+						name={'teacherId'}
+						onChange={this.onInputSelectChanged}
+						searchFunc={this.context.store.db.searchInTeachers}
 					/>
 				</td>
 				<td>
@@ -47,7 +57,9 @@ class TaskItem extends Item {
 					/>
 				</td>
 				<td>
-					<Popover>
+					<Popover
+						text={'text'}
+					>
 						<input
 							defaultValue={this.props.data.lectureTime}
 							name='lectureTime'

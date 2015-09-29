@@ -15,7 +15,7 @@ class TeacherItem extends Item {
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td className='no-padding'>
 					<Select
-						button={true}
+						button
 						name='facultyId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.facultyId}
@@ -24,7 +24,7 @@ class TeacherItem extends Item {
 				</td>
 				<td className='no-padding'>
 					<Select
-						button={true}
+						button
 						name='departmentId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.departmentId}
