@@ -1,57 +1,95 @@
 /** @jsx */
 import React from "react";
-import ClickAway from "./clickAway";
 
-class SelectInput extends ClickAway {
+class SelectInput extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {opened: false};
-		this.fields = ['one', 'two'];
+		this.inputValue = '';
+		this.searchValue = '';
+		this.stateObj = {
+			opened: false,
+			fields: []
+		};
+		this.state = {
+			opened: false,
+			fields: []
+		};
 	}
 
-	onInputChanged = (e) => {
-		this.props.searchFunc(e.target.value).then((result) => {
-			console.log(result);
+	search = (value) => {
+		this.props.searchFunc(value).then((result) => {
+			this.stateObj.fields = result;
+			this.updateState();
 		});
 	}
 
+	onInputChanged = (e) => {
+		this.search(e.target.value);
+	}
+
 	optionSelected = (e) => {
+		this.closeSelect();
 		if (this.props.onChange) {
 			this.props.onChange({
 				name: this.props.name,
 				value: e.target.dataset.value
 			});
 		}
-		this.setState({opened: false});
+		if (this.state.opened) {
+		};
 	}
 
-	toggleSelect = () => {
-		this.setState({opened: !this.state.opened});
+	openSelect = () => {
+		if (!this.state.opened) {
+			if (this.props.elementConatainer) this.props.elementConatainer.element = this;
+			this.inputValue = this.refs.input.value;
+			this.refs.input.value = '';
+			this.stateObj.opened = true;
+			this.updateState();
+			this.search('');
+		}
+	}
+
+	closeSelect = () => {
+		this.stateObj.opened = false;
+		this.updateState();
+		if (this.props.elementConatainer) {
+			this.props.elementConatainer.element = null;
+		}
 	}
 
 	componentClickAway = () => {
-		this.setState({opened: false});
+		if (this.state.opened) {
+			this.refs.input.value = this.inputValue;
+			this.closeSelect();
+		};
+	}
+
+	updateState() {
+		this.setState(this.stateObj);
 	}
 
 	render() {
 		let style = {
 			display: this.state.opened ? 'block' : 'none'
 		};
-		let options = this.fields.map((option, i) => {
+		let options = this.state.fields.map(({id, value}) => {
 			return (
-				<li key={i}><a href='#' onClick={this.optionSelected} data-value={i}>{option}</a></li>
+				<li key={id} onClick={this.optionSelected} data-value={id}>{value}</li>
 			);
 		});
+		let inputProps = {
+			ref: 'input',
+			className: 'table-input',
+			defaultValue: this.props.value,
+			name: this.props.name,
+			onMouseDown: this.openSelect,
+			onChange: this.onInputChanged,
+			type: 'text'
+		};
 		return (
-			<div ref="control" className={'input-select'}>
-				<input
-						className={'table-input'}
-						defaultValue={this.props.value}
-						name={this.props.name}
-						onFocus={this.toggleSelect}
-						onChange={this.onInputChanged}
-						type='text'
-					/>
+			<div className={'input-select'}>
+				<input {...inputProps} />
 				<ul className='dropdown-menu' style={style}>
 					{options}
 				</ul>

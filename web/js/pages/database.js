@@ -3,6 +3,7 @@ import React from "react";
 import Dispatcher from "../dispatcher/dispatcher";
 import DBActions from "../actions/dbActions";
 import DBStore from "../stores/dbStore";
+import clickAway from "../libs/clickAwayUtils";
 
 import Loader from "../components/database/dbLoader";
 import ActionMenu from "../components/database/dbActionMenu";
@@ -29,6 +30,7 @@ class DataBase extends React.Component {
 		});
 
 		this.actions.load();
+		document.addEventListener('mousedown', clickAway.checkClickAway);
 	}
 
 	getChildContext() {
@@ -40,6 +42,7 @@ class DataBase extends React.Component {
 
 	componentWillUnmount() {
 		this.store.removeListener('load');
+		document.removeEventListener('mousedown', clickAway.checkClickAway);
 	}
 
 	render() {

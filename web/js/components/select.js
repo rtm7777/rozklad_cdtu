@@ -44,7 +44,7 @@ class Select extends React.Component {
 	}
 
 	render() {
-		let value = this.props.values.find((val) => val.id == this.state.selected);
+		let value = this.props.values.find(({id}) => id == this.state.selected);
 		let selectboxName = value ? value.value + " " : "--- ";
 		let selectOptions = this.props.values.map((option, i) => {
 			let props = {

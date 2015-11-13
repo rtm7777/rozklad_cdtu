@@ -5,18 +5,16 @@ import Select from "../select";
 import SelectInput from "../selectInput";
 import Popover from "../popover";
 import TasksStore from "../../stores/tasksStore";
+import clickAwayStore from "../../stores/clickAwayStore";
 
 class TaskItem extends Item {
 	static contextTypes = {
-		store: React.PropTypes.instanceOf(TasksStore).isRequired
+		store: React.PropTypes.instanceOf(TasksStore).isRequired,
+		actions: React.PropTypes.object.isRequired
 	}
 
 	constructor() {
 		super();
-	}
-
-	onInputSelectChanged(value) {
-		console.log(value);
 	}
 
 	render() {
@@ -25,19 +23,21 @@ class TaskItem extends Item {
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td>
-					<input
-						defaultValue={this.props.data.group}
-						name='groupId'
-						onChange={this.onInputChanged}
-						type='text'
+					<SelectInput
+						value={this.props.data.group}
+						name={'groupId'}
+						onChange={this.onInputSelectChanged}
+						searchFunc={this.context.store.db.searchInGroups}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 				<td>
-					<input
-						defaultValue={this.props.data.subject}
-						name='subjectId'
-						onChange={this.onInputChanged}
-						type='text'
+					<SelectInput
+						value={this.props.data.subject}
+						name={'subjectId'}
+						onChange={this.onInputSelectChanged}
+						searchFunc={this.context.store.db.searchInSubjects}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 				<td>
@@ -46,19 +46,22 @@ class TaskItem extends Item {
 						name={'teacherId'}
 						onChange={this.onInputSelectChanged}
 						searchFunc={this.context.store.db.searchInTeachers}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 				<td>
-					<input
-						defaultValue={this.props.data.audience}
-						name='audienceId'
-						onChange={this.onInputChanged}
-						type='text'
+					<SelectInput
+						value={this.props.data.audience}
+						name={'audienceId'}
+						onChange={this.onInputSelectChanged}
+						searchFunc={this.context.store.db.searchInAudiences}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 				<td>
 					<Popover
 						text={'text'}
+						elementConatainer={clickAwayStore}
 					>
 						<input
 							defaultValue={this.props.data.lectureTime}

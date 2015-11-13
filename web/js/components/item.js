@@ -4,6 +4,10 @@ import debounce from "debounce";
 import {validateNumber} from "../libs/validation";
 
 class Item extends React.Component {
+	static propTypes = {
+		data: React.PropTypes.object
+	}
+
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired
 	}
@@ -42,6 +46,11 @@ class Item extends React.Component {
 	onSelectChanged = (event) => {
 		this.data[event.name] = event.id;
 		this.onItemChange();
+	}
+
+	onInputSelectChanged = (event) => {
+		this.data[event.name] = event.value;
+		console.log(event);
 	}
 
 	onItemChange() {

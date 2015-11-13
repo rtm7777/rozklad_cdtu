@@ -6,8 +6,8 @@ import "./libs/socketEvents";
 import React from "react";
 import {render} from "react-dom";
 
-import Router from "react-router";
-import createHistory from 'history/lib/createBrowserHistory';
+import {Router} from "react-router";
+import createHistory from "history/lib/createBrowserHistory";
 import routes from "./routes";
 
 const rootEl = document.getElementById('page');

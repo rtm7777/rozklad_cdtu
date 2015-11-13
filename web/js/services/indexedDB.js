@@ -39,10 +39,10 @@ class DataBase {
 					task.subject = row ? row.subject : '';
 				}),
 				this.db.teachers.where('id').equals(task.teacherId).first().then((row) => {
-					task.teacher = row ? `${row.lastName} ${row.firstName[0]}. ${row.middleName[0]}.` : '';
+					task.teacher = row ? `${row.lastName || ''} ${row.firstName[0] || ''}. ${row.middleName[0] || ''}.` : '';
 				}),
 				this.db.audiences.where('id').equals(task.audienceId).first().then((row) => {
-					task.audience = row ? row.number : '';
+					task.audience = row ? `${row.number} - ${row.housingId}` : '';
 				}),
 			]).then(() => {
 				return task;
@@ -53,8 +53,52 @@ class DataBase {
 	searchInTeachers = (request) => {
 		let indices = request.trim().split(" ");
 		return new Promise((resolve) => {
-			this.searchMultiple(this.db.teachers, ["firstName", "lastName"], indices).toArray(function (result) {
-				resolve(JSON.stringify(result));
+			this.searchMultiple(this.db.teachers, ["firstName", "lastName"], indices).toArray((items) => {
+				resolve(items.map(({id, lastName, firstName, middleName}) => {
+					return {
+						id,
+						value: `${lastName || ''} ${firstName[0] || ''}. ${middleName[0] || ''}.`
+					};
+				}));
+			});
+		});
+	}
+
+	searchInSubjects = (request) => {
+		return new Promise((resolve) => {
+			this.db.subjects.where('subject').startsWithIgnoreCase(request).toArray((items) => {
+				resolve(items.map(({id, subject}) => {
+					return {
+						id,
+						value: subject
+					};
+				}));
+			});
+		});
+	}
+
+	searchInAudiences = (request) => {
+		return new Promise((resolve) => {
+			this.db.audiences.where('number').startsWithIgnoreCase(request).toArray((items) => {
+				resolve(items.map(({id, number, housingId}) => {
+					return {
+						id,
+						value: `${number} - ${housingId}`
+					};
+				}));
+			});
+		});
+	}
+
+	searchInGroups = (request) => {
+		return new Promise((resolve) => {
+			this.db.groups.where('name').startsWithIgnoreCase(request).toArray((items) => {
+				resolve(items.map(({id, name}) => {
+					return {
+						id,
+						value: name
+					};
+				}));
 			});
 		});
 	}

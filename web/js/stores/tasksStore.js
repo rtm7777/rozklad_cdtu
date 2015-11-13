@@ -35,6 +35,7 @@ class TasksStore extends EventEmitter {
 	}
 
 	load() {
+		this.db.synchronizeAll();
 		let promises = [
 			promise.get('/get_faculty_departments_list'),
 		];
@@ -42,12 +43,6 @@ class TasksStore extends EventEmitter {
 			promises.push(this.loadTasks(this.state.selectedDepartment));
 		}
 
-		this.db.synchronizeAll();
-		// let db = this.db.getInstance();
-
-		// this.db.searchMultiple(db.teachers, ["firstName", "lastName"], ["p","v"]).toArray(function (result) {
-		// 		console.log(JSON.stringify(result));
-		// });
 
 		return Promise.all(promises).then((data) => {
 			this.state.facultiesDepartments = data[0];

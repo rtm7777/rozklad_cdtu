@@ -12,7 +12,7 @@ type Teachers struct {
 	Department   Departments `json:"-"`
 	FirstName    string      `sql:"size:25" json:"firstName"`
 	LastName     string      `sql:"size:25" json:"lastName"`
-	MiddleName   string      `sql:"size:30" json:"meddleName"`
+	MiddleName   string      `sql:"size:30" json:"middleName"`
 	Rank         string      `sql:"size:100" json:"rank"`
 }
 

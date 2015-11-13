@@ -3,6 +3,7 @@ import React from "react";
 import Dispatcher from "../dispatcher/dispatcher";
 import TasksActions from "../actions/tasksActions";
 import TasksStore from "../stores/tasksStore";
+import clickAway from "../libs/clickAwayUtils";
 
 import Loader from "../components/tasks/tasksLoader";
 import DepartmentSelector from "../components/tasks/tasksDepartmentSelector";
@@ -28,6 +29,7 @@ class Tasks extends React.Component {
 		});
 
 		this.actions.load();
+		document.addEventListener('mousedown', clickAway.checkClickAway);
 	}
 
 	getChildContext() {
@@ -39,6 +41,7 @@ class Tasks extends React.Component {
 
 	componentWillUnmount() {
 		this.store.removeListener('load');
+		document.removeEventListener('mousedown', clickAway.checkClickAway);
 	}
 
 	render() {

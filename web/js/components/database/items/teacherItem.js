@@ -2,6 +2,8 @@
 import React from "react";
 import Item from "../../item";
 import Select from "../../select";
+import Popover from "../../popover";
+import clickAwayStore from "../../../stores/clickAwayStore";
 
 class TeacherItem extends Item {
 	constructor() {
@@ -32,11 +34,29 @@ class TeacherItem extends Item {
 					/>
 				</td>
 				<td className='no-padding'>
-					<div className='dropdown'>
-						<button tabIndex='0' className='popove btn' role='button' data-toggle='popover' data-placement='bottom' data-content='khhkufjh'>
-							{this.props.data.firstName}
-						</button>
-					</div>
+					<Popover
+						text={'text'}
+						elementConatainer={clickAwayStore}
+					>
+						<input
+							defaultValue={this.props.data.lastName}
+							name='lastName'
+							onChange={this.onInputChanged}
+							type='text'
+						/>
+						<input
+							defaultValue={this.props.data.firstName}
+							name='firstName'
+							onChange={this.onInputChanged}
+							type='text'
+						/>
+						<input
+							defaultValue={this.props.data.middleName}
+							name='middleName'
+							onChange={this.onInputChanged}
+							type='text'
+						/>
+					</Popover>
 				</td>
 				<td>
 					<input

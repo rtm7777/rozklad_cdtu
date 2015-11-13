@@ -27,4 +27,9 @@ var SynchronizationTypes = map[string]func(db *gorm.DB) interface{}{
 		db.Model(&models.Audiences{}).Select("id, housing_id, number, type").Scan(&audiences)
 		return audiences
 	},
+	"housings": func(db *gorm.DB) interface{} {
+		var housings []*models.Housings
+		db.Find(&housings)
+		return housings
+	},
 }
