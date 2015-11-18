@@ -6,8 +6,19 @@ import Popover from "../../popover";
 import clickAwayStore from "../../../stores/clickAwayStore";
 
 class TeacherItem extends Item {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+		this.state.popoverText = this.generatePopoverText();
+	}
+
+	onPopoverChange = (e) => {
+		this.onInputChanged(e);
+		this.setState({popoverText: this.generatePopoverText()});
+	}
+
+	generatePopoverText() {
+		let {lastName, firstName, middleName} = this.data;
+		return `${lastName || '-'} ${firstName[0] || '-'}. ${middleName[0] || '-'}.`;
 	}
 
 	render() {
@@ -35,25 +46,25 @@ class TeacherItem extends Item {
 				</td>
 				<td className='no-padding'>
 					<Popover
-						text={'text'}
+						text={this.state.popoverText}
 						elementConatainer={clickAwayStore}
 					>
 						<input
 							defaultValue={this.props.data.lastName}
 							name='lastName'
-							onChange={this.onInputChanged}
+							onChange={this.onPopoverChange}
 							type='text'
 						/>
 						<input
 							defaultValue={this.props.data.firstName}
 							name='firstName'
-							onChange={this.onInputChanged}
+							onChange={this.onPopoverChange}
 							type='text'
 						/>
 						<input
 							defaultValue={this.props.data.middleName}
 							name='middleName'
-							onChange={this.onInputChanged}
+							onChange={this.onPopoverChange}
 							type='text'
 						/>
 					</Popover>

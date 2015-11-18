@@ -18,12 +18,8 @@ class Item extends React.Component {
 		this.state = {
 			selected: false
 		};
-		this.data = {};
+		this.data = props.data;
 		this.onItemChange = debounce(this.onItemChange, 600).bind(this);
-	}
-
-	componentDidMount() {
-		this.data = this.props.data;
 	}
 
 	toggleItem = (e) => {
@@ -50,7 +46,7 @@ class Item extends React.Component {
 
 	onInputSelectChanged = (event) => {
 		this.data[event.name] = event.value;
-		console.log(event);
+		this.onItemChange();
 	}
 
 	onItemChange() {

@@ -13,8 +13,19 @@ class TaskItem extends Item {
 		actions: React.PropTypes.object.isRequired
 	}
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+		this.state.popoverText = this.generatePopoverText();
+	}
+
+	onPopoverChange = (e) => {
+		this.onInputChanged(e);
+		this.setState({popoverText: this.generatePopoverText()});
+	}
+
+	generatePopoverText() {
+		let {lectureTime, practiceTime, laboratoryTime} = this.data;
+		return `${lectureTime || 0}, ${practiceTime || 0}, ${laboratoryTime || 0}`;
 	}
 
 	render() {
@@ -60,25 +71,25 @@ class TaskItem extends Item {
 				</td>
 				<td>
 					<Popover
-						text={'text'}
+						text={this.state.popoverText}
 						elementConatainer={clickAwayStore}
 					>
 						<input
 							defaultValue={this.props.data.lectureTime}
 							name='lectureTime'
-							onChange={this.onInputChanged}
+							onChange={this.onPopoverChange}
 							type='text'
 						/>
 						<input
 							defaultValue={this.props.data.practiceTime}
 							name='practiceTime'
-							onChange={this.onInputChanged}
+							onChange={this.onPopoverChange}
 							type='text'
 						/>
 						<input
 							defaultValue={this.props.data.laboratoryTime}
 							name='laboratoryTime'
-							onChange={this.onInputChanged}
+							onChange={this.onPopoverChange}
 							type='text'
 						/>
 					</Popover>

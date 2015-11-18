@@ -4,8 +4,8 @@ import Item from "../../item";
 import Select from "../../select";
 
 class GroupItem extends Item {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 
 	render() {

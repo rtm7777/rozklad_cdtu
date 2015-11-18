@@ -4,8 +4,8 @@ import Item from "../../item";
 import Select from "../../select";
 
 class AudienceItem extends Item {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 
 	render() {

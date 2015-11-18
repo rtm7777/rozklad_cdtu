@@ -10,10 +10,7 @@ class SelectInput extends React.Component {
 			opened: false,
 			fields: []
 		};
-		this.state = {
-			opened: false,
-			fields: []
-		};
+		this.state = this.stateObj;
 	}
 
 	search = (value) => {
@@ -32,21 +29,21 @@ class SelectInput extends React.Component {
 		if (this.props.onChange) {
 			this.props.onChange({
 				name: this.props.name,
-				value: e.target.dataset.value
+				value: e.target.dataset.id
 			});
 		}
-		if (this.state.opened) {
-		};
+		this.searchValue = '';
+		this.refs.input.value = e.target.dataset.value;
 	}
 
 	openSelect = () => {
 		if (!this.state.opened) {
 			if (this.props.elementConatainer) this.props.elementConatainer.element = this;
 			this.inputValue = this.refs.input.value;
-			this.refs.input.value = '';
+			this.refs.input.value = this.searchValue;
 			this.stateObj.opened = true;
 			this.updateState();
-			this.search('');
+			this.search(this.searchValue);
 		}
 	}
 
@@ -60,6 +57,7 @@ class SelectInput extends React.Component {
 
 	componentClickAway = () => {
 		if (this.state.opened) {
+			this.searchValue = this.refs.input.value;
 			this.refs.input.value = this.inputValue;
 			this.closeSelect();
 		};
@@ -75,7 +73,7 @@ class SelectInput extends React.Component {
 		};
 		let options = this.state.fields.map(({id, value}) => {
 			return (
-				<li key={id} onClick={this.optionSelected} data-value={id}>{value}</li>
+				<li key={id} onClick={this.optionSelected} data-id={id} data-value={value}>{value}</li>
 			);
 		});
 		let inputProps = {

@@ -3,8 +3,8 @@ import React from "react";
 import Item from "../../item";
 
 class SubjectItem extends Item {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 
 	render() {

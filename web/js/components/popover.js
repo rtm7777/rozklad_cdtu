@@ -19,7 +19,7 @@ class Popover extends React.Component {
 
 	calculateLeft() {
 		if (this.refs.control) {
-			return 90 - this.refs.control.offsetWidth / 2;
+			return 106 - this.refs.control.offsetWidth / 2;
 		} else {
 			return 0;
 		}

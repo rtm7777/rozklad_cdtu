@@ -39,7 +39,7 @@ class DataBase {
 					task.subject = row ? row.subject : '';
 				}),
 				this.db.teachers.where('id').equals(task.teacherId).first().then((row) => {
-					task.teacher = row ? `${row.lastName || ''} ${row.firstName[0] || ''}. ${row.middleName[0] || ''}.` : '';
+					task.teacher = row ? `${row.lastName || ''} ${row.firstName || ''} ${row.middleName || ''}` : '';
 				}),
 				this.db.audiences.where('id').equals(task.audienceId).first().then((row) => {
 					task.audience = row ? `${row.number} - ${row.housingId}` : '';
@@ -57,7 +57,7 @@ class DataBase {
 				resolve(items.map(({id, lastName, firstName, middleName}) => {
 					return {
 						id,
-						value: `${lastName || ''} ${firstName[0] || ''}. ${middleName[0] || ''}.`
+						value: `${lastName || ''} ${firstName || ''} ${middleName || ''}`
 					};
 				}));
 			});
