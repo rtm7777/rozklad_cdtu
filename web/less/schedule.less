@@ -1,0 +1,90 @@
+.main-container {
+	border-top: 1px solid @table-border;
+	border-left: 1px solid @table-border;
+	border-right: 1px solid @table-border;
+	border-bottom: 1px solid @table-border;
+	overflow-x: auto;
+	white-space: nowrap;
+
+	.admin-content-loader {
+		color: @info-message;
+		height: 250px;
+		text-align: center;
+		font-size: 3em;
+		padding: 70px 15px 0px;
+		white-space: initial;
+
+		.hide {
+			display:none;
+		}
+	}
+
+	.day-pair-col {
+		border-right: 1px solid @table-border;
+		display: inline-block;
+		float: left;
+		position: absolute;
+		background-color: white;
+		width: 40px;
+
+		.day-pair-row {
+			border-bottom: 1px solid @table-border;
+
+			.admin-day-cell {
+				margin: 85px 0 0 10px;
+			}
+
+			.admin-pair-cell {
+				margin-top: 15px;
+				text-align: center;
+			}
+		}
+
+		&:nth-child(3) {
+			left: 56px;
+		}
+	}
+
+	.schedule-container {
+		margin-left: 80px;
+		.group-container {
+			border-right: 1px solid @table-border;
+			display: inline-block;
+			width: 200px;
+
+			.pair-container {
+				border-bottom: 1px solid @table-border;
+
+				&.active {
+					background-color: @info-message;
+				}
+
+				&:hover {
+					background-color: @table-hover-cell;
+				}
+			}
+
+			.group-header {
+				padding: 0;
+
+				.btn-default {
+					background-color: transparent;
+				}
+
+				label {
+					border-radius: 0;
+					height: 100%;
+					width: 100%;
+					padding-top: 12px;
+					border: none;
+
+					&.active {
+						color: @white;
+						background-color: #3276b1;
+						border-color: #285e8e;
+					}
+				}
+			}
+		}
+	}
+}

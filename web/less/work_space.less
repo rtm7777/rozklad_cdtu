@@ -1,0 +1,63 @@
+#work_space {
+	position: relative;
+	min-height: 200px;
+	.loader {
+		height: 200px;
+		margin-left: -15px;
+	}
+
+	tbody {
+		td {
+			position: relative;
+			padding: 0;
+
+			&.no-padding {
+				padding: 0;
+
+				.glyphicon {
+					position: absolute;
+					right: 10px;
+					top: 5px;
+					font-size: 20px;
+					color: #666;
+				}
+			}
+
+			&>input, .table-input {
+				width: 100%;
+				height: 30px;
+				border: none;
+				padding: 0 5px;
+				background: transparent;
+
+				&:focus {
+					outline: none;
+				}
+			}
+
+			.dropdown {
+				button {
+					width: 100%;
+					height: 30px;
+					background: transparent;
+					border: none;
+					text-align: left;
+
+					&:active {
+						outline: none;
+						box-shadow: none;
+					}
+
+					&:focus {
+						outline: none;
+					}
+				}
+
+				.dropdown-menu {
+					width: 100%;
+					min-width: 80px;
+				}
+			}
+		}
+	}
+}

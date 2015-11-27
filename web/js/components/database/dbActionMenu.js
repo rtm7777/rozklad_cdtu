@@ -82,7 +82,7 @@ class ActionMenu extends React.Component {
 		}
 
 		return (
-			<div className='container'>
+			<div className='actions-bar container'>
 				<div className='row'>
 					<div className='col-lg-12'>
 						<div className='panel clearfix panel-default'>

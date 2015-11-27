@@ -55,13 +55,13 @@ class Tasks extends React.Component {
 			columns: this.state.columns
 		};
 		return (
-			<div className='database'>
+			<div>
 				<div className='container'>
 					<div className='row'>
 						<div className='col-lg-3'>
 							<DepartmentSelector {...departmentSelectorProps} />
 						</div>
-						<div id='database_container' className='col-lg-9'>
+						<div id='work_space' className='col-lg-9'>
 							<Loader/>
 							<Content {...contentProps} />
 						</div>

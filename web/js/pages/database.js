@@ -61,7 +61,7 @@ class DataBase extends React.Component {
 		};
 
 		return (
-			<div className='database'>
+			<div>
 				<ActionMenu {...actionMenuProps} />
 				<div className='container'>
 					<div className='row'>
@@ -72,7 +72,7 @@ class DataBase extends React.Component {
 								<DBNavigation {...navProps} />
 							</div>
 						</div>
-						<div id='database_container' className='col-lg-9'>
+						<div id='work_space' className='col-lg-9'>
 							<Loader/>
 							<Content {...contentProps} />
 						</div>
