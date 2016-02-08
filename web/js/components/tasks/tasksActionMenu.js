@@ -8,7 +8,7 @@ class ActionMenu extends React.Component {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired,
 		store: React.PropTypes.instanceOf(TasksStore).isRequired
-	}
+	};
 
 	constructor(props) {
 		super(props);
@@ -54,7 +54,7 @@ class ActionMenu extends React.Component {
 		};
 
 		return actions[child.props.data.action]();
-	}
+	};
 
 	render() {
 		let filters = this.props.filters.map((filter, i) => {

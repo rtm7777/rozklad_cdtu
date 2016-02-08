@@ -62,7 +62,7 @@ class DataBase {
 				}));
 			});
 		});
-	}
+	};
 
 	searchInSubjects = (request) => {
 		return new Promise((resolve) => {
@@ -75,7 +75,7 @@ class DataBase {
 				}));
 			});
 		});
-	}
+	};
 
 	searchInAudiences = (request) => {
 		return new Promise((resolve) => {
@@ -88,7 +88,7 @@ class DataBase {
 				}));
 			});
 		});
-	}
+	};
 
 	searchInGroups = (request) => {
 		return new Promise((resolve) => {
@@ -101,7 +101,7 @@ class DataBase {
 				}));
 			});
 		});
-	}
+	};
 
 	startsWithAnyOfIgnoreCase(tableOrCollection, index, prefixes) {
 		if (!prefixes || prefixes.length === 0) throw 'must supply at least one prefix';

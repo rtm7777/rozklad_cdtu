@@ -10,12 +10,12 @@ class Popover extends React.Component {
 	openPopover = () => {
 		this.setState({opened: true});
 		if (this.props.elementConatainer) this.props.elementConatainer.element = this;
-	}
+	};
 
 	componentClickAway = () => {
 		this.setState({opened: false});
 		this.props.elementConatainer.element = null;
-	}
+	};
 
 	calculateLeft() {
 		if (this.refs.control) {

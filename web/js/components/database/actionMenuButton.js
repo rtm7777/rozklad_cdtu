@@ -9,7 +9,7 @@ class ActionMenuButton extends React.Component {
 	actionButtonClicked = (e) => {
 		e.preventDefault();
 		this.props.onClick(this);
-	}
+	};
 
 	render() {
 		return (

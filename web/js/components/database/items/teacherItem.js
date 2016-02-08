@@ -14,7 +14,7 @@ class TeacherItem extends Item {
 	onPopoverChange = (e) => {
 		this.onInputChanged(e);
 		this.setState({popoverText: this.generatePopoverText()});
-	}
+	};
 
 	generatePopoverText() {
 		let {lastName, firstName, middleName} = this.data;

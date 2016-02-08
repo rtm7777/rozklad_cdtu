@@ -18,11 +18,11 @@ class SelectInput extends React.Component {
 			this.stateObj.fields = result;
 			this.updateState();
 		});
-	}
+	};
 
 	onInputChanged = (e) => {
 		this.search(e.target.value);
-	}
+	};
 
 	optionSelected = (e) => {
 		this.closeSelect();
@@ -34,7 +34,7 @@ class SelectInput extends React.Component {
 		}
 		this.searchValue = '';
 		this.refs.input.value = e.target.dataset.value;
-	}
+	};
 
 	openSelect = () => {
 		if (!this.state.opened) {
@@ -45,7 +45,7 @@ class SelectInput extends React.Component {
 			this.updateState();
 			this.search(this.searchValue);
 		}
-	}
+	};
 
 	closeSelect = () => {
 		this.stateObj.opened = false;
@@ -53,7 +53,7 @@ class SelectInput extends React.Component {
 		if (this.props.elementConatainer) {
 			this.props.elementConatainer.element = null;
 		}
-	}
+	};
 
 	componentClickAway = () => {
 		if (this.state.opened) {
@@ -61,7 +61,7 @@ class SelectInput extends React.Component {
 			this.refs.input.value = this.inputValue;
 			this.closeSelect();
 		};
-	}
+	};
 
 	updateState() {
 		this.setState(this.stateObj);

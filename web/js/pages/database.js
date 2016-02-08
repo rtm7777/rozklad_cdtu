@@ -14,7 +14,7 @@ class DataBase extends React.Component {
 	static childContextTypes = {
 		actions: React.PropTypes.object.isRequired,
 		store: React.PropTypes.instanceOf(DBStore).isRequired
-	}
+	};
 
 	constructor(props) {
 		super(props);

@@ -9,7 +9,7 @@ class SelectOption extends React.Component {
 	changeValue = (e) => {
 		e.preventDefault();
 		this.props.onClick(this);
-	}
+	};
 
 	render() {
 		return (
@@ -33,7 +33,7 @@ class Select extends React.Component {
 				name: this.props.name || ""
 			});
 		}
-	}
+	};
 
 	generateDropdownLabel() {
 		if (this.props.label) {

@@ -20,7 +20,7 @@ class ClickAway extends React.Component {
 		if (el !== e.target && el !== e.target.parentNode) {
 			if (this.componentClickAway) this.componentClickAway();
 		}
-	}
+	};
 }
 
 export default ClickAway;

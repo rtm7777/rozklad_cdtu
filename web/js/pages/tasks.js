@@ -13,7 +13,7 @@ class Tasks extends React.Component {
 	static childContextTypes = {
 		actions: React.PropTypes.object.isRequired,
 		store: React.PropTypes.instanceOf(TasksStore).isRequired
-	}
+	};
 
 	constructor(props) {
 		super(props);

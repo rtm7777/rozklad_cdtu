@@ -6,11 +6,11 @@ import {validateNumber} from "../libs/validation";
 class Item extends React.Component {
 	static propTypes = {
 		data: React.PropTypes.object
-	}
+	};
 
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired
-	}
+	};
 
 	constructor(props) {
 		super(props);
@@ -32,22 +32,22 @@ class Item extends React.Component {
 				this.context.actions.itemSelected(this.props.data.id, true);
 			}
 		}
-	}
+	};
 
 	onInputChanged = (event) => {
 		this.data[event.target.name] = event.target.value;
 		this.onItemChange();
-	}
+	};
 
 	onSelectChanged = (event) => {
 		this.data[event.name] = event.id;
 		this.onItemChange();
-	}
+	};
 
 	onInputSelectChanged = (event) => {
 		this.data[event.name] = event.value;
 		this.onItemChange();
-	}
+	};
 
 	onItemChange() {
 		this.context.actions.itemChanged(this.data);

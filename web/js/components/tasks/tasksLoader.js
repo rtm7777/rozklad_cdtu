@@ -5,7 +5,7 @@ import TasksStore from "../../stores/tasksStore";
 class TasksLoader extends Loader {
 	static contextTypes = {
 		store: React.PropTypes.instanceOf(TasksStore).isRequired
-	}
+	};
 }
 
 export default TasksLoader;

@@ -9,7 +9,7 @@ class DepartmentSelector extends React.Component {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired,
 		store: React.PropTypes.instanceOf(TasksStore).isRequired
-	}
+	};
 
 	constructor(props) {
 		super(props);
@@ -33,7 +33,7 @@ class DepartmentSelector extends React.Component {
 	changedFaculty = (faculty) => {
 		this.context.actions.changedFaculty(faculty.id);
 		this.selectDepartments(faculty.id);
-	}
+	};
 
 	selectDepartments = (facultyId) => {
 		let data = this.props.data.find((val) => val.facultyId == facultyId);
@@ -43,7 +43,7 @@ class DepartmentSelector extends React.Component {
 			});
 			this.setState({departments});
 		}
-	}
+	};
 
 	render() {
 		let selectValues = this.props.data.map(({facultyId, facultyName}) => {

@@ -11,7 +11,7 @@ class TaskItem extends Item {
 	static contextTypes = {
 		store: React.PropTypes.instanceOf(TasksStore).isRequired,
 		actions: React.PropTypes.object.isRequired
-	}
+	};
 
 	constructor(props) {
 		super(props);
@@ -21,7 +21,7 @@ class TaskItem extends Item {
 	onPopoverChange = (e) => {
 		this.onInputChanged(e);
 		this.setState({popoverText: this.generatePopoverText()});
-	}
+	};
 
 	generatePopoverText() {
 		let {lectureTime, practiceTime, laboratoryTime} = this.data;

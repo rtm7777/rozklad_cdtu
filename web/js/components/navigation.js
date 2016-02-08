@@ -9,7 +9,7 @@ class NavOption extends React.Component {
 	optionSelected = (e) => {
 		e.preventDefault();
 		this.props.onClick(this);
-	}
+	};
 
 	render() {
 		let active = this.props.data.optionValue == this.props.active ? 'active' : '';
@@ -26,7 +26,7 @@ class Navigation extends React.Component {
 
 	selectOption = () => {
 		console.error('Prease override this method');
-	}
+	};
 
 	render() {
 		let navigation = this.props.navList.map((field, i) => {

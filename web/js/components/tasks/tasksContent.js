@@ -7,7 +7,7 @@ class Content extends React.Component {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired,
 		store: React.PropTypes.instanceOf(TasksStore).isRequired
-	}
+	};
 
 	constructor(props) {
 		super(props);
