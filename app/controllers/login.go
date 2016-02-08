@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"code.google.com/p/go.crypto/bcrypt"
 	"github.com/revel/revel"
+	"golang.org/x/crypto/bcrypt"
 	"rozklad_cdtu/app/models"
 )
 
