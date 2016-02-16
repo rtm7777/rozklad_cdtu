@@ -1,7 +1,8 @@
 export default {
-	groups   : 'id,facultyId,name',
-	subjects : 'id,subject',
-	teachers : 'id,facultyId,firstName,lastName,middleName',
-	audiences: 'id,housingId,number,type',
-	housings : 'id,number'
+	groups      : 'id,facultyId,name',
+	subjects    : 'id,subject',
+	teachers    : 'id,facultyId,firstName,lastName,middleName',
+	audiences   : 'id,housingId,number,type',
+	housings    : 'id,number',
+	translations: '++,key,language,translation'
 };

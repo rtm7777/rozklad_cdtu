@@ -6,6 +6,7 @@ import TasksStore from "../stores/tasksStore";
 import clickAway from "../libs/clickAwayUtils";
 
 import Loader from "../components/tasks/tasksLoader";
+import ActionMenu from "../components/tasks/tasksActionMenu";
 import DepartmentSelector from "../components/tasks/tasksDepartmentSelector";
 import Content from "../components/tasks/tasksContent";
 
@@ -56,6 +57,7 @@ class Tasks extends React.Component {
 		};
 		return (
 			<div>
+				<ActionMenu/>
 				<div className='container'>
 					<div className='row'>
 						<div className='col-lg-3'>

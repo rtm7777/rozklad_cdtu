@@ -1,6 +1,7 @@
 import storage from "../services/localStorage";
 import promise from "../libs/promise";
-import DataBase from "../services/indexedDB";
+import dataBase from "../services/indexedDB";
+import I18n from "../services/i18n";
 import {EventEmitter} from "events";
 
 class TasksStore extends EventEmitter {
@@ -8,7 +9,7 @@ class TasksStore extends EventEmitter {
 		super();
 		this.state = TasksStore.defaultState;
 		this.loader = true;
-		this.db = new DataBase();
+		this.db = dataBase;
 
 		dispatcher.register((action) => {
 			switch(action.actionType) {
@@ -38,11 +39,11 @@ class TasksStore extends EventEmitter {
 		this.db.synchronizeAll();
 		let promises = [
 			promise.get('/get_faculty_departments_list'),
+			I18n.load()
 		];
 		if (this.state.selectedFaculty && this.state.selectedDepartment) {
 			promises.push(this.loadTasks(this.state.selectedDepartment));
 		}
-
 
 		return Promise.all(promises).then((data) => {
 			this.state.facultiesDepartments = data[0];

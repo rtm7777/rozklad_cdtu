@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 import debounce from "debounce";
-import {validateNumber} from "../libs/validation";
+import {validateNumber, validateMinMax} from "../libs/validation";
 
 class Item extends React.Component {
 	static propTypes = {
@@ -35,6 +35,7 @@ class Item extends React.Component {
 	};
 
 	onInputChanged = (event) => {
+		validateMinMax(event);
 		this.data[event.target.name] = event.target.value;
 		this.onItemChange();
 	};

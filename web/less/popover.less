@@ -8,9 +8,24 @@
 	top: 25px;
 
 	.popover-content {
-		input {
-			margin: 5px 0;
-			padding: 0 5px;
+		div {
+			display: flex;
+			align-items: center;
+			text-align: left;
+			label {
+				flex: 1 0 auto;
+				display: inline-block;
+				margin: 0 5px 0 0;
+			}
+			input {
+				display: inline-block;
+				width: 50px;
+				margin: 4px 0;
+				padding: 0 5px;
+				&.form-control {
+					height: 25px;
+				}
+			}
 		}
 	}
 

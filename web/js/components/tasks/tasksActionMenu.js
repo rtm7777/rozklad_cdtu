@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 import Select from "../select";
-import ActionMenuButton from "./actionMenuButton";
+import ActionMenuButton from "../actionMenuButton";
 import TasksStore from "../../stores/tasksStore";
 
 class ActionMenu extends React.Component {
@@ -57,16 +57,6 @@ class ActionMenu extends React.Component {
 	};
 
 	render() {
-		let filters = this.props.filters.map((filter, i) => {
-			let props = {
-				values: filter.values,
-				key: i,
-				name: filter.name
-			};
-
-			return <Select {...props} />;
-		});
-
 		let actions = [];
 		let i = 0;
 		for (let key of Object.keys(this.state.actions)) {
@@ -85,9 +75,6 @@ class ActionMenu extends React.Component {
 				<div className='row'>
 					<div className='col-lg-12'>
 						<div className='panel clearfix panel-default'>
-							<ul className='nav nav-pills pull-left filter-menu'>
-								{filters}
-							</ul>
 							<ul className='nav nav-pills pull-right action-menu'>
 								{actions}
 							</ul>

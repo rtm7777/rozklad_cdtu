@@ -4,6 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"rozklad_cdtu/app/models"
 	"rozklad_cdtu/app/models/json_models"
+	"rozklad_cdtu/app/services"
 )
 
 var SynchronizationTypes = map[string]func(db *gorm.DB) interface{}{
@@ -31,5 +32,8 @@ var SynchronizationTypes = map[string]func(db *gorm.DB) interface{}{
 		var housings []*models.Housings
 		db.Find(&housings)
 		return housings
+	},
+	"translations": func(db *gorm.DB) interface{} {
+		return frontend_i18n.ReadI18nFile()
 	},
 }

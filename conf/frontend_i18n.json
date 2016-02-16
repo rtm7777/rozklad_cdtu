@@ -1,0 +1,23 @@
+[
+	{
+		"key": "lectureTime",
+		"adaptations": [
+			{"lang": "en-US", "tr": "lectures time"},
+			{"lang": "uk", "tr": "лекції"}
+		]
+	},
+	{
+		"key": "practiceTime",
+		"adaptations": [
+			{"lang": "en-US", "tr": "practice time"},
+			{"lang": "uk", "tr": "практика"}
+		]
+	},
+	{
+		"key": "laboratoryTime",
+		"adaptations": [
+			{"lang": "en-US", "tr": "laboratory time"},
+			{"lang": "uk", "tr": "лабораторні"}
+		]
+	}
+]

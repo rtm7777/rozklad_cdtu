@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 import Select from "../select";
-import ActionMenuButton from "./actionMenuButton";
+import ActionMenuButton from "../actionMenuButton";
 import DBStore from "../../stores/dbStore";
 
 class ActionMenu extends React.Component {

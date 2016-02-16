@@ -48,6 +48,7 @@ class TeacherItem extends Item {
 					<Popover
 						text={this.state.popoverText}
 						elementConatainer={clickAwayStore}
+						width={200}
 					>
 						<input
 							defaultValue={this.props.data.lastName}

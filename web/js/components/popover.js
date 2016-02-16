@@ -19,7 +19,7 @@ class Popover extends React.Component {
 
 	calculateLeft() {
 		if (this.refs.control) {
-			return 106 - this.refs.control.offsetWidth / 2;
+			return this.props.width/2 - this.refs.control.offsetWidth / 2;
 		} else {
 			return 0;
 		}
@@ -29,7 +29,8 @@ class Popover extends React.Component {
 		let left = this.calculateLeft();
 		let style = {
 			left: `-${left}px`,
-			display: this.state.opened ? 'block' : 'none'
+			display: this.state.opened ? 'block' : 'none',
+			width: this.props.width
 		};
 		return (
 			<div ref="control" onMouseDown={this.openPopover}>

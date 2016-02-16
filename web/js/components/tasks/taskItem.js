@@ -6,6 +6,7 @@ import SelectInput from "../selectInput";
 import Popover from "../popover";
 import TasksStore from "../../stores/tasksStore";
 import clickAwayStore from "../../stores/clickAwayStore";
+import I18n from "../../services/i18n";
 
 class TaskItem extends Item {
 	static contextTypes = {
@@ -30,6 +31,24 @@ class TaskItem extends Item {
 
 	render() {
 		super.render();
+
+		let popoverContent = ['lectureTime', 'practiceTime', 'laboratoryTime'].map((field, i) => {
+			return (
+				<div key={i}>
+					<label>{I18n.t(field)}</label>
+					<input
+						className={'form-control'}
+						defaultValue={this.props.data[field]}
+						name={field}
+						onChange={this.onPopoverChange}
+						onKeyDown={this.onNumberKeyDown}
+						type='number'
+						max='20'
+						min='0'
+					/>
+				</div>
+			);
+		});
 
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
@@ -71,27 +90,12 @@ class TaskItem extends Item {
 				</td>
 				<td>
 					<Popover
+						className={'tasks-popover'}
+						width={200}
 						text={this.state.popoverText}
 						elementConatainer={clickAwayStore}
 					>
-						<input
-							defaultValue={this.props.data.lectureTime}
-							name='lectureTime'
-							onChange={this.onPopoverChange}
-							type='text'
-						/>
-						<input
-							defaultValue={this.props.data.practiceTime}
-							name='practiceTime'
-							onChange={this.onPopoverChange}
-							type='text'
-						/>
-						<input
-							defaultValue={this.props.data.laboratoryTime}
-							name='laboratoryTime'
-							onChange={this.onPopoverChange}
-							type='text'
-						/>
+						{popoverContent}
 					</Popover>
 				</td>
 			</tr>

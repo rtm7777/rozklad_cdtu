@@ -16,6 +16,7 @@ class DataBase {
 	synchronize(table) {
 		promise.get('/synchronization/get_data', {dataType: table}).then((data) => {
 			this.db.transaction('rw', this.db[table], () => {
+				if (table == "translations") { this.db.translations.clear(); };
 				data.forEach((row) => {
 					this.db[table].put(row);
 				});
@@ -49,6 +50,10 @@ class DataBase {
 			});
 		}));
 	}
+
+	loadTranslations = (language = 'en-US') => {
+		return this.db.translations.where('language').equals(language).toArray();
+	};
 
 	searchInTeachers = (request) => {
 		let indices = request.trim().split(" ");
@@ -122,4 +127,6 @@ class DataBase {
 	}
 }
 
-export default DataBase;
+const db = new DataBase();
+
+export default db;
