@@ -8,6 +8,7 @@ import HousingItem from "./items/housingItem";
 import SubjectItem from "./items/subjectItem";
 import TeacherItem from "./items/teacherItem";
 import DBStore from "../../stores/dbStore";
+import I18n from "../../services/i18n";
 
 class Content extends React.Component {
 	static contextTypes = {
@@ -49,7 +50,7 @@ class Content extends React.Component {
 		let headerCols = this.props.columns.map((column, i) => {
 			return (
 				<th key={i}>
-					{column}
+					{I18n.t(column)}
 				</th>
 			);
 		});

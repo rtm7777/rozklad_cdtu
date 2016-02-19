@@ -9,6 +9,7 @@ import Loader from "../components/database/dbLoader";
 import ActionMenu from "../components/database/dbActionMenu";
 import Content from "../components/database/dbContent";
 import DBNavigation from "../components/database/dbNavigation";
+import I18n from "../services/i18n";
 
 class DataBase extends React.Component {
 	static childContextTypes = {
@@ -67,7 +68,7 @@ class DataBase extends React.Component {
 					<div className='row'>
 						<div className='col-lg-3'>
 							<div id='db_navigation' className='panel panel-default'>
-								<div className='panel-heading'>Categories:</div>
+								<div className='panel-heading'>{I18n.t('categories')}:</div>
 								<Loader/>
 								<DBNavigation {...navProps} />
 							</div>

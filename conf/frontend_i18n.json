@@ -1,5 +1,26 @@
 [
 	{
+		"key": "faculty",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Faculty"},
+			{"lang": "uk", "tr": "Факультет"}
+		]
+	},
+	{
+		"key": "add",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Add"},
+			{"lang": "uk", "tr": "Додати"}
+		]
+	},
+	{
+		"key": "delete",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Delete"},
+			{"lang": "uk", "tr": "Видалити"}
+		]
+	},
+	{
 		"key": "lectureTime",
 		"adaptations": [
 			{"lang": "en-US", "tr": "lectures time"},
@@ -18,6 +39,153 @@
 		"adaptations": [
 			{"lang": "en-US", "tr": "laboratory time"},
 			{"lang": "uk", "tr": "лабораторні"}
+		]
+	},
+	{
+		"key": "number",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Number"},
+			{"lang": "uk", "tr": "Номер"}
+		]
+	},
+	{
+		"key": "housing",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Housing"},
+			{"lang": "uk", "tr": "Корпус"}
+		]
+	},
+	{
+		"key": "audienceType",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Audience Type"},
+			{"lang": "uk", "tr": "Тип Аудиторії"}
+		]
+	},
+	{
+		"key": "sets",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Sets"},
+			{"lang": "uk", "tr": "Кількість Місць"}
+		]
+	},
+	{
+		"key": "note",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Note"},
+			{"lang": "uk", "tr": "Примітка"}
+		]
+	},
+	{
+		"key": "departmentName",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Department Name"},
+			{"lang": "uk", "tr": "Назва Кафедри"}
+		]
+	},
+	{
+		"key": "facultyName",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Faculty Name"},
+			{"lang": "uk", "tr": "Назва Факультету"}
+		]
+	},
+	{
+		"key": "facultyShortName",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Faculty Name Short"},
+			{"lang": "uk", "tr": "Назва Факультету Скорочена"}
+		]
+	},
+	{
+		"key": "groupName",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Group Name"},
+			{"lang": "uk", "tr": "Назва Групи"}
+		]
+	},
+	{
+		"key": "studentsCount",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Students Count"},
+			{"lang": "uk", "tr": "Кількість Студентів"}
+		]
+	},
+	{
+		"key": "groupYear",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Year"},
+			{"lang": "uk", "tr": "Курс"}
+		]
+	},
+	{
+		"key": "housingNumber",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Housing Number"},
+			{"lang": "uk", "tr": "Номер Корпусу"}
+		]
+	},
+	{
+		"key": "subject",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Subject"},
+			{"lang": "uk", "tr": "Дисципліна"}
+		]
+	},
+	{
+		"key": "department",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Department"},
+			{"lang": "uk", "tr": "Кафедра"}
+		]
+	},
+	{
+		"key": "name",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Name"},
+			{"lang": "uk", "tr": "Ім'я"}
+		]
+	},
+	{
+		"key": "rank",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Rank"},
+			{"lang": "uk", "tr": "Звання"}
+		]
+	},
+	{
+		"key": "categories",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Categories"},
+			{"lang": "uk", "tr": "Категорії"}
+		]
+	},
+	{
+		"key": "group",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Group"},
+			{"lang": "uk", "tr": "Група"}
+		]
+	},
+	{
+		"key": "teacher",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Teacher"},
+			{"lang": "uk", "tr": "Викладач"}
+		]
+	},
+	{
+		"key": "audience",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Audience"},
+			{"lang": "uk", "tr": "Аудиторія"}
+		]
+	},
+	{
+		"key": "time",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Time"},
+			{"lang": "uk", "tr": "Час"}
 		]
 	}
 ]

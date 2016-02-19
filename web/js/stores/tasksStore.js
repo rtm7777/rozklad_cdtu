@@ -36,10 +36,9 @@ class TasksStore extends EventEmitter {
 	}
 
 	load() {
-		this.db.synchronizeAll();
+		// this.db.synchronizeAll();
 		let promises = [
-			promise.get('/get_faculty_departments_list'),
-			I18n.load()
+			promise.get('/get_faculty_departments_list')
 		];
 		if (this.state.selectedFaculty && this.state.selectedDepartment) {
 			promises.push(this.loadTasks(this.state.selectedDepartment));

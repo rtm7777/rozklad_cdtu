@@ -1,5 +1,6 @@
 import storage from "../services/localStorage";
 import promise from "../libs/promise";
+import I18n from "../services/i18n";
 import {EventEmitter} from "events";
 
 class DBStore extends EventEmitter {
@@ -37,7 +38,9 @@ class DBStore extends EventEmitter {
 	}
 
 	load() {
-		let promises = [promise.get('/get_category_list')];
+		let promises = [
+			promise.get('/get_category_list')
+		];
 		if (this.state.selectedCategory) {
 			promises.push(this.loadFields(this.state.selectedCategory));
 		}

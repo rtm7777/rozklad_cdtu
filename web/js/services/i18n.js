@@ -8,7 +8,6 @@ class I18n {
 
 	load() {
 		return dataBase.loadTranslations(this.userLocale).then((translations) => {
-			console.log(translations);
 			translations.map(({key, translation}) => {
 				this.translations[key] = translation;
 			});

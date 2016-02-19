@@ -28,11 +28,3 @@ departments_filter =Кафедра
 faculties_filter   =Факультет
 housings_filter    =Корпус
 year_filter        =Курс
-
-audiences_columns   =Номер,Корпус,Тип,Кількість місць,Примітка
-departments_columns =Факультет,Назва
-faculties_columns   =Повне і'мя,Скорочене і'мя
-groups_columns      =Факультет,I'мя,Кількість студентів,Курс
-housings_columns    =Номер
-subjects_columns    =Назва
-teachers_columns    =Факультет,Кафедра,П.І.Б,Звання

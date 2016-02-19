@@ -10,6 +10,8 @@ type Tasks struct {
 	Admin
 }
 
+var TasksColumns = []string{"group", "subject", "teacher", "audience", "time"}
+
 func (c Tasks) GetFacultyDepartmentsList() revel.Result {
 	result, err := database.FacultiesDepartments(c.DB)
 	if err != nil {
@@ -27,6 +29,7 @@ func (c Tasks) GetTasks(departmentId int64) revel.Result {
 		return jsonError(400, err)
 	} else {
 		items.Items = result
+		items.Columns = TasksColumns
 		return c.RenderJson(items)
 	}
 }

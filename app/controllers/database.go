@@ -6,7 +6,6 @@ import (
 	"rozklad_cdtu/app/libs/database"
 	"rozklad_cdtu/app/models/custom_responses"
 	"rozklad_cdtu/app/models/custom_structs"
-	"strings"
 )
 
 type DataBase struct {
@@ -21,6 +20,16 @@ var DBFilters = map[string][]string{
 	"housings":    []string{},
 	"subjects":    []string{},
 	"teachers":    []string{"faculties", "departments"},
+}
+
+var DBColumns = map[string][]string{
+	"audiences":   []string{"number", "housing", "audienceType", "sets", "note"},
+	"departments": []string{"faculty", "departmentName"},
+	"faculties":   []string{"facultyName", "facultyShortName"},
+	"groups":      []string{"faculty", "groupName", "studentsCount", "groupYear"},
+	"housings":    []string{"housingNumber"},
+	"subjects":    []string{"subject"},
+	"teachers":    []string{"faculty", "department", "name", "rank"},
 }
 
 func (c DataBase) GetCategoryList() revel.Result {
@@ -41,13 +50,13 @@ func (c DataBase) GetCategoryList() revel.Result {
 func (c DataBase) GetCategoryItems(category string) revel.Result {
 	locale := c.Request.Locale
 	items := database.CategoryItems(c.DB, category)
-	items.Columns = strings.Split(c.Message(category+"_columns"), ",")
 
 	filters, ok := DBFilters[category]
 	if !ok {
 		c.Response.Status = 404
 		return c.RenderJson("category filter not found")
 	}
+	items.Columns = DBColumns[category]
 
 	if len(filters) > 0 {
 		items.Filters = database.CategoryFilters(c.DB, filters, locale)

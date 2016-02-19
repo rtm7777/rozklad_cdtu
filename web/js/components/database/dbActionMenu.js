@@ -3,6 +3,7 @@ import React from "react";
 import Select from "../select";
 import ActionMenuButton from "../actionMenuButton";
 import DBStore from "../../stores/dbStore";
+import I18n from "../../services/i18n";
 
 class ActionMenu extends React.Component {
 	static contextTypes = {
@@ -15,13 +16,11 @@ class ActionMenu extends React.Component {
 		this.actionButtons = {
 			delete: {
 				action: 'delete',
-				name: 'Delete',
 				hidden: true,
 				icon: 'remove'
 			},
 			add: {
 				action: 'add',
-				name: 'Add',
 				hidden: false,
 				icon: 'plus'
 			}
@@ -74,7 +73,8 @@ class ActionMenu extends React.Component {
 			let props = {
 				onClick: this.actionButtonsActions,
 				key: i,
-				data: this.state.actions[key]
+				data: this.state.actions[key],
+				name: I18n.t(key)
 			};
 
 			actions.push(<ActionMenuButton {...props} />);

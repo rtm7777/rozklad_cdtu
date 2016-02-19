@@ -2,6 +2,7 @@
 import React from "react";
 import TasksStore from "../../stores/tasksStore";
 import TaskItem from "./taskItem";
+import I18n from "../../services/i18n";
 
 class Content extends React.Component {
 	static contextTypes = {
@@ -14,7 +15,7 @@ class Content extends React.Component {
 		this.state = {loader: false};
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		let store = this.context.store;
 		store.on('loaderChange', () => {
 			this.setState({loader: store.getLoaderState()});
@@ -30,7 +31,7 @@ class Content extends React.Component {
 		let headerCols = this.props.columns.map((column, i) => {
 			return (
 				<th key={i}>
-					{column}
+					{I18n.t(column)}
 				</th>
 			);
 		});

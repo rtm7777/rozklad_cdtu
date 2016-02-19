@@ -4,6 +4,7 @@ import Select from "../select";
 import Loader from "./tasksLoader";
 import DepartmentsNavigation from "./departmentsNavigation";
 import TasksStore from "../../stores/tasksStore";
+import I18n from "../../services/i18n";
 
 class DepartmentSelector extends React.Component {
 	static contextTypes = {
@@ -55,7 +56,7 @@ class DepartmentSelector extends React.Component {
 		let selectProps = {
 			button: true,
 			label: true,
-			name: 'Faculty',
+			name: I18n.t('faculty'),
 			onChange: this.changedFaculty,
 			selected: this.props.selectedFaculty,
 			values: selectValues

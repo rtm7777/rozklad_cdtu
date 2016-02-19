@@ -14,7 +14,7 @@ class ActionMenuButton extends React.Component {
 	render() {
 		return (
 			<li className={this.props.data.hidden ? 'hide' : ''}>
-				<a onClick={this.actionButtonClicked} href='#'><span className={`glyphicon glyphicon-${this.props.data.icon}`}></span> {this.props.data.name}</a>
+				<a onClick={this.actionButtonClicked} href='#'><span className={`glyphicon glyphicon-${this.props.data.icon}`}></span> {this.props.name}</a>
 			</li>
 		);
 	}
