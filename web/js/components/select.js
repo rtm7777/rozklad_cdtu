@@ -21,11 +21,17 @@ class SelectOption extends React.Component {
 class Select extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {selected: this.props.selected || 0};
+		this.stateObj = {
+			opened: false,
+			selected: this.props.selected || 0
+		};
+		this.state = this.stateObj;
 	}
 
 	changeValue = (child) => {
-		this.setState({selected: child.props.data.id});
+		this.stateObj.selected = child.props.data.id;
+		this.updateState();
+		this.closeSelect();
 		if (this.props.onChange) {
 			this.props.onChange({
 				id: child.props.data.id,
@@ -33,6 +39,28 @@ class Select extends React.Component {
 				name: this.props.name || ""
 			});
 		}
+	};
+
+	openSelect = () => {
+		if (!this.state.opened) {
+			if (this.props.elementConatainer) this.props.elementConatainer.element = this;
+			this.stateObj.opened = true;
+			this.updateState();
+		}
+	};
+
+	closeSelect = () => {
+		this.stateObj.opened = false;
+		this.updateState();
+		if (this.props.elementConatainer) {
+			this.props.elementConatainer.element = null;
+		}
+	};
+
+	componentClickAway = () => {
+		if (this.state.opened) {
+			this.closeSelect();
+		};
 	};
 
 	generateDropdownLabel() {
@@ -43,10 +71,14 @@ class Select extends React.Component {
 		}
 	}
 
+	updateState() {
+		this.setState(this.stateObj);
+	}
+
 	render() {
 		let value = this.props.values.find(({id}) => id == this.state.selected);
-		let selectboxName = value ? value.value + " " : "--- ";
-		let selectOptions = this.props.values.map((option, i) => {
+		this.selectboxName = value ? value.value + " " : "--- ";
+		this.selectOptions = this.props.values.map((option, i) => {
 			let props = {
 				onClick: this.changeValue,
 				data: option,
@@ -55,35 +87,8 @@ class Select extends React.Component {
 
 			return <SelectOption {...props} />;
 		});
-		let name = this.generateDropdownLabel();
-
-		if (this.props.button) {
-			return (
-				<div className='dropdown'>
-					{name}
-					<button className='dropdown-toggle' data-toggle='dropdown'>
-						{selectboxName}
-						<span className='glyphicon glyphicon-chevron-down'/>
-					</button>
-					<ul className='dropdown-menu'>
-						{selectOptions}
-					</ul>
-				</div>
-			);
-		} else {
-			return (
-				<li className='dropdown'>
-					{name}
-					<a className='dropdown-toggle' data-toggle='dropdown' href='#'>
-						{selectboxName}
-						<span className='caret'/>
-					</a>
-					<ul className='dropdown-menu'>
-						{selectOptions}
-					</ul>
-				</li>
-			);
-		}
+		this.name = this.generateDropdownLabel();
+		this.open = this.state.opened ? "dropdown open" : "dropdown";
 	}
 }
 

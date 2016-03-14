@@ -1,9 +1,10 @@
 /** @jsx */
 import React from "react";
-import Select from "../select";
+import SelectLink from "../selectLink";
 import ActionMenuButton from "../actionMenuButton";
 import DBStore from "../../stores/dbStore";
 import I18n from "../../services/i18n";
+import clickAwayStore from "../../stores/clickAwayStore";
 
 class ActionMenu extends React.Component {
 	static contextTypes = {
@@ -61,10 +62,11 @@ class ActionMenu extends React.Component {
 				values: filter.values,
 				key: i,
 				name: filter.name,
-				label: true
+				label: true,
+				elementConatainer: clickAwayStore
 			};
 
-			return <Select {...props} />;
+			return <SelectLink {...props} />;
 		});
 
 		let actions = [];

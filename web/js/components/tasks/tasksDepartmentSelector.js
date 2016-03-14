@@ -1,10 +1,11 @@
 /** @jsx */
 import React from "react";
-import Select from "../select";
+import SelectButton from "../selectButton";
 import Loader from "./tasksLoader";
 import DepartmentsNavigation from "./departmentsNavigation";
 import TasksStore from "../../stores/tasksStore";
 import I18n from "../../services/i18n";
+import clickAwayStore from "../../stores/clickAwayStore";
 
 class DepartmentSelector extends React.Component {
 	static contextTypes = {
@@ -54,18 +55,18 @@ class DepartmentSelector extends React.Component {
 			};
 		});
 		let selectProps = {
-			button: true,
 			label: true,
 			name: I18n.t('faculty'),
 			onChange: this.changedFaculty,
 			selected: this.props.selectedFaculty,
-			values: selectValues
+			values: selectValues,
+			elementConatainer: clickAwayStore
 		};
 
 		return (
 			<div id='department_selector' className='panel panel-default'>
 				<div className='panel-heading'>
-					<Select {...selectProps} />
+					<SelectButton {...selectProps} />
 				</div>
 				<Loader/>
 				<DepartmentsNavigation navList={this.state.departments} selectedOption={this.props.selectedDepartment} />

@@ -1,6 +1,5 @@
 /** @jsx */
 import React from "react";
-import Select from "../select";
 import ActionMenuButton from "../actionMenuButton";
 import TasksStore from "../../stores/tasksStore";
 import I18n from "../../services/i18n";

@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 import Item from "../../item";
-import Select from "../../select";
+import SelectButton from "../../selectButton";
 import Popover from "../../popover";
 import clickAwayStore from "../../../stores/clickAwayStore";
 
@@ -27,21 +27,21 @@ class TeacherItem extends Item {
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td className='no-padding'>
-					<Select
-						button
+					<SelectButton
 						name='facultyId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.facultyId}
 						values={this.props.filters[0].values}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 				<td className='no-padding'>
-					<Select
-						button
+					<SelectButton
 						name='departmentId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.departmentId}
 						values={this.props.filters[1].values}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 				<td className='no-padding'>

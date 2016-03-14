@@ -1,7 +1,8 @@
 /** @jsx */
 import React from "react";
 import Item from "../../item";
-import Select from "../../select";
+import SelectButton from "../../selectButton";
+import clickAwayStore from "../../../stores/clickAwayStore";
 
 class GroupItem extends Item {
 	constructor(props) {
@@ -14,12 +15,12 @@ class GroupItem extends Item {
 		return (
 			<tr onClick={this.toggleItem} className={this.itemClass}>
 				<td className='no-padding'>
-					<Select
-						button
+					<SelectButton
 						name='facultyId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.facultyId}
 						values={this.props.filters[0].values}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 				<td>
@@ -40,12 +41,12 @@ class GroupItem extends Item {
 					/>
 				</td>
 				<td className='no-padding'>
-					<Select
-						button
+					<SelectButton
 						name='year'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.year}
 						values={this.props.filters[1].values}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 			</tr>

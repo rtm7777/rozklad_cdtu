@@ -1,6 +1,4 @@
 import "array.prototype.find";
-import "./jquery";
-import "bootstrap";
 import "./libs/socketEvents";
 import I18n from "./services/i18n";
 

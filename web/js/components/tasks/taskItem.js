@@ -1,7 +1,6 @@
 /** @jsx */
 import React from "react";
 import Item from "../item";
-import Select from "../select";
 import SelectInput from "../selectInput";
 import Popover from "../popover";
 import TasksStore from "../../stores/tasksStore";

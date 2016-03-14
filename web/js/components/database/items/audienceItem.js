@@ -1,7 +1,8 @@
 /** @jsx */
 import React from "react";
 import Item from "../../item";
-import Select from "../../select";
+import SelectButton from "../../selectButton";
+import clickAwayStore from "../../../stores/clickAwayStore";
 
 class AudienceItem extends Item {
 	constructor(props) {
@@ -22,12 +23,12 @@ class AudienceItem extends Item {
 					/>
 				</td>
 				<td className='no-padding'>
-					<Select
-						button
+					<SelectButton
 						name='housingId'
 						onChange={this.onSelectChanged}
 						selected={this.props.data.housingId}
 						values={this.props.filters[0].values}
+						elementConatainer={clickAwayStore}
 					/>
 				</td>
 				<td>
