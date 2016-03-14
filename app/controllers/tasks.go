@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"encoding/json"
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs/database"
+	"rozklad_cdtu/app/models"
+	"rozklad_cdtu/app/models/custom_responses"
 	"rozklad_cdtu/app/models/json_models"
 )
 
@@ -31,5 +34,46 @@ func (c Tasks) GetTasks(departmentId int64) revel.Result {
 		items.Items = result
 		items.Columns = TasksColumns
 		return c.RenderJson(items)
+	}
+}
+
+func (c Tasks) UpdateTask() revel.Result {
+	var data models.Tasks
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
+	if err != nil {
+		return jsonError(400, err)
+	} else {
+		err := database.UpdateTask(c.DB, data)
+		if err != nil {
+			return jsonError(400, err)
+		} else {
+			return custom_responses.EmptyResult{
+				StatusCode: 200,
+			}
+		}
+	}
+}
+
+func (c Tasks) AddTask(department int64) revel.Result {
+	err, item := database.AddTask(c.DB, department)
+	if err != nil {
+		return jsonError(400, err)
+	} else {
+		return c.RenderJson(item)
+	}
+}
+
+func (c Tasks) DeleteTasks() revel.Result {
+	var data struct {
+		Ids []int64 `json:"ids"`
+	}
+
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
+	revel.INFO.Println(data)
+	if err != nil {
+		return jsonError(400, err)
+	} else {
+		database.DeleteTasks(c.DB, data.Ids)
+		return c.RenderJson(data)
 	}
 }

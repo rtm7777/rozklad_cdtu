@@ -16,6 +16,14 @@ class TasksActions {
 		});
 	}
 
+	itemSelected(item, state) {
+		this.dispatcher.dispatch({
+			actionType: 'itemSelected',
+			id: item,
+			selected: state
+		});
+	}
+
 	itemChanged(data) {
 		this.dispatcher.dispatch({
 			actionType: 'itemChanged',
@@ -33,6 +41,18 @@ class TasksActions {
 	loadTasks() {
 		this.dispatcher.dispatch({
 			actionType: 'loadTasks'
+		});
+	}
+
+	deleteAction() {
+		this.dispatcher.dispatch({
+			actionType: 'deleteAction'
+		});
+	}
+
+	addAction() {
+		this.dispatcher.dispatch({
+			actionType: 'addAction'
 		});
 	}
 }

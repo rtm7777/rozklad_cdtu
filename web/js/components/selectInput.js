@@ -29,7 +29,7 @@ class SelectInput extends React.Component {
 		if (this.props.onChange) {
 			this.props.onChange({
 				name: this.props.name,
-				value: e.target.dataset.id
+				value: Number(e.target.dataset.id)
 			});
 		}
 		this.searchValue = '';

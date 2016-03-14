@@ -36,6 +36,9 @@ GET     /synchronization/get_data               Synchronization.GetData
 # Tasks
 GET     /get_faculty_departments_list           Tasks.GetFacultyDepartmentsList
 GET     /get_tasks                              Tasks.GetTasks
+POST    /admin/tasks/update_task                Tasks.UpdateTask
+POST    /admin/tasks/add_task                   Tasks.AddTask
+POST    /admin/tasks/delete_tasks               Tasks.DeleteTasks
 
 # Schedule
 POST    /get_faculty_groups                     Schedule.GetFacultyGroups

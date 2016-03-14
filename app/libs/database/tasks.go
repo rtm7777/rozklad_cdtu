@@ -46,3 +46,27 @@ func DepartmentTasks(db *gorm.DB, departmentId int64) ([]models.Tasks, error) {
 
 	return result, nil
 }
+
+func UpdateTask(db *gorm.DB, data models.Tasks) error {
+	err := db.Model(data).Updates(data).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func AddTask(db *gorm.DB, department int64) (error, models.Tasks) {
+	item := models.Tasks{DepartmentId: department}
+	db.NewRecord(&item)
+	db.Create(&item)
+	return nil, item
+}
+
+func DeleteTasks(db *gorm.DB, ids []int64) error {
+	item := new(models.Tasks)
+	err := db.Debug().Where("id in (?)", ids).Delete(item).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}

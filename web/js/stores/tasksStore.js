@@ -10,6 +10,7 @@ class TasksStore extends EventEmitter {
 		this.state = TasksStore.defaultState;
 		this.loader = true;
 		this.db = dataBase;
+		this.selectedItems = [];
 
 		dispatcher.register((action) => {
 			switch(action.actionType) {
@@ -22,6 +23,9 @@ class TasksStore extends EventEmitter {
 				case 'departmentSelected':
 					this.departmentSelected(action);
 					break;
+				case 'itemSelected':
+					this.itemSelected(action);
+					break;
 				case 'itemChanged':
 					this.itemChanged(action);
 					break;
@@ -30,6 +34,12 @@ class TasksStore extends EventEmitter {
 					break;
 				case 'loadTasks':
 					this.loadTasks();
+					break;
+				case 'deleteAction':
+					this.deleteTasks();
+					break;
+				case 'addAction':
+					this.addTask();
 					break;
 				}
 		});
@@ -87,8 +97,54 @@ class TasksStore extends EventEmitter {
 		});
 	}
 
+	itemSelected({id, selected}) {
+		let selectedItems = this.selectedItems;
+		if (selected) {
+			selectedItems.push(id);
+		} else {
+			let i;
+			if ((i = selectedItems.indexOf(id)) > -1) {
+				selectedItems.splice(i, 1);
+			}
+		}
+		this.actionMenuChange();
+	}
+
 	itemChanged(item) {
-		console.log(item);
+		let data = item.data;
+		data.laboratoryTime = Number(data.laboratoryTime);
+		data.lectureTime = Number(data.lectureTime);
+		data.practiceTime = Number(data.practiceTime);
+
+		promise.post('update_task', item.data, 'json').then(() => {
+
+		});
+	}
+
+	deleteTasks() {
+		let json = {
+			ids: this.selectedItems
+		};
+		promise.post('delete_tasks', json, 'json').then(() => {
+			this.state.fields = this.state.fields.filter(({id}) => {
+				return this.selectedItems.indexOf(id) === -1;
+			});
+			this.emit('load');
+			this.selectedItems = [];
+			this.actionMenuChange();
+		});
+	}
+
+	addTask() {
+		promise.post('add_task', {faculty: this.state.selectedFaculty, department: this.state.selectedDepartment}).then((data) => {
+			this.state.fields.push(data);
+			console.log(data);
+			this.emit('load');
+		});
+	}
+
+	actionMenuChange() {
+		this.emit('itemSelected');
 	}
 
 	getState() {
@@ -97,6 +153,10 @@ class TasksStore extends EventEmitter {
 
 	getLoaderState() {
 		return this.loader;
+	}
+
+	getSelectedItems() {
+		return this.selectedItems;
 	}
 
 }

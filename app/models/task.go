@@ -1,6 +1,7 @@
 package models
 
 import (
+	"encoding/json"
 	"github.com/jinzhu/gorm"
 )
 
@@ -16,12 +17,23 @@ type Tasks struct {
 	Teacher        Teachers    `json:"-"`
 	AudienceId     int64       `json:"audienceId"`
 	Audience       Audiences   `json:"-"`
-	LectureTime    float32     `json:"lectureTime"`
-	PracticeTime   float32     `json:"practiceTime"`
-	LaboratoryTime float32     `json:"laboratoryTime"`
+	LectureTime    int64       `json:"lectureTime"`
+	PracticeTime   int64       `json:"practiceTime"`
+	LaboratoryTime int64       `json:"laboratoryTime"`
 }
 
 func (task *Tasks) LoadRelated(db *gorm.DB) *Tasks {
 	db.Model(task).Related(&task.Subject, "SubjectId")
 	return task
+}
+
+func (task *Tasks) Decode(b []byte) error {
+	err := json.Unmarshal(b, task)
+	if err != nil {
+		return err
+	}
+	if task.Id <= 0 {
+		return itemIdErr
+	}
+	return nil
 }
