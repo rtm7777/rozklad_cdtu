@@ -7,7 +7,8 @@ class Popover extends React.Component {
 		this.state = {opened: false};
 	}
 
-	openPopover = () => {
+	openPopover = (e) => {
+		if (e.nativeEvent.which !== 1 || e.ctrlKey) return;
 		this.setState({opened: true});
 		if (this.props.elementConatainer) this.props.elementConatainer.element = this;
 	};

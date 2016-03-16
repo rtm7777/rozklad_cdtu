@@ -41,12 +41,11 @@ class Select extends React.Component {
 		}
 	};
 
-	openSelect = () => {
-		if (!this.state.opened) {
-			if (this.props.elementConatainer) this.props.elementConatainer.element = this;
-			this.stateObj.opened = true;
-			this.updateState();
-		}
+	openSelect = (e) => {
+		if (e.nativeEvent.which !== 1 || this.state.opened || e.ctrlKey) return;
+		if (this.props.elementConatainer) this.props.elementConatainer.element = this;
+		this.stateObj.opened = true;
+		this.updateState();
 	};
 
 	closeSelect = () => {

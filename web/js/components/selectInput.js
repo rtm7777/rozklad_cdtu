@@ -36,15 +36,15 @@ class SelectInput extends React.Component {
 		this.refs.input.value = e.target.dataset.value;
 	};
 
-	openSelect = () => {
-		if (!this.state.opened) {
-			if (this.props.elementConatainer) this.props.elementConatainer.element = this;
-			this.inputValue = this.refs.input.value;
-			this.refs.input.value = this.searchValue;
-			this.stateObj.opened = true;
-			this.updateState();
-			this.search(this.searchValue);
-		}
+	openSelect = (e) => {
+		if (e.ctrlKey) e.preventDefault();
+		if (e.nativeEvent.which !== 1 || this.state.opened || e.ctrlKey) return;
+		if (this.props.elementConatainer) this.props.elementConatainer.element = this;
+		this.inputValue = this.refs.input.value;
+		this.refs.input.value = this.searchValue;
+		this.stateObj.opened = true;
+		this.updateState();
+		this.search(this.searchValue);
 	};
 
 	closeSelect = () => {
@@ -59,6 +59,7 @@ class SelectInput extends React.Component {
 		if (this.state.opened) {
 			this.searchValue = this.refs.input.value;
 			this.refs.input.value = this.inputValue;
+			this.refs.input.blur();
 			this.closeSelect();
 		};
 	};
