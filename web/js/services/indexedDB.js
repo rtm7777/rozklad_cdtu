@@ -52,7 +52,7 @@ class DataBase {
 	}
 
 	loadTranslations = (language = 'en-US') => {
-		return this.db.translations.where('language').equals(language).toArray();
+		return this.db.translations.where('language').equals('uk').toArray();
 	};
 
 	searchInTeachers = (request) => {

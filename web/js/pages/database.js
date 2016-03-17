@@ -67,7 +67,7 @@ class DataBase extends React.Component {
 				<div className='container'>
 					<div className='row'>
 						<div className='col-lg-3'>
-							<div id='db_navigation' className='panel panel-default'>
+							<div id='db_navigation' className='left-navigation panel panel-default'>
 								<div className='panel-heading'>{I18n.t('categories')}:</div>
 								<Loader/>
 								<DBNavigation {...navProps} />

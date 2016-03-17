@@ -64,7 +64,7 @@ class DepartmentSelector extends React.Component {
 		};
 
 		return (
-			<div id='department_selector' className='panel panel-default'>
+			<div id='department_selector' className='left-navigation panel panel-default'>
 				<div className='panel-heading'>
 					<SelectButton {...selectProps} />
 				</div>

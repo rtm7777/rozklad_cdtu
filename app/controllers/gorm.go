@@ -27,7 +27,7 @@ var (
 )
 
 // it can be used for jobs
-var Gdb gorm.DB
+var Gdb *gorm.DB
 
 // init db
 func InitDB() {

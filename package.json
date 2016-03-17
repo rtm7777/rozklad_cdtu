@@ -1,6 +1,6 @@
 {
   "name"       : "rozklad_cdtu",
-  "version"    : "0.0.3",
+  "version"    : "0.0.4",
   "description": "Webapp for showing and editing students schedule",
   "main"       : "./web/js/main_common.js",
   "author"     : "Nikolai Shitik",
