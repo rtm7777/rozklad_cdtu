@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"rozklad_cdtu/app/libs/database"
+	"rozklad_cdtu/app/models"
 )
 
 type Schedule struct {
@@ -10,12 +11,29 @@ type Schedule struct {
 }
 
 func (c Schedule) GetFaculties() revel.Result {
-	faculties := database.FacultiesList(c.DB)
+	faculties, err := database.FacultiesList(c.DB)
+	if err != nil {
+		return jsonError(400, err)
+	}
 	return c.RenderJson(faculties)
 }
 
+func (c Schedule) GetDaysPairsList() revel.Result {
+	var list struct {
+		Days  *[]models.Days
+		Pairs *[]models.Pairs
+	}
+	list.Days = &models.DaysList
+	list.Pairs = &models.PairsList
+
+	return c.RenderJson(list)
+}
+
 func (c Schedule) GetFacultyGroups(facultyId int64, year int) revel.Result {
-	groups := database.FacultyGroupsList(c.DB, facultyId, year)
+	groups, err := database.FacultyGroupsList(c.DB, facultyId, year)
+	if err != nil {
+		return jsonError(400, err)
+	}
 	return c.RenderJson(groups)
 }
 

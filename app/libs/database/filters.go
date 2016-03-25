@@ -23,7 +23,7 @@ var filterFuncs = map[string]func(db *gorm.DB, rows *[]json_models.FilterValue) 
 		return rows
 	},
 	"year": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {
-		for i := 1; i < 7; i++ {
+		for i := 1; i < models.YearsCount+1; i++ {
 			*rows = append(*rows, json_models.FilterValue{Id: int64(i), Value: strconv.Itoa(i)})
 		}
 		return rows

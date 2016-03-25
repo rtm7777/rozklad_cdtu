@@ -7,20 +7,6 @@ import (
 	"rozklad_cdtu/app/models/json_models"
 )
 
-func DaysPairsData(db *gorm.DB) ([]*models.Days, []*models.Pairs) {
-	var days []*models.Days
-	err := db.Find(&days).Error
-	if err != nil {
-		panic(err)
-	}
-	var pairs []*models.Pairs
-	err = db.Find(&pairs).Error
-	if err != nil {
-		panic(err)
-	}
-	return days, pairs
-}
-
 func GroupsData(db *gorm.DB) ([]*models.Faculties, []*models.Groups, []int) {
 	years := make([]int, 6)
 	for i := 0; i < 6; i++ {
@@ -59,15 +45,6 @@ func TeachersData(db *gorm.DB) ([]*models.Faculties, []*models.Departments, []*m
 	return faculties, departments, teachers
 }
 
-func FacultyGroupsList(db *gorm.DB, faculty_id int64, year int) []*models.Groups {
-	var groups []*models.Groups
-	err := db.Where(&models.Groups{FacultyId: faculty_id, Year: year}).Find(&groups).Error
-	if err != nil {
-		panic(err)
-	}
-	return groups
-}
-
 func FacultyGroupsIds(db *gorm.DB, faculty_id int64, year int) []int64 {
 	var groups []int64
 	err := db.Model(&models.Groups{}).Where(&models.Groups{FacultyId: faculty_id, Year: year}).Pluck("id", &groups).Error
@@ -77,16 +54,7 @@ func FacultyGroupsIds(db *gorm.DB, faculty_id int64, year int) []int64 {
 	return groups
 }
 
-func FacultiesList(db *gorm.DB) []*models.Faculties {
-	var faculties []*models.Faculties
-	err := db.Find(&faculties).Error
-	if err != nil {
-		panic(err)
-	}
-	return faculties
-}
-
-func EmptySchedule(days []*models.Days, pairs []*models.Pairs) []json_models.Day {
+func EmptySchedule(days []models.Days, pairs []models.Pairs) []json_models.Day {
 	var days_out []json_models.Day
 	for _, day := range days {
 		var pairs_out []json_models.Pair
@@ -120,7 +88,7 @@ func TeacherPairString(db *gorm.DB, subject *models.Schedule) string {
 		fmt.Sprintf("%v", subject.Group.Year) + " курс"
 }
 
-func GroupSchedule(db *gorm.DB, group_id int64, days []*models.Days, pairs []*models.Pairs) []json_models.Day {
+func GroupSchedule(db *gorm.DB, group_id int64, days []models.Days, pairs []models.Pairs) []json_models.Day {
 	var schedule []*models.Schedule
 	days_out := EmptySchedule(days, pairs)
 
@@ -141,7 +109,7 @@ func GroupSchedule(db *gorm.DB, group_id int64, days []*models.Days, pairs []*mo
 	return days_out
 }
 
-func TeacherSchedule(db *gorm.DB, teacher_id int64, days []*models.Days, pairs []*models.Pairs) []json_models.Day {
+func TeacherSchedule(db *gorm.DB, teacher_id int64, days []models.Days, pairs []models.Pairs) []json_models.Day {
 	var schedule []*models.Schedule
 	days_out := EmptySchedule(days, pairs)
 

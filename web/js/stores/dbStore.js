@@ -1,6 +1,5 @@
 import storage from "../services/localStorage";
 import promise from "../libs/promise";
-import I18n from "../services/i18n";
 import {EventEmitter} from "events";
 
 class DBStore extends EventEmitter {

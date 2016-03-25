@@ -1,7 +1,6 @@
 import storage from "../services/localStorage";
 import promise from "../libs/promise";
 import dataBase from "../services/indexedDB";
-import I18n from "../services/i18n";
 import {EventEmitter} from "events";
 
 class TasksStore extends EventEmitter {

@@ -14,9 +14,6 @@
 							{{msg . "action_menu.faculty"}} <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
-							{{range $faculty := $.faculties}}
-							<li><a href="#" title="{{$faculty.FullName}}" data-filter-id="{{$faculty.Id}}">{{$faculty.ShortName}}</a></li>
-							{{end}}
 						</ul>
 					</li>
 					<li id="year_sel" class="dropdown pull-left">
@@ -60,7 +57,7 @@
 		<div class="col-lg-9">
 			<div class="main-container">
 				<div id="content_loader" class="admin-content-loader">{{msg . "message.select_faculty"}}</div>
-				<div id="day_table_col" class="day-pair-col hide">
+				<div id="day_table_col" class="day-pair-col">
 					<div class="day-pair-row height47"></div>
 					{{range $day := $.days}}
 					<div class="day-pair-row height349">
@@ -68,7 +65,7 @@
 					</div>
 					{{end}}
 				</div>
-				<div id="pair_table_col" class="day-pair-col hide">
+				<div id="pair_table_col" class="day-pair-col">
 					<div class="day-pair-row height47"></div>
 					{{range $day := $.days}}
 					{{range $pair := $.pairs}}
@@ -78,7 +75,7 @@
 					{{end}}
 					{{end}}
 				</div>
-				<div id="schedule_container" class="schedule-container hide"></div>
+				<div id="schedule_container" class="schedule-container"></div>
 			</div>
 		</div>
 	</div>

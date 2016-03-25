@@ -17,10 +17,10 @@ GET     /login                                  Application.Login
 POST    /login                                  Application.LoginPost
 GET     /logout                                 Application.Logout
 
-GET     /admin                                  Admin.Main
-GET     /admin/database                         Admin.DataBase
-GET     /admin/schedule                         Admin.Schedule
-GET     /admin/tasks                            Admin.Tasks
+GET     /admin/                                 Admin.Main
+GET     /admin/database/                        Admin.DataBase
+GET     /admin/schedule/                        Admin.Schedule
+GET     /admin/tasks/                           Admin.Tasks
 GET     /get_ws_token                           Admin.GetWSToken
 
 # DataBase
@@ -41,6 +41,8 @@ POST    /admin/tasks/add_task                   Tasks.AddTask
 POST    /admin/tasks/delete_tasks               Tasks.DeleteTasks
 
 # Schedule
+GET     /admin/schedule/get_faculty_list        Schedule.GetFaculties
+GET     /admin/schedule/get_days_pairs_list     Schedule.GetDaysPairsList
 POST    /get_faculty_groups                     Schedule.GetFacultyGroups
 POST    /get_faculty_schedule                   Schedule.GetFacultySchedule
 POST    /get_faculty_tasks                      Schedule.GetFacultyTasks

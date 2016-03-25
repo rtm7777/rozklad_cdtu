@@ -66,8 +66,6 @@ func InitDB() {
 	Gdb.AutoMigrate(&models.Housings{})
 	Gdb.AutoMigrate(&models.Audiences{})
 	Gdb.AutoMigrate(&models.Subjects{})
-	Gdb.AutoMigrate(&models.Days{})
-	Gdb.AutoMigrate(&models.Pairs{})
 	Gdb.AutoMigrate(&models.Schedule{})
 	Gdb.AutoMigrate(&models.Tasks{})
 	Gdb.AutoMigrate(&models.Users{})

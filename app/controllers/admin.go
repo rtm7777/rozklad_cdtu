@@ -6,6 +6,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/websocket"
 	"rozklad_cdtu/app/libs/database"
+	"rozklad_cdtu/app/models"
 	"rozklad_cdtu/app/roomevents"
 	"time"
 )
@@ -42,8 +43,9 @@ func (c Admin) Schedule() revel.Result {
 	connection := c.connected()
 	User := connection.Username
 
-	days, pairs := database.DaysPairsData(c.DB)
-	faculties := database.FacultiesList(c.DB)
+	days := models.DaysList
+	pairs := models.PairsList
+	faculties, _ := database.FacultiesList(c.DB)
 	return c.Render(User, days, pairs, faculties)
 }
 

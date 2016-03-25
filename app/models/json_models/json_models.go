@@ -57,10 +57,19 @@ type Department struct {
 	Name string `json:"name"`
 }
 
+type Faculty struct {
+	FacultyId   int64  `json:"facultyId"`
+	FacultyName string `json:"facultyName"`
+}
+
 type FacultiesDepartments struct {
-	FacultyId   int64        `json:"facultyId"`
-	FacultyName string       `json:"facultyName"`
+	Faculty
 	Departments []Department `json:"departments,interface"`
+}
+
+type FacultiesYears struct {
+	Faculties  []Faculty
+	YearsCount int
 }
 
 type GroupsSync struct {
