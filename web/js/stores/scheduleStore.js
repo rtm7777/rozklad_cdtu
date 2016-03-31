@@ -9,6 +9,7 @@ class ScheduleStore extends EventEmitter {
 		this.state = ScheduleStore.defaultState;
 		this.loader = true;
 		this.db = dataBase;
+		this.daysPairs = {};
 		this.selectedItems = [];
 
 		dispatcher.register((action) => {
@@ -17,6 +18,7 @@ class ScheduleStore extends EventEmitter {
 					this.load().then(() => {
 						this.emit('load');
 						this.emit('loaderChange');
+						this.emit('daysLoaded');
 					});
 					break;
 				}
@@ -33,6 +35,7 @@ class ScheduleStore extends EventEmitter {
 		}
 		return Promise.all(promises).then((data) => {
 			this.state.categoryList = data[0];
+			this.daysPairs = data[1];
 			this.loader = false;
 		}).catch(() => {
 			console.log('loading error');
@@ -45,6 +48,10 @@ class ScheduleStore extends EventEmitter {
 
 	getLoaderState() {
 		return this.loader;
+	}
+
+	getDaysPairsList() {
+		return this.daysPairs;
 	}
 
 	getSelectedItems() {

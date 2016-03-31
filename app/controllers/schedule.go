@@ -20,8 +20,8 @@ func (c Schedule) GetFaculties() revel.Result {
 
 func (c Schedule) GetDaysPairsList() revel.Result {
 	var list struct {
-		Days  *[]models.Days
-		Pairs *[]models.Pairs
+		Days  *[]models.Days  `json:"days"`
+		Pairs *[]models.Pairs `json:"pairs"`
 	}
 	list.Days = &models.DaysList
 	list.Pairs = &models.PairsList

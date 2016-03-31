@@ -7,7 +7,8 @@ import clickAway from "../libs/clickAwayUtils";
 
 import Loader from "../components/schedule/scheduleLoader";
 import ActionMenu from "../components/schedule/scheduleActionMenu";
-import Content from "../components/tasks/tasksContent";
+import WorkSpace from "../components/schedule/scheduleWorkSpace";
+import TaskList from "../components/schedule/scheduleTaskList";
 
 class Schedule extends React.Component {
 	static childContextTypes = {
@@ -55,10 +56,11 @@ class Schedule extends React.Component {
 				<div className='container'>
 					<div className='row'>
 						<div className='col-lg-3'>
+							<TaskList/>
 						</div>
 						<div id='work_space' className='col-lg-9'>
 							<Loader/>
-							<Content {...contentProps} />
+							<WorkSpace {...contentProps} />
 						</div>
 					</div>
 				</div>

@@ -187,5 +187,47 @@
 			{"lang": "en-US", "tr": "Time"},
 			{"lang": "uk", "tr": "Час"}
 		]
+	},
+	{
+		"key": "monday",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Monday"},
+			{"lang": "uk", "tr": "Понеділок"}
+		]
+	},
+	{
+		"key": "tuesday",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Tuesday"},
+			{"lang": "uk", "tr": "Вівторок"}
+		]
+	},
+	{
+		"key": "wednesday",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Wednesday"},
+			{"lang": "uk", "tr": "Середа"}
+		]
+	},
+	{
+		"key": "thursday",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Thursday"},
+			{"lang": "uk", "tr": "Четвер"}
+		]
+	},
+	{
+		"key": "friday",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Friday"},
+			{"lang": "uk", "tr": "П'ятниця"}
+		]
+	},
+	{
+		"key": "saturday",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Saturday"},
+			{"lang": "uk", "tr": "Субота"}
+		]
 	}
 ]

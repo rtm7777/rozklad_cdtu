@@ -6,42 +6,34 @@
 	overflow-x: auto;
 	white-space: nowrap;
 
-	.admin-content-loader {
-		color: @info-message;
-		height: 250px;
-		text-align: center;
-		font-size: 3em;
-		padding: 70px 15px 0px;
-		white-space: initial;
-
-		.hide {
-			display:none;
-		}
-	}
-
-	.day-pair-col {
-		border-right: 1px solid @table-border;
-		display: inline-block;
-		float: left;
-		position: absolute;
-		background-color: white;
-		width: 40px;
-
-		.day-pair-row {
-			border-bottom: 1px solid @table-border;
-
-			.admin-day-cell {
-				margin: 85px 0 0 10px;
+	.days-pairs-container {
+		display: flex;
+		flex-direction: column;
+		.day {
+			display: flex;
+			.day-col {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-right: 1px solid @table-border;
+				background-color: white;
+				border-bottom: 1px solid @table-border;
+				width: 40px;
+				.day-cell {
+					.rotate-to-angle(270deg);
+				}
 			}
-
-			.admin-pair-cell {
-				margin-top: 15px;
-				text-align: center;
+			.pair-col {
+				border-right: 1px solid @table-border;
+				width: 40px;
+				.pair-row {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border-bottom: 1px solid @table-border;
+					height: 47px;
+				}
 			}
-		}
-
-		&:nth-child(3) {
-			left: 56px;
 		}
 	}
 

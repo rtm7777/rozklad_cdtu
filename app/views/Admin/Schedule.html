@@ -56,25 +56,6 @@
 		</div>
 		<div class="col-lg-9">
 			<div class="main-container">
-				<div id="content_loader" class="admin-content-loader">{{msg . "message.select_faculty"}}</div>
-				<div id="day_table_col" class="day-pair-col">
-					<div class="day-pair-row height47"></div>
-					{{range $day := $.days}}
-					<div class="day-pair-row height349">
-						<div class="rotate admin-day-cell">{{$day.Day}}</div>
-					</div>
-					{{end}}
-				</div>
-				<div id="pair_table_col" class="day-pair-col">
-					<div class="day-pair-row height47"></div>
-					{{range $day := $.days}}
-					{{range $pair := $.pairs}}
-					<div class="day-pair-row height47">
-						<div class="admin-pair-cell">{{$pair.Number}}</div>
-					</div>
-					{{end}}
-					{{end}}
-				</div>
 				<div id="schedule_container" class="schedule-container"></div>
 			</div>
 		</div>
