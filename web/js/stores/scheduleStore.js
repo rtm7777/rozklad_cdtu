@@ -10,6 +10,7 @@ class ScheduleStore extends EventEmitter {
 		this.loader = true;
 		this.db = dataBase;
 		this.daysPairs = {};
+		this.facultiesYears = {};
 		this.selectedItems = [];
 
 		dispatcher.register((action) => {
@@ -18,7 +19,7 @@ class ScheduleStore extends EventEmitter {
 					this.load().then(() => {
 						this.emit('load');
 						this.emit('loaderChange');
-						this.emit('daysLoaded');
+						this.emit('initialDataLoaded');
 					});
 					break;
 				}
@@ -34,7 +35,7 @@ class ScheduleStore extends EventEmitter {
 			promises.push(this.loadFields(this.state.selectedCategory));
 		}
 		return Promise.all(promises).then((data) => {
-			this.state.categoryList = data[0];
+			this.facultiesYears = data[0];
 			this.daysPairs = data[1];
 			this.loader = false;
 		}).catch(() => {
@@ -54,6 +55,10 @@ class ScheduleStore extends EventEmitter {
 		return this.daysPairs;
 	}
 
+	getFacultiesYearsData() {
+		return this.facultiesYears;
+	}
+
 	getSelectedItems() {
 		return this.selectedItems;
 	}
@@ -64,8 +69,6 @@ ScheduleStore.defaultState = {
 	facultiesDepartments: [{'facultyId': 0, 'facultyName': "---", "departments": []}],
 	selectedFaculty: storage.getValue('selectedFaculty') || '',
 	selectedDepartment: storage.getValue('selectedDepartment') || '',
-	fields: [],
-	columns: []
 };
 
 export default ScheduleStore;

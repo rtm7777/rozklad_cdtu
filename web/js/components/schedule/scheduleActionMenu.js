@@ -1,8 +1,10 @@
 /** @jsx */
 import React from "react";
-import ActionMenuButton from "../actionMenuButton";
 import ScheduleStore from "../../stores/scheduleStore";
 import I18n from "../../services/i18n";
+
+import ActionMenuButton from "../actionMenuButton";
+import ScheduleFilters from "./scheduleFilters";
 
 class ActionMenu extends React.Component {
 	static contextTypes = {
@@ -30,7 +32,7 @@ class ActionMenu extends React.Component {
 	}
 
 	componentWillMount() {
-		let store = this.context.store;
+		const store = this.context.store;
 		store.on('itemSelected', () => {
 			if (store.getSelectedItems().length) {
 				this.actionButtons.delete.hidden = false;
@@ -74,6 +76,7 @@ class ActionMenu extends React.Component {
 				<div className='row'>
 					<div className='col-lg-12'>
 						<div className='panel clearfix panel-default'>
+							<ScheduleFilters/>
 							<ul className='nav nav-pills pull-right action-menu'>
 								{actions}
 							</ul>

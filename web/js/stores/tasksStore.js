@@ -161,7 +161,7 @@ class TasksStore extends EventEmitter {
 }
 
 TasksStore.defaultState = {
-	facultiesDepartments: [{'facultyId': 0, 'facultyName': "---", "departments": []}],
+	facultiesDepartments: [{'id': 0, 'name': "---", "departments": []}],
 	selectedFaculty: storage.getValue('selectedFaculty') || '',
 	selectedDepartment: storage.getValue('selectedDepartment') || '',
 	fields: [],

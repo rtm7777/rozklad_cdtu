@@ -32,26 +32,26 @@ class DepartmentSelector extends React.Component {
 		this.context.store.removeListener('load');
 	}
 
-	changedFaculty = (faculty) => {
-		this.context.actions.changedFaculty(faculty.id);
-		this.selectDepartments(faculty.id);
+	changedFaculty = ({id}) => {
+		this.context.actions.changedFaculty(id);
+		this.selectDepartments(id);
 	};
 
 	selectDepartments = (facultyId) => {
-		let data = this.props.data.find((val) => val.facultyId == facultyId);
+		let data = this.props.data.find((val) => val.id == facultyId);
 		if (data) {
 			let departments = data.departments.map(({id, name}) => {
-				return {optionValue: id, name: name};
+				return {optionValue: id, name};
 			});
 			this.setState({departments});
 		}
 	};
 
 	render() {
-		let selectValues = this.props.data.map(({facultyId, facultyName}) => {
+		let selectValues = this.props.data.map(({id, name}) => {
 			return {
-				id: facultyId,
-				value: facultyName
+				id,
+				value: name
 			};
 		});
 		let selectProps = {

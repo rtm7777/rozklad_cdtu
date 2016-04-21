@@ -1,20 +1,17 @@
-import "array.prototype.find";
 import "./libs/socketEvents";
 import I18n from "./services/i18n";
 
 import React from "react";
 import {render} from "react-dom";
 
-import {Router} from "react-router";
-import createHistory from "history/lib/createBrowserHistory";
+import {Router, browserHistory} from "react-router";
 import routes from "./routes";
 
 const rootEl = document.getElementById('page');
-const history = createHistory();
 
 I18n.load().then(() => {
 	render((
-		<Router history={ history }>
+		<Router history={ browserHistory }>
 			{routes}
 		</Router>
 	), rootEl);

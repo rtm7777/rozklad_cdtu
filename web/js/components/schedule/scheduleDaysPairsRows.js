@@ -29,7 +29,7 @@ class DaysPairsRows extends React.Component {
 
 	componentWillMount() {
 		let store = this.context.store;
-		store.on('daysLoaded', () => {
+		store.on('initialDataLoaded', () => {
 			this.setState({daysPairsList: store.getDaysPairsList()});
 		});
 	}
@@ -46,13 +46,13 @@ class DaysPairsRows extends React.Component {
 	}
 
 	generateDaysCols() {
+		const pairs = this.generatePairsCols();
 		return this.state.daysPairsList.days.map(({day, id}) => {
 			let props = {
 				day: I18n.t(day),
 				key: id
 			};
 
-			const pairs = this.generatePairsCols();
 
 			return (
 				<div className='day' key={id}>

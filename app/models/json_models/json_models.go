@@ -58,8 +58,8 @@ type Department struct {
 }
 
 type Faculty struct {
-	FacultyId   int64  `json:"facultyId"`
-	FacultyName string `json:"facultyName"`
+	FacultyId   int64  `json:"id"`
+	FacultyName string `json:"name"`
 }
 
 type FacultiesDepartments struct {
@@ -68,8 +68,8 @@ type FacultiesDepartments struct {
 }
 
 type FacultiesYears struct {
-	Faculties  []Faculty
-	YearsCount int
+	Faculties  []Faculty `json:"faculties"`
+	YearsCount int       `json:"yearsCount"`
 }
 
 type GroupsSync struct {
