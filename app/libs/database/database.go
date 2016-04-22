@@ -2,9 +2,9 @@ package database
 
 import (
 	"github.com/jinzhu/gorm"
-	"rozklad_cdtu/app/models"
-	"rozklad_cdtu/app/models/custom_structs"
-	"rozklad_cdtu/app/models/json_models"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/models/custom_structs"
+	"github.com/rtm7777/rozklad_cdtu/app/models/json_models"
 )
 
 func CategoryItems(db *gorm.DB, category string) json_models.DBItems {

@@ -8,35 +8,28 @@ When my Raspberry Pi is powered on, this project is also available here: [rozkla
 # How to run backend part of project:
 1. Install [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Mercurial](http://mercurial.selenic.com/wiki/Download).
 
-2. Install Google Go (_ver. 1.3+_), I use [GoVM](https://coderwall.com/p/21svdq/how-do-you-manage-go-s-version-let-s-use-govm).
+2. Install Google Go (_ver. 1.3+_), I use [GVM](https://github.com/moovweb/gvm).
+    ```bash
+    gvm install go1.6 -B
+    ```
 
 3. Create `gocode` directory in HOME.
 
 4. Add env. variables to `.bashrc`
 
     ```bash
+    export GOROOT; GOROOT="$GVM_ROOT/gos/go1.6"
     export GOPATH=~/gocode
     export PATH="$PATH:$GOPATH/bin"
-    export GOVM_ROOT=~/.govm
-    export GOROOT=$GOVM_ROOT/versions/current
-    export PATH=$GOROOT/bin:$PATH
     ```
 
 5. Install Revel Web Framework
 
     ```bash
-    go get github.com/revel/revel
+    go get -u github.com/revel/cmd/revel
     ```
 
-6. Install Revel cmd tool:
-
-    ```bash
-    go get github.com/revel/cmd/revel
-    cd gocode
-    go build -o bin/revel github.com/revel/cmd/revel
-    ```
-
-7. Go to `HOME/gocode/src/` and clone this project with using **Git**
+6. Go to `HOME/gocode/src/` and clone this project with using **Git**
 
     ```bash
     git clone https://github.com/rtm7777/rozklad_cdtu.git

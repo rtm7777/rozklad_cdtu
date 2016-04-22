@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/revel/revel"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
 	"golang.org/x/crypto/bcrypt"
-	"rozklad_cdtu/app/models"
 )
 
 func (c Application) connected() *models.Users {

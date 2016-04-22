@@ -4,8 +4,8 @@ import (
 	_ "fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/revel/revel"
-	"rozklad_cdtu/app/models"
-	"rozklad_cdtu/app/models/json_models"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/models/json_models"
 	"strconv"
 )
 

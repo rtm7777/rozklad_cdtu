@@ -6,7 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"github.com/revel/revel"
-	"rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
 )
 
 // type: revel controller with `*gorm.DB`

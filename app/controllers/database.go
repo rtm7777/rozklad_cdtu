@@ -3,9 +3,9 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/revel/revel"
-	"rozklad_cdtu/app/libs/database"
-	"rozklad_cdtu/app/models/custom_responses"
-	"rozklad_cdtu/app/models/custom_structs"
+	"github.com/rtm7777/rozklad_cdtu/app/libs/database"
+	"github.com/rtm7777/rozklad_cdtu/app/models/custom_responses"
+	"github.com/rtm7777/rozklad_cdtu/app/models/custom_structs"
 )
 
 type DataBase struct {

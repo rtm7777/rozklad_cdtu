@@ -2,9 +2,9 @@ package database
 
 import (
 	"github.com/jinzhu/gorm"
-	"rozklad_cdtu/app/models"
-	"rozklad_cdtu/app/models/json_models"
-	"rozklad_cdtu/app/services"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/models/json_models"
+	"github.com/rtm7777/rozklad_cdtu/app/services"
 )
 
 var SynchronizationTypes = map[string]func(db *gorm.DB) interface{}{

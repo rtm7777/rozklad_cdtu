@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"rozklad_cdtu/app/models/custom_responses"
+	"github.com/rtm7777/rozklad_cdtu/app/models/custom_responses"
 )
 
 func jsonError(code int, err error) custom_responses.JsonErrorResult {

@@ -3,9 +3,9 @@ package jobs
 import (
 	"fmt"
 	"github.com/fatih/color"
+	"github.com/rtm7777/rozklad_cdtu/app/controllers"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
 	"regexp"
-	"rozklad_cdtu/app/controllers"
-	"rozklad_cdtu/app/models"
 	"strings"
 	"time"
 )

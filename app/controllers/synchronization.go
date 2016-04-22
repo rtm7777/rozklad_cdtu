@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"rozklad_cdtu/app/libs/database"
+	"github.com/rtm7777/rozklad_cdtu/app/libs/database"
 )
 
 type Synchronization struct {

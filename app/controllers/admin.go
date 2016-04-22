@@ -3,11 +3,11 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
+	"github.com/rtm7777/rozklad_cdtu/app/libs/database"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/roomevents"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/websocket"
-	"rozklad_cdtu/app/libs/database"
-	"rozklad_cdtu/app/models"
-	"rozklad_cdtu/app/roomevents"
 	"time"
 )
 

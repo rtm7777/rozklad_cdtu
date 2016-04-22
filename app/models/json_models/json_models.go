@@ -1,7 +1,7 @@
 package json_models
 
 import (
-	"rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
 )
 
 type Pair struct {

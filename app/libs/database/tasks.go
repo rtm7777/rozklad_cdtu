@@ -2,8 +2,8 @@ package database
 
 import (
 	"github.com/jinzhu/gorm"
-	"rozklad_cdtu/app/models"
-	"rozklad_cdtu/app/models/json_models"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/models/json_models"
 )
 
 func FacultiesDepartments(db *gorm.DB) ([]json_models.FacultiesDepartments, error) {

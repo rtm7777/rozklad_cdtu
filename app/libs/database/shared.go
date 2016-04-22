@@ -3,8 +3,8 @@ package database
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
-	"rozklad_cdtu/app/models"
-	"rozklad_cdtu/app/models/json_models"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/models/json_models"
 )
 
 func GroupsData(db *gorm.DB) ([]*models.Faculties, []*models.Groups, []int) {

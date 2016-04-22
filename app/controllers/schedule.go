@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"rozklad_cdtu/app/libs/database"
-	"rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/libs/database"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
 )
 
 type Schedule struct {

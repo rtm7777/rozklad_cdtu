@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/revel/revel"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
 	"io"
 	"os"
-	"rozklad_cdtu/app/models"
 )
 
 func openFronendI18nFile() (*os.File, error) {
