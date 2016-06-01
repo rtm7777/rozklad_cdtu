@@ -22,7 +22,7 @@ class ScheduleStore extends EventEmitter {
 						this.emit('initialDataLoaded');
 					});
 					break;
-				}
+			}
 		});
 	}
 

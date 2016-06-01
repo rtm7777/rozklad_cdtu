@@ -1,8 +1,12 @@
-{
+module.exports = {
   "env": {
-    "browser": 1
+    "browser": true,
+    "es6": true
   },
   "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "plugins": [
     "react"
   ],
@@ -28,6 +32,7 @@
     "react/sort-comp": 1,
     "react/wrap-multilines": 1,
     "strict": 0,
+    "indent": ["error", "tab", { "SwitchCase": 1 }],
     "quotes": 0,
     "key-spacing": 0,
     "no-console": 0,
@@ -36,4 +41,4 @@
     "no-trailing-spaces": [2, { "skipBlankLines": false }],
     "eol-last": 2
   }
-}
+};

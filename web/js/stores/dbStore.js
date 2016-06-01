@@ -32,7 +32,7 @@ class DBStore extends EventEmitter {
 				case 'addAction':
 					this.addItem();
 					break;
-				}
+			}
 		});
 	}
 

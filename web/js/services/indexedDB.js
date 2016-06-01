@@ -111,7 +111,7 @@ class DataBase {
 	startsWithAnyOfIgnoreCase(tableOrCollection, index, prefixes) {
 		if (!prefixes || prefixes.length === 0) throw 'must supply at least one prefix';
 		return prefixes.reduce((collection, prefix) => {
-				return collection ?
+			return collection ?
 						collection.or(index).startsWithIgnoreCase(prefix) :
 						(tableOrCollection.where ? tableOrCollection.where(index) :
 							tableOrCollection.or(index)).startsWithIgnoreCase(prefix);

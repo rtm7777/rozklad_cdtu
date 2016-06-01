@@ -40,7 +40,7 @@ class TasksStore extends EventEmitter {
 				case 'addAction':
 					this.addTask();
 					break;
-				}
+			}
 		});
 	}
 
