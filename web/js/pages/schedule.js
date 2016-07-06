@@ -6,7 +6,7 @@ import ScheduleStore from "../stores/scheduleStore";
 import clickAway from "../libs/clickAwayUtils";
 
 import Loader from "../components/schedule/scheduleLoader";
-import ActionMenu from "../components/schedule/scheduleActionMenu";
+import ActionMenu from "../components/schedule/actionMenu/scheduleActionMenu";
 import WorkSpace from "../components/schedule/scheduleWorkSpace";
 import TaskList from "../components/schedule/scheduleTaskList";
 

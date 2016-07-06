@@ -25,7 +25,7 @@ class Tasks extends React.Component {
 		this.store = new TasksStore(dispatcher, this.state);
 
 		this.store.on('load', () => {
-			let state = this.store.getState();
+			const state = this.store.getState();
 			this.setState(state);
 		});
 
@@ -46,12 +46,12 @@ class Tasks extends React.Component {
 	}
 
 	render() {
-		let departmentSelectorProps = {
+		const departmentSelectorProps = {
 			data: this.state.facultiesDepartments,
 			selectedFaculty: this.state.selectedFaculty,
 			selectedDepartment: this.state.selectedDepartment
 		};
-		let contentProps = {
+		const contentProps = {
 			fields: this.state.fields,
 			columns: this.state.columns
 		};

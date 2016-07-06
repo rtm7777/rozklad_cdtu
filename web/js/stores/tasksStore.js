@@ -61,25 +61,25 @@ class TasksStore extends EventEmitter {
 		});
 	}
 
-	facultyChanged(action) {
-		this.state.selectedFaculty = action.facultyId;
-		storage.saveValue('selectedFaculty', action.facultyId);
+	facultyChanged({facultyId}) {
+		this.state.selectedFaculty = facultyId;
+		storage.saveValue('selectedTasksFaculty', facultyId);
 		this.state.selectedDepartment = '';
 		storage.saveValue('selectedDepartment', '');
 		this.emit('load');
 	}
 
-	departmentSelected(action) {
+	departmentSelected({departmentId}) {
 		this.loader = true;
 		this.emit('loaderChange');
 
 		this.state.fields = [];
 
-		let department = action.departmentId;
+		let department = departmentId;
 		storage.saveValue('selectedDepartment', department);
 		this.state.selectedDepartment = department;
 		this.emit('load');
-		this.loadTasks(action.departmentId).then(() => {
+		this.loadTasks(departmentId).then(() => {
 			this.emit('load');
 
 			this.loader = false;
@@ -162,7 +162,7 @@ class TasksStore extends EventEmitter {
 
 TasksStore.defaultState = {
 	facultiesDepartments: [{'id': 0, 'name': "---", "departments": []}],
-	selectedFaculty: storage.getValue('selectedFaculty') || '',
+	selectedFaculty: storage.getValue('selectedTasksFaculty') || '',
 	selectedDepartment: storage.getValue('selectedDepartment') || '',
 	fields: [],
 	columns: []

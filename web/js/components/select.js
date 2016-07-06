@@ -29,8 +29,10 @@ class Select extends React.Component {
 	}
 
 	changeValue = (child) => {
-		this.stateObj.selected = child.props.data.id;
-		this.updateState();
+		if (!this.props.notAutonomic) {
+			this.stateObj.selected = child.props.data.id;
+			this.updateState();
+		}
 		this.closeSelect();
 		if (this.props.onChange) {
 			this.props.onChange({
@@ -75,7 +77,8 @@ class Select extends React.Component {
 	}
 
 	render() {
-		let value = this.props.values.find(({id}) => id == this.state.selected);
+		let selected = this.props.notAutonomic ? this.props.selected : this.state.selected;
+		let value = this.props.values.find(({id}) => id == selected);
 		this.selectboxName = value ? value.value + " " : "--- ";
 		this.selectOptions = this.props.values.map((option, i) => {
 			let props = {

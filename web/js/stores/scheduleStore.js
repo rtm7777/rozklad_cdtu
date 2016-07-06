@@ -7,6 +7,7 @@ class ScheduleStore extends EventEmitter {
 	constructor(dispatcher) {
 		super();
 		this.state = ScheduleStore.defaultState;
+		this.filtersState = ScheduleStore.defaultFiltersState;
 		this.loader = true;
 		this.db = dataBase;
 		this.daysPairs = {};
@@ -22,6 +23,15 @@ class ScheduleStore extends EventEmitter {
 						this.emit('initialDataLoaded');
 					});
 					break;
+				case 'loadSchedule':
+					this.loadSchedule();
+					break;
+				case 'facultyChanged':
+					this.facultyChanged(action);
+					break;
+				case 'yearChanged':
+					this.yearChanged(action);
+					break;
 			}
 		});
 	}
@@ -31,11 +41,15 @@ class ScheduleStore extends EventEmitter {
 			promise.get('get_faculty_list'),
 			promise.get('get_days_pairs_list')
 		];
-		if (this.state.selectedCategory) {
-			promises.push(this.loadFields(this.state.selectedCategory));
+		if (this.filtersState.selectedFaculty && this.filtersState.selectedYear) {
+			console.log('here we go');
+			// promises.push(this.loadGroupsSchedule(this.filtersState.selectedFaculty, this.filtersState.selectedYear));
 		}
 		return Promise.all(promises).then((data) => {
-			this.facultiesYears = data[0];
+			this.filtersState.filtersData = {
+				faculties: data[0].faculties,
+				years: [...Array(data[0].yearsCount).keys()].map((i) => { return {id: ++i, value: i}; })
+			};
 			this.daysPairs = data[1];
 			this.loader = false;
 		}).catch(() => {
@@ -43,8 +57,35 @@ class ScheduleStore extends EventEmitter {
 		});
 	}
 
+	loadSchedule() {
+		this.loader = true;
+		this.emit('loaderChange');
+	}
+
+	facultyChanged({facultyId}) {
+		this.filtersState.selectedFaculty = facultyId;
+		storage.saveValue('selectedScheduleFaculty', facultyId);
+		this.filtersState.selectedYear = 0;
+		storage.saveValue('selectedYear', 0);
+
+		this.emit('filterChanged');
+		this.loadSchedule();
+	}
+
+	yearChanged({year}) {
+		this.filtersState.selectedYear = year;
+		storage.saveValue('selectedYear', year);
+
+		this.emit('filterChanged');
+		this.loadSchedule();
+	}
+
 	getState() {
 		return this.state;
+	}
+
+	getFiltersState() {
+		return this.filtersState;
 	}
 
 	getLoaderState() {
@@ -55,10 +96,6 @@ class ScheduleStore extends EventEmitter {
 		return this.daysPairs;
 	}
 
-	getFacultiesYearsData() {
-		return this.facultiesYears;
-	}
-
 	getSelectedItems() {
 		return this.selectedItems;
 	}
@@ -66,9 +103,13 @@ class ScheduleStore extends EventEmitter {
 }
 
 ScheduleStore.defaultState = {
-	facultiesDepartments: [{'facultyId': 0, 'facultyName': "---", "departments": []}],
-	selectedFaculty: storage.getValue('selectedFaculty') || '',
-	selectedDepartment: storage.getValue('selectedDepartment') || '',
+
+};
+
+ScheduleStore.defaultFiltersState = {
+	filtersData: {faculties: [], years: []},
+	selectedFaculty: storage.getValue('selectedScheduleFaculty') || 0,
+	selectedYear: storage.getValue('selectedYear') || 0
 };
 
 export default ScheduleStore;

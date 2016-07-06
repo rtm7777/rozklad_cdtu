@@ -1,12 +1,11 @@
 /** @jsx */
 import React from "react";
-import ScheduleStore from "../../stores/scheduleStore";
-import I18n from "../../services/i18n";
+import ScheduleStore from "../../../stores/scheduleStore";
+import I18n from "../../../services/i18n";
 
-import ActionMenuButton from "../actionMenuButton";
-import ScheduleFilters from "./scheduleFilters";
+import ActionMenuButton from "../../actionMenuButton";
 
-class ActionMenu extends React.Component {
+class ScheduleActions extends React.Component {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired,
 		store: React.PropTypes.instanceOf(ScheduleStore).isRequired
@@ -72,20 +71,11 @@ class ActionMenu extends React.Component {
 		}
 
 		return (
-			<div className='container'>
-				<div className='row'>
-					<div className='col-lg-12'>
-						<div className='panel clearfix panel-default'>
-							<ScheduleFilters/>
-							<ul className='nav nav-pills pull-right action-menu'>
-								{actions}
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			<ul className='nav nav-pills pull-right action-menu'>
+				{actions}
+			</ul>
 		);
 	}
 }
 
-export default ActionMenu;
+export default ScheduleActions;

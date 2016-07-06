@@ -1,7 +1,6 @@
 /** @jsx */
 import React from "react";
 import ScheduleStore from "../../stores/scheduleStore";
-import I18n from "../../services/i18n";
 
 import DaysPairsRows from "./scheduleDaysPairsRows";
 

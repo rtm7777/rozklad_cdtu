@@ -59,7 +59,7 @@ type Department struct {
 
 type Faculty struct {
 	FacultyId   int64  `json:"id"`
-	FacultyName string `json:"name"`
+	FacultyName string `json:"value"`
 }
 
 type FacultiesDepartments struct {
