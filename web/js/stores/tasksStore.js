@@ -62,6 +62,7 @@ class TasksStore extends EventEmitter {
 	}
 
 	facultyChanged({facultyId}) {
+		this.state.fields = [];
 		this.state.selectedFaculty = facultyId;
 		storage.saveValue('selectedTasksFaculty', facultyId);
 		this.state.selectedDepartment = '';

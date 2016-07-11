@@ -38,7 +38,10 @@ func (c Schedule) GetFacultyGroups(facultyId int64, year int) revel.Result {
 }
 
 func (c Schedule) GetFacultySchedule(facultyId int64, year int) revel.Result {
-	schedule := database.FacultySchedule(c.DB, facultyId, year)
+	schedule, err := database.FacultySchedule(c.DB, facultyId, year)
+	if err != nil {
+		return jsonError(400, err)
+	}
 	return c.RenderJson(schedule)
 }
 

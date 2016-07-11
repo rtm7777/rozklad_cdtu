@@ -48,10 +48,10 @@ class DepartmentSelector extends React.Component {
 	};
 
 	render() {
-		let selectValues = this.props.data.map(({id, name}) => {
+		let selectValues = this.props.data.map(({id, value}) => {
 			return {
 				id,
-				value: name
+				value
 			};
 		});
 		let selectProps = {

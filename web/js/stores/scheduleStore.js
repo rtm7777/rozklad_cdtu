@@ -60,6 +60,13 @@ class ScheduleStore extends EventEmitter {
 	loadSchedule() {
 		this.loader = true;
 		this.emit('loaderChange');
+		const payload = {
+			facultyId: this.filtersState.selectedFaculty,
+			year: this.filtersState.selectedYear
+		};
+		promise.get('get_faculty_schedule', payload).then((data) => {
+			console.log(data);
+		});
 	}
 
 	facultyChanged({facultyId}) {

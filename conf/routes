@@ -43,9 +43,9 @@ POST    /admin/tasks/delete_tasks               Tasks.DeleteTasks
 # Schedule
 GET     /admin/schedule/get_faculty_list        Schedule.GetFaculties
 GET     /admin/schedule/get_days_pairs_list     Schedule.GetDaysPairsList
-POST    /get_faculty_groups                     Schedule.GetFacultyGroups
-POST    /get_faculty_schedule                   Schedule.GetFacultySchedule
-POST    /get_faculty_tasks                      Schedule.GetFacultyTasks
+GET     /admin/schedule/get_faculty_groups      Schedule.GetFacultyGroups
+GET     /admin/schedule/get_faculty_schedule    Schedule.GetFacultySchedule
+GET     /admin/schedule/get_faculty_tasks       Schedule.GetFacultyTasks
 
 Application
 WS      /ws/socket                              Admin.SocketConn

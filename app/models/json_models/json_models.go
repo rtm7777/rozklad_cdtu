@@ -18,10 +18,9 @@ type Day struct {
 	Pair []Pair `json:"pair"`
 }
 
-type Schedule struct {
-	Id      string `json:"id"`
-	Type    string `json:"type"`
-	Subject string `json:"subject"`
+type GroupSchedule struct {
+	GroupId       int64              `json:"id"`
+	GroupSchedule []*models.Schedule `json:"schedule"`
 }
 
 type Task struct {
