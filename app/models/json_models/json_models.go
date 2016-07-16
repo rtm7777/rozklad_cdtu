@@ -19,7 +19,7 @@ type Day struct {
 }
 
 type GroupSchedule struct {
-	GroupId       int64              `json:"id"`
+	GroupId       int64              `json:"groupId"`
 	GroupSchedule []*models.Schedule `json:"schedule"`
 }
 

@@ -38,3 +38,29 @@ footer {
 	text-align: center;
 	margin: 10px 0px;
 }
+
+button.btn-primary {
+	&:focus, &:active:focus {
+		background-color: @btn-bg;
+    border-color: @btn-br;
+    outline: none;
+	}
+	&:hover, &:active:focus {
+		background-color: @btn-bg;
+    border-color: @btn-br;
+    outline: none;
+	}
+}
+
+button.btn-primary.active {
+	&:focus {
+		background-color: @btn-act-bg;
+    border-color: @btn-act-br;
+    outline: none;
+	}
+	&:hover {
+		background-color: @btn-act-bg;
+    border-color: @btn-act-br;
+    outline: none;
+	}
+}

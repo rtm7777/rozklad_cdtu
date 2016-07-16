@@ -3,6 +3,7 @@ import React from "react";
 import ScheduleStore from "../../stores/scheduleStore";
 
 import DaysPairsRows from "./scheduleDaysPairsRows";
+import Group from "./scheduleGroup";
 
 class WorkSpace extends React.Component {
 	static contextTypes = {
@@ -26,8 +27,18 @@ class WorkSpace extends React.Component {
 		this.context.store.removeListener('loaderChange');
 	}
 
+	generateGroups() {
+		console.log(this.props);
+		return this.props.schedule.map((a, i) => {
+			const props = {
+				key: i
+			};
+			return <Group {...props}/>;
+		});
+	}
 
 	render() {
+		const groups = this.generateGroups();
 		let tableShow = 'invisible';
 		if (!this.state.loader) {
 			tableShow = 'visible';
@@ -36,7 +47,9 @@ class WorkSpace extends React.Component {
 		return (
 			<div className='main-container'>
 				<DaysPairsRows/>
-				<div/>
+				<div>
+				  {groups}
+				</div>
 			</div>
 		);
 	}

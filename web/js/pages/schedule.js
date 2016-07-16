@@ -47,8 +47,7 @@ class Schedule extends React.Component {
 
 	render() {
 		let contentProps = {
-			fields: this.state.fields,
-			columns: this.state.columns
+			schedule: this.state.schedule
 		};
 		return (
 			<div>

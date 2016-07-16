@@ -51,6 +51,10 @@ class DataBase {
 		}));
 	}
 
+	loadScheduleDetails(schedule) {
+		return Promise.resolve(schedule);
+	}
+
 	loadTranslations = (language = 'en-US') => {
 		return this.db.translations.where('language').equals('uk').toArray();
 	};

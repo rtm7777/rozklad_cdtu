@@ -3,6 +3,7 @@ import React from "react";
 import ScheduleStore from "../../stores/scheduleStore";
 
 import DaysPairsRows from "./scheduleDaysPairsRows";
+import ToggleButton from "../toggleButton";
 
 class Group extends React.Component {
 	static contextTypes = {
@@ -26,9 +27,7 @@ class Group extends React.Component {
 		return (
 			<div className="group-container">
 				<div className="group-header height47 padding1015" data-toggle="buttons">
-					<label className="btn btn-info active">
-						<input type="checkbox" checked/>
-					</label>
+					<ToggleButton/>
 				</div>
 				<div id="<%= groupId %>_<%= day %>_<%= pair %>" className="pair-container">
 					<div className="admin-sub"></div>

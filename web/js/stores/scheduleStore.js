@@ -42,8 +42,7 @@ class ScheduleStore extends EventEmitter {
 			promise.get('get_days_pairs_list')
 		];
 		if (this.filtersState.selectedFaculty && this.filtersState.selectedYear) {
-			console.log('here we go');
-			// promises.push(this.loadGroupsSchedule(this.filtersState.selectedFaculty, this.filtersState.selectedYear));
+			promises.push(this.loadSchedule());
 		}
 		return Promise.all(promises).then((data) => {
 			this.filtersState.filtersData = {
@@ -58,14 +57,15 @@ class ScheduleStore extends EventEmitter {
 	}
 
 	loadSchedule() {
-		this.loader = true;
-		this.emit('loaderChange');
 		const payload = {
 			facultyId: this.filtersState.selectedFaculty,
 			year: this.filtersState.selectedYear
 		};
-		promise.get('get_faculty_schedule', payload).then((data) => {
-			console.log(data);
+
+		return promise.get('get_faculty_schedule', payload).then((data) => {
+			return this.db.loadScheduleDetails(data).then((schedule) => {
+				this.state.schedule = schedule;
+			});
 		});
 	}
 
@@ -76,7 +76,8 @@ class ScheduleStore extends EventEmitter {
 		storage.saveValue('selectedYear', 0);
 
 		this.emit('filterChanged');
-		this.loadSchedule();
+		this.state.schedule = [];
+		this.emit('load');
 	}
 
 	yearChanged({year}) {
@@ -84,7 +85,15 @@ class ScheduleStore extends EventEmitter {
 		storage.saveValue('selectedYear', year);
 
 		this.emit('filterChanged');
-		this.loadSchedule();
+		this.loader = true;
+		this.emit('loaderChange');
+		this.state.schedule = [];
+		this.loadSchedule().then(() => {
+			this.emit('load');
+
+			this.loader = false;
+			this.emit('loaderChange');
+		});
 	}
 
 	getState() {
@@ -110,7 +119,7 @@ class ScheduleStore extends EventEmitter {
 }
 
 ScheduleStore.defaultState = {
-
+	schedule: []
 };
 
 ScheduleStore.defaultFiltersState = {
