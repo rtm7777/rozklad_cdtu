@@ -1,4 +1,5 @@
 .main-container {
+	display: flex;
 	border-top: 1px solid @table-border;
 	border-left: 1px solid @table-border;
 	border-right: 1px solid @table-border;
@@ -38,19 +39,29 @@
 	}
 
 	.schedule-container {
-		margin-left: 80px;
+		display: flex;
 		.group-container {
 			border-right: 1px solid @table-border;
-			display: inline-block;
 			width: 200px;
-
 			.pair-container {
 				border-bottom: 1px solid @table-border;
-
+				.admin-sub{
+					margin: 0px 10px;
+					height: 22.5px;
+					font-size: 11px;
+					line-height: 22.5px;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+				.admin-sub-separator {
+					margin: 0 2px;
+					padding: 0;
+					border-top-color: @gray-light3;
+				}
 				&.active {
 					background-color: @info-message;
 				}
-
 				&:hover {
 					background-color: @table-hover-cell;
 				}
@@ -58,18 +69,17 @@
 
 			.group-header {
 				padding: 0;
-
+				height: 47px;
+				border-bottom: 1px solid @table-border;
 				.btn-default {
 					background-color: transparent;
 				}
-
 				label {
 					border-radius: 0;
 					height: 100%;
 					width: 100%;
 					padding-top: 12px;
 					border: none;
-
 					&.active {
 						color: @white;
 						background-color: #3276b1;

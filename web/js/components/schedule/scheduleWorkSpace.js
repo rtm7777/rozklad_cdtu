@@ -47,7 +47,7 @@ class WorkSpace extends React.Component {
 		return (
 			<div className='main-container'>
 				<DaysPairsRows/>
-				<div>
+				<div className='schedule-container'>
 				  {groups}
 				</div>
 			</div>

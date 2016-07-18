@@ -5,6 +5,16 @@ import ScheduleStore from "../../stores/scheduleStore";
 import DaysPairsRows from "./scheduleDaysPairsRows";
 import ToggleButton from "../toggleButton";
 
+const SheduleTask = (props) => {
+	return (
+		<div className="pair-container">
+			<div className="admin-sub"></div>
+				<hr className="admin-sub-separator"/>
+			<div className="admin-sub"></div>
+		</div>
+	);
+};
+
 class Group extends React.Component {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired,
@@ -26,14 +36,17 @@ class Group extends React.Component {
 
 		return (
 			<div className="group-container">
-				<div className="group-header height47 padding1015" data-toggle="buttons">
+				<div className="group-header">
 					<ToggleButton/>
 				</div>
-				<div id="<%= groupId %>_<%= day %>_<%= pair %>" className="pair-container">
-					<div className="admin-sub"></div>
-						<hr className="admin-sub-separator"/>
-					<div className="admin-sub"></div>
-				</div>
+				<SheduleTask/>
+				<SheduleTask/>
+				<SheduleTask/>
+				<SheduleTask/>
+				<SheduleTask/>
+				<SheduleTask/>
+				<SheduleTask/>
+				<SheduleTask/>
 			</div>
 		);
 	}
