@@ -1,27 +1,30 @@
 language: go
 dist: trusty
+addons:
+  firefox: "46.0"
 go:
-  - 1.5
+  - 1.7
 node_js:
-  - 5
+  - 6
 branches:
   only:
   - master
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-- wget http://selenium-release.storage.googleapis.com/2.51/selenium-server-standalone-2.51.0.jar
-- java -jar selenium-server-standalone-2.51.0.jar &
+- sudo update-java-alternatives --set java-8-oracle
+- wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar
+- java -jar selenium-server-standalone-2.53.1.jar &
 install:
-- go get -v github.com/revel/revel
-- go get -v github.com/revel/revel/cache
 - go get -v github.com/revel/cmd/revel
+- go get -v github.com/revel/revel
+- go get -v github.com/revel/cron
+- go get -v github.com/revel/revel/cache
 - go get -v golang.org/x/crypto/bcrypt
 - go get -v github.com/go-sql-driver/mysql
 - go get -v github.com/jinzhu/gorm
 - go get -v github.com/tebeka/selenium
 - go get -v github.com/fatih/color
-- go get -v github.com/robfig/cron
 - go get -v github.com/tealeg/xlsx
 - npm install
 before_script:
