@@ -20,6 +20,14 @@ class HousingItem extends Item {
 						type='text'
 					/>
 				</td>
+				<td>
+					<input
+						defaultValue={this.props.data.address}
+						name='address'
+						onChange={this.onInputChanged}
+						type='text'
+					/>
+				</td>
 			</tr>
 		);
 	}

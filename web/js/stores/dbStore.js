@@ -62,7 +62,7 @@ class DBStore extends EventEmitter {
 		this.state.fields = [];
 
 		let category = action.name;
-		storage.saveValue('category', category);
+		storage.set('category', category);
 		this.state.selectedCategory = category;
 		this.emit('load');
 		this.loadFields(category).then(() => {
@@ -146,7 +146,7 @@ class DBStore extends EventEmitter {
 
 DBStore.defaultState = {
 	categoryList: [],
-	selectedCategory: storage.getValue('category') || '',
+	selectedCategory: storage.get('category') || '',
 	fields: [],
 	columns: [],
 	filters: [],

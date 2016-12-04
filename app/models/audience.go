@@ -11,6 +11,9 @@ type Audiences struct {
 	Number    string   `sql:"size:10" json:"number"`
 	Sets      int      `json:"sets,string"`
 	Type      string   `sql:"size:50" json:"type"`
+	Internet  string   `sql:"size:3;DEFAULT:'no'" json:"internet"`  //yes/no
+	Projector string   `sql:"size:3;DEFAULT:'no'" json:"projector"` //yes/no
+	BoardType string   `sql:"size:50" json:"boardType"`
 	Note      string   `sql:"size:200" json:"note"`
 }
 

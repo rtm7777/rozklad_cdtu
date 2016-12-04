@@ -8,15 +8,6 @@ var itemIdErr error = errors.New("item id can't be less than 1")
 
 const YearsCount = 6
 
-var DaysList = []Days{
-	{1, "monday"},
-	{2, "tuesday"},
-	{3, "wednesday"},
-	{4, "thursday"},
-	{5, "friday"},
-	{6, "saturday"},
-}
-
 var PairsList = []Pairs{
 	{1, "I"},
 	{2, "II"},
@@ -57,11 +48,6 @@ func DBTypesCollectionMap() map[string]DBModelCollection {
 		"subjects":    &[]Subjects{},
 		"teachers":    &[]Teachers{},
 	}
-}
-
-type Days struct {
-	Id  int64  `json:"id"`
-	Day string `json:"day"`
 }
 
 type Pairs struct {

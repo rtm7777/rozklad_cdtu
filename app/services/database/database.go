@@ -26,8 +26,7 @@ func UpdateItem(db *gorm.DB, data custom_structs.ItemsData) error {
 
 	err = item.Decode(data.Data)
 	if err == nil {
-		itemValue := item.Value()
-		err = db.Model(itemValue).Updates(itemValue).Error
+		err = db.Model(item).Updates(item).Error
 		if err != nil {
 			return err
 		}

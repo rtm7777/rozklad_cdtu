@@ -45,7 +45,7 @@ class TasksStore extends EventEmitter {
 	}
 
 	load() {
-		// this.db.synchronizeAll();
+		this.db.synchronizeAll();
 		let promises = [
 			promise.get('/get_faculty_departments_list')
 		];
@@ -64,9 +64,9 @@ class TasksStore extends EventEmitter {
 	facultyChanged({facultyId}) {
 		this.state.fields = [];
 		this.state.selectedFaculty = facultyId;
-		storage.saveValue('selectedTasksFaculty', facultyId);
+		storage.set('selectedTasksFaculty', facultyId);
 		this.state.selectedDepartment = '';
-		storage.saveValue('selectedDepartment', '');
+		storage.set('selectedDepartment', '');
 		this.emit('load');
 	}
 
@@ -77,7 +77,7 @@ class TasksStore extends EventEmitter {
 		this.state.fields = [];
 
 		let department = departmentId;
-		storage.saveValue('selectedDepartment', department);
+		storage.set('selectedDepartment', department);
 		this.state.selectedDepartment = department;
 		this.emit('load');
 		this.loadTasks(departmentId).then(() => {
@@ -163,8 +163,8 @@ class TasksStore extends EventEmitter {
 
 TasksStore.defaultState = {
 	facultiesDepartments: [{'id': 0, 'name': "---", "departments": []}],
-	selectedFaculty: storage.getValue('selectedTasksFaculty') || '',
-	selectedDepartment: storage.getValue('selectedDepartment') || '',
+	selectedFaculty: storage.get('selectedTasksFaculty') || '',
+	selectedDepartment: storage.get('selectedDepartment') || '',
 	fields: [],
 	columns: []
 };

@@ -3,9 +3,9 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/revel/revel"
-	"github.com/rtm7777/rozklad_cdtu/app/libs/database"
 	"github.com/rtm7777/rozklad_cdtu/app/models/custom_responses"
 	"github.com/rtm7777/rozklad_cdtu/app/models/custom_structs"
+	"github.com/rtm7777/rozklad_cdtu/app/services/database"
 )
 
 type DataBase struct {
@@ -23,11 +23,11 @@ var DBFilters = map[string][]string{
 }
 
 var DBColumns = map[string][]string{
-	"audiences":   []string{"number", "housing", "audienceType", "sets", "note"},
+	"audiences":   []string{"number", "housing", "audienceType", "sets", "internet", "projector", "boardType", "note"},
 	"departments": []string{"faculty", "departmentName"},
 	"faculties":   []string{"facultyName", "facultyShortName"},
 	"groups":      []string{"faculty", "groupName", "studentsCount", "groupYear"},
-	"housings":    []string{"housingNumber"},
+	"housings":    []string{"housingNumber", "address"},
 	"subjects":    []string{"subject"},
 	"teachers":    []string{"faculty", "department", "name", "rank"},
 }

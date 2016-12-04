@@ -229,5 +229,47 @@
 			{"lang": "en-US", "tr": "Saturday"},
 			{"lang": "uk", "tr": "Субота"}
 		]
+	},
+	{
+		"key": "address",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Address"},
+			{"lang": "uk", "tr": "Адреса"}
+		]
+	},
+	{
+		"key": "internet",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Internet"},
+			{"lang": "uk", "tr": "Інтернет"}
+		]
+	},
+	{
+		"key": "projector",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Projector"},
+			{"lang": "uk", "tr": "Проектор"}
+		]
+	},
+	{
+		"key": "boardType",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Board type"},
+			{"lang": "uk", "tr": "Тип дошки"}
+		]
+	},
+	{
+		"key": "no",
+		"adaptations": [
+			{"lang": "en-US", "tr": "No"},
+			{"lang": "uk", "tr": "Ні"}
+		]
+	},
+	{
+		"key": "yes",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Yes"},
+			{"lang": "uk", "tr": "Так"}
+		]
 	}
 ]

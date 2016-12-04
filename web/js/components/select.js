@@ -1,7 +1,7 @@
 /** @jsx */
 import React from "react";
 
-class SelectOption extends React.Component {
+export class SelectOption extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -72,11 +72,7 @@ class Select extends React.Component {
 		}
 	}
 
-	updateState() {
-		this.setState(this.stateObj);
-	}
-
-	render() {
+	generateNameAndOptions() {
 		let selected = this.props.notAutonomic ? this.props.selected : this.state.selected;
 		let value = this.props.values.find(({id}) => id == selected);
 		this.selectboxName = value ? value.value + " " : "--- ";
@@ -89,8 +85,17 @@ class Select extends React.Component {
 
 			return <SelectOption {...props} />;
 		});
+	}
+
+	updateState() {
+		this.setState(this.stateObj);
+	}
+
+	render() {
 		this.name = this.generateDropdownLabel();
 		this.open = this.state.opened ? "dropdown open" : "dropdown";
+
+		this.generateNameAndOptions();
 	}
 }
 

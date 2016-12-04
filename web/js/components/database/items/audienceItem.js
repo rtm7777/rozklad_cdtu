@@ -2,6 +2,7 @@
 import React from "react";
 import Item from "../../item";
 import SelectButton from "../../selectButton";
+import SelectBoolean from "../../selectBoolean";
 import clickAwayStore from "../../../stores/clickAwayStore";
 
 class AudienceItem extends Item {
@@ -46,6 +47,30 @@ class AudienceItem extends Item {
 						onChange={this.onInputChanged}
 						onKeyDown={this.onNumberKeyDown}
 						type='number'
+					/>
+				</td>
+				<td className='no-padding'>
+					<SelectBoolean
+						name='internet'
+						onChange={this.onSelectChanged}
+						selected={this.props.data.internet}
+						elementConatainer={clickAwayStore}
+					/>
+				</td>
+				<td className='no-padding'>
+					<SelectBoolean
+						name='projector'
+						onChange={this.onSelectChanged}
+						selected={this.props.data.projector}
+						elementConatainer={clickAwayStore}
+					/>
+				</td>
+				<td>
+					<input
+						defaultValue={this.props.data.boardType}
+						name='boardType'
+						onChange={this.onInputChanged}
+						type='text'
 					/>
 				</td>
 				<td>

@@ -1,11 +1,13 @@
-let storage = localStorage;
-
-export default {
-	saveValue(name, value) {
-		storage.setItem(name, value);
-	},
-
-	getValue(name) {
-		return storage.getItem(name);
+class Storage {
+	get(key) {
+		return localStorage.getItem(key);
 	}
-};
+
+	set(key, value) {
+		localStorage.setItem(key, value);
+	}
+}
+
+const storage = new Storage();
+
+export default storage;

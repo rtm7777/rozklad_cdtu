@@ -3,10 +3,10 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/revel/revel"
-	"github.com/rtm7777/rozklad_cdtu/app/libs/database"
 	"github.com/rtm7777/rozklad_cdtu/app/models"
 	"github.com/rtm7777/rozklad_cdtu/app/models/custom_responses"
 	"github.com/rtm7777/rozklad_cdtu/app/models/json_models"
+	"github.com/rtm7777/rozklad_cdtu/app/services/database"
 )
 
 type Tasks struct {

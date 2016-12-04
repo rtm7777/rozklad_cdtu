@@ -3,9 +3,9 @@ package controllers
 import (
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
-	"github.com/rtm7777/rozklad_cdtu/app/libs/database"
 	"github.com/rtm7777/rozklad_cdtu/app/models"
 	"github.com/rtm7777/rozklad_cdtu/app/roomevents"
+	"github.com/rtm7777/rozklad_cdtu/app/services/database"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/net/websocket"
 	"time"

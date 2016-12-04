@@ -25,7 +25,7 @@ class DataBase {
 	}
 
 	synchronizeAll() {
-		Object.keys(model).slice(0, -1).forEach((key) => {
+		Object.keys(model).forEach((key) => {
 			this.synchronize(key);
 		});
 	}

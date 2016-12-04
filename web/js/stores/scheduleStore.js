@@ -71,9 +71,9 @@ class ScheduleStore extends EventEmitter {
 
 	facultyChanged({facultyId}) {
 		this.filtersState.selectedFaculty = facultyId;
-		storage.saveValue('selectedScheduleFaculty', facultyId);
+		storage.set('selectedScheduleFaculty', facultyId);
 		this.filtersState.selectedYear = 0;
-		storage.saveValue('selectedYear', 0);
+		storage.set('selectedYear', 0);
 
 		this.emit('filterChanged');
 		this.state.schedule = [];
@@ -82,7 +82,7 @@ class ScheduleStore extends EventEmitter {
 
 	yearChanged({year}) {
 		this.filtersState.selectedYear = year;
-		storage.saveValue('selectedYear', year);
+		storage.set('selectedYear', year);
 
 		this.emit('filterChanged');
 		this.loader = true;
@@ -124,8 +124,8 @@ ScheduleStore.defaultState = {
 
 ScheduleStore.defaultFiltersState = {
 	filtersData: {faculties: [], years: []},
-	selectedFaculty: storage.getValue('selectedScheduleFaculty') || 0,
-	selectedYear: storage.getValue('selectedYear') || 0
+	selectedFaculty: storage.get('selectedScheduleFaculty') || 0,
+	selectedYear: storage.get('selectedYear') || 0
 };
 
 export default ScheduleStore;
