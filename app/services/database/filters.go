@@ -15,7 +15,7 @@ var filterFuncs = map[string]func(db *gorm.DB, rows *[]json_models.FilterValue) 
 		return rows
 	},
 	"departments": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {
-		db.Model(&models.Departments{}).Select("id, name as value").Scan(rows)
+		db.Model(&models.Departments{}).Select("id, short_name as value").Scan(rows)
 		return rows
 	},
 	"housings": func(db *gorm.DB, rows *[]json_models.FilterValue) *[]json_models.FilterValue {

@@ -14,6 +14,7 @@ type Teachers struct {
 	LastName     string      `sql:"size:25" json:"lastName"`
 	MiddleName   string      `sql:"size:30" json:"middleName"`
 	Rank         string      `sql:"size:100" json:"rank"`
+	Degree       string      `sql:"size:100" json:"degree"`
 }
 
 func (teacher *Teachers) Decode(b []byte) error {

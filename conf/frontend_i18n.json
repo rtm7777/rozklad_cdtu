@@ -84,6 +84,13 @@
 		]
 	},
 	{
+		"key": "departmentShortName",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Department Name Short"},
+			{"lang": "uk", "tr": "Назва Кафедри Скорочена"}
+		]
+	},
+	{
 		"key": "facultyName",
 		"adaptations": [
 			{"lang": "en-US", "tr": "Faculty Name"},
@@ -270,6 +277,13 @@
 		"adaptations": [
 			{"lang": "en-US", "tr": "Yes"},
 			{"lang": "uk", "tr": "Так"}
+		]
+	},
+	{
+		"key": "degree",
+		"adaptations": [
+			{"lang": "en-US", "tr": "Degree"},
+			{"lang": "uk", "tr": "Вчений ступінь"}
 		]
 	}
 ]

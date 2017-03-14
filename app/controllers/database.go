@@ -24,12 +24,12 @@ var DBFilters = map[string][]string{
 
 var DBColumns = map[string][]string{
 	"audiences":   []string{"number", "housing", "audienceType", "sets", "internet", "projector", "boardType", "note"},
-	"departments": []string{"faculty", "departmentName"},
+	"departments": []string{"faculty", "departmentName", "departmentShortName"},
 	"faculties":   []string{"facultyName", "facultyShortName"},
 	"groups":      []string{"faculty", "groupName", "studentsCount", "groupYear"},
 	"housings":    []string{"housingNumber", "address"},
 	"subjects":    []string{"subject"},
-	"teachers":    []string{"faculty", "department", "name", "rank"},
+	"teachers":    []string{"faculty", "department", "name", "rank", "degree"},
 }
 
 func (c DataBase) GetCategoryList() revel.Result {

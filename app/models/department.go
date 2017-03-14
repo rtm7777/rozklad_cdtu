@@ -8,7 +8,8 @@ type Departments struct {
 	Id        int64     `json:"id"`
 	FacultyId int64     `json:"facultyId"`
 	Faculty   Faculties `json:"-"`
-	Name      string    `sql:"size:100" json:"name"`
+	FullName  string    `sql:"size:100" json:"fullName"`
+	ShortName string    `sql:"size:50" json:"shortName"`
 }
 
 func (department *Departments) Decode(b []byte) error {

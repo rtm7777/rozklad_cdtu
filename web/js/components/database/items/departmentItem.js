@@ -25,8 +25,16 @@ class DepartmentItem extends Item {
 				</td>
 				<td>
 					<input
-						defaultValue={this.props.data.name}
-						name='name'
+						defaultValue={this.props.data.fullName}
+						name='fullName'
+						onChange={this.onInputChanged}
+						type='text'
+					/>
+				</td>
+				<td>
+					<input
+						defaultValue={this.props.data.shortName}
+						name='shortName'
 						onChange={this.onInputChanged}
 						type='text'
 					/>

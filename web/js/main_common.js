@@ -1,18 +1,18 @@
-import "./libs/socketEvents";
+// import "./libs/socketEvents";
 import I18n from "./services/i18n";
 
 import React from "react";
 import {render} from "react-dom";
 
-import {Router, browserHistory} from "react-router";
+import {BrowserRouter} from "react-router-dom";
 import routes from "./routes";
 
 const rootEl = document.getElementById('page');
 
 I18n.load().then(() => {
 	render((
-		<Router history={ browserHistory }>
+		<BrowserRouter>
 			{routes}
-		</Router>
+		</BrowserRouter>
 	), rootEl);
 });

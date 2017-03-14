@@ -24,7 +24,7 @@ func FacultiesDepartments(db *gorm.DB) ([]json_models.FacultiesDepartments, erro
 
 		if len(records) != 0 {
 			for _, record := range records {
-				val := json_models.Department{Id: record.Id, Name: record.Name}
+				val := json_models.Department{Id: record.Id, Name: record.FullName}
 				result[i].Departments = append(result[i].Departments, val)
 			}
 		} else {

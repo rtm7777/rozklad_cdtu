@@ -78,6 +78,14 @@ class TeacherItem extends Item {
 						type='text'
 					/>
 				</td>
+				<td>
+					<input
+						defaultValue={this.props.data.degree}
+						name='degree'
+						onChange={this.onInputChanged}
+						type='text'
+					/>
+				</td>
 			</tr>
 		);
 	}
