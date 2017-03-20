@@ -7,13 +7,13 @@ import (
 type Schedule struct {
 	Id          int64     `json:"id"`
 	GroupId     int64     `json:"groupId"`
-	Group       Groups    `json:"group"`
+	Group       Groups    `json:"-"`
 	TeacherId   int64     `json:"teacherId"`
-	Teacher     Teachers  `json:"teacher"`
+	Teacher     Teachers  `json:"-"`
 	AudienceId  int64     `json:"audienceId"`
-	Audience    Audiences `json:"audience"`
+	Audience    Audiences `json:"-"`
 	SubjectId   int64     `json:"subjectId"`
-	Subject     Subjects  `json:"subject"`
+	Subject     Subjects  `json:"-"`
 	DayId       int64     `json:"dayId"`
 	PairId      int64     `json:"pairId"`
 	PairType    string    `sql:"size:25" json:"pairType"`

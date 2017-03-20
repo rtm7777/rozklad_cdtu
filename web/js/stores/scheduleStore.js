@@ -1,5 +1,6 @@
 import storage from "../services/localStorage";
 import promise from "../libs/promise";
+import {generateScheduleTable} from "../libs/generator";
 import dataBase from "../services/indexedDB";
 import {EventEmitter} from "events";
 
@@ -18,9 +19,13 @@ class ScheduleStore extends EventEmitter {
 			switch(action.actionType) {
 				case 'load':
 					this.load().then(() => {
-						this.emit('load');
-						this.emit('loaderChange');
-						this.emit('initialDataLoaded');
+						if (this.filtersState.selectedFaculty && this.filtersState.selectedYear) {
+							this.loadSchedule().then(() => {
+								this.emitIntitial();
+							});
+						} else {
+							this.emitIntitial();
+						}
 					});
 					break;
 				case 'loadSchedule':
@@ -36,14 +41,18 @@ class ScheduleStore extends EventEmitter {
 		});
 	}
 
+	emitIntitial() {
+		this.emit('load');
+		this.emit('loaderChange');
+		this.emit('initialDataLoaded');
+	}
+
 	load() {
 		let promises = [
 			promise.get('get_faculty_list'),
 			promise.get('get_days_pairs_list')
 		];
-		if (this.filtersState.selectedFaculty && this.filtersState.selectedYear) {
-			promises.push(this.loadSchedule());
-		}
+
 		return Promise.all(promises).then((data) => {
 			this.filtersState.filtersData = {
 				faculties: data[0].faculties,
@@ -64,7 +73,9 @@ class ScheduleStore extends EventEmitter {
 
 		return promise.get('get_faculty_schedule', payload).then((data) => {
 			return this.db.loadScheduleDetails(data).then((schedule) => {
-				this.state.schedule = schedule;
+				return generateScheduleTable(this.daysPairs, schedule).then((scheduleTable) => {
+					this.state.schedule = scheduleTable;
+				});
 			});
 		});
 	}

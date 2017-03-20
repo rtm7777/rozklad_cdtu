@@ -51,8 +51,31 @@ class DataBase {
 		}));
 	}
 
-	loadScheduleDetails(schedule) {
-		return Promise.resolve(schedule);
+	loadScheduleDetails(data) {
+		return Promise.all(data.map((task) => {
+			return Promise.all([
+				this.db.groups.where('id').equals(task.groupId).first().then((row) => {
+					task.groupName = row ? row.name : '';
+				}),
+				Promise.all(task.schedule.map((aaa) => {
+					return Promise.all([
+						this.db.teachers.where('id').equals(aaa.teacherId).first().then((row) => {
+							aaa.teacher = row ? `${row.lastName || ''} ${row.firstName[0] || ''}. ${row.middleName[0] || ''}.` : '';
+						}),
+						this.db.subjects.where('id').equals(aaa.subjectId).first().then((row) => {
+							aaa.subject = row ? row.subject : '';
+						}),
+						this.db.audiences.where('id').equals(aaa.audienceId).first().then((row) => {
+							aaa.audience = row ? `${row.number} - ${row.housingId}` : '';
+						})
+					]).then(() => {
+						return aaa;
+					});
+				}))
+			]).then(() => {
+				return task;
+			});
+		}));
 	}
 
 	loadTranslations = (language = 'en-US') => {

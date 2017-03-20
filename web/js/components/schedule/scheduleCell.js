@@ -2,11 +2,7 @@
 import React from "react";
 import ScheduleStore from "../../stores/scheduleStore";
 
-import DaysPairsRows from "./scheduleDaysPairsRows";
-import ScheduleCell from "./scheduleCell";
-import ToggleButton from "../toggleButton";
-
-class Group extends React.Component {
+class SсheduleCell extends React.Component {
 	static contextTypes = {
 		actions: React.PropTypes.object.isRequired,
 		store: React.PropTypes.instanceOf(ScheduleStore).isRequired
@@ -23,17 +19,14 @@ class Group extends React.Component {
 	}
 
 	render() {
-
 		return (
-			<div className='group-container'>
-				<div className='group-header'>
-					<ToggleButton/>
-					{this.props.groupName}
-				</div>
-
+			<div className="pair-container">
+				<div className="admin-sub"></div>
+					<hr className="admin-sub-separator"/>
+				<div className="admin-sub"></div>
 			</div>
 		);
 	}
 }
 
-export default Group;
+export default SсheduleCell;

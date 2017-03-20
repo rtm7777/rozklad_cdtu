@@ -29,23 +29,28 @@ class WorkSpace extends React.Component {
 
 	generateGroups() {
 		console.log(this.props);
-		return this.props.schedule.map((a, i) => {
+		return this.props.schedule.map(({groupId, groupName, schedule}) => {
 			const props = {
-				key: i
+				groupId,
+				groupName,
+				schedule,
+				key: groupId
 			};
 			return <Group {...props}/>;
 		});
 	}
 
 	render() {
-		const groups = this.generateGroups();
 		let tableShow = 'invisible';
+		let groups;
+
 		if (!this.state.loader) {
 			tableShow = 'visible';
+			groups = this.generateGroups();
 		}
 
 		return (
-			<div className='main-container'>
+			<div className={`main-container ${tableShow}`}>
 				<DaysPairsRows/>
 				<div className='schedule-container'>
 				  {groups}
