@@ -1,9 +1,11 @@
 language: go
 dist: trusty
-addons:
-  firefox: "46.0"
 go:
   - 1.7
+addons:
+  firefox: "46.0"
+services:
+  - mysql
 branches:
   only:
   - master
@@ -12,6 +14,7 @@ before_install:
 - nvm use 7.7.2
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
+- mysql -e 'CREATE DATABASE test_db;'
 - sudo update-java-alternatives --set java-8-oracle
 - wget http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar
 - java -jar selenium-server-standalone-2.53.1.jar &
