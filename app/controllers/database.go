@@ -44,25 +44,25 @@ func (c DataBase) GetCategoryList() revel.Result {
 		categoriesList = append(categoriesList, Categories{OptionValue: category, Name: c.Message(category)})
 	}
 
-	return c.RenderJson(categoriesList)
+	return c.RenderJSON(categoriesList)
 }
 
 func (c DataBase) GetCategoryItems(category string) revel.Result {
 	locale := c.Request.Locale
-	items := database.CategoryItems(c.DB, category)
+	items := database.CategoryItems(c.Txn, category)
 
 	filters, ok := DBFilters[category]
 	if !ok {
 		c.Response.Status = 404
-		return c.RenderJson("category filter not found")
+		return c.RenderJSON("category filter not found")
 	}
 	items.Columns = DBColumns[category]
 
 	if len(filters) > 0 {
-		items.Filters = database.CategoryFilters(c.DB, filters, locale)
+		items.Filters = database.CategoryFilters(c.Txn, filters, locale)
 	}
 
-	return c.RenderJson(items)
+	return c.RenderJSON(items)
 }
 
 func (c DataBase) UpdateItem() revel.Result {
@@ -72,7 +72,7 @@ func (c DataBase) UpdateItem() revel.Result {
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		err := database.UpdateItem(c.DB, data)
+		err := database.UpdateItem(c.Txn, data)
 		if err != nil {
 			return jsonError(400, err)
 		} else {
@@ -84,11 +84,11 @@ func (c DataBase) UpdateItem() revel.Result {
 }
 
 func (c DataBase) AddItem(category string) revel.Result {
-	err, item := database.AddItem(c.DB, category)
+	err, item := database.AddItem(c.Txn, category)
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		return c.RenderJson(item)
+		return c.RenderJSON(item)
 	}
 }
 
@@ -99,7 +99,7 @@ func (c DataBase) DeleteItems() revel.Result {
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		database.DeleteItems(c.DB, data)
-		return c.RenderJson(data)
+		database.DeleteItems(c.Txn, data)
+		return c.RenderJSON(data)
 	}
 }

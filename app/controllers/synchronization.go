@@ -10,8 +10,8 @@ type Synchronization struct {
 }
 
 func (c Synchronization) GetData(dataType string) revel.Result {
-	data := database.SynchronizationTypes[dataType](c.DB)
-	return c.RenderJson(data)
+	data := database.SynchronizationTypes[dataType](c.Txn)
+	return c.RenderJSON(data)
 }
 
 func checkDataTypeParam(c *revel.Controller) revel.Result {
@@ -19,12 +19,12 @@ func checkDataTypeParam(c *revel.Controller) revel.Result {
 	if ok && dataType[0] != "" {
 		if _, ok := database.SynchronizationTypes[dataType[0]]; !ok {
 			c.Response.Status = 400
-			return c.RenderJson("wrong dataType attribute")
+			return c.RenderJSON("wrong dataType attribute")
 		}
 		return nil
 	}
 	c.Response.Status = 400
-	return c.RenderJson("mandatory parameter dataType is not present")
+	return c.RenderJSON("mandatory parameter dataType is not present")
 }
 
 func init() {

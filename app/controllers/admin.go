@@ -45,7 +45,7 @@ func (c Admin) Schedule() revel.Result {
 
 	days := models.DaysList
 	pairs := models.PairsList
-	faculties, _ := database.FacultiesList(c.DB)
+	faculties, _ := database.FacultiesList(c.Txn)
 	return c.Render(User, days, pairs, faculties)
 }
 

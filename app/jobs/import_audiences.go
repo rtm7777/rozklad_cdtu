@@ -3,7 +3,7 @@ package jobs
 import (
 	"fmt"
 	"github.com/fatih/color"
-	"github.com/rtm7777/rozklad_cdtu/app/controllers"
+	"github.com/revel/modules/gorm/app"
 	"github.com/rtm7777/rozklad_cdtu/app/models"
 	"regexp"
 	"strconv"
@@ -16,7 +16,7 @@ func (j AudiencesImport) Run() {
 	start := time.Now()
 	fmt.Println("------------------------------")
 	fmt.Printf("| Starting import at %s\n", start.Format("2006-01-02 15:04:05.000"))
-	db := controllers.Gdb
+	db := gorm.DB
 	file := OpenExcelFile("/home/kolan/Documents/a.xlsx")
 	fmt.Println("------------------------------")
 

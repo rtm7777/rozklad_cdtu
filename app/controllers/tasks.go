@@ -16,24 +16,24 @@ type Tasks struct {
 var TasksColumns = []string{"group", "subject", "teacher", "audience", "time"}
 
 func (c Tasks) GetFacultyDepartmentsList() revel.Result {
-	result, err := database.FacultiesDepartments(c.DB)
+	result, err := database.FacultiesDepartments(c.Txn)
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		return c.RenderJson(result)
+		return c.RenderJSON(result)
 	}
 }
 
 func (c Tasks) GetTasks(departmentId int64) revel.Result {
 	var items json_models.TasksItems
 
-	result, err := database.DepartmentTasks(c.DB, departmentId)
+	result, err := database.DepartmentTasks(c.Txn, departmentId)
 	if err != nil {
 		return jsonError(400, err)
 	} else {
 		items.Items = result
 		items.Columns = TasksColumns
-		return c.RenderJson(items)
+		return c.RenderJSON(items)
 	}
 }
 
@@ -43,7 +43,7 @@ func (c Tasks) UpdateTask() revel.Result {
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		err := database.UpdateTask(c.DB, data)
+		err := database.UpdateTask(c.Txn, data)
 		if err != nil {
 			return jsonError(400, err)
 		} else {
@@ -55,11 +55,11 @@ func (c Tasks) UpdateTask() revel.Result {
 }
 
 func (c Tasks) AddTask(department int64) revel.Result {
-	err, item := database.AddTask(c.DB, department)
+	err, item := database.AddTask(c.Txn, department)
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		return c.RenderJson(item)
+		return c.RenderJSON(item)
 	}
 }
 
@@ -73,7 +73,7 @@ func (c Tasks) DeleteTasks() revel.Result {
 	if err != nil {
 		return jsonError(400, err)
 	} else {
-		database.DeleteTasks(c.DB, data.Ids)
-		return c.RenderJson(data)
+		database.DeleteTasks(c.Txn, data.Ids)
+		return c.RenderJSON(data)
 	}
 }

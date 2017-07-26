@@ -7,8 +7,8 @@ import (
 )
 
 func (c Application) connected() *models.Users {
-	if c.RenderArgs["user"] != nil {
-		return c.RenderArgs["user"].(*models.Users)
+	if c.ViewArgs["user"] != nil {
+		return c.ViewArgs["user"].(*models.Users)
 	}
 	if username, ok := c.Session["user"]; ok {
 		return c.getUser(username)
@@ -18,7 +18,7 @@ func (c Application) connected() *models.Users {
 
 func (c Application) getUser(username string) *models.Users {
 	user := models.Users{}
-	err := c.DB.Where(&models.Users{Username: username}).First(&user).Error
+	err := c.Txn.Where(&models.Users{Username: username}).First(&user).Error
 	if err != nil {
 		if err.Error() == "record not found" {
 			return nil
@@ -45,8 +45,8 @@ func (c Application) LoginPost(email, password string) revel.Result {
 	} else {
 		user := models.Users{Username: email}
 		user.HashedPassword, _ = bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-		c.DB.NewRecord(user)
-		c.DB.Create(&user)
+		c.Txn.NewRecord(user)
+		c.Txn.Create(&user)
 
 		c.Session["user"] = user.Username
 		c.Session.SetDefaultExpiration()
