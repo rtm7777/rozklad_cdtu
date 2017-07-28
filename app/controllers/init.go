@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/revel/revel"
-	"github.com/rtm7777/rozklad_cdtu/app/models/custom_responses"
-	"github.com/rtm7777/rozklad_cdtu/app/models"
 	"github.com/revel/modules/gorm/app"
+	"github.com/revel/revel"
+	"github.com/rtm7777/rozklad_cdtu/app/models"
+	"github.com/rtm7777/rozklad_cdtu/app/models/custom_responses"
 )
 
 func jsonError(code int, err error) custom_responses.JsonErrorResult {
@@ -28,6 +28,8 @@ func init() {
 		gorm.DB.AutoMigrate(&models.Schedule{})
 		gorm.DB.AutoMigrate(&models.Tasks{})
 		gorm.DB.AutoMigrate(&models.Users{})
+		gorm.DB.AutoMigrate(&models.UserRoles{})
+		gorm.DB.Model(&models.UserRoles{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
 	})
 	revel.InterceptMethod((*gorm.GormController).Begin, revel.BEFORE)
 	revel.InterceptMethod(Admin.checkUser, revel.BEFORE)
