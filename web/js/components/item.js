@@ -1,15 +1,16 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import debounce from "debounce";
 import {validateNumber, validateMinMax} from "../libs/validation";
 
 class Item extends React.Component {
 	static propTypes = {
-		data: React.PropTypes.object
+		data: PropTypes.object
 	};
 
 	static contextTypes = {
-		actions: React.PropTypes.object.isRequired
+		actions: PropTypes.object.isRequired
 	};
 
 	constructor(props) {

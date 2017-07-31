@@ -1,13 +1,14 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import TasksStore from "../../stores/tasksStore";
 import TaskItem from "./taskItem";
 import I18n from "../../services/i18n";
 
 class Content extends React.Component {
 	static contextTypes = {
-		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(TasksStore).isRequired
+		actions: PropTypes.object.isRequired,
+		store: PropTypes.instanceOf(TasksStore).isRequired
 	};
 
 	constructor(props) {

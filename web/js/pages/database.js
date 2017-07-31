@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import Dispatcher from "../dispatcher/dispatcher";
 import DBActions from "../actions/dbActions";
 import DBStore from "../stores/dbStore";
@@ -13,8 +14,8 @@ import I18n from "../services/i18n";
 
 class DataBase extends React.Component {
 	static childContextTypes = {
-		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(DBStore).isRequired
+		actions: PropTypes.object.isRequired,
+		store: PropTypes.instanceOf(DBStore).isRequired
 	};
 
 	constructor(props) {

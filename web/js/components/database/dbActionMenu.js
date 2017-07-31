@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import SelectLink from "../selectLink";
 import ActionMenuButton from "../actionMenuButton";
 import DBStore from "../../stores/dbStore";
@@ -8,8 +9,8 @@ import clickAwayStore from "../../stores/clickAwayStore";
 
 class ActionMenu extends React.Component {
 	static contextTypes = {
-		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(DBStore).isRequired
+		actions: PropTypes.object.isRequired,
+		store: PropTypes.instanceOf(DBStore).isRequired
 	};
 
 	constructor(props) {

@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import ScheduleStore from "../../stores/scheduleStore";
 import I18n from "../../services/i18n";
 
@@ -17,7 +18,7 @@ const PairCol = (props) => {
 
 class DaysPairsRows extends React.Component {
 	static contextTypes = {
-		store: React.PropTypes.instanceOf(ScheduleStore).isRequired
+		store: PropTypes.instanceOf(ScheduleStore).isRequired
 	};
 
 	constructor(props) {

@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Navigation from "../navigation";
 
 class DBNavigation extends Navigation {
 	static contextTypes = {
-		actions: React.PropTypes.object.isRequired
+		actions: PropTypes.object.isRequired
 	};
 
 	selectOption = (el) => {

@@ -1,11 +1,12 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import ScheduleStore from "../../stores/scheduleStore";
 
 class SсheduleCell extends React.Component {
 	static contextTypes = {
-		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(ScheduleStore).isRequired
+		actions: PropTypes.object.isRequired,
+		store: PropTypes.instanceOf(ScheduleStore).isRequired
 	};
 
 	constructor(props) {

@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import SelectButton from "../selectButton";
 import Loader from "./tasksLoader";
 import DepartmentsNavigation from "./departmentsNavigation";
@@ -9,8 +10,8 @@ import clickAwayStore from "../../stores/clickAwayStore";
 
 class DepartmentSelector extends React.Component {
 	static contextTypes = {
-		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(TasksStore).isRequired
+		actions: PropTypes.object.isRequired,
+		store: PropTypes.instanceOf(TasksStore).isRequired
 	};
 
 	constructor(props) {

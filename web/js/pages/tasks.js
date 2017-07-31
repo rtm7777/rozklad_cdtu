@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import Dispatcher from "../dispatcher/dispatcher";
 import TasksActions from "../actions/tasksActions";
 import TasksStore from "../stores/tasksStore";
@@ -12,8 +13,8 @@ import Content from "../components/tasks/tasksContent";
 
 class Tasks extends React.Component {
 	static childContextTypes = {
-		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(TasksStore).isRequired
+		actions: PropTypes.object.isRequired,
+		store: PropTypes.instanceOf(TasksStore).isRequired
 	};
 
 	constructor(props) {

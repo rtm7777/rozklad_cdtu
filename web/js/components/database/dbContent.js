@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import AudienceItem from "./items/audienceItem";
 import DepartmentItem from "./items/departmentItem";
 import FacultyItem from "./items/facultyItem";
@@ -12,8 +13,8 @@ import I18n from "../../services/i18n";
 
 class Content extends React.Component {
 	static contextTypes = {
-		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(DBStore).isRequired
+		actions: PropTypes.object.isRequired,
+		store: PropTypes.instanceOf(DBStore).isRequired
 	};
 
 	constructor(props) {

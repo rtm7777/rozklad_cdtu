@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import ScheduleStore from "../../../stores/scheduleStore";
 import I18n from "../../../services/i18n";
 
@@ -7,8 +8,8 @@ import ActionMenuButton from "../../actionMenuButton";
 
 class ScheduleActions extends React.Component {
 	static contextTypes = {
-		actions: React.PropTypes.object.isRequired,
-		store: React.PropTypes.instanceOf(ScheduleStore).isRequired
+		actions: PropTypes.object.isRequired,
+		store: PropTypes.instanceOf(ScheduleStore).isRequired
 	};
 
 	constructor(props) {

@@ -1,5 +1,6 @@
 /** @jsx */
 import React from "react";
+import PropTypes from 'prop-types';
 import Item from "../item";
 import SelectInput from "../selectInput";
 import Popover from "../popover";
@@ -9,8 +10,8 @@ import I18n from "../../services/i18n";
 
 class TaskItem extends Item {
 	static contextTypes = {
-		store: React.PropTypes.instanceOf(TasksStore).isRequired,
-		actions: React.PropTypes.object.isRequired
+		store: PropTypes.instanceOf(TasksStore).isRequired,
+		actions: PropTypes.object.isRequired
 	};
 
 	constructor(props) {

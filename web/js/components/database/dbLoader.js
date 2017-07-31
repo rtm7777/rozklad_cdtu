@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import Loader from "../loader";
 import DBStore from "../../stores/dbStore";
 
 class DBLoader extends Loader {
 	static contextTypes = {
-		store: React.PropTypes.instanceOf(DBStore).isRequired
+		store: PropTypes.instanceOf(DBStore).isRequired
 	};
 }
 
