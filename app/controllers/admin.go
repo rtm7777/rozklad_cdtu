@@ -39,28 +39,40 @@ func (c Admin) Main() revel.Result {
 	return c.Redirect(Admin.Schedule)
 }
 
+func (c Admin) Administration() revel.Result {
+	connectedUser := c.connected()
+	User := connectedUser.Username
+	administrator := connectedUser.IsAdmin(c.Txn)
+	revel.INFO.Println(connectedUser.IsActive())
+
+	return c.Render(User, administrator)
+}
+
 func (c Admin) Schedule() revel.Result {
-	connection := c.connected()
-	User := connection.Username
+	connectedUser := c.connected()
+	User := connectedUser.Username
+	administrator := connectedUser.IsAdmin(c.Txn)
 
 	days := models.DaysList
 	pairs := models.PairsList
 	faculties, _ := database.FacultiesList(c.Txn)
-	return c.Render(User, days, pairs, faculties)
+	return c.Render(User, administrator, days, pairs, faculties)
 }
 
 func (c Admin) DataBase() revel.Result {
-	connection := c.connected()
-	User := connection.Username
+	connectedUser := c.connected()
+	User := connectedUser.Username
+	administrator := connectedUser.IsAdmin(c.Txn)
 
-	return c.Render(User)
+	return c.Render(User, administrator)
 }
 
 func (c Admin) Tasks() revel.Result {
-	connection := c.connected()
-	User := connection.Username
+	connectedUser := c.connected()
+	User := connectedUser.Username
+	administrator := connectedUser.IsAdmin(c.Txn)
 
-	return c.Render(User)
+	return c.Render(User, administrator)
 }
 
 func (c Admin) SocketConn(token string, ws *websocket.Conn) revel.Result {

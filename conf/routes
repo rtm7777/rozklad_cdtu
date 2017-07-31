@@ -18,6 +18,7 @@ POST    /login                                  Application.LoginPost
 GET     /logout                                 Application.Logout
 
 GET     /admin/                                 Admin.Main
+GET     /admin/administration/                  Admin.Administration
 GET     /admin/database/                        Admin.DataBase
 GET     /admin/schedule/                        Admin.Schedule
 GET     /admin/tasks/                           Admin.Tasks
